@@ -69,6 +69,8 @@ class SynchronisationTest {
                 }
                 chemin == "/violentometers" -> ok(json.encodeToString(ListSerializer(ViolentometreResume.serializer()),
                     c.violentometres.map { ViolentometreResume(it.id, it.titre) }))
+                morceaux[0] == "violentometers" && morceaux.getOrNull(2) == "related" -> c.proches[morceaux[1]]
+                    ?.let { ok(json.encodeToString(fr.cooplib.util.modeles.Proches.serializer(), it)) } ?: ok("{}")
                 morceaux[0] == "violentometers" -> c.violentometres.find { it.id == morceaux[1] }
                     ?.let { ok(json.encodeToString(fr.cooplib.util.modeles.Violentometre.serializer(), it)) } ?: ReponseHttp(404, "")
                 chemin == "/tests/orientation/tout" -> ok(json.encodeToString(fr.cooplib.util.modeles.PoolDuPoint.serializer(), c.pointGeneral))
@@ -164,7 +166,7 @@ class SynchronisationTest {
         assertEquals(Marque("v-1", "2026-10-21T08:00:00+00:00"), maj.derniereVersion)
         assertEquals(
             listOf("/history/recent?limit=1", "/history/recent?limit=30", "/violentometers/${vm.id}",
-                "/tests/violentometer/${vm.id}", "/tests/orientation/tout"),
+                "/tests/violentometer/${vm.id}", "/violentometers/${vm.id}/related", "/tests/orientation/tout"),
             f.chemins,
         )
     }
@@ -179,7 +181,7 @@ class SynchronisationTest {
 
         Synchronisation.incrementale(api(f), catalogue)
 
-        assertEquals(employeurs.toSet(), f.chemins.filter { it.startsWith("/violentometers/") }.map { it.substringAfterLast('/') }.toSet())
+        assertEquals(employeurs.toSet(), f.chemins.filter { it.startsWith("/violentometers/") && !it.endsWith("/related") }.map { it.substringAfterLast('/') }.toSet())
     }
 
     @Test

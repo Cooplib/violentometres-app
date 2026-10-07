@@ -16,4 +16,6 @@ data class Recit(
     val apropos: String = "",
     @SerialName("safe") val sansFlou: Boolean = false,
     @SerialName("created_at") val creeLe: String = "",
+    @SerialName("views_count") val vues: Int = 0,
+    @SerialName("popular_score") val popularite: Int = 0,
 )

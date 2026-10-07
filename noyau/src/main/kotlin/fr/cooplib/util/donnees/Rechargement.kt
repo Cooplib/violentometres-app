@@ -11,7 +11,7 @@ import java.time.temporal.ChronoUnit
  * code : la fabrique du catalogue embarqué, et le rechargement complet
  * de la synchronisation chez les gens.
  *
- * Des LECTURES seulement, une à une : environ 200 requêtes et 1,2 Mo,
+ * Des LECTURES seulement, une à une : environ 270 requêtes et 1,8 Mo,
  * d'où une fois par semaine au plus, et jamais sur une connexion
  * facturée au volume sans demander.
  *
@@ -40,6 +40,7 @@ fun rechargerTout(api: ClientApi, maintenant: Instant): Resultat<Catalogue> = av
         mecanismes = api.mecanismes().ou().sortedBy { it.id }.map { api.mecanisme(it.id).ou() },
         pointGeneral = api.point("orientation", "tout").ou(),
         pointsParViolentometre = liste.associate { it.id to api.point("violentometer", it.id).ou() },
+        proches = liste.associate { it.id to api.proches(it.id).ou() },
     )
 }
 

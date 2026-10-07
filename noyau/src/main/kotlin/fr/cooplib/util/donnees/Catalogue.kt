@@ -5,6 +5,7 @@ import fr.cooplib.util.modeles.Cadre
 import fr.cooplib.util.modeles.Mecanisme
 import fr.cooplib.util.modeles.Parcours
 import fr.cooplib.util.modeles.PoolDuPoint
+import fr.cooplib.util.modeles.Proches
 import fr.cooplib.util.modeles.Recit
 import fr.cooplib.util.modeles.Violentometre
 import fr.cooplib.util.modeles.decodage
@@ -54,6 +55,9 @@ data class Catalogue(
     // du serveur, qui divergerait comme toutes les autres.
     val pointGeneral: PoolDuPoint,
     val pointsParViolentometre: Map<String, PoolDuPoint>,
+    // Ce qui ressemble à chaque violentomètre, calculé par le serveur.
+    // Vide dans un catalogue tiré avant qu'on l'embarque.
+    val proches: Map<String, Proches> = emptyMap(),
 ) {
 
     companion object {

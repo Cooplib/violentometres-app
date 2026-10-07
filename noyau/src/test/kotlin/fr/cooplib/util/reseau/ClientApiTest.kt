@@ -51,8 +51,9 @@ class ClientApiTest {
         client.cadre("c-1")
         client.mecanismes()
         client.mecanisme("m-1")
+        client.proches("a3f2-1")
 
-        assertEquals(13, transport.requetes.size)
+        assertEquals(14, transport.requetes.size)
 
         for (r in transport.requetes) {
             assertEquals("GET", r.methode)
@@ -180,5 +181,23 @@ class ClientApiTest {
         assertFailsWith<IllegalArgumentException> { client.violentometre("../admin") }
         assertFailsWith<IllegalArgumentException> { client.signalerRecit("r-1?x=1", "autre", null, moi) }
         assertTrue(transport.requetes.isEmpty())
+    }
+
+    @Test
+    fun `aimer et ne plus aimer, avec l'identifiant, et seulement la`() {
+
+        transport.repondre = { ReponseHttp(200, """{"liked":true,"like_count":4}""") }
+
+        assertEquals(Resultat.Ok(EtatDuLike(true, 4)), client.aimerViolentometre("vm-1", true, moi))
+        val oui = transport.requetes.last()
+        assertEquals("POST", oui.methode)
+        assertEquals("https://violentometres.fr/api/violentometers/vm-1/like", oui.url)
+        assertEquals(moi.valeur, oui.entetes["X-Visitor-Id"])
+        assertEquals(moi.valeur, decodage.parseToJsonElement(oui.corps!!).jsonObject["visitor_id"]!!.jsonPrimitive.content)
+
+        client.aimerParcours("p-1", false, moi)
+        val non = transport.requetes.last()
+        assertEquals("DELETE", non.methode)
+        assertEquals("https://violentometres.fr/api/parcours/p-1/like?visitor_id=${moi.valeur}", non.url)
     }
 }

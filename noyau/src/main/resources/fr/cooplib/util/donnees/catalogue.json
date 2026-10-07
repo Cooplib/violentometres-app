@@ -1,6 +1,10 @@
 {
- "fabriqueLe": "2026-10-07T15:00:56Z",
+ "fabriqueLe": "2026-10-07T19:32:12Z",
  "source": "https://violentometres.fr/api",
+ "derniereVersion": {
+  "id": "4134d593-9ee0-441a-bdb8-64524db4224c",
+  "modifieLe": "2026-10-07T17:26:08.740566+00:00"
+ },
  "aides": [
   {
    "id": "19797503-7fee-458a-bb7c-b4a44cb42498",
@@ -416,7 +420,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-06T23:43:36.248194+00:00"
+   "updated_at": "2026-10-06T23:43:36.248194+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
@@ -1064,7 +1070,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T01:36:57.677345+00:00"
+   "updated_at": "2026-10-07T01:36:57.677345+00:00",
+   "views_count": 1,
+   "popular_score": 51
   },
   {
    "id": "12cea310-e425-455b-a342-5abebb7a1d91",
@@ -1327,7 +1335,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-06T19:53:15.757452+00:00"
+   "updated_at": "2026-10-06T19:53:15.757452+00:00",
+   "views_count": 1,
+   "popular_score": 63
   },
   {
    "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
@@ -1671,7 +1681,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-05T10:12:19.623221+00:00"
+   "updated_at": "2026-10-05T10:12:19.623221+00:00",
+   "views_count": 1,
+   "popular_score": 39
   },
   {
    "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
@@ -1953,7 +1965,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-06T19:44:26.217522+00:00"
+   "updated_at": "2026-10-06T19:44:26.217522+00:00",
+   "views_count": 1,
+   "popular_score": 73
   },
   {
    "id": "247a382a-a837-4196-bd53-ba188abd3d52",
@@ -2212,7 +2226,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T04:44:25.782050+00:00"
+   "updated_at": "2026-10-07T04:44:25.782050+00:00",
+   "views_count": 1,
+   "popular_score": 63
   },
   {
    "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
@@ -2692,7 +2708,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-06T14:26:56.866848+00:00"
+   "updated_at": "2026-10-06T14:26:56.866848+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
@@ -3230,7 +3248,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-07T18:09:50.745918+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
@@ -3377,7 +3397,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-07T01:59:48.835925+00:00"
+   "updated_at": "2026-10-07T16:07:39.249605+00:00",
+   "views_count": 2,
+   "popular_score": 32
   },
   {
    "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
@@ -4600,7 +4622,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T07:49:02.777192+00:00"
+   "updated_at": "2026-10-07T07:49:02.777192+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
@@ -5809,7 +5833,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-07T16:57:58.176655+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
@@ -6038,7 +6064,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-07T04:57:53.635391+00:00"
+   "updated_at": "2026-10-07T04:57:53.635391+00:00",
+   "views_count": 1,
+   "popular_score": 55
   },
   {
    "id": "60dc7ec3-9735-44d7-a5d9-5cd047ce3d09",
@@ -6297,7 +6325,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T02:02:43.269417+00:00"
+   "updated_at": "2026-10-07T02:02:43.269417+00:00",
+   "views_count": 1,
+   "popular_score": 63
   },
   {
    "id": "64bdd8ed-89cb-4522-8b12-fb71f61048c1",
@@ -6972,7 +7002,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T00:23:57.430446+00:00"
+   "updated_at": "2026-10-07T00:23:57.430446+00:00",
+   "views_count": 1,
+   "popular_score": 37
   },
   {
    "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
@@ -7203,7 +7235,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-07T15:55:46.089940+00:00",
+   "views_count": 1,
+   "popular_score": 55
   },
   {
    "id": "6e1fa543-1baa-4e71-9560-322c5b513e1c",
@@ -7851,7 +7885,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-05T15:33:28.147893+00:00"
+   "updated_at": "2026-10-07T15:59:24.345415+00:00",
+   "views_count": 2,
+   "popular_score": 74
   },
   {
    "id": "771ffcca-9fae-4678-8050-42cec0366296",
@@ -8542,7 +8578,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-07T02:54:17.360308+00:00"
+   "updated_at": "2026-10-07T02:54:17.360308+00:00",
+   "views_count": 1,
+   "popular_score": 43
   },
   {
    "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
@@ -8802,7 +8840,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-05T09:37:56.254630+00:00"
+   "updated_at": "2026-10-05T09:37:56.254630+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
@@ -9878,7 +9918,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T07:32:41.945371+00:00"
+   "updated_at": "2026-10-07T07:32:41.945371+00:00",
+   "views_count": 4,
+   "popular_score": 68
   },
   {
    "id": "a6ab7e47-f5e9-4253-8642-ee8ce2dd802b",
@@ -11196,7 +11238,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-07T17:31:31.778908+00:00",
+   "views_count": 1,
+   "popular_score": 49
   },
   {
    "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
@@ -11605,7 +11649,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T10:22:59.326455+00:00"
+   "updated_at": "2026-10-07T10:22:59.326455+00:00",
+   "views_count": 3,
+   "popular_score": 45
   },
   {
    "id": "d17fe96d-8953-428d-aa15-9f101dcffe11",
@@ -12258,7 +12304,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T10:19:46.054898+00:00"
+   "updated_at": "2026-10-07T10:19:46.054898+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "e1ea98eb-25cf-4be6-b469-21d2370db6db",
@@ -12596,7 +12644,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-07T06:37:49.375471+00:00"
+   "updated_at": "2026-10-07T06:37:49.375471+00:00",
+   "views_count": 2,
+   "popular_score": 38
   },
   {
    "id": "ea4c1576-f9d3-4099-86ec-90cd6b4369de",
@@ -12856,7 +12906,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-07T15:14:34.727127+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
@@ -13116,7 +13168,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T01:15:04.941434+00:00"
+   "updated_at": "2026-10-07T01:15:04.941434+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "f0b9b25f-238a-42c1-a803-96fe29d0ba10",
@@ -13317,7 +13371,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-04T23:09:36.520655+00:00"
+   "updated_at": "2026-10-04T23:09:36.520655+00:00",
+   "views_count": 1,
+   "popular_score": 47
   },
   {
    "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
@@ -13841,7 +13897,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-06T18:22:59.373341+00:00"
+   "updated_at": "2026-10-06T18:22:59.373341+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
@@ -14049,7 +14107,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T05:19:32.531093+00:00"
+   "updated_at": "2026-10-07T05:19:32.531093+00:00",
+   "views_count": 3,
+   "popular_score": 51
   },
   {
    "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
@@ -14325,7 +14385,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T04:29:14.423008+00:00"
+   "updated_at": "2026-10-07T04:29:14.423008+00:00",
+   "views_count": 1,
+   "popular_score": 65
   },
   {
    "id": "ffb83a20-4219-47de-b132-5cc17dabfed6",
@@ -14535,7 +14597,9 @@
      "severity": 1
     }
    ],
-   "updated_at": "2026-10-06T23:25:09.284804+00:00"
+   "updated_at": "2026-10-07T15:42:45.921242+00:00",
+   "views_count": 2,
+   "popular_score": 50
   }
  ],
  "parcours": [
@@ -14583,7 +14647,9 @@
      "note": "Les groupes du quotidien."
     }
    ],
-   "updated_at": "2026-10-07T10:40:32.905399+00:00"
+   "updated_at": "2026-10-07T10:40:32.905399+00:00",
+   "views_count": 1,
+   "popular_score": 7
   },
   {
    "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
@@ -14627,6 +14693,16 @@
      },
      "position": 2,
      "note": "Qui peut vraiment participer."
+    }
+   ],
+   "cadres": [
+    {
+     "id": "8b47198c-ced2-43d7-ab7a-09e216e1a83f",
+     "nom": "Intersectionnalité"
+    },
+    {
+     "id": "a02e4da1-400c-4aa1-9f36-3e9966080cc4",
+     "nom": "Pensées libertaires"
     }
    ],
    "updated_at": "2026-09-30T07:30:19.253551+00:00"
@@ -14688,7 +14764,9 @@
      "note": "Quand on dépend encore d'un diplôme."
     }
    ],
-   "updated_at": "2026-10-05T02:31:52.323800+00:00"
+   "updated_at": "2026-10-05T02:31:52.323800+00:00",
+   "views_count": 1,
+   "popular_score": 9
   },
   {
    "id": "1c970a86-b817-443b-ae76-50d1707e1eed",
@@ -14721,7 +14799,9 @@
      "note": "Les collectifs militants et les lieux autogérés."
     }
    ],
-   "updated_at": "2026-10-06T15:04:15.554800+00:00"
+   "updated_at": "2026-10-06T15:04:15.554800+00:00",
+   "views_count": 1,
+   "popular_score": 5
   },
   {
    "id": "2256aec3-d09b-4436-891b-3fac1c92ce4b",
@@ -14767,7 +14847,9 @@
      "note": "L'immeuble et le quartier."
     }
    ],
-   "updated_at": "2026-10-06T17:42:25.071260+00:00"
+   "updated_at": "2026-10-06T17:42:25.071260+00:00",
+   "views_count": 2,
+   "popular_score": 8
   },
   {
    "id": "23d7154c-619a-4828-af93-f493c9305138",
@@ -14826,7 +14908,9 @@
      "note": "Les proches âgé·es, et celles et ceux qui les aident."
     }
    ],
-   "updated_at": "2026-10-05T04:22:04.803545+00:00"
+   "updated_at": "2026-10-05T04:22:04.803545+00:00",
+   "views_count": 1,
+   "popular_score": 9
   },
   {
    "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
@@ -14911,7 +14995,27 @@
      "note": "L'origine, l'accent, les papiers."
     }
    ],
-   "updated_at": "2026-10-06T17:52:14.548377+00:00"
+   "cadres": [
+    {
+     "id": "b36c1260-0a70-494b-84bb-7e9bdfc59db1",
+     "nom": "Antiracismes et pensées décoloniales"
+    },
+    {
+     "id": "8d4598c8-d9d3-4848-87e2-ce7dfa38ed8d",
+     "nom": "Féminisme matérialiste"
+    },
+    {
+     "id": "c8a3feec-d8b7-497b-b5bd-64907a5c155f",
+     "nom": "Marxisme"
+    },
+    {
+     "id": "10bcd43c-1195-4305-849c-09d2e4292758",
+     "nom": "Modèle social du handicap"
+    }
+   ],
+   "updated_at": "2026-10-06T17:52:14.548377+00:00",
+   "views_count": 1,
+   "popular_score": 13
   },
   {
    "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
@@ -14968,6 +15072,20 @@
      },
      "position": 3,
      "note": "Une ville pensée pour d'autres corps."
+    }
+   ],
+   "cadres": [
+    {
+     "id": "b36c1260-0a70-494b-84bb-7e9bdfc59db1",
+     "nom": "Antiracismes et pensées décoloniales"
+    },
+    {
+     "id": "7854414a-5493-4c35-9e70-b964da1a3ebe",
+     "nom": "Féminismes"
+    },
+    {
+     "id": "10bcd43c-1195-4305-849c-09d2e4292758",
+     "nom": "Modèle social du handicap"
     }
    ],
    "updated_at": "2026-09-30T07:30:19.253551+00:00"
@@ -15042,7 +15160,23 @@
      "note": "D'où vient la première de ces lectures."
     }
    ],
-   "updated_at": "2026-10-07T00:53:25.342451+00:00"
+   "cadres": [
+    {
+     "id": "abd0ad3b-1275-4896-84b7-34b5c43c71c2",
+     "nom": "Critique de la domination adulte"
+    },
+    {
+     "id": "e598c57e-df96-43c1-8e22-c2a0899fb365",
+     "nom": "Critiques des normes de genre et de sexualité"
+    },
+    {
+     "id": "8d4598c8-d9d3-4848-87e2-ce7dfa38ed8d",
+     "nom": "Féminisme matérialiste"
+    }
+   ],
+   "updated_at": "2026-10-07T00:53:25.342451+00:00",
+   "views_count": 1,
+   "popular_score": 11
   },
   {
    "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
@@ -15200,7 +15334,9 @@
      "note": "Avant le couple : les premiers messages, les premiers rendez-vous."
     }
    ],
-   "updated_at": "2026-10-04T15:57:57.122675+00:00"
+   "updated_at": "2026-10-04T15:57:57.122675+00:00",
+   "views_count": 1,
+   "popular_score": 13
   },
   {
    "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
@@ -15259,7 +15395,9 @@
      "note": "Les clubs et les vestiaires."
     }
    ],
-   "updated_at": "2026-10-06T10:56:10.452215+00:00"
+   "updated_at": "2026-10-06T10:56:10.452215+00:00",
+   "views_count": 2,
+   "popular_score": 10
   },
   {
    "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
@@ -15316,6 +15454,20 @@
      },
      "position": 3,
      "note": "Les corps des femmes à l'hôpital."
+    }
+   ],
+   "cadres": [
+    {
+     "id": "7854414a-5493-4c35-9e70-b964da1a3ebe",
+     "nom": "Féminismes"
+    },
+    {
+     "id": "10bcd43c-1195-4305-849c-09d2e4292758",
+     "nom": "Modèle social du handicap"
+    },
+    {
+     "id": "a02e4da1-400c-4aa1-9f36-3e9966080cc4",
+     "nom": "Pensées libertaires"
     }
    ],
    "updated_at": "2026-09-30T07:30:19.253551+00:00"
@@ -15404,7 +15556,23 @@
      "note": "Ce que la norme fait aux relations."
     }
    ],
-   "updated_at": "2026-10-06T12:07:18.101809+00:00"
+   "cadres": [
+    {
+     "id": "cd8d5e78-c19e-4051-a4cb-fc2d2a9d800a",
+     "nom": "Contrôle coercitif"
+    },
+    {
+     "id": "e598c57e-df96-43c1-8e22-c2a0899fb365",
+     "nom": "Critiques des normes de genre et de sexualité"
+    },
+    {
+     "id": "8d4598c8-d9d3-4848-87e2-ce7dfa38ed8d",
+     "nom": "Féminisme matérialiste"
+    }
+   ],
+   "updated_at": "2026-10-06T12:07:18.101809+00:00",
+   "views_count": 2,
+   "popular_score": 14
   },
   {
    "id": "af686187-fd3b-4c55-9046-24cfd7d9d4f8",
@@ -15448,6 +15616,16 @@
      },
      "position": 2,
      "note": "Ce que l'école apprend du genre."
+    }
+   ],
+   "cadres": [
+    {
+     "id": "abd0ad3b-1275-4896-84b7-34b5c43c71c2",
+     "nom": "Critique de la domination adulte"
+    },
+    {
+     "id": "e598c57e-df96-43c1-8e22-c2a0899fb365",
+     "nom": "Critiques des normes de genre et de sexualité"
     }
    ],
    "updated_at": "2026-09-30T07:30:19.253551+00:00"
@@ -15548,7 +15726,9 @@
      "note": "Être hébergé·e ou placé·e."
     }
    ],
-   "updated_at": "2026-10-06T17:13:45.342562+00:00"
+   "updated_at": "2026-10-06T17:13:45.342562+00:00",
+   "views_count": 1,
+   "popular_score": 15
   },
   {
    "id": "bbd10bf2-4569-498a-9c3a-783f0ae2464e",
@@ -15638,6 +15818,12 @@
      },
      "position": 2,
      "note": "Quand plusieurs dominations se croisent."
+    }
+   ],
+   "cadres": [
+    {
+     "id": "8b47198c-ced2-43d7-ab7a-09e216e1a83f",
+     "nom": "Intersectionnalité"
     }
    ],
    "updated_at": "2026-09-30T07:30:19.253551+00:00"
@@ -15745,6 +15931,12 @@
      "note": "Une lecture qui en a fait le cœur de son analyse."
     }
    ],
+   "cadres": [
+    {
+     "id": "cd8d5e78-c19e-4051-a4cb-fc2d2a9d800a",
+     "nom": "Contrôle coercitif"
+    }
+   ],
    "updated_at": "2026-09-30T07:30:19.253551+00:00"
   }
  ],
@@ -15759,7 +15951,9 @@
    "id": "8167b1b9-6be4-4086-a3e5-a5d4f2c492ae",
    "title": "Une colocation ordinaire",
    "text": "Il ne criait pas, il ne cassait rien. Il soupirait. Il laissait traîner les choses jusqu'à ce que je les fasse. Quand j'ai voulu en parler, il m'a expliqué calmement que j'étais quelqu'un de tendu, et que ce n'était pas de sa faute.",
-   "created_at": "2026-09-30T07:30:19.253551+00:00"
+   "created_at": "2026-09-30T07:30:19.253551+00:00",
+   "views_count": 1,
+   "popular_score": 5
   },
   {
    "id": "d228781a-5b16-4e82-a8ec-44b3b7177cdf",
@@ -15771,7 +15965,22 @@
    "id": "d4e85934-76d0-44ec-866d-96afd1e0edbd",
    "title": "Le premier été",
    "text": "Au début, je trouvais ça touchant qu'il veuille savoir où j'étais. Il disait qu'il s'inquiétait. Puis il a voulu savoir avec qui, puis pourquoi, puis combien de temps. Un soir j'ai réalisé que je préparais mes réponses dans le métro, avant même qu'il demande. C'est ce jour-là que j'ai compris que quelque chose n'allait pas, sans réussir à dire quoi.",
-   "created_at": "2026-09-30T07:30:19.253551+00:00"
+   "created_at": "2026-09-30T07:30:19.253551+00:00",
+   "views_count": 1,
+   "popular_score": 5
+  },
+  {
+   "id": "db3c9be4-523a-4f72-9c2d-033c998d054b",
+   "title": "Pas content",
+   "text": "Suite a un refus de ma part sur un élément la personne est partie, a claqué des portes. Puis plus tard m'a averti des conséquences de mon refus.",
+   "created_at": "2026-10-07T17:24:16.221867+00:00"
+  },
+  {
+   "id": "fca25226-cf23-45d3-bf57-7878f08bc609",
+   "title": "Le directeur a déchiré notre pétition",
+   "text": "Nous avons fait une pétition pour parler d'un problème de harcèlement d'un prof sur des élèves. Nous avons eu un rendez vous avec le principal. Il a survolé notre document et l'a déchiré, disant qu'il n'allait pas sanctionner son collègue.",
+   "safe": true,
+   "created_at": "2026-10-07T17:26:08.729125+00:00"
   }
  ],
  "cadres": [
@@ -42738,6 +42947,5385 @@
      "id": "e71fce68-d051-49f3-a06b-bf65bec309b1",
      "nom": "Présenter comme naturel",
      "resume": "Faire passer une inégalité pour normale ou inévitable : « c'est comme ça », « c'est leur rôle », « ça a toujours été ainsi »."
+    }
+   ]
+  }
+ },
+ "proches": {
+  "07779d4f-90bd-4ea0-8761-47517b56f4e4": {
+   "parcours": [
+    {
+     "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+     "title": "Les institutions, sous plusieurs angles"
+    },
+    {
+     "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+     "title": "Les institutions : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
+      "title": "La santé, lue par les féminismes"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
+      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "shared_count": 6
+    },
+    {
+     "violentometer": {
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "09042f4a-5410-413d-8b98-4ff3d5a794c0": {
+   "parcours": [
+    {
+     "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+     "title": "La famille, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "0bb14a80-1b0a-410a-8ff6-82b66acd44bf",
+      "title": "La famille, lue par les critiques des normes de genre"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
+      "title": "Violentomètre de la famille"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "2e6a5b49-0300-4d18-9fe3-6c3ab9eae3bf",
+      "title": "La famille, lue par la critique de la domination adulte"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "997fd90c-860a-4409-8879-584b78b9838d",
+      "title": "Frères, sœurs, cousins, grands-parents"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "7cd3f13f-2f54-4c25-ba57-afb989ddbf33",
+      "title": "Plateformes et travail indépendant"
+     },
+     "shared_count": 6
+    },
+    {
+     "violentometer": {
+      "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
+      "title": "Violentomètre des parents et des enfants"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
+      "title": "Le travail, lu par le marxisme"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     }
+    }
+   ],
+   "cadres_voisins": [
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     }
+    }
+   ]
+  },
+  "0bb14a80-1b0a-410a-8ff6-82b66acd44bf": {
+   "parcours": [
+    {
+     "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+     "title": "La famille, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
+      "title": "Violentomètre de la famille"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "2e6a5b49-0300-4d18-9fe3-6c3ab9eae3bf",
+      "title": "La famille, lue par la critique de la domination adulte"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "997fd90c-860a-4409-8879-584b78b9838d",
+      "title": "Frères, sœurs, cousins, grands-parents"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
+      "title": "Violentomètre des parents et des enfants"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
+      "title": "Les relations, lues par les critiques des normes de genre"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "ffb83a20-4219-47de-b132-5cc17dabfed6",
+      "title": "L'école, lue par les critiques des normes de genre"
+     }
+    }
+   ]
+  },
+  "10007932-9f30-484a-9289-3738571a3196": {
+   "parcours": [
+    {
+     "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+     "title": "Le couple, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
+      "title": "Les relations, lues par les critiques des normes de genre"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "1e59fb49-5448-4d29-ac67-f00daf33e245",
+      "title": "Après la séparation"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab",
+      "title": "Le contrôle dans le couple"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba",
+      "title": "Violentomètre des relations amoureuses et sexuelles"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "f0b9b25f-238a-42c1-a803-96fe29d0ba10",
+      "title": "Violences sexuelles dans le couple"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     }
+    }
+   ],
+   "cadres_voisins": [
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     }
+    }
+   ]
+  },
+  "12cea310-e425-455b-a342-5abebb7a1d91": {
+   "parcours": [
+    {
+     "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+     "title": "Le couple, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
+      "title": "Les relations, lues par les critiques des normes de genre"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab",
+      "title": "Le contrôle dans le couple"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "1e59fb49-5448-4d29-ac67-f00daf33e245",
+      "title": "Après la séparation"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba",
+      "title": "Violentomètre des relations amoureuses et sexuelles"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "f0b9b25f-238a-42c1-a803-96fe29d0ba10",
+      "title": "Violences sexuelles dans le couple"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
+      "title": "Être isolé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ],
+   "cadres_voisins": [
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     }
+    }
+   ]
+  },
+  "19587746-84f3-4c2f-9da0-b2f36f2dd5d8": {
+   "parcours": [
+    {
+     "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+     "title": "Les collectifs, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "5ce83a6f-5d0a-40ee-af55-ec3b5e44e566",
+      "title": "Les collectifs, lus par les pensées libertaires"
+     },
+     "parcours": [
+      {
+       "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+       "title": "Les collectifs, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "ea4c1576-f9d3-4099-86ec-90cd6b4369de",
+      "title": "Violentomètre des collectifs"
+     },
+     "parcours": [
+      {
+       "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+       "title": "Les collectifs, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "45bdf080-6c74-45fd-bbee-7c3185bb0c13",
+      "title": "Violentomètre des collectifs militants"
+     },
+     "shared_count": 10
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     }
+    }
+   ],
+   "cadres_voisins": [
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     }
+    }
+   ]
+  },
+  "1e59fb49-5448-4d29-ac67-f00daf33e245": {
+   "parcours": [
+    {
+     "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+     "title": "Relations amoureuses : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f0b9b25f-238a-42c1-a803-96fe29d0ba10",
+      "title": "Violences sexuelles dans le couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab",
+      "title": "Le contrôle dans le couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba",
+      "title": "Violentomètre des relations amoureuses et sexuelles"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "1efbb2a9-9169-4aaf-968f-f2d49042dad6": {
+   "parcours": [
+    {
+     "id": "ef1705be-5245-4a3b-ad5b-446915c1a154",
+     "title": "La même chose, partout : dépendre"
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "64bdd8ed-89cb-4522-8b12-fb71f61048c1",
+      "title": "Violentomètre du logement et du voisinage"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba",
+      "title": "Violentomètre des relations amoureuses et sexuelles"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "1e59fb49-5448-4d29-ac67-f00daf33e245",
+      "title": "Après la séparation"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "247a382a-a837-4196-bd53-ba188abd3d52": {
+   "parcours": [
+    {
+     "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+     "title": "La rue, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "771ffcca-9fae-4678-8050-42cec0366296",
+      "title": "La rue, lue par les féminismes"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c075a436-f6f0-4571-8506-d22acf917854",
+      "title": "La rue, lue par les antiracismes"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
+      "title": "Violentomètre de l'espace public"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
+      "title": "Violentomètre des soirées et de la vie nocturne"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
+      "title": "La santé, lue par les féminismes"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "e1ea98eb-25cf-4be6-b469-21d2370db6db",
+      "title": "Le travail, lu par le modèle social du handicap"
+     }
+    }
+   ]
+  },
+  "29419972-a36b-47ef-83a5-dcf88b57a421": {
+   "parcours": [
+    {
+     "id": "bbd10bf2-4569-498a-9c3a-783f0ae2464e",
+     "title": "La même chose, partout : être isolé·e"
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "5ce83a6f-5d0a-40ee-af55-ec3b5e44e566",
+      "title": "Les collectifs, lus par les pensées libertaires"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "6e1fa543-1baa-4e71-9560-322c5b513e1c",
+      "title": "Messageries et groupes"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "45bdf080-6c74-45fd-bbee-7c3185bb0c13",
+      "title": "Violentomètre des collectifs militants"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "29c8a11d-28c5-44cb-86a7-3dc9192822a5",
+      "title": "Le harcèlement scolaire"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "29c8a11d-28c5-44cb-86a7-3dc9192822a5": {
+   "parcours": [
+    {
+     "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+     "title": "L'école et les études : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
+      "title": "Violentomètre de l'école"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
+      "title": "Violentomètre de l'école et des études"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
+      "title": "Université et études supérieures"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "6e1fa543-1baa-4e71-9560-322c5b513e1c",
+      "title": "Messageries et groupes"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "a6ab7e47-f5e9-4253-8642-ee8ce2dd802b",
+      "title": "Cyberharcèlement et chantage en ligne"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
+      "title": "Violentomètre de la vie numérique"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "60dc7ec3-9735-44d7-a5d9-5cd047ce3d09",
+      "title": "L'école, lue par la critique de la domination adulte"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
+      "title": "Être isolé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "2e6a5b49-0300-4d18-9fe3-6c3ab9eae3bf",
+      "title": "La famille, lue par la critique de la domination adulte"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "2c93a667-fd1c-43c5-a6c0-785aa57a6431": {
+   "parcours": [
+    {
+     "id": "03707aff-bc1a-4a84-801f-a2171396c135",
+     "title": "En ligne : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "a6ab7e47-f5e9-4253-8642-ee8ce2dd802b",
+      "title": "Cyberharcèlement et chantage en ligne"
+     },
+     "parcours": [
+      {
+       "id": "03707aff-bc1a-4a84-801f-a2171396c135",
+       "title": "En ligne : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "6e1fa543-1baa-4e71-9560-322c5b513e1c",
+      "title": "Messageries et groupes"
+     },
+     "parcours": [
+      {
+       "id": "03707aff-bc1a-4a84-801f-a2171396c135",
+       "title": "En ligne : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "29c8a11d-28c5-44cb-86a7-3dc9192822a5",
+      "title": "Le harcèlement scolaire"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba",
+      "title": "Violentomètre des relations amoureuses et sexuelles"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
+      "title": "Être isolé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "2e6a5b49-0300-4d18-9fe3-6c3ab9eae3bf": {
+   "parcours": [
+    {
+     "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+     "title": "La famille, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "0bb14a80-1b0a-410a-8ff6-82b66acd44bf",
+      "title": "La famille, lue par les critiques des normes de genre"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
+      "title": "Violentomètre de la famille"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
+      "title": "Violentomètre des parents et des enfants"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "29c8a11d-28c5-44cb-86a7-3dc9192822a5",
+      "title": "Le harcèlement scolaire"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
+      "title": "Violentomètre de l'école"
+     },
+     "shared_count": 3
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "60dc7ec3-9735-44d7-a5d9-5cd047ce3d09",
+      "title": "L'école, lue par la critique de la domination adulte"
+     }
+    }
+   ]
+  },
+  "33b92aac-6134-4f86-a70d-828f46f0f018": {
+   "parcours": [
+    {
+     "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+     "title": "Le couple, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "0bb14a80-1b0a-410a-8ff6-82b66acd44bf",
+      "title": "La famille, lue par les critiques des normes de genre"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "ffb83a20-4219-47de-b132-5cc17dabfed6",
+      "title": "L'école, lue par les critiques des normes de genre"
+     }
+    }
+   ]
+  },
+  "39ef0cab-445a-4c7d-84ce-c47b5bd67626": {
+   "parcours": [
+    {
+     "id": "af686187-fd3b-4c55-9046-24cfd7d9d4f8",
+     "title": "L'école, sous plusieurs angles"
+    },
+    {
+     "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+     "title": "L'école et les études : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "ffb83a20-4219-47de-b132-5cc17dabfed6",
+      "title": "L'école, lue par les critiques des normes de genre"
+     },
+     "parcours": [
+      {
+       "id": "af686187-fd3b-4c55-9046-24cfd7d9d4f8",
+       "title": "L'école, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "60dc7ec3-9735-44d7-a5d9-5cd047ce3d09",
+      "title": "L'école, lue par la critique de la domination adulte"
+     },
+     "parcours": [
+      {
+       "id": "af686187-fd3b-4c55-9046-24cfd7d9d4f8",
+       "title": "L'école, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "29c8a11d-28c5-44cb-86a7-3dc9192822a5",
+      "title": "Le harcèlement scolaire"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
+      "title": "Université et études supérieures"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
+      "title": "Violentomètre de l'école et des études"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "2e6a5b49-0300-4d18-9fe3-6c3ab9eae3bf",
+      "title": "La famille, lue par la critique de la domination adulte"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "3aef56bd-87ad-44f2-9e86-e0e698477a28": {
+   "parcours": [
+    {
+     "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+     "title": "Le travail, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "e1ea98eb-25cf-4be6-b469-21d2370db6db",
+      "title": "Le travail, lu par le modèle social du handicap"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "a963c6f3-dfaa-48fe-bfb7-c0fb0188082a",
+      "title": "Le travail, lu par les antiracismes"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "7cd3f13f-2f54-4c25-ba57-afb989ddbf33",
+      "title": "Plateformes et travail indépendant"
+     },
+     "shared_count": 6
+    },
+    {
+     "violentometer": {
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
+     },
+     "shared_count": 6
+    },
+    {
+     "violentometer": {
+      "id": "e42cbfb5-7521-43e5-8a71-82994d2fca56",
+      "title": "Stage, alternance, apprentissage"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
+      "title": "Université et études supérieures"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
+      "title": "Le harcèlement sexuel au travail"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
+      "title": "Être surveillé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "45bdf080-6c74-45fd-bbee-7c3185bb0c13": {
+   "parcours": [
+    {
+     "id": "1c970a86-b817-443b-ae76-50d1707e1eed",
+     "title": "Les collectifs : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "ea4c1576-f9d3-4099-86ec-90cd6b4369de",
+      "title": "Violentomètre des collectifs"
+     },
+     "parcours": [
+      {
+       "id": "1c970a86-b817-443b-ae76-50d1707e1eed",
+       "title": "Les collectifs : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "5ce83a6f-5d0a-40ee-af55-ec3b5e44e566",
+      "title": "Les collectifs, lus par les pensées libertaires"
+     },
+     "shared_count": 11
+    },
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     },
+     "shared_count": 10
+    },
+    {
+     "violentometer": {
+      "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
+      "title": "Être isolé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "4979a090-b09e-4697-a49e-e35348a39163": {
+   "parcours": [
+    {
+     "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+     "title": "Dehors : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
+      "title": "Violentomètre de l'espace public"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
+      "title": "Violentomètre des soirées et de la vie nocturne"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "ffb83a20-4219-47de-b132-5cc17dabfed6",
+      "title": "L'école, lue par les critiques des normes de genre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59": {
+   "parcours": [
+    {
+     "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+     "title": "La rue, sous plusieurs angles"
+    },
+    {
+     "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+     "title": "Dehors : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "247a382a-a837-4196-bd53-ba188abd3d52",
+      "title": "La rue, lue par le modèle social du handicap"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c075a436-f6f0-4571-8506-d22acf917854",
+      "title": "La rue, lue par les antiracismes"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "771ffcca-9fae-4678-8050-42cec0366296",
+      "title": "La rue, lue par les féminismes"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4979a090-b09e-4697-a49e-e35348a39163",
+      "title": "Violentomètre du sport"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
+      "title": "Violentomètre des soirées et de la vie nocturne"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
+      "title": "Violentomètre de l'espace public"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    }
+   ]
+  },
+  "4b1fc809-46f9-4117-8985-f25af8be3126": {
+   "parcours": [
+    {
+     "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+     "title": "Les institutions : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
+      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "07779d4f-90bd-4ea0-8761-47517b56f4e4",
+      "title": "Violentomètre des institutions"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
+      "title": "Être surveillé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "50a40d13-c387-4b97-b9a4-27dbfed8f677": {
+   "parcours": [
+    {
+     "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+     "title": "Dehors : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
+      "title": "Violentomètre des soirées et de la vie nocturne"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4979a090-b09e-4697-a49e-e35348a39163",
+      "title": "Violentomètre du sport"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "771ffcca-9fae-4678-8050-42cec0366296",
+      "title": "La rue, lue par les féminismes"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "247a382a-a837-4196-bd53-ba188abd3d52",
+      "title": "La rue, lue par le modèle social du handicap"
+     },
+     "shared_count": 4
+    }
+   ]
+  },
+  "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4": {
+   "parcours": [
+    {
+     "id": "23d7154c-619a-4828-af93-f493c9305138",
+     "title": "La famille : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "997fd90c-860a-4409-8879-584b78b9838d",
+      "title": "Frères, sœurs, cousins, grands-parents"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
+      "title": "Violentomètre de la famille"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
+      "title": "Violentomètre des parents et des enfants"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "7cd3f13f-2f54-4c25-ba57-afb989ddbf33",
+      "title": "Plateformes et travail indépendant"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "2e6a5b49-0300-4d18-9fe3-6c3ab9eae3bf",
+      "title": "La famille, lue par la critique de la domination adulte"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "0bb14a80-1b0a-410a-8ff6-82b66acd44bf",
+      "title": "La famille, lue par les critiques des normes de genre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
+      "title": "Les relations, lues par les critiques des normes de genre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "5ce83a6f-5d0a-40ee-af55-ec3b5e44e566": {
+   "parcours": [
+    {
+     "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+     "title": "Les collectifs, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     },
+     "parcours": [
+      {
+       "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+       "title": "Les collectifs, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "ea4c1576-f9d3-4099-86ec-90cd6b4369de",
+      "title": "Violentomètre des collectifs"
+     },
+     "parcours": [
+      {
+       "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+       "title": "Les collectifs, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "45bdf080-6c74-45fd-bbee-7c3185bb0c13",
+      "title": "Violentomètre des collectifs militants"
+     },
+     "shared_count": 11
+    },
+    {
+     "violentometer": {
+      "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
+      "title": "Être isolé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 4
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     }
+    }
+   ]
+  },
+  "5fa36a6b-d00c-4cde-8b6d-047312900f75": {
+   "parcours": [
+    {
+     "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+     "title": "Le travail : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
+      "title": "Le harcèlement sexuel au travail"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "7cd3f13f-2f54-4c25-ba57-afb989ddbf33",
+      "title": "Plateformes et travail indépendant"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "e42cbfb5-7521-43e5-8a71-82994d2fca56",
+      "title": "Stage, alternance, apprentissage"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
+      "title": "Le travail, lu par le marxisme"
+     },
+     "shared_count": 6
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "a963c6f3-dfaa-48fe-bfb7-c0fb0188082a",
+      "title": "Le travail, lu par les antiracismes"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "e1ea98eb-25cf-4be6-b469-21d2370db6db",
+      "title": "Le travail, lu par le modèle social du handicap"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9": {
+   "parcours": [
+    {
+     "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+     "title": "L'école et les études : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
+      "title": "Violentomètre de l'école"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
+      "title": "Violentomètre de l'école et des études"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "29c8a11d-28c5-44cb-86a7-3dc9192822a5",
+      "title": "Le harcèlement scolaire"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "e42cbfb5-7521-43e5-8a71-82994d2fca56",
+      "title": "Stage, alternance, apprentissage"
+     },
+     "shared_count": 11
+    },
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "ffb83a20-4219-47de-b132-5cc17dabfed6",
+      "title": "L'école, lue par les critiques des normes de genre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
+      "title": "Le travail, lu par le marxisme"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
+      "title": "Le harcèlement sexuel au travail"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "60dc7ec3-9735-44d7-a5d9-5cd047ce3d09": {
+   "parcours": [
+    {
+     "id": "af686187-fd3b-4c55-9046-24cfd7d9d4f8",
+     "title": "L'école, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
+      "title": "Violentomètre de l'école"
+     },
+     "parcours": [
+      {
+       "id": "af686187-fd3b-4c55-9046-24cfd7d9d4f8",
+       "title": "L'école, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "ffb83a20-4219-47de-b132-5cc17dabfed6",
+      "title": "L'école, lue par les critiques des normes de genre"
+     },
+     "parcours": [
+      {
+       "id": "af686187-fd3b-4c55-9046-24cfd7d9d4f8",
+       "title": "L'école, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "29c8a11d-28c5-44cb-86a7-3dc9192822a5",
+      "title": "Le harcèlement scolaire"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
+      "title": "Violentomètre de l'école et des études"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "2e6a5b49-0300-4d18-9fe3-6c3ab9eae3bf",
+      "title": "La famille, lue par la critique de la domination adulte"
+     }
+    }
+   ]
+  },
+  "64bdd8ed-89cb-4522-8b12-fb71f61048c1": {
+   "parcours": [
+    {
+     "id": "2256aec3-d09b-4436-891b-3fac1c92ce4b",
+     "title": "Chez soi et autour : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "d17fe96d-8953-428d-aa15-9f101dcffe11",
+      "title": "Propriétaires, bailleurs et logement"
+     },
+     "parcours": [
+      {
+       "id": "2256aec3-d09b-4436-891b-3fac1c92ce4b",
+       "title": "Chez soi et autour : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "a6b7d851-5377-4a04-b7a8-c636b895cad0",
+      "title": "Violentomètre du voisinage"
+     },
+     "parcours": [
+      {
+       "id": "2256aec3-d09b-4436-891b-3fac1c92ce4b",
+       "title": "Chez soi et autour : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
+      "title": "Être surveillé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 4
+    }
+   ]
+  },
+  "651bf8bc-f5cf-4460-833f-71692cc6d0a9": {
+   "parcours": [
+    {
+     "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+     "title": "Les institutions : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
+      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "07779d4f-90bd-4ea0-8761-47517b56f4e4",
+      "title": "Violentomètre des institutions"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
+      "title": "La santé, lue par les féminismes"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "6635adcd-e59e-4f0e-bf64-60413aaeded4": {
+   "parcours": [
+    {
+     "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+     "title": "Les institutions : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "07779d4f-90bd-4ea0-8761-47517b56f4e4",
+      "title": "Violentomètre des institutions"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "69bc1235-02e5-4b5d-9b46-d97a049fbfb8": {
+   "parcours": [
+    {
+     "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+     "title": "Les institutions, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "07779d4f-90bd-4ea0-8761-47517b56f4e4",
+      "title": "Violentomètre des institutions"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
+     },
+     "shared_count": 15
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "247a382a-a837-4196-bd53-ba188abd3d52",
+      "title": "La rue, lue par le modèle social du handicap"
+     },
+     "shared_count": 3
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "771ffcca-9fae-4678-8050-42cec0366296",
+      "title": "La rue, lue par les féminismes"
+     }
+    }
+   ],
+   "cadres_voisins": [
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     }
+    }
+   ]
+  },
+  "6e1fa543-1baa-4e71-9560-322c5b513e1c": {
+   "parcours": [
+    {
+     "id": "03707aff-bc1a-4a84-801f-a2171396c135",
+     "title": "En ligne : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
+      "title": "Violentomètre de la vie numérique"
+     },
+     "parcours": [
+      {
+       "id": "03707aff-bc1a-4a84-801f-a2171396c135",
+       "title": "En ligne : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "a6ab7e47-f5e9-4253-8642-ee8ce2dd802b",
+      "title": "Cyberharcèlement et chantage en ligne"
+     },
+     "parcours": [
+      {
+       "id": "03707aff-bc1a-4a84-801f-a2171396c135",
+       "title": "En ligne : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "29c8a11d-28c5-44cb-86a7-3dc9192822a5",
+      "title": "Le harcèlement scolaire"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
+      "title": "Être isolé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "75065580-91aa-429a-bb2e-fd7dc52b5c63": {
+   "parcours": [
+    {
+     "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+     "title": "Le travail : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "7cd3f13f-2f54-4c25-ba57-afb989ddbf33",
+      "title": "Plateformes et travail indépendant"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "e42cbfb5-7521-43e5-8a71-82994d2fca56",
+      "title": "Stage, alternance, apprentissage"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "e1ea98eb-25cf-4be6-b469-21d2370db6db",
+      "title": "Le travail, lu par le modèle social du handicap"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
+      "title": "Le travail, lu par le marxisme"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
+      "title": "Université et études supérieures"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
+      "title": "Violentomètre de l'école et des études"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "76de363b-f723-4af5-a2fd-0727a54e2e99": {
+   "parcours": [
+    {
+     "id": "c77ebef3-0e35-4921-bc5c-d5f449d02d46",
+     "title": "La même chose, partout : être discriminé·e"
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "a963c6f3-dfaa-48fe-bfb7-c0fb0188082a",
+      "title": "Le travail, lu par les antiracismes"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "c075a436-f6f0-4571-8506-d22acf917854",
+      "title": "La rue, lue par les antiracismes"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba",
+      "title": "Violentomètre des relations amoureuses et sexuelles"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
+      "title": "Les relations, lues par les critiques des normes de genre"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "0bb14a80-1b0a-410a-8ff6-82b66acd44bf",
+      "title": "La famille, lue par les critiques des normes de genre"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     }
+    }
+   ],
+   "cadres_voisins": [
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     }
+    }
+   ]
+  },
+  "771ffcca-9fae-4678-8050-42cec0366296": {
+   "parcours": [
+    {
+     "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+     "title": "La rue, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c075a436-f6f0-4571-8506-d22acf917854",
+      "title": "La rue, lue par les antiracismes"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "247a382a-a837-4196-bd53-ba188abd3d52",
+      "title": "La rue, lue par le modèle social du handicap"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
+      "title": "Violentomètre des soirées et de la vie nocturne"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
+      "title": "Violentomètre de l'espace public"
+     },
+     "shared_count": 4
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
+      "title": "La santé, lue par les féminismes"
+     }
+    }
+   ],
+   "cadres_voisins": [
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     }
+    }
+   ]
+  },
+  "7812e757-a060-4bf1-8de0-d0c94a649185": {
+   "parcours": [
+    {
+     "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+     "title": "Le travail, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
+      "title": "Le travail, lu par le marxisme"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "e1ea98eb-25cf-4be6-b469-21d2370db6db",
+      "title": "Le travail, lu par le modèle social du handicap"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "a963c6f3-dfaa-48fe-bfb7-c0fb0188082a",
+      "title": "Le travail, lu par les antiracismes"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "7cd3f13f-2f54-4c25-ba57-afb989ddbf33",
+      "title": "Plateformes et travail indépendant"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "e42cbfb5-7521-43e5-8a71-82994d2fca56",
+      "title": "Stage, alternance, apprentissage"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
+      "title": "Le harcèlement sexuel au travail"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 4
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     }
+    }
+   ],
+   "cadres_voisins": [
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     }
+    }
+   ]
+  },
+  "7cd3f13f-2f54-4c25-ba57-afb989ddbf33": {
+   "parcours": [
+    {
+     "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+     "title": "Le travail : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
+      "title": "Le harcèlement sexuel au travail"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "e42cbfb5-7521-43e5-8a71-82994d2fca56",
+      "title": "Stage, alternance, apprentissage"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
+      "title": "Le travail, lu par le marxisme"
+     },
+     "shared_count": 6
+    },
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     },
+     "shared_count": 6
+    },
+    {
+     "violentometer": {
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
+     },
+     "shared_count": 5
+    }
+   ]
+  },
+  "81eb646d-7c68-4eb1-b223-33cece64e7d5": {
+   "parcours": [
+    {
+     "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+     "title": "Relations amoureuses : du général au particulier"
+    },
+    {
+     "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+     "title": "Le couple, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "f0b9b25f-238a-42c1-a803-96fe29d0ba10",
+      "title": "Violences sexuelles dans le couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab",
+      "title": "Le contrôle dans le couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "1e59fb49-5448-4d29-ac67-f00daf33e245",
+      "title": "Après la séparation"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
+      "title": "Les relations, lues par les critiques des normes de genre"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
+      "title": "Être isolé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "8b56859b-4c1a-4a4b-8d01-8de429596eac": {
+   "parcours": [
+    {
+     "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+     "title": "Dehors : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
+      "title": "Violentomètre de l'espace public"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4979a090-b09e-4697-a49e-e35348a39163",
+      "title": "Violentomètre du sport"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "771ffcca-9fae-4678-8050-42cec0366296",
+      "title": "La rue, lue par les féminismes"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "c075a436-f6f0-4571-8506-d22acf917854",
+      "title": "La rue, lue par les antiracismes"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "247a382a-a837-4196-bd53-ba188abd3d52",
+      "title": "La rue, lue par le modèle social du handicap"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "94a40957-e6ff-4a71-b0d1-14f2493db5bd": {
+   "parcours": [
+    {
+     "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+     "title": "Les institutions : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
+      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "07779d4f-90bd-4ea0-8761-47517b56f4e4",
+      "title": "Violentomètre des institutions"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
+      "title": "La santé, lue par les féminismes"
+     },
+     "shared_count": 15
+    },
+    {
+     "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "247a382a-a837-4196-bd53-ba188abd3d52",
+      "title": "La rue, lue par le modèle social du handicap"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "997fd90c-860a-4409-8879-584b78b9838d": {
+   "parcours": [
+    {
+     "id": "23d7154c-619a-4828-af93-f493c9305138",
+     "title": "La famille : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
+      "title": "Violentomètre de la famille"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
+      "title": "Violentomètre des parents et des enfants"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "0bb14a80-1b0a-410a-8ff6-82b66acd44bf",
+      "title": "La famille, lue par les critiques des normes de genre"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e": {
+   "parcours": [
+    {
+     "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+     "title": "Les institutions, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
+      "title": "La santé, lue par les féminismes"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "07779d4f-90bd-4ea0-8761-47517b56f4e4",
+      "title": "Violentomètre des institutions"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "247a382a-a837-4196-bd53-ba188abd3d52",
+      "title": "La rue, lue par le modèle social du handicap"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "e1ea98eb-25cf-4be6-b469-21d2370db6db",
+      "title": "Le travail, lu par le modèle social du handicap"
+     }
+    }
+   ]
+  },
+  "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba": {
+   "parcours": [
+    {
+     "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+     "title": "Relations amoureuses : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f0b9b25f-238a-42c1-a803-96fe29d0ba10",
+      "title": "Violences sexuelles dans le couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab",
+      "title": "Le contrôle dans le couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "1e59fb49-5448-4d29-ac67-f00daf33e245",
+      "title": "Après la séparation"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
+      "title": "Violentomètre de la vie numérique"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "a6ab7e47-f5e9-4253-8642-ee8ce2dd802b": {
+   "parcours": [
+    {
+     "id": "03707aff-bc1a-4a84-801f-a2171396c135",
+     "title": "En ligne : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
+      "title": "Violentomètre de la vie numérique"
+     },
+     "parcours": [
+      {
+       "id": "03707aff-bc1a-4a84-801f-a2171396c135",
+       "title": "En ligne : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "6e1fa543-1baa-4e71-9560-322c5b513e1c",
+      "title": "Messageries et groupes"
+     },
+     "parcours": [
+      {
+       "id": "03707aff-bc1a-4a84-801f-a2171396c135",
+       "title": "En ligne : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "29c8a11d-28c5-44cb-86a7-3dc9192822a5",
+      "title": "Le harcèlement scolaire"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
+      "title": "Être isolé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "a6b7d851-5377-4a04-b7a8-c636b895cad0": {
+   "parcours": [
+    {
+     "id": "2256aec3-d09b-4436-891b-3fac1c92ce4b",
+     "title": "Chez soi et autour : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "64bdd8ed-89cb-4522-8b12-fb71f61048c1",
+      "title": "Violentomètre du logement et du voisinage"
+     },
+     "parcours": [
+      {
+       "id": "2256aec3-d09b-4436-891b-3fac1c92ce4b",
+       "title": "Chez soi et autour : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "d17fe96d-8953-428d-aa15-9f101dcffe11",
+      "title": "Propriétaires, bailleurs et logement"
+     },
+     "parcours": [
+      {
+       "id": "2256aec3-d09b-4436-891b-3fac1c92ce4b",
+       "title": "Chez soi et autour : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
+      "title": "Être surveillé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "a963c6f3-dfaa-48fe-bfb7-c0fb0188082a": {
+   "parcours": [
+    {
+     "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+     "title": "Le travail, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
+      "title": "Le travail, lu par le marxisme"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "e1ea98eb-25cf-4be6-b469-21d2370db6db",
+      "title": "Le travail, lu par le modèle social du handicap"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
+     },
+     "shared_count": 3
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "c075a436-f6f0-4571-8506-d22acf917854",
+      "title": "La rue, lue par les antiracismes"
+     }
+    }
+   ],
+   "cadres_voisins": [
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     }
+    }
+   ]
+  },
+  "ad97516e-9956-48a7-82fd-e7ded4d368ba": {
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
+      "title": "Violentomètre de la famille"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
+      "title": "Être isolé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
+      "title": "Être surveillé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "c075a436-f6f0-4571-8506-d22acf917854": {
+   "parcours": [
+    {
+     "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+     "title": "La rue, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "771ffcca-9fae-4678-8050-42cec0366296",
+      "title": "La rue, lue par les féminismes"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "247a382a-a837-4196-bd53-ba188abd3d52",
+      "title": "La rue, lue par le modèle social du handicap"
+     },
+     "parcours": [
+      {
+       "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+       "title": "La rue, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
+      "title": "Violentomètre des soirées et de la vie nocturne"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "a963c6f3-dfaa-48fe-bfb7-c0fb0188082a",
+      "title": "Le travail, lu par les antiracismes"
+     }
+    }
+   ],
+   "cadres_voisins": [
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     }
+    }
+   ]
+  },
+  "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71": {
+   "parcours": [
+    {
+     "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+     "title": "Les institutions : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
+      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "07779d4f-90bd-4ea0-8761-47517b56f4e4",
+      "title": "Violentomètre des institutions"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "c075a436-f6f0-4571-8506-d22acf917854",
+      "title": "La rue, lue par les antiracismes"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "c86d25d1-0495-47cf-a3a6-c9fef8956c9a": {
+   "parcours": [
+    {
+     "id": "f103cbd5-df96-42e9-b2c9-0ecf1612d8db",
+     "title": "La même chose, partout : être surveillé·e"
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "64bdd8ed-89cb-4522-8b12-fb71f61048c1",
+      "title": "Violentomètre du logement et du voisinage"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab",
+      "title": "Le contrôle dans le couple"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "a6b7d851-5377-4a04-b7a8-c636b895cad0",
+      "title": "Violentomètre du voisinage"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
+      "title": "Violentomètre des parents et des enfants"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab": {
+   "parcours": [
+    {
+     "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+     "title": "Relations amoureuses : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f0b9b25f-238a-42c1-a803-96fe29d0ba10",
+      "title": "Violences sexuelles dans le couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "1e59fb49-5448-4d29-ac67-f00daf33e245",
+      "title": "Après la séparation"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba",
+      "title": "Violentomètre des relations amoureuses et sexuelles"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
+      "title": "Être surveillé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "d17fe96d-8953-428d-aa15-9f101dcffe11": {
+   "parcours": [
+    {
+     "id": "2256aec3-d09b-4436-891b-3fac1c92ce4b",
+     "title": "Chez soi et autour : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "64bdd8ed-89cb-4522-8b12-fb71f61048c1",
+      "title": "Violentomètre du logement et du voisinage"
+     },
+     "parcours": [
+      {
+       "id": "2256aec3-d09b-4436-891b-3fac1c92ce4b",
+       "title": "Chez soi et autour : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "a6b7d851-5377-4a04-b7a8-c636b895cad0",
+      "title": "Violentomètre du voisinage"
+     },
+     "parcours": [
+      {
+       "id": "2256aec3-d09b-4436-891b-3fac1c92ce4b",
+       "title": "Chez soi et autour : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "d370fb51-5c4d-4d75-9cc5-6699e955eb17": {
+   "parcours": [
+    {
+     "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+     "title": "Les institutions, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
+      "title": "La santé, lue par les féminismes"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "07779d4f-90bd-4ea0-8761-47517b56f4e4",
+      "title": "Violentomètre des institutions"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
+      "title": "Être surveillé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "c075a436-f6f0-4571-8506-d22acf917854",
+      "title": "La rue, lue par les antiracismes"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "5ce83a6f-5d0a-40ee-af55-ec3b5e44e566",
+      "title": "Les collectifs, lus par les pensées libertaires"
+     }
+    }
+   ]
+  },
+  "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5": {
+   "parcours": [
+    {
+     "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+     "title": "Le travail : du général au particulier"
+    },
+    {
+     "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+     "title": "Le travail, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "e42cbfb5-7521-43e5-8a71-82994d2fca56",
+      "title": "Stage, alternance, apprentissage"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "7cd3f13f-2f54-4c25-ba57-afb989ddbf33",
+      "title": "Plateformes et travail indépendant"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
+      "title": "Le harcèlement sexuel au travail"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "a963c6f3-dfaa-48fe-bfb7-c0fb0188082a",
+      "title": "Le travail, lu par les antiracismes"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "e1ea98eb-25cf-4be6-b469-21d2370db6db",
+      "title": "Le travail, lu par le modèle social du handicap"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "shared_count": 10
+    },
+    {
+     "violentometer": {
+      "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
+      "title": "Le travail, lu par le marxisme"
+     },
+     "shared_count": 9
+    },
+    {
+     "violentometer": {
+      "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
+      "title": "Université et études supérieures"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
+      "title": "Violentomètre de l'école et des études"
+     },
+     "shared_count": 6
+    },
+    {
+     "violentometer": {
+      "id": "ea4c1576-f9d3-4099-86ec-90cd6b4369de",
+      "title": "Violentomètre des collectifs"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "e1ea98eb-25cf-4be6-b469-21d2370db6db": {
+   "parcours": [
+    {
+     "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+     "title": "Le travail, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
+      "title": "Le travail, lu par le marxisme"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "a963c6f3-dfaa-48fe-bfb7-c0fb0188082a",
+      "title": "Le travail, lu par les antiracismes"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "parcours": [
+      {
+       "id": "32a34e2f-ea76-4d9a-b1a4-5976ed89adaa",
+       "title": "Le travail, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
+      "title": "Le harcèlement sexuel au travail"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "247a382a-a837-4196-bd53-ba188abd3d52",
+      "title": "La rue, lue par le modèle social du handicap"
+     }
+    }
+   ]
+  },
+  "e42cbfb5-7521-43e5-8a71-82994d2fca56": {
+   "parcours": [
+    {
+     "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+     "title": "Le travail : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
+      "title": "Le harcèlement sexuel au travail"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "7cd3f13f-2f54-4c25-ba57-afb989ddbf33",
+      "title": "Plateformes et travail indépendant"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
+      "title": "Université et études supérieures"
+     },
+     "shared_count": 11
+    },
+    {
+     "violentometer": {
+      "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
+      "title": "Violentomètre de l'école et des études"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
+      "title": "Le travail, lu par le marxisme"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "ea4c1576-f9d3-4099-86ec-90cd6b4369de": {
+   "parcours": [
+    {
+     "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+     "title": "Les collectifs, sous plusieurs angles"
+    },
+    {
+     "id": "1c970a86-b817-443b-ae76-50d1707e1eed",
+     "title": "Les collectifs : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
+     },
+     "parcours": [
+      {
+       "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+       "title": "Les collectifs, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "5ce83a6f-5d0a-40ee-af55-ec3b5e44e566",
+      "title": "Les collectifs, lus par les pensées libertaires"
+     },
+     "parcours": [
+      {
+       "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+       "title": "Les collectifs, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "45bdf080-6c74-45fd-bbee-7c3185bb0c13",
+      "title": "Violentomètre des collectifs militants"
+     },
+     "parcours": [
+      {
+       "id": "1c970a86-b817-443b-ae76-50d1707e1eed",
+       "title": "Les collectifs : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
+      "title": "Être isolé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "efe4aeda-1515-4f45-910d-519f1ce2790a": {
+   "parcours": [
+    {
+     "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+     "title": "L'école et les études : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
+      "title": "Violentomètre de l'école"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
+      "title": "Université et études supérieures"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "29c8a11d-28c5-44cb-86a7-3dc9192822a5",
+      "title": "Le harcèlement scolaire"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "e42cbfb5-7521-43e5-8a71-82994d2fca56",
+      "title": "Stage, alternance, apprentissage"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
+     },
+     "shared_count": 6
+    },
+    {
+     "violentometer": {
+      "id": "ffb83a20-4219-47de-b132-5cc17dabfed6",
+      "title": "L'école, lue par les critiques des normes de genre"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
+      "title": "Le harcèlement sexuel au travail"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "60dc7ec3-9735-44d7-a5d9-5cd047ce3d09",
+      "title": "L'école, lue par la critique de la domination adulte"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "f0b9b25f-238a-42c1-a803-96fe29d0ba10": {
+   "parcours": [
+    {
+     "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+     "title": "Relations amoureuses : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab",
+      "title": "Le contrôle dans le couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "1e59fb49-5448-4d29-ac67-f00daf33e245",
+      "title": "Après la séparation"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba",
+      "title": "Violentomètre des relations amoureuses et sexuelles"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "f5873b16-0a7f-4261-bbec-c7aebc5e1473": {
+   "parcours": [
+    {
+     "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+     "title": "Les institutions : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
+      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "07779d4f-90bd-4ea0-8761-47517b56f4e4",
+      "title": "Violentomètre des institutions"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
+      "title": "Être surveillé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "f59c46fc-9426-485f-bb94-7e9583aabaca": {
+   "parcours": [
+    {
+     "id": "23d7154c-619a-4828-af93-f493c9305138",
+     "title": "La famille : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "997fd90c-860a-4409-8879-584b78b9838d",
+      "title": "Frères, sœurs, cousins, grands-parents"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
+      "title": "Violentomètre de la famille"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "2e6a5b49-0300-4d18-9fe3-6c3ab9eae3bf",
+      "title": "La famille, lue par la critique de la domination adulte"
+     },
+     "shared_count": 8
+    },
+    {
+     "violentometer": {
+      "id": "0bb14a80-1b0a-410a-8ff6-82b66acd44bf",
+      "title": "La famille, lue par les critiques des normes de genre"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
+      "title": "Être surveillé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 3
+    }
+   ]
+  },
+  "fc5197ea-52fd-43f4-b727-6f0468fdf269": {
+   "parcours": [
+    {
+     "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+     "title": "Relations amoureuses : du général au particulier"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f0b9b25f-238a-42c1-a803-96fe29d0ba10",
+      "title": "Violences sexuelles dans le couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab",
+      "title": "Le contrôle dans le couple"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "1e59fb49-5448-4d29-ac67-f00daf33e245",
+      "title": "Après la séparation"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba",
+      "title": "Violentomètre des relations amoureuses et sexuelles"
+     },
+     "parcours": [
+      {
+       "id": "894a2bdf-3dea-4b4c-88dc-52b51ab816c9",
+       "title": "Relations amoureuses : du général au particulier"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
+      "title": "Violentomètre de la vie numérique"
+     },
+     "shared_count": 7
+    },
+    {
+     "violentometer": {
+      "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
+      "title": "Les relations, lues par les critiques des normes de genre"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "76de363b-f723-4af5-a2fd-0727a54e2e99",
+      "title": "Être discriminé·e, d'un contexte à l'autre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "fefb37c7-06e1-4754-875e-da4401d4f626": {
+   "parcours": [
+    {
+     "id": "23d7154c-619a-4828-af93-f493c9305138",
+     "title": "La famille : du général au particulier"
+    },
+    {
+     "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+     "title": "La famille, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
+      "title": "Violentomètre des parents et des enfants"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "997fd90c-860a-4409-8879-584b78b9838d",
+      "title": "Frères, sœurs, cousins, grands-parents"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "2e6a5b49-0300-4d18-9fe3-6c3ab9eae3bf",
+      "title": "La famille, lue par la critique de la domination adulte"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "0bb14a80-1b0a-410a-8ff6-82b66acd44bf",
+      "title": "La famille, lue par les critiques des normes de genre"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
+     },
+     "parcours": [
+      {
+       "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
+       "title": "La famille, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "ad97516e-9956-48a7-82fd-e7ded4d368ba",
+      "title": "Violentomètre de l'amitié"
+     },
+     "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "1efbb2a9-9169-4aaf-968f-f2d49042dad6",
+      "title": "Dépendre de l'autre pour vivre"
+     },
+     "shared_count": 2
+    }
+   ]
+  },
+  "ffb83a20-4219-47de-b132-5cc17dabfed6": {
+   "parcours": [
+    {
+     "id": "af686187-fd3b-4c55-9046-24cfd7d9d4f8",
+     "title": "L'école, sous plusieurs angles"
+    }
+   ],
+   "same_parcours": [
+    {
+     "violentometer": {
+      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
+      "title": "Violentomètre de l'école"
+     },
+     "parcours": [
+      {
+       "id": "af686187-fd3b-4c55-9046-24cfd7d9d4f8",
+       "title": "L'école, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "60dc7ec3-9735-44d7-a5d9-5cd047ce3d09",
+      "title": "L'école, lue par la critique de la domination adulte"
+     },
+     "parcours": [
+      {
+       "id": "af686187-fd3b-4c55-9046-24cfd7d9d4f8",
+       "title": "L'école, sous plusieurs angles"
+      }
+     ]
+    }
+   ],
+   "shared_behaviors": [
+    {
+     "violentometer": {
+      "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
+      "title": "Violentomètre de l'école et des études"
+     },
+     "shared_count": 5
+    },
+    {
+     "violentometer": {
+      "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
+      "title": "Université et études supérieures"
+     },
+     "shared_count": 3
+    },
+    {
+     "violentometer": {
+      "id": "4979a090-b09e-4697-a49e-e35348a39163",
+      "title": "Violentomètre du sport"
+     },
+     "shared_count": 2
+    },
+    {
+     "violentometer": {
+      "id": "29c8a11d-28c5-44cb-86a7-3dc9192822a5",
+      "title": "Le harcèlement scolaire"
+     },
+     "shared_count": 2
+    }
+   ],
+   "meme_cadre": [
+    {
+     "violentometer": {
+      "id": "0bb14a80-1b0a-410a-8ff6-82b66acd44bf",
+      "title": "La famille, lue par les critiques des normes de genre"
+     }
+    },
+    {
+     "violentometer": {
+      "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
+      "title": "Les relations, lues par les critiques des normes de genre"
+     }
     }
    ]
   }

@@ -17,6 +17,13 @@ data class ViolentometreResume(
     @SerialName("contexts") val contextes: List<Contexte> = emptyList(),
     val cadres: List<CadreResume> = emptyList(),
     @SerialName("updated_at") val modifieLe: String = "",
+    // De quoi juger d'un coup d'œil, comme sur le site : combien l'ont
+    // vu, aimé, et (pour un violentomètre) combien de situations il porte.
+    // Figés au moment où le catalogue a été tiré, rafraîchis avec lui.
+    @SerialName("views_count") val vues: Int = 0,
+    @SerialName("like_count") val aime: Int = 0,
+    @SerialName("popular_score") val popularite: Int = 0,
+    @SerialName("behavior_count") val nombreDeSituations: Int = 0,
 )
 
 /*
@@ -35,6 +42,12 @@ data class Violentometre(
     val analyse: String = "",
     @SerialName("behaviors") val situations: List<Situation> = emptyList(),
     @SerialName("updated_at") val modifieLe: String = "",
+    // De quoi juger d'un coup d'œil, comme sur le site : combien l'ont
+    // vu, aimé, et (pour un violentomètre) combien de situations il porte.
+    // Figés au moment où le catalogue a été tiré, rafraîchis avec lui.
+    @SerialName("views_count") val vues: Int = 0,
+    @SerialName("like_count") val aime: Int = 0,
+    @SerialName("popular_score") val popularite: Int = 0,
 )
 
 /*

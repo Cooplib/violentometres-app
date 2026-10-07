@@ -17,6 +17,12 @@ data class ParcoursResume(
     @SerialName("step_count") val nombreDEtapes: Int = 0,
     val cadres: List<CadreResume> = emptyList(),
     @SerialName("updated_at") val modifieLe: String = "",
+    // De quoi juger d'un coup d'œil, comme sur le site : combien l'ont
+    // vu, aimé, et (pour un violentomètre) combien de situations il porte.
+    // Figés au moment où le catalogue a été tiré, rafraîchis avec lui.
+    @SerialName("views_count") val vues: Int = 0,
+    @SerialName("like_count") val aime: Int = 0,
+    @SerialName("popular_score") val popularite: Int = 0,
 )
 
 @Serializable
@@ -27,7 +33,14 @@ data class Parcours(
     val apropos: String = "",
     val conclusion: String = "",
     @SerialName("steps") val etapes: List<Etape> = emptyList(),
+    val cadres: List<CadreResume> = emptyList(),
     @SerialName("updated_at") val modifieLe: String = "",
+    // De quoi juger d'un coup d'œil, comme sur le site : combien l'ont
+    // vu, aimé, et (pour un violentomètre) combien de situations il porte.
+    // Figés au moment où le catalogue a été tiré, rafraîchis avec lui.
+    @SerialName("views_count") val vues: Int = 0,
+    @SerialName("like_count") val aime: Int = 0,
+    @SerialName("popular_score") val popularite: Int = 0,
 )
 
 /*

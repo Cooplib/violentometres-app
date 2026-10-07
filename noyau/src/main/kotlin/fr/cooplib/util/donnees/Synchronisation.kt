@@ -245,9 +245,11 @@ object Synchronisation {
         for (id in r.violentometres) {
             val vm = relireOuRetire(api.violentometre(id))
             val point = vm?.let { api.point("violentometer", id).ou() }
+            val proches = vm?.let { api.proches(id).ou() }
             c = c.copy(
                 violentometres = remplacer(c.violentometres, id, vm) { it.id },
                 pointsParViolentometre = (c.pointsParViolentometre - id + listOfNotNull(point?.let { id to it })).toSortedMap(),
+                proches = (c.proches - id + listOfNotNull(proches?.let { id to it })).toSortedMap(),
             )
         }
 

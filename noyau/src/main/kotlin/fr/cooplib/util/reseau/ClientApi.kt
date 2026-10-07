@@ -9,11 +9,13 @@ import fr.cooplib.util.modeles.Historique
 import fr.cooplib.util.modeles.Parcours
 import fr.cooplib.util.modeles.ParcoursResume
 import fr.cooplib.util.modeles.PoolDuPoint
+import fr.cooplib.util.modeles.Proches
 import fr.cooplib.util.modeles.Recit
 import fr.cooplib.util.modeles.Violentometre
 import fr.cooplib.util.modeles.ViolentometreResume
 import fr.cooplib.util.modeles.decodage
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.JsonPrimitive
@@ -48,6 +50,9 @@ class ClientApi(
     fun violentometres() = lire("/violentometers", ListSerializer(ViolentometreResume.serializer()))
 
     fun violentometre(id: String) = lire("/violentometers/${segment(id)}", Violentometre.serializer())
+
+    // Ce qui lui ressemble, calculé par le serveur (voir modeles/Proches.kt).
+    fun proches(id: String) = lire("/violentometers/${segment(id)}/related", Proches.serializer())
 
     fun parcours() = lire("/parcours", ListSerializer(ParcoursResume.serializer()))
 
@@ -164,6 +169,38 @@ class ClientApi(
         }
     }
 
+    /*
+     * Aimer un violentomètre ou un parcours, ou ne plus l'aimer : la
+     * TROISIÈME écriture de l'application, décidée par Cooplib le 7 octobre
+     * 2026 (notes de conception), « comme sur l'original ».
+     *
+     * Elle porte l'identifiant, comme les deux autres, et le serveur n'en
+     * garde qu'une empreinte par élément. Idempotente des deux côtés :
+     * aimer deux fois ne compte qu'une fois, retirer un like absent ne
+     * fait rien. On peut donc réessayer sans risque, à la différence d'un
+     * récit.
+     *
+     * L'état « aimé » n'est PAS demandé au serveur (`GET …/like`) : ce
+     * serait une lecture portant l'identifiant, et les lectures n'en
+     * portent jamais. L'application se souvient elle-même de ce qu'elle a
+     * aimé.
+     */
+    fun aimerViolentometre(id: String, aime: Boolean, visiteur: IdentifiantVisiteur) =
+        aimer("/violentometers/${segment(id)}/like", aime, visiteur)
+
+    fun aimerParcours(id: String, aime: Boolean, visiteur: IdentifiantVisiteur) =
+        aimer("/parcours/${segment(id)}/like", aime, visiteur)
+
+    private fun aimer(chemin: String, aime: Boolean, visiteur: IdentifiantVisiteur): Resultat<EtatDuLike> {
+        val entetes = JSON + ("X-Visitor-Id" to visiteur.valeur)
+        val requete = if (aime) {
+            Requete("POST", url(chemin), entetes, buildJsonObject { put("visitor_id", visiteur.valeur) }.toString())
+        } else {
+            Requete("DELETE", url("$chemin?visitor_id=${requeteEncodee(visiteur.valeur)}"), entetes)
+        }
+        return envoyer(requete, EtatDuLike.serializer())
+    }
+
     // ---------------------------------------------------------
     // La mécanique
     // ---------------------------------------------------------
@@ -242,6 +279,12 @@ class ClientApi(
 
 @Serializable
 data class Motif(val cle: String, val titre: String)
+
+@Serializable
+data class EtatDuLike(
+    @SerialName("liked") val aime: Boolean = false,
+    @SerialName("like_count") val combien: Int = 0,
+)
 
 @Serializable
 private data class Motifs(val items: List<Motif> = emptyList())
