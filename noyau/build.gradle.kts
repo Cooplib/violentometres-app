@@ -20,7 +20,9 @@ kotlin {
 }
 
 dependencies {
-    implementation(libs.kotlinx.serialization.json)
+    // `api` : le décodeur du noyau (`decodage`) fait partie de ce qu'il
+    // expose, et l'application s'en sert pour garder le catalogue.
+    api(libs.kotlinx.serialization.json)
     testImplementation(kotlin("test"))
     testImplementation(libs.icu4j)
 }
