@@ -26,20 +26,46 @@
         android:fullBackupContent="@xml/sauvegarde"
         android:dataExtractionRules="@xml/extraction"
         android:label="@string/nom_discret"
-        android:icon="@mipmap/icone"
+        android:icon="@mipmap/icone_calculatrice"
         android:theme="@style/Theme.Util"
         android:supportsRtl="false"
         tools:targetApi="31">
 
+        <!-- L'activité, sans entrée dans le lanceur : ce sont les deux
+             alias ci-dessous qui y mettent l'application, sous l'un ou
+             l'autre nom. Voir Lanceur.kt. -->
         <activity
             android:name=".Principale"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Actif à l'installation : discret par défaut. -->
+        <activity-alias
+            android:name=".EntreeCalculatrice"
+            android:targetActivity=".Principale"
+            android:label="@string/nom_discret"
+            android:icon="@mipmap/icone_calculatrice"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity-alias>
+
+        <!-- Le vrai nom, quand la personne le choisit. -->
+        <activity-alias
+            android:name=".EntreeNommee"
+            android:targetActivity=".Principale"
+            android:label="@string/vrai_nom"
+            android:icon="@mipmap/icone_vraie"
+            android:enabled="false"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
 
     </application>
 

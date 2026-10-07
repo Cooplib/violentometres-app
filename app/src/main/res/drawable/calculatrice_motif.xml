@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- L'écran -->
+    <path android:fillColor="#FFFFFF" android:pathData="M37,33h34v10h-34z" />
+    <!-- Les touches, trois par trois -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M37,48h9v8h-9z M49.5,48h9v8h-9z M62,48h9v8h-9z
+                          M37,59h9v8h-9z M49.5,59h9v8h-9z M62,59h9v8h-9z
+                          M37,70h9v8h-9z M49.5,70h9v8h-9z M62,70h9v8h-9z" />
+</vector>

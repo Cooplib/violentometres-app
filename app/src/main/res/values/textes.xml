@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Le nom sous lequel l'application s'INSTALLE : neutre. Discret par
-         défaut, et c'est le premier écran qui propose d'afficher le vrai
-         nom, jamais l'inverse (personne ne doit être exposé par son
-         indécision). PROVISOIRE : le nom définitif vient avec la liste
-         des leurres, qui reste à trancher. -->
-    <string name="nom_discret">Outils</string>
+    <!-- Le nom sous lequel l'application S'INSTALLE, et celui de Réglages
+         → Applications : la calculatrice, leurre par défaut et seul leurre
+         pour l'instant (décision du 7 octobre 2026). Discret par défaut ;
+         le premier écran propose d'afficher le vrai nom, jamais
+         l'inverse. -->
+    <string name="nom_discret">Calculatrice</string>
+    <string name="vrai_nom">Violentomètres</string>
 </resources>
