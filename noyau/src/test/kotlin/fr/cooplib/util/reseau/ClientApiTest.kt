@@ -47,8 +47,12 @@ class ClientApiTest {
         client.point("orientation", "tout")
         client.historique(1)
         client.motifsDeSignalement()
+        client.cadres()
+        client.cadre("c-1")
+        client.mecanismes()
+        client.mecanisme("m-1")
 
-        assertEquals(9, transport.requetes.size)
+        assertEquals(13, transport.requetes.size)
 
         for (r in transport.requetes) {
             assertEquals("GET", r.methode)

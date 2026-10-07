@@ -66,5 +66,8 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
+      # Et la fabrique du catalogue, compilée seulement : la lancer
+      # interrogerait la production, ce qui se fait à la main avant une
+      # version, pas à chaque poussée.
       - name: Le noyau
-        run: ./gradlew :noyau:test
+        run: ./gradlew :noyau:test :fabrique:compileKotlin

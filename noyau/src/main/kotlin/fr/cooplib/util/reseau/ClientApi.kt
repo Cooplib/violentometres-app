@@ -1,6 +1,10 @@
 package fr.cooplib.util.reseau
 
 import fr.cooplib.util.modeles.Aide
+import fr.cooplib.util.modeles.Cadre
+import fr.cooplib.util.modeles.CadreResume
+import fr.cooplib.util.modeles.Mecanisme
+import fr.cooplib.util.modeles.MecanismeResume
 import fr.cooplib.util.modeles.Historique
 import fr.cooplib.util.modeles.Parcours
 import fr.cooplib.util.modeles.ParcoursResume
@@ -52,6 +56,14 @@ class ClientApi(
     fun recits() = lire("/stories", ListSerializer(Recit.serializer()))
 
     fun aides() = lire("/aides", ListSerializer(Aide.serializer()))
+
+    fun cadres() = lire("/cadres", ListSerializer(CadreResume.serializer()))
+
+    fun cadre(id: String) = lire("/cadres/${segment(id)}", Cadre.serializer())
+
+    fun mecanismes() = lire("/mecanismes", ListSerializer(MecanismeResume.serializer()))
+
+    fun mecanisme(id: String) = lire("/mecanismes/${segment(id)}", Mecanisme.serializer())
 
     // `type` : « orientation » (avec l'identifiant « tout »), ou
     // « violentometer », « parcours », « context ».

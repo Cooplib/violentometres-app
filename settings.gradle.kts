@@ -18,3 +18,7 @@ dependencyResolutionManagement {
 // WSL avec un simple JDK. Le module :app viendra s'ajouter ici, inclus
 // sous condition — voir les notes de conception, « Deux modules ».
 include(":noyau")
+
+// Fabrique le catalogue embarqué. Un outil de développement, JVM seule :
+// il ne va pas dans l'APK.
+include(":fabrique")
