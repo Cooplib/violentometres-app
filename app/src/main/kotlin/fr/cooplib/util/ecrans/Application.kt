@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -181,9 +182,15 @@ private fun Contenu(
     // La fiche d'un violentomètre à ouvrir en arrivant dans « Faire le
     // point » (une suggestion de l'accueil).
     var ficheAOuvrir by rememberSaveable { mutableStateOf<String?>(null) }
+    // Le parcours ouvert et son étape, gardés ici pour survivre à un
+    // détour par le point ; et d'où vient le point en cours.
+    var parcoursOuvert by rememberSaveable { mutableStateOf<String?>(null) }
+    var etapeOuverte by rememberSaveable { mutableIntStateOf(-1) }
+    var pointDepuisParcours by rememberSaveable { mutableStateOf(false) }
 
     fun aller(e: Ecran) {
         ecran = e; recitOuvert = null; pointCible = null; ficheAOuvrir = null
+        parcoursOuvert = null; etapeOuverte = -1; pointDepuisParcours = false
     }
 
     BackHandler(enabled = ecran != Ecran.ACCUEIL) {
@@ -223,8 +230,16 @@ private fun Contenu(
                 ouvrirRecit = { recitOuvert = it; ecran = Ecran.RECITS },
                 cibleInitiale = pointCible,
                 ficheInitiale = ficheAOuvrir,
+                // Venu d'une étape de parcours : le retour y ramène, à
+                // l'étape où l'on en était.
+                retour = if (pointDepuisParcours) ({ pointDepuisParcours = false; pointCible = null; ecran = Ecran.COMPRENDRE }) else null,
             )
-            ecran == Ecran.COMPRENDRE -> Comprendre(c, depot, faireLePoint = { pointCible = it; ecran = Ecran.POINT })
+            ecran == Ecran.COMPRENDRE -> Comprendre(
+                c, depot,
+                ouvert = parcoursOuvert, ouvrir = { parcoursOuvert = it; etapeOuverte = -1 },
+                etape = etapeOuverte, allerA = { etapeOuverte = it },
+                faireLePoint = { pointCible = it; pointDepuisParcours = true; ecran = Ecran.POINT },
+            )
             ecran == Ecran.REGLAGES -> ReglagesEcran(
                 deguise = deguise,
                 garderLesReponses = garder,

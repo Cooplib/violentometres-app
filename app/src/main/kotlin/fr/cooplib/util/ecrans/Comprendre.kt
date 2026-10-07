@@ -49,20 +49,33 @@ import kotlinx.coroutines.launch
  * sur un écran de téléphone. Une étape de violentomètre montre, à la
  * demande, son échelle, et mène au point.
  */
+/*
+ * Le parcours ouvert et l'étape où l'on en est vivent AU-DESSUS de cet
+ * écran (Application) : partir faire le point depuis une étape fait
+ * sortir « Comprendre » de l'écran, et son état avec. Au retour, on
+ * retombait sur la liste des parcours au lieu de l'étape (retour du 7
+ * octobre).
+ */
 @Composable
-fun Comprendre(catalogue: Catalogue, depot: Depot, faireLePoint: (String) -> Unit) {
+fun Comprendre(
+    catalogue: Catalogue,
+    depot: Depot,
+    ouvert: String?,
+    ouvrir: (String?) -> Unit,
+    etape: Int,
+    allerA: (Int) -> Unit,
+    faireLePoint: (String) -> Unit,
+) {
 
-    var ouvert by rememberSaveable { mutableStateOf<String?>(null) }
-
-    BackHandler(enabled = ouvert != null) { ouvert = null }
+    BackHandler(enabled = ouvert != null) { ouvrir(null) }
 
     val parcours = catalogue.parcours.find { it.id == ouvert }
 
     if (parcours == null) {
-        Liste(catalogue.parcours, depot) { ouvert = it }
+        Liste(catalogue.parcours, depot) { ouvrir(it) }
     } else {
         androidx.compose.runtime.key(parcours.id) {
-            Cartes(parcours, catalogue, depot, faireLePoint)
+            Cartes(parcours, catalogue, depot, etape, allerA, faireLePoint)
         }
     }
 }
@@ -127,7 +140,7 @@ private fun Liste(parcours: List<Parcours>, depot: Depot, ouvrir: (String) -> Un
 }
 
 @Composable
-private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, faireLePoint: (String) -> Unit) {
+private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, i: Int, allerA: (Int) -> Unit, faireLePoint: (String) -> Unit) {
 
     val souvenirs by depot.memoire.etat.collectAsState()
     val portee = rememberCoroutineScope()
@@ -135,9 +148,7 @@ private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, faire
 
     val etapes = parcours.etapes.sortedBy { it.position }
 
-    // -1 : l'ouverture du parcours ; etapes.size : sa fin.
-    var i by rememberSaveable { mutableIntStateOf(-1) }
-
+    // `i` : -1 pour l'ouverture du parcours, etapes.size pour sa fin.
     // L'échelle d'une étape, en mode lecture, par-dessus le parcours.
     var echelle by rememberSaveable { mutableStateOf<String?>(null) }
     catalogue.violentometres.find { it.id == echelle }?.let { vm ->
@@ -173,13 +184,13 @@ private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, faire
                 erreur?.let { Note(it) }
                 if (parcours.apropos.isNotBlank()) Text(parcours.apropos, style = MaterialTheme.typography.bodyMedium)
                 Text("${etapes.size} étape${if (etapes.size > 1) "s" else ""}.", style = MaterialTheme.typography.bodySmall)
-                Button(onClick = { i = 0 }, Modifier.fillMaxWidth(), enabled = etapes.isNotEmpty()) { Text("Commencer") }
+                Button(onClick = { allerA(0) }, Modifier.fillMaxWidth(), enabled = etapes.isNotEmpty()) { Text("Commencer") }
             }
 
             i >= etapes.size -> {
                 Text("Fin du parcours", style = MaterialTheme.typography.headlineSmall)
                 if (parcours.conclusion.isNotBlank()) Text(parcours.conclusion)
-                OutlinedButton(onClick = { i = 0 }, Modifier.fillMaxWidth()) { Text("Revoir depuis le début") }
+                OutlinedButton(onClick = { allerA(0) }, Modifier.fillMaxWidth()) { Text("Revoir depuis le début") }
             }
 
             else -> Carte(etapes[i], i, etapes.size, catalogue, faireLePoint, lireEchelle = { echelle = it })
@@ -187,9 +198,9 @@ private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, faire
 
         if (i >= 0) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                TextButton(onClick = { i -= 1 }) { Text("← Précédente") }
+                TextButton(onClick = { allerA(i - 1) }) { Text("← Précédente") }
                 if (i < etapes.size) {
-                    Button(onClick = { i += 1 }) { Text(if (i == etapes.size - 1) "Terminer" else "Suivante →") }
+                    Button(onClick = { allerA(i + 1) }) { Text(if (i == etapes.size - 1) "Terminer" else "Suivante →") }
                 }
             }
         }

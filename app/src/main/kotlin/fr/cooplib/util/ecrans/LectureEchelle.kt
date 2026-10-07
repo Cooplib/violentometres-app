@@ -54,7 +54,8 @@ fun LectureEchelle(vm: Violentometre, fermer: () -> Unit, faireLePoint: (() -> U
 
     val courante = situations.getOrNull(etat.currentPage)
     val niveau = courante?.let { niveaux[it.gravite] }
-    val teinte by animateColorAsState(niveau?.let { couleur(it).copy(alpha = 0.12f) } ?: MaterialTheme.colorScheme.background, label = "teinte")
+    val fond = MaterialTheme.colorScheme.background
+    val teinte by animateColorAsState(niveau?.let { teinteSur(couleur(it), fond) } ?: fond, label = "teinte")
 
     Column(Modifier.fillMaxSize().background(teinte)) {
 
@@ -83,7 +84,9 @@ fun LectureEchelle(vm: Violentometre, fermer: () -> Unit, faireLePoint: (() -> U
 
             val s = situations.getOrNull(page)
 
-            Box(Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.Center) {
+            // En haut de l'écran plutôt qu'au milieu : l'œil n'a pas à
+            // descendre chercher la phrase.
+            Box(Modifier.fillMaxSize().padding(start = 16.dp, end = 16.dp, top = 12.dp, bottom = 16.dp), contentAlignment = Alignment.TopCenter) {
 
                 if (s == null) {
                     // La fin : ce qu'on peut en faire.

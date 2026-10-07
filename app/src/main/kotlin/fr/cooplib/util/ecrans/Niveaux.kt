@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -55,6 +56,15 @@ internal fun couleur(n: Niveau): Color = when (n.couleur) {
     "red" -> NiveauVif.ROUGE
     else -> runCatching { Color(android.graphics.Color.parseColor(n.couleur)) }.getOrDefault(Color.Gray)
 }
+
+/*
+ * Une teinte de niveau DÉJÀ MÊLÉE au fond, opaque. Animer une couleur à
+ * 12 % d'opacité vers le fond opaque faisait passer par des états
+ * intermédiaires plus saturés : un petit éclair rouge en quittant le
+ * niveau Danger (retour du 7 octobre). Entre deux couleurs opaques, la
+ * transition reste douce.
+ */
+internal fun teinteSur(c: Color, fond: Color, part: Float = 0.12f): Color = c.copy(alpha = part).compositeOver(fond)
 
 internal fun couleurDeTexte(n: Niveau): Color = when (n.couleur) {
     "green" -> NiveauTexte.VERT

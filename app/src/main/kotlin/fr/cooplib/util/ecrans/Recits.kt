@@ -9,7 +9,9 @@ import android.widget.EditText
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -189,9 +191,11 @@ private fun Lecteur(
         if (liste.size > 1) {
             Note("${etat.currentPage + 1} sur ${liste.size} · glissez pour passer au suivant", Modifier.padding(start = 16.dp, top = 8.dp))
         }
-        HorizontalPager(state = etat, beyondViewportPageCount = 0) { page ->
+        // Toute la hauteur de l'écran, pas seulement celle du texte : on
+        // doit pouvoir glisser n'importe où (retour du 7 octobre).
+        HorizontalPager(state = etat, beyondViewportPageCount = 0, modifier = Modifier.fillMaxSize()) { page ->
             val recit = liste[page]
-            Page {
+            Box(Modifier.fillMaxSize()) { Page {
                 Text(recit.titre, style = MaterialTheme.typography.headlineSmall)
                 Compteurs(ilYA(recit.creeLe), "👁 ${recit.vues}")
 
@@ -209,7 +213,7 @@ private fun Lecteur(
                 // Atteignable depuis chaque récit, lu ou non : on peut avoir à
                 // signaler un récit qu'on ne veut pas lire en entier.
                 TextButton(onClick = signaler) { Text("Signaler un problème dans ce récit") }
-            }
+            } }
         }
     }
 }

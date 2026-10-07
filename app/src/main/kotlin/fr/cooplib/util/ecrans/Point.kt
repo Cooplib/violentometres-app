@@ -109,6 +109,8 @@ fun FaireLePoint(
     ouvrirRecit: (String) -> Unit,
     cibleInitiale: String? = null,
     ficheInitiale: String? = null,
+    // Venu d'ailleurs (une étape de parcours) : où ramène le retour.
+    retour: (() -> Unit)? = null,
 ) {
 
     // Ce qui est ouvert : la liste (rien), la fiche d'un violentomètre,
@@ -117,8 +119,14 @@ fun FaireLePoint(
     var fiche by rememberSaveable { mutableStateOf(ficheInitiale) }
     var cible by rememberSaveable { mutableStateOf(cibleInitiale) }
 
-    BackHandler(enabled = cible != null || fiche != null) {
-        if (cible != null) cible = null else fiche = null
+    BackHandler(enabled = cible != null || fiche != null || retour != null) {
+        when {
+            // Le point ouvert depuis une étape de parcours : on y retourne.
+            retour != null && cible == cibleInitiale -> retour()
+            cible != null -> cible = null
+            fiche != null -> fiche = null
+            else -> retour?.invoke()
+        }
     }
 
     val c = cible
@@ -208,12 +216,48 @@ private fun Deroulement(
         Phase.ALERTE -> pool.niveaux.find { it.position == d.plusGrave }
         else -> null
     }
-    val teinte by animateColorAsState(
-        niveauDeLEcran?.let { couleur(it).copy(alpha = 0.10f) } ?: MaterialTheme.colorScheme.background,
-        label = "teinte",
-    )
+    val fond = MaterialTheme.colorScheme.background
+    val teinte by animateColorAsState(niveauDeLEcran?.let { teinteSur(couleur(it), fond, 0.10f) } ?: fond, label = "teinte")
 
-    Box(Modifier.fillMaxSize().background(teinte)) { Page {
+    /*
+     * Le glissement d'une question se fait SUR TOUT L'ÉCRAN, pas seulement
+     * sur la carte (retour du 7 octobre) : c'est le fond qui écoute le
+     * geste, la carte ne fait que le suivre. À gauche oui, à droite non.
+     */
+    val question = if (etat.phase == Phase.QUESTIONS && !reprise) d.questionCourante(etat) else null
+    val cleQuestion = "${etat.niveau}-${etat.index}-${etat.phase}"
+    val decalage = remember(cleQuestion) { Animatable(0f) }
+    val portee = rememberCoroutineScope()
+
+    BoxWithConstraints(Modifier.fillMaxSize().background(teinte)) {
+
+    val largeur = constraints.maxWidth.toFloat()
+    val seuil = largeur / 3
+
+    Box(
+        Modifier.fillMaxSize().then(
+            if (question == null) Modifier
+            else Modifier.pointerInput(cleQuestion) {
+                detectHorizontalDragGestures(
+                    onDragEnd = {
+                        portee.launch {
+                            val v = decalage.value
+                            when {
+                                v <= -seuil -> { decalage.animateTo(-largeur * 1.4f); avancer(d.repondre(etat, question, Reponse.OUI, maintenant())) }
+                                v >= seuil -> { decalage.animateTo(largeur * 1.4f); avancer(d.repondre(etat, question, Reponse.NON, maintenant())) }
+                                else -> decalage.animateTo(0f)
+                            }
+                        }
+                    },
+                    onDragCancel = { portee.launch { decalage.animateTo(0f) } },
+                    onHorizontalDrag = { change, delta ->
+                        change.consume()
+                        portee.launch { decalage.snapTo(decalage.value + delta) }
+                    },
+                )
+            }
+        )
+    ) { Page {
 
         if (reprise) {
             Text("Je fais le point", style = MaterialTheme.typography.headlineSmall)
@@ -291,14 +335,8 @@ private fun Deroulement(
                 Text(if (etat.public == "proche") "Vous observez ceci ?" else "Vous vivez ceci ?", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 // La situation, en grand, dans sa carte (`.test__situation`),
                 // qu'on peut aussi glisser : à gauche oui, à droite non.
-                CarteAGlisser(
-                    cle = "${etat.niveau}-${etat.index}",
-                    texte = situation.texte,
-                    bordure = couleur(niveau),
-                    oui = { avancer(d.repondre(etat, situation, Reponse.OUI, maintenant())) },
-                    non = { avancer(d.repondre(etat, situation, Reponse.NON, maintenant())) },
-                )
-                Note("Glissez la carte à gauche pour oui, à droite pour non, ou touchez les boutons.")
+                CarteQuiSuit(texte = situation.texte, bordure = couleur(niveau), decalage = decalage.value, seuil = seuil)
+                Note("Glissez n'importe où : à gauche pour oui, à droite pour non. Ou touchez les boutons.")
                 if (situation.sources.size > 1) Text("Dans : ${situation.sources.joinToString(", ")}", style = MaterialTheme.typography.bodySmall)
                 etat.reponses[situation.id]?.let { r ->
                     Text("Vous aviez répondu : ${mapOf(Reponse.OUI to "oui", Reponse.NON to "non", Reponse.PASSER to "passé")[r]}. Vous pouvez changer.", style = MaterialTheme.typography.bodySmall)
@@ -377,6 +415,7 @@ private fun Deroulement(
             Phase.RESULTAT -> Resultat(pool, d, etat, garder, recommencer = ::recommencer, ouvrirRecit = ouvrirRecit, autrePoint = autrePoint)
         }
     } }
+    }
 }
 
 @Composable
@@ -519,70 +558,44 @@ private fun Actions(pause: () -> Unit, arreter: () -> Unit) {
 private fun pluriel(n: Int, mot: String) = "$n $mot${if (n > 1) "s" else ""}"
 
 /*
- * La carte d'une situation, qu'on peut glisser : À GAUCHE POUR OUI, À
- * DROITE POUR NON (le sens demandé par Cooplib, le 7 octobre 2026). Elle
- * suit le doigt en penchant un peu, et dit « Oui » ou « Non » de plus en
- * plus nettement ; passé un tiers de la largeur, elle part et la réponse
- * est donnée, sinon elle revient. Les boutons restent : un geste qu'on
- * ne connaît pas ne doit jamais être le seul chemin.
+ * La carte d'une situation, qui SUIT le geste fait sur tout l'écran
+ * (Deroulement écoute, elle se déplace) : elle penche un peu, et dit
+ * « Oui » ou « Non » de plus en plus nettement ; passé un tiers de la
+ * largeur, elle part et la réponse est donnée, sinon elle revient. À
+ * gauche oui, à droite non, le sens demandé par Cooplib. Les boutons
+ * restent : un geste qu'on ne connaît pas ne doit jamais être le seul
+ * chemin.
  */
 @Composable
-private fun CarteAGlisser(cle: String, texte: String, bordure: Color, oui: () -> Unit, non: () -> Unit) {
+private fun CarteQuiSuit(texte: String, bordure: Color, decalage: Float, seuil: Float) {
 
-    val decalage = remember(cle) { Animatable(0f) }
-    val portee = rememberCoroutineScope()
+    val part = (decalage / seuil).coerceIn(-1f, 1f)
 
-    BoxWithConstraints(Modifier.fillMaxWidth()) {
-
-        val largeur = constraints.maxWidth.toFloat()
-        val seuil = largeur / 3
-        val part = (decalage.value / seuil).coerceIn(-1f, 1f)
-
-        Card(
-            Modifier
-                .fillMaxWidth()
-                .offset { IntOffset(decalage.value.roundToInt(), 0) }
-                .graphicsLayer { rotationZ = part * 6f }
-                .pointerInput(cle) {
-                    detectHorizontalDragGestures(
-                        onDragEnd = {
-                            portee.launch {
-                                val v = decalage.value
-                                when {
-                                    v <= -seuil -> { decalage.animateTo(-largeur * 1.4f); oui() }
-                                    v >= seuil -> { decalage.animateTo(largeur * 1.4f); non() }
-                                    else -> decalage.animateTo(0f)
-                                }
-                            }
-                        },
-                        onDragCancel = { portee.launch { decalage.animateTo(0f) } },
-                        onHorizontalDrag = { change, d ->
-                            change.consume()
-                            portee.launch { decalage.snapTo(decalage.value + d) }
-                        },
-                    )
-                },
-            couleurDeBordure = bordure,
-        ) {
-            Box {
+    Card(
+        Modifier
+            .fillMaxWidth()
+            .offset { IntOffset(decalage.roundToInt(), 0) }
+            .graphicsLayer { rotationZ = part * 6f },
+        couleurDeBordure = bordure,
+    ) {
+        Box {
+            Text(
+                texte,
+                Modifier.padding(horizontal = 20.dp, vertical = 28.dp),
+                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal, lineHeight = 29.sp),
+            )
+            // Ce que le geste va répondre, de plus en plus net.
+            if (part != 0f) {
                 Text(
-                    texte,
-                    Modifier.padding(horizontal = 20.dp, vertical = 28.dp),
-                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal, lineHeight = 29.sp),
+                    if (part < 0) "Oui" else "Non",
+                    Modifier
+                        .align(if (part < 0) Alignment.TopEnd else Alignment.TopStart)
+                        .padding(10.dp)
+                        .graphicsLayer { alpha = kotlin.math.abs(part) },
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
                 )
-                // Ce que le geste va répondre, de plus en plus net.
-                if (part != 0f) {
-                    Text(
-                        if (part < 0) "Oui" else "Non",
-                        Modifier
-                            .align(if (part < 0) Alignment.TopEnd else Alignment.TopStart)
-                            .padding(10.dp)
-                            .graphicsLayer { alpha = kotlin.math.abs(part) },
-                        color = MaterialTheme.colorScheme.primary,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
-                    )
-                }
             }
         }
     }
