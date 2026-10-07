@@ -7,8 +7,50 @@ on:
 jobs:
   noyau:
     runs-on: ubuntu-latest
+
+    # Les deux dépôts côte à côte, comme sur le poste de travail : les
+    # chemins `../violentometres-frontend` des tests et des outils sont
+    # alors les mêmes partout.
+    defaults:
+      run:
+        working-directory: violentometres-app
+
     steps:
-      - uses: actions/checkout@v4
+      - name: L'application
+        uses: actions/checkout@v4
+        with:
+          path: violentometres-app
+
+      # Le site sert de référence au portage du point : les mêmes
+      # réponses doivent donner le même résultat des deux côtés.
+      #
+      # Ce dépôt-là est privé, et le jeton que GitHub donne à la CI ne
+      # voit que celui-ci : sans clé, le clonage échoue en « Not Found ».
+      # D'où une clé de déploiement EN LECTURE SEULE, posée sur le dépôt
+      # du site ; sa moitié privée est le secret FRONT_DEPLOY_KEY d'ici.
+      # Pas d'écriture : le site se déploie seul quand sa CI est verte,
+      # une clé qui pousse là-bas pousserait en production.
+      - name: Clé d'accès au site
+        working-directory: .
+        env:
+          CLE: ${{ secrets.FRONT_DEPLOY_KEY }}
+        run: |
+          if [ -z "$CLE" ]; then
+            echo "::error::Secret FRONT_DEPLOY_KEY absent : la CI ne peut pas cloner Cooplib/violentometres-front, qui est privé."
+            exit 1
+          fi
+
+      - name: Le site
+        uses: actions/checkout@v4
+        with:
+          repository: Cooplib/violentometres-front
+          path: violentometres-frontend
+          ssh-key: ${{ secrets.FRONT_DEPLOY_KEY }}
+
+      # Le clonage peut réussir à côté du bon endroit : on vérifie que la
+      # référence est là où les tests iront la chercher.
+      - name: Le site est à sa place
+        run: test -f ../violentometres-frontend/src/utils/recommandations.js
 
       - uses: actions/setup-java@v4
         with:
