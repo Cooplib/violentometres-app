@@ -1,9 +1,13 @@
 [versions]
 kotlin = "2.4.20"
 kotlinx-serialization = "1.11.0"
+# Pour les tests seulement : le tri français de l'ICU, celui du navigateur.
+icu4j = "78.2"
 
 [libraries]
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+icu4j = { module = "com.ibm.icu:icu4j", version.ref = "icu4j" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

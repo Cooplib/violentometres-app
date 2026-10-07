@@ -52,6 +52,13 @@ jobs:
       - name: Le site est à sa place
         run: test -f ../violentometres-frontend/src/utils/recommandations.js
 
+      # Node joue les parties de référence avec le code du site
+      # (outils/reference-du-point.mjs), avant les tests du noyau. La même
+      # version que la CI du site.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
