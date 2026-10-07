@@ -24,7 +24,13 @@ import androidx.compose.ui.unit.dp
 import fr.cooplib.util.donnees.Catalogue
 import fr.cooplib.util.modeles.Etape
 import fr.cooplib.util.modeles.Parcours
-import fr.cooplib.util.modeles.Violentometre
+import fr.cooplib.util.reseau.Resultat
+import fr.cooplib.util.stockage.Depot
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.text.style.TextOverflow
+import kotlinx.coroutines.launch
 
 /*
  * « Comprendre » : les parcours, UNE CARTE PAR ÉTAPE.
@@ -44,7 +50,7 @@ import fr.cooplib.util.modeles.Violentometre
  * demande, son échelle, et mène au point.
  */
 @Composable
-fun Comprendre(catalogue: Catalogue, faireLePoint: (String) -> Unit) {
+fun Comprendre(catalogue: Catalogue, depot: Depot, faireLePoint: (String) -> Unit) {
 
     var ouvert by rememberSaveable { mutableStateOf<String?>(null) }
 
@@ -53,28 +59,67 @@ fun Comprendre(catalogue: Catalogue, faireLePoint: (String) -> Unit) {
     val parcours = catalogue.parcours.find { it.id == ouvert }
 
     if (parcours == null) {
-        Liste(catalogue.parcours) { ouvert = it }
+        Liste(catalogue.parcours, depot) { ouvert = it }
     } else {
         androidx.compose.runtime.key(parcours.id) {
-            Cartes(parcours, catalogue, faireLePoint)
+            Cartes(parcours, catalogue, depot, faireLePoint)
         }
     }
 }
 
+private val TRIS_PARCOURS = listOf("Les plus vus", "Les plus aimés", "Les plus courts", "De A à Z")
+
 @Composable
-private fun Liste(parcours: List<Parcours>, ouvrir: (String) -> Unit) {
+private fun Liste(parcours: List<Parcours>, depot: Depot, ouvrir: (String) -> Unit) {
+
+    val souvenirs by depot.memoire.etat.collectAsState()
+
+    var cherche by rememberSaveable { mutableStateOf("") }
+    var cadre by rememberSaveable { mutableStateOf<String?>(null) }
+    var tri by rememberSaveable { mutableStateOf(TRIS_PARCOURS[0]) }
+
+    // Les cadres d'analyse qui portent des parcours : « sous plusieurs
+    // angles », c'est là que ça se choisit.
+    val cadres = remember(parcours) {
+        parcours.flatMap { p -> p.cadres.map { it.nom } }.groupingBy { it }.eachCount().entries.sortedByDescending { it.value }.map { it.key }
+    }
+
+    val liste = remember(parcours, cherche, cadre, tri, souvenirs) {
+        parcours
+            .filter { p -> cadre == null || p.cadres.any { it.nom == cadre } }
+            .filter { p -> cherche.isBlank() || correspond(cherche, p.titre, p.description, p.etapes.joinToString(" ") { it.cible?.titre ?: "" }) }
+            .let { l ->
+                when (tri) {
+                    "Les plus aimés" -> l.sortedByDescending { souvenirs.comptes[it.id] ?: it.aime }
+                    "Les plus courts" -> l.sortedBy { it.etapes.size }
+                    "De A à Z" -> l.sortedWith(compareBy(ordreFrancais) { it.titre })
+                    else -> l.sortedByDescending { it.vues }
+                }
+            }
+    }
 
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
         item { Text("🗺️ Comprendre", style = MaterialTheme.typography.headlineSmall) }
-        item { Text("Des parcours courts, une carte par étape : d'une situation vécue à ce qui la produit.") }
+        item { Encadre("Des parcours courts, une carte par étape : d'une situation vécue à ce qui la produit. Certains lisent la même chose sous plusieurs angles.") }
 
-        items(parcours.sortedBy { it.titre }, key = { it.id }) { p ->
-            Card(onClick = { ouvrir(p.id) }, modifier = Modifier.fillMaxWidth()) {
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        item {
+            BarreDeRecherche(cherche, { cherche = it }, cadres, cadre, { cadre = it }, TRIS_PARCOURS, tri, { tri = it }, indication = "Chercher un parcours")
+        }
+
+        items(liste, key = { it.id }) { p ->
+            Card(Modifier.fillMaxWidth(), onClick = { ouvrir(p.id) }) {
+                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(p.titre, style = MaterialTheme.typography.titleMedium)
-                    if (p.description.isNotBlank()) Text(p.description, style = MaterialTheme.typography.bodyMedium)
-                    Text("${p.etapes.size} étape${if (p.etapes.size > 1) "s" else ""}", style = MaterialTheme.typography.bodySmall)
+                    if (p.description.isNotBlank()) Text(p.description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                    // Les étapes en un coup d'œil : un point par étape.
+                    Text(p.etapes.sortedBy { it.position }.joinToString("  →  ") { it.cible?.titre ?: "" }, style = MaterialTheme.typography.bodySmall, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                    Etiquettes(p.cadres.map { it.nom })
+                    Compteurs(
+                        "${p.etapes.size} étape${if (p.etapes.size > 1) "s" else ""}",
+                        "👁 ${p.vues}",
+                        (if (p.id in souvenirs.aimes) "♥ " else "♡ ") + (souvenirs.comptes[p.id] ?: p.aime),
+                    )
                 }
             }
         }
@@ -82,7 +127,11 @@ private fun Liste(parcours: List<Parcours>, ouvrir: (String) -> Unit) {
 }
 
 @Composable
-private fun Cartes(parcours: Parcours, catalogue: Catalogue, faireLePoint: (String) -> Unit) {
+private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, faireLePoint: (String) -> Unit) {
+
+    val souvenirs by depot.memoire.etat.collectAsState()
+    val portee = rememberCoroutineScope()
+    var erreur by remember { mutableStateOf<String?>(null) }
 
     val etapes = parcours.etapes.sortedBy { it.position }
 
@@ -103,7 +152,18 @@ private fun Cartes(parcours: Parcours, catalogue: Catalogue, faireLePoint: (Stri
         when {
             i < 0 -> {
                 Text(parcours.titre, style = MaterialTheme.typography.headlineSmall)
-                if (parcours.description.isNotBlank()) Text(parcours.description)
+                if (parcours.description.isNotBlank()) Text(parcours.description, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Etiquettes(parcours.cadres.map { it.nom })
+                val aime = parcours.id in souvenirs.aimes
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    BoutonJAime(aime, souvenirs.comptes[parcours.id] ?: parcours.aime) {
+                        portee.launch {
+                            erreur = if (depot.aimer("parcours", parcours.id, !aime) is Resultat.Ok) null else "Pas de réseau : le « J'aime » n'est pas parti."
+                        }
+                    }
+                    Compteurs("👁 ${parcours.vues}")
+                }
+                erreur?.let { Note(it) }
                 if (parcours.apropos.isNotBlank()) Text(parcours.apropos, style = MaterialTheme.typography.bodyMedium)
                 Text("${etapes.size} étape${if (etapes.size > 1) "s" else ""}.", style = MaterialTheme.typography.bodySmall)
                 Button(onClick = { i = 0 }, Modifier.fillMaxWidth(), enabled = etapes.isNotEmpty()) { Text("Commencer") }
@@ -154,7 +214,7 @@ private fun Carte(etape: Etape, i: Int, n: Int, catalogue: Catalogue, faireLePoi
             val vm = catalogue.violentometres.find { it.id == etape.violentometreId }
             if (vm != null) {
                 OutlinedButton(onClick = { plus = !plus }, Modifier.fillMaxWidth()) { Text(if (plus) "Masquer l'échelle" else "Voir l'échelle") }
-                if (plus) Echelle(vm)
+                if (plus) Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) { Echelle(vm) } }
                 if (vm.id in catalogue.pointsParViolentometre) {
                     Button(onClick = { faireLePoint(vm.id) }, Modifier.fillMaxWidth()) { Text("Faire le point dessus") }
                 }
@@ -182,17 +242,5 @@ private fun Carte(etape: Etape, i: Int, n: Int, catalogue: Catalogue, faireLePoi
                 if (plus) texte.forEach { Text(it) }
             }
         }
-    }
-}
-
-// L'échelle d'un violentomètre : ses situations, du plus léger au plus
-// grave, chaque niveau à sa couleur.
-@Composable
-private fun Echelle(vm: Violentometre) {
-    for (niveau in vm.niveaux.sortedBy { it.position }) {
-        val situations = vm.situations.filter { it.gravite == niveau.position }.sortedBy { it.position }
-        if (situations.isEmpty()) continue
-        EtiquetteNiveau(niveau)
-        situations.forEach { Text("· ${it.texte}", style = MaterialTheme.typography.bodyMedium) }
     }
 }

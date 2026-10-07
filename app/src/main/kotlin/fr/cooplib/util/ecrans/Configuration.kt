@@ -41,36 +41,54 @@ import fr.cooplib.util.leurre.CodeSecret
 @Composable
 fun Deguisement(
     garderLaCalculatrice: (empreinteDuCode: String) -> Unit,
-    afficherLeVraiNom: () -> Unit,
+    afficherLeVraiNom: (empreinteDuCode: String) -> Unit,
     voirCeQuiEstProtege: () -> Unit,
 ) {
 
-    var choixCode by rememberSaveable { mutableStateOf(false) }
+    // Le choix fait, avant le code : « calculatrice » ou « vrai ».
+    var choix by rememberSaveable { mutableStateOf<String?>(null) }
 
     Page {
 
         Text("Avant de commencer", style = MaterialTheme.typography.headlineSmall)
 
-        Text("Sur votre écran d'accueil, cette application s'appelle Calculatrice. Elle en a l'icône, et elle calcule pour de vrai.")
+        Text("Sur votre écran d'accueil, cette application s'appelle Calculatrice. Elle en a l'icône, et elle calcule pour de vrai.", style = MaterialTheme.typography.bodyLarge)
 
-        Text("Pour ouvrir l'application : tapez votre code dans la calculatrice, puis =. L'écran se vide aussitôt.")
+        Encadre("Pour ouvrir l'application : tapez votre code dans la calculatrice, puis =. L'écran se vide aussitôt.")
 
-        if (!choixCode) {
+        when (choix) {
 
-            Button(onClick = { choixCode = true }, Modifier.fillMaxWidth()) { Text("Garder la calculatrice et choisir un code") }
+            null -> {
+                Button(onClick = { choix = "calculatrice" }, Modifier.fillMaxWidth()) { Text("Garder la calculatrice") }
+                OutlinedButton(onClick = { choix = "vrai" }, Modifier.fillMaxWidth()) { Text("Afficher le vrai nom : Violentomètres") }
+            }
 
-            OutlinedButton(onClick = afficherLeVraiNom, Modifier.fillMaxWidth()) { Text("Afficher le vrai nom : Violentomètres") }
-
-        } else {
-
-            ChoixDuCode(valider = garderLaCalculatrice, annuler = { choixCode = false })
+            else -> {
+                /*
+                 * Un code pour tout le monde, décidé le 7 octobre 2026 : avec
+                 * le vrai nom, c'est le code DE SECOURS. « Quitter vite » remet
+                 * alors la calculatrice, parce que si l'on a voulu quitter
+                 * vite, c'est qu'il y a sans doute une galère.
+                 */
+                if (choix == "vrai") {
+                    Encadre(titre = "Un code de secours") {
+                        Text("Même avec le vrai nom, choisissez un code. Si vous touchez « Quitter vite », l'application redevient une calculatrice, et il faudra ce code pour la rouvrir.")
+                    }
+                }
+                ChoixDuCode(
+                    valider = { e -> if (choix == "vrai") afficherLeVraiNom(e) else garderLaCalculatrice(e) },
+                    annuler = { choix = null },
+                )
+            }
         }
 
-        Text("Ce que ça protège", style = MaterialTheme.typography.titleMedium)
-        Text("Quelqu'un qui prend votre téléphone et regarde l'écran d'accueil.")
+        Encadre(titre = "Ce que ça protège") {
+            Text("Quelqu'un qui prend votre téléphone et regarde l'écran d'accueil.")
+        }
 
-        Text("Ce que ça ne protège pas", style = MaterialTheme.typography.titleMedium)
-        Text("Quelqu'un qui cherche : dans les réglages du téléphone, dans votre compte Google. Quelqu'un qui vous oblige à ouvrir l'application. Un logiciel espion.")
+        Encadre(alerte = true, titre = "Ce que ça ne protège pas") {
+            Text("Quelqu'un qui cherche : dans les réglages du téléphone, dans votre compte Google. Quelqu'un qui vous oblige à ouvrir l'application. Un logiciel espion.")
+        }
 
         TextButton(onClick = voirCeQuiEstProtege) { Text("Ce qui est protégé, ce qui ne l'est pas") }
     }
@@ -136,9 +154,9 @@ fun CeQuOnGarde(choisir: (garderLesReponses: Boolean) -> Unit) {
 
         Text("Ce que l'application garde", style = MaterialTheme.typography.headlineSmall)
 
-        Text("Le contenu du site est gardé sur ce téléphone : les violentomètres, les aides, les parcours. C'est ce qui permet de s'en servir sans réseau. Il ne dit rien de vous.")
+        Encadre("Le contenu du site est gardé sur ce téléphone : les violentomètres, les aides, les parcours. C'est ce qui permet de s'en servir sans réseau. Il ne dit rien de vous.")
 
-        Text("Vos réponses quand vous faites le point, elles, parlent de vous. Par défaut, rien n'en est gardé : en quittant l'application, elles disparaissent.")
+        Text("Vos réponses quand vous faites le point, elles, parlent de vous, comme vos brouillons, vos « J'aime » et les récits que vous avez lus. Par défaut, rien n'en est gardé : en quittant l'application, ils disparaissent.", style = MaterialTheme.typography.bodyLarge)
 
         Text("Voulez-vous pouvoir reprendre vos réponses d'une fois à l'autre ?", style = MaterialTheme.typography.titleMedium)
 

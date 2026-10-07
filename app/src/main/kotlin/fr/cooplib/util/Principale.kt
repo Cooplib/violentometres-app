@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.mutableStateOf
 import fr.cooplib.util.ecrans.Application
 import fr.cooplib.util.stockage.Brouillon
+import fr.cooplib.util.stockage.Depot
 import fr.cooplib.util.stockage.Reponses
 
 /*
@@ -53,13 +54,25 @@ class Principale : ComponentActivity() {
 
     /*
      * « Quitter vite » : effacer ce qui parle de la personne (les réponses
-     * au point, le brouillon d'un récit), puis fermer, en retirant
-     * l'application des applications récentes. Les réglages restent : le
-     * déguisement doit survivre à la sortie.
+     * au point, le brouillon d'un récit, ce qu'elle a aimé et lu), puis
+     * fermer, en retirant l'application des applications récentes.
+     *
+     * Et REMETTRE LA CALCULATRICE, même si la personne avait choisi
+     * d'afficher le vrai nom (décidé le 7 octobre 2026) : si l'on a voulu
+     * quitter vite, c'est qu'il y a sans doute une galère. Le code de
+     * secours, choisi au premier lancement, rouvrira l'application.
+     * Sans code (une installation d'avant cette règle), on ne redéguise
+     * pas : la calculatrice ne pourrait plus s'ouvrir.
      */
     private fun quitterVite() {
         Reponses.effacer(this)
         Brouillon.effacer(this)
+        Depot.de(this).memoire.oublier()
+        val reglages = Reglages(this)
+        if (!reglages.deguise && reglages.empreinteDuCode != null) {
+            reglages.deguise = true
+            Lanceur.afficherLeVraiNom(this, false)
+        }
         finishAndRemoveTask()
     }
 

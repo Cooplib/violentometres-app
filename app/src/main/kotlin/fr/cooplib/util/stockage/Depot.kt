@@ -149,13 +149,15 @@ class Depot private constructor(contexte: Context) {
     }
 
     /*
-     * L'identité d'un contributeur, pour l'API : un identifiant neuf à
-     * chaque lancement, jamais gardé. L'application n'a pas de « mes
-     * récits » à retrouver ; le garder ne servirait à rien d'autre qu'à
-     * relier entre eux, côté serveur, les récits et signalements venus
-     * de ce téléphone.
+     * L'identité d'un contributeur, pour l'API. Neuve à chaque lancement
+     * au début ; GARDÉE depuis que les likes partent au site (décision du
+     * 7 octobre 2026) : sans elle, on ne pourrait pas retirer un like.
      */
-    private val visiteur = fr.cooplib.util.reseau.IdentifiantVisiteur.nouveau()
+    private val reglages = fr.cooplib.util.Reglages(app)
+    private val visiteur get() = reglages.visiteur
+
+    // Ce qu'on a aimé et lu : même régime que les réponses (Souvenirs.kt).
+    val memoire = Memoire(app) { reglages.garderLesReponses }
 
     /*
      * Les deux seules écritures. Lancées dans la portée du dépôt, pas de
@@ -171,6 +173,26 @@ class Depot private constructor(contexte: Context) {
         }.await()
 
     suspend fun motifs() = portee.async { api.motifsDeSignalement() }.await()
+
+    /*
+     * Aimer, ou ne plus aimer. L'écran change tout de suite ; si le
+     * serveur ne suit pas (pas de réseau), on revient en arrière et on le
+     * dit. Idempotent côté serveur : réessayer ne compte rien deux fois.
+     */
+    suspend fun aimer(type: String, id: String, aime: Boolean): Resultat<fr.cooplib.util.reseau.EtatDuLike> {
+        val avant = memoire.etat.value
+        memoire.changer { s -> s.copy(aimes = if (aime) s.aimes + id else s.aimes - id) }
+        val r = portee.async {
+            if (type == "parcours") api.aimerParcours(id, aime, visiteur) else api.aimerViolentometre(id, aime, visiteur)
+        }.await()
+        when (r) {
+            is Resultat.Ok -> memoire.changer { s -> s.copy(comptes = s.comptes + (id to r.valeur.combien)) }
+            else -> memoire.changer { avant }
+        }
+        return r
+    }
+
+    fun marquerLu(id: String) = memoire.changer { s -> s.copy(lus = s.lus + id) }
 
     suspend fun signaler(recitId: String, motif: String, texte: String?) =
         portee.async { api.signalerRecit(recitId, motif, texte, visiteur) }.await()

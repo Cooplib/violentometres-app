@@ -24,6 +24,10 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,18 +56,22 @@ import kotlinx.coroutines.launch
  * depuis chaque récit. Ce n'est pas une option, et c'est aussi le seul
  * recours de qui se reconnaît dans un récit.
  */
+private val TRIS_RECITS = listOf("Les plus récents", "Les plus lus", "De A à Z")
+
 @Composable
 fun Recits(recits: List<Recit>, depot: Depot, garderLesBrouillons: Boolean, ouvert: String? = null) {
 
+    val souvenirs by depot.memoire.etat.collectAsState()
+
     // Ce qui est ouvert : la liste (null), un récit, son signalement, ou
-    // le dépôt.
-    // `ouvert` : venu d'ailleurs (un récit recommandé à la fin du point).
+    // le dépôt. `ouvert` : venu d'ailleurs (un récit recommandé à la fin
+    // du point).
     var lu by rememberSaveable { mutableStateOf(ouvert) }
     var signale by rememberSaveable { mutableStateOf(false) }
     var depose by rememberSaveable { mutableStateOf(false) }
 
-    // Les récits déjà dévoilés, pour ne pas reflouter en revenant.
-    val ouverts = remember { mutableSetOf<String>() }
+    var cherche by rememberSaveable { mutableStateOf("") }
+    var tri by rememberSaveable { mutableStateOf(TRIS_RECITS[0]) }
 
     BackHandler(enabled = lu != null || depose) {
         when {
@@ -73,42 +81,78 @@ fun Recits(recits: List<Recit>, depot: Depot, garderLesBrouillons: Boolean, ouve
         }
     }
 
+    // L'ordre de la liste est aussi celui dans lequel on glisse d'un récit
+    // à l'autre.
+    val liste = remember(recits, cherche, tri) {
+        recits
+            .filter { r -> cherche.isBlank() || correspond(cherche, r.titre, if (r.sansFlou) r.texte else "") }
+            .let { l ->
+                when (tri) {
+                    "Les plus lus" -> l.sortedByDescending { it.vues }
+                    "De A à Z" -> l.sortedWith(compareBy(ordreFrancais) { it.titre })
+                    else -> l.sortedByDescending { it.creeLe }
+                }
+            }
+    }
+
     val recit = recits.find { it.id == lu }
 
     when {
         depose -> Deposer(depot, garderLesBrouillons) { depose = false }
         recit != null && signale -> Signaler(recit, depot) { signale = false }
-        recit != null -> Lecture(recit, recit.id in ouverts, { ouverts += recit.id }) { signale = true }
-        else -> Liste(recits, ouvrir = { lu = it }, deposer = { depose = true })
+        recit != null -> Lecteur(
+            liste = if (liste.any { it.id == recit.id }) liste else listOf(recit),
+            depart = recit.id,
+            lus = souvenirs.lus,
+            marquerLu = depot::marquerLu,
+            changer = { lu = it },
+            signaler = { signale = true },
+        )
+        else -> Liste(liste, souvenirs.lus, cherche, { cherche = it }, tri, { tri = it }, ouvrir = { lu = it }, deposer = { depose = true })
     }
 }
 
 @Composable
-private fun Liste(recits: List<Recit>, ouvrir: (String) -> Unit, deposer: () -> Unit) {
+private fun Liste(
+    recits: List<Recit>,
+    lus: Set<String>,
+    cherche: String,
+    chercher: (String) -> Unit,
+    tri: String,
+    trier: (String) -> Unit,
+    ouvrir: (String) -> Unit,
+    deposer: () -> Unit,
+) {
 
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
         item { Text("📖 Des récits", style = MaterialTheme.typography.headlineSmall) }
 
-        item {
-            Button(onClick = deposer, Modifier.fillMaxWidth()) { Text("Déposer mon récit") }
-        }
+        item { Encadre("Des récits entiers, écrits par celles et ceux à qui c'est arrivé. Certains sont difficiles à lire : ils restent cachés jusqu'à ce que vous choisissiez de les lire.") }
+
+        item { Button(onClick = deposer, Modifier.fillMaxWidth()) { Text("🖊️ Déposer mon récit") } }
+
+        item { BarreDeRecherche(cherche, chercher, emptyList(), null, {}, TRIS_RECITS, tri, trier, indication = "Chercher un récit") }
 
         if (recits.isEmpty()) {
-            item { Text("Aucun récit pour l'instant.") }
+            item { Note("Aucun récit ne correspond.") }
         }
 
-        items(recits.sortedByDescending { it.creeLe }, key = { it.id }) { r ->
-            Card(onClick = { ouvrir(r.id) }, modifier = Modifier.fillMaxWidth()) {
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text(r.titre, style = MaterialTheme.typography.titleMedium)
+        items(recits, key = { it.id }) { r ->
+            Card(Modifier.fillMaxWidth(), onClick = { ouvrir(r.id) }) {
+                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(r.titre, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                        if (r.id in lus) Note("Lu")
+                    }
                     // Un récit dur à lire ne montre rien de son texte dans la
                     // liste : seulement qu'il est là.
-                    Text(
-                        if (r.sansFlou) r.texte.take(140) + if (r.texte.length > 140) "…" else ""
-                        else "Ce récit peut être difficile à lire.",
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
+                    if (r.sansFlou || r.id in lus) {
+                        Text(r.texte, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 3, overflow = TextOverflow.Ellipsis)
+                    } else {
+                        Text("Ce récit peut être difficile à lire.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    Compteurs(ilYA(r.creeLe), "👁 ${r.vues}")
                 }
             }
         }
@@ -116,34 +160,73 @@ private fun Liste(recits: List<Recit>, ouvrir: (String) -> Unit, deposer: () -> 
 }
 
 /*
- * Un récit qui n'est pas déclaré « sans flou » ne s'affiche qu'après
- * « Lire le récit », comme sur le site. Pas de flou dessiné : Android ne
- * sait flouter qu'à partir de la version 12, et un texte caché dit la
- * même chose partout.
+ * Les récits, un par page : on glisse pour passer au suivant, dans
+ * l'ordre de la liste. Un récit qui n'est pas « sans flou » ne s'affiche
+ * qu'après « Lire le récit », comme sur le site ; une fois dévoilé, il
+ * reste visible (Souvenirs.kt : en mémoire, gardé seulement si la
+ * personne garde ses réponses).
+ *
+ * Pas de flou dessiné : Android ne sait flouter qu'à partir de la
+ * version 12, et un texte caché dit la même chose partout.
  */
 @Composable
-private fun Lecture(recit: Recit, dejaOuvert: Boolean, ouvrir: () -> Unit, signaler: () -> Unit) {
+private fun Lecteur(
+    liste: List<Recit>,
+    depart: String,
+    lus: Set<String>,
+    marquerLu: (String) -> Unit,
+    changer: (String) -> Unit,
+    signaler: () -> Unit,
+) {
 
-    var visible by rememberSaveable(recit.id) { mutableStateOf(recit.sansFlou || dejaOuvert) }
+    val etat = rememberPagerState(initialPage = liste.indexOfFirst { it.id == depart }.coerceAtLeast(0)) { liste.size }
 
-    Page {
+    // Le récit affiché devient « l'ouvert » : le signalement et le retour
+    // portent sur lui.
+    LaunchedEffect(etat.currentPage) { changer(liste[etat.currentPage].id) }
 
-        Text(recit.titre, style = MaterialTheme.typography.headlineSmall)
-
-        if (visible) {
-            Text(recit.texte)
-        } else {
-            Text("Ce récit peut être difficile à lire. Vous pouvez le lire maintenant, ou revenir plus tard.")
-            Button(onClick = { visible = true; ouvrir() }) { Text("Lire le récit") }
+    Column {
+        if (liste.size > 1) {
+            Note("${etat.currentPage + 1} sur ${liste.size} · glissez pour passer au suivant", Modifier.padding(start = 16.dp, top = 8.dp))
         }
+        HorizontalPager(state = etat, beyondViewportPageCount = 0) { page ->
+            val recit = liste[page]
+            Page {
+                Text(recit.titre, style = MaterialTheme.typography.headlineSmall)
+                Compteurs(ilYA(recit.creeLe), "👁 ${recit.vues}")
 
-        if (recit.apropos.isNotBlank() && visible) {
-            Text(recit.apropos, style = MaterialTheme.typography.bodySmall)
+                if (recit.sansFlou || recit.id in lus) {
+                    Text(recit.texte, style = MaterialTheme.typography.bodyLarge)
+                } else {
+                    Encadre("Ce récit peut être difficile à lire. Vous pouvez le lire maintenant, ou revenir plus tard.")
+                    Button(onClick = { marquerLu(recit.id) }) { Text("Lire le récit") }
+                }
+
+                if (recit.apropos.isNotBlank() && (recit.sansFlou || recit.id in lus)) {
+                    Note(recit.apropos)
+                }
+
+                // Atteignable depuis chaque récit, lu ou non : on peut avoir à
+                // signaler un récit qu'on ne veut pas lire en entier.
+                TextButton(onClick = signaler) { Text("Signaler un problème dans ce récit") }
+            }
         }
+    }
+}
 
-        // Atteignable depuis chaque récit, lu ou non : on peut avoir à
-        // signaler un récit qu'on ne veut pas lire en entier.
-        TextButton(onClick = signaler) { Text("Signaler un problème dans ce récit") }
+/*
+ * « aujourd'hui », « hier », « il y a 3 jours », « il y a un mois » :
+ * comme ilYA() dans le points.js du site. Approximatif par construction.
+ */
+internal fun ilYA(date: String): String? {
+    val quand = runCatching { java.time.OffsetDateTime.parse(date).toInstant() }.getOrNull() ?: return null
+    val jours = java.time.Duration.between(quand, java.time.Instant.now()).toDays()
+    return when {
+        jours <= 0 -> "aujourd'hui"
+        jours == 1L -> "hier"
+        jours < 30 -> "il y a $jours jours"
+        jours < 365 -> (jours / 30.0).let { Math.round(it).toInt() }.let { m -> if (m == 1) "il y a un mois" else "il y a $m mois" }
+        else -> (jours / 365.0).let { Math.round(it).toInt() }.let { a -> if (a == 1) "il y a un an" else "il y a $a ans" }
     }
 }
 
@@ -178,7 +261,7 @@ private fun Signaler(recit: Recit, depot: Depot, fini: () -> Unit) {
             return@Page
         }
 
-        Text("Un signalement ne cache rien et n'est pas public. Il est lu par les personnes qui s'occupent du site.")
+        Encadre("Un signalement ne cache rien et n'est pas public. Il est lu par les personnes qui s'occupent du site.")
 
         erreur?.let { Text(it, color = MaterialTheme.colorScheme.error) }
 
@@ -260,13 +343,13 @@ private fun Deposer(depot: Depot, garder: Boolean, fini: () -> Unit) {
 
         Text("Racontez ce qui s'est passé, avec vos mots.")
 
-        Text("Avant d'écrire", style = MaterialTheme.typography.titleMedium)
-        Text("Ce récit sera public : tout le monde pourra le lire, sur le site et dans l'application. Le site garde toutes ses versions : ce qui est envoyé ne se reprend pas.")
-        Text("Ne mettez jamais le nom d'une personne réelle. Changez ce qui permettrait de vous reconnaître, ou de reconnaître quelqu'un : les noms, les lieux, les dates.")
-        Text(
+        Encadre(alerte = true, titre = "Avant d'écrire") {
+            Text("Ce récit sera public : tout le monde pourra le lire, sur le site et dans l'application. Le site garde toutes ses versions : ce qui est envoyé ne se reprend pas.")
+            Text("Ne mettez jamais le nom d'une personne réelle. Changez ce qui permettrait de vous reconnaître, ou de reconnaître quelqu'un : les noms, les lieux, les dates.", fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold)
+        }
+        Note(
             if (garder) "Votre brouillon est gardé sur ce téléphone, comme vous l'avez choisi, jusqu'à l'envoi."
-            else "Votre brouillon n'est pas gardé : si vous quittez l'application, il disparaît.",
-            style = MaterialTheme.typography.bodySmall,
+            else "Votre brouillon n'est pas gardé : si vous quittez l'application, il disparaît."
         )
 
         Text("Titre")

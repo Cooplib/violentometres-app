@@ -81,11 +81,6 @@ private val PUBLICS = listOf(
     "proche" to "Pour quelqu'un que je connais : je réponds sur ce que j'observe.",
 )
 
-// Le tri de `localeCompare(…, "fr")`, celui du navigateur : l'ICU
-// d'Android (voir point/Recommandations.kt, et pourquoi pas la JVM).
-@Suppress("UNCHECKED_CAST")
-private val ordreFrancais = Collator.getInstance(ULocale.FRENCH) as Comparator<String>
-
 private const val GENERAL = "orientation"
 
 private val sauvegardeEtat: Saver<EtatDuPoint, String> = Saver(
@@ -94,14 +89,24 @@ private val sauvegardeEtat: Saver<EtatDuPoint, String> = Saver(
 )
 
 @Composable
-fun FaireLePoint(catalogue: Catalogue, garder: Boolean, ouvrirRecit: (String) -> Unit, cibleInitiale: String? = null) {
+fun FaireLePoint(
+    catalogue: Catalogue,
+    depot: fr.cooplib.util.stockage.Depot,
+    garder: Boolean,
+    ouvrirRecit: (String) -> Unit,
+    cibleInitiale: String? = null,
+    ficheInitiale: String? = null,
+) {
 
-    // Sur quoi : le point général, ou un violentomètre. `null` : le choix.
-    // `cibleInitiale` : venu d'ailleurs (« faire le point dessus » depuis
-    // une étape de parcours).
+    // Ce qui est ouvert : la liste (rien), la fiche d'un violentomètre,
+    // ou un point en cours. `cibleInitiale` : venu d'ailleurs (« faire le
+    // point dessus » depuis une étape de parcours).
+    var fiche by rememberSaveable { mutableStateOf(ficheInitiale) }
     var cible by rememberSaveable { mutableStateOf(cibleInitiale) }
 
-    BackHandler(enabled = cible != null) { cible = null }
+    BackHandler(enabled = cible != null || fiche != null) {
+        if (cible != null) cible = null else fiche = null
+    }
 
     val c = cible
     val pool = when (c) {
@@ -109,56 +114,33 @@ fun FaireLePoint(catalogue: Catalogue, garder: Boolean, ouvrirRecit: (String) ->
         GENERAL -> catalogue.pointGeneral
         else -> catalogue.pointsParViolentometre[c]
     }
+    val vm = fiche?.let { f -> catalogue.violentometres.find { it.id == f } }
 
-    if (c == null || pool == null) {
-        Choix(catalogue) { cible = it }
-    } else {
-        // Une clé par cible : changer de point repart de son propre état.
-        androidx.compose.runtime.key(c) {
+    when {
+        c != null && pool != null -> androidx.compose.runtime.key(c) {
+            // Une clé par cible : changer de point repart de son propre état.
             Deroulement(pool, c, garder, ouvrirRecit, autrePoint = { cible = it })
         }
-    }
-}
-
-@Composable
-private fun Choix(catalogue: Catalogue, choisir: (String) -> Unit) {
-
-    var cherche by rememberSaveable { mutableStateOf("") }
-
-    val trouves = remember(cherche, catalogue) {
-        val mots = cherche.trim().lowercase().split(Regex("\\s+")).filter { it.isNotEmpty() }
-        catalogue.violentometres
-            .filter { vm -> mots.all { m -> vm.titre.lowercase().contains(m) || vm.description.lowercase().contains(m) } }
-            .sortedWith(compareBy(ordreFrancais) { it.titre })
-    }
-
-    LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-
-        item { Text("🧭 Faire le point", style = MaterialTheme.typography.headlineSmall) }
-
-        item {
-            Card(onClick = { choisir(GENERAL) }, modifier = Modifier.fillMaxWidth()) {
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text("Où j'en suis, en général", style = MaterialTheme.typography.titleMedium)
-                    Text(catalogue.pointGeneral.description, style = MaterialTheme.typography.bodyMedium)
-                }
-            }
+        vm != null -> androidx.compose.runtime.key(vm.id) {
+            FicheViolentometre(vm, catalogue, depot, faireLePoint = { cible = it }, ouvrir = { fiche = it })
         }
-
-        item { Text("Ou sur un sujet précis", style = MaterialTheme.typography.titleMedium) }
-
-        // Ce qu'on cherche en dit autant que ce qu'on écrit : le clavier ne
-        // l'apprend pas.
-        item { ChampPrive(cherche, { cherche = it }, lignes = 1) }
-
-        items(trouves, key = { it.id }) { vm ->
-            Card(onClick = { choisir(vm.id) }, modifier = Modifier.fillMaxWidth()) {
-                Column(Modifier.padding(16.dp)) {
-                    Text(vm.titre, style = MaterialTheme.typography.titleSmall)
-                    if (vm.description.isNotBlank()) Text(vm.description, style = MaterialTheme.typography.bodySmall)
+        else -> ListeDesViolentometres(
+            catalogue, depot,
+            avant = {
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Text("🧭 Faire le point", style = MaterialTheme.typography.headlineSmall)
+                    Card(Modifier.fillMaxWidth(), onClick = { cible = GENERAL }) {
+                        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                            Text("Où j'en suis, en général", style = MaterialTheme.typography.titleMedium)
+                            Text(catalogue.pointGeneral.description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text("Commencer ›", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                        }
+                    }
+                    Text("Ou sur un sujet précis", style = MaterialTheme.typography.titleMedium)
                 }
-            }
-        }
+            },
+            ouvrir = { fiche = it },
+        )
     }
 }
 
@@ -230,15 +212,16 @@ private fun Deroulement(
             Phase.INTRO -> {
                 Text("Je fais le point", style = MaterialTheme.typography.headlineSmall)
                 Text(pool.titre, style = MaterialTheme.typography.titleMedium)
-                Text("Une situation à la fois, $total en tout, du plus léger au plus grave. Vous répondez oui, non, ou vous passez.")
-                Text(
-                    "Rien n'est envoyé. Vos réponses ne sortent pas de ce téléphone. " +
-                        if (garder) "Elles y sont gardées pour reprendre plus tard ; vous pouvez les effacer à tout moment."
-                        else "Elles ne sont pas gardées : en quittant l'application, elles disparaissent.",
-                    fontWeight = FontWeight.Medium,
-                )
-                Text("Ce n'est pas un diagnostic. C'est un repère, pour mettre des mots.")
-                Text("Vous pouvez faire une pause ou vous arrêter quand vous voulez ; les aides sont là à chaque étape. « Quitter vite », en haut, efface vos réponses et ferme l'application.")
+                Text("Une situation à la fois, $total en tout, du plus léger au plus grave. Vous répondez oui, non, ou vous passez.", style = MaterialTheme.typography.bodyLarge)
+                Encadre(titre = "Rien n'est envoyé") {
+                    Text(
+                        "Vos réponses ne sortent pas de ce téléphone. " +
+                            if (garder) "Elles y sont gardées pour reprendre plus tard ; vous pouvez les effacer à tout moment."
+                            else "Elles ne sont pas gardées : en quittant l'application, elles disparaissent."
+                    )
+                }
+                Encadre("Ce n'est pas un diagnostic. C'est un repère, pour mettre des mots.")
+                Note("Vous pouvez faire une pause ou vous arrêter quand vous voulez ; les aides sont là à chaque étape. « Quitter vite », en haut, efface vos réponses et ferme l'application.")
 
                 Text("Vous répondez…", style = MaterialTheme.typography.titleSmall)
                 for ((cleP, titre) in PUBLICS) {
@@ -331,7 +314,7 @@ private fun Deroulement(
 
             Phase.ALERTE -> {
                 Text("Ce que vous venez de reconnaître est grave.", style = MaterialTheme.typography.headlineSmall)
-                Text("Vous n'êtes pas obligé·e d'aller plus loin. Voici qui peut vous aider, maintenant.")
+                Encadre("Vous n'êtes pas obligé·e d'aller plus loin. Voici qui peut vous aider, maintenant.", alerte = true)
                 d.aidesDAlerte(etat).forEach { CarteAide(it) }
                 Button(onClick = { avancer(d.terminer(etat, maintenant())) }, Modifier.fillMaxWidth()) { Text("Arrêter ici et voir où j'en suis") }
                 OutlinedButton(onClick = { avancer(d.apresAlerte(etat, maintenant())) }, Modifier.fillMaxWidth()) { Text("Continuer le point") }
@@ -339,7 +322,7 @@ private fun Deroulement(
 
             Phase.PAUSE -> {
                 Text("Pause", style = MaterialTheme.typography.headlineSmall)
-                Text(
+                Encadre(
                     if (garder) "Vos réponses sont gardées sur ce téléphone. Revenez quand vous voulez : ce point vous proposera de reprendre."
                     else "Vos réponses restent tant que l'application est ouverte. Si vous la quittez, elles disparaissent."
                 )
@@ -377,11 +360,13 @@ private fun Resultat(
     Jauge(pool.niveaux, atteint?.position)
 
     Text(
-        if (atteint != null) "Le niveau le plus élevé que vous avez reconnu : ${atteint.label}. Une seule situation à ce niveau suffit : ce n'est pas une moyenne."
-        else "Vous n'avez reconnu aucune situation."
+        if (atteint != null) "Le niveau le plus élevé que vous avez reconnu : ${atteint.label}."
+        else "Vous n'avez reconnu aucune situation.",
+        style = MaterialTheme.typography.titleMedium,
     )
+    if (atteint != null) Note("Une seule situation à ce niveau suffit : ce n'est pas une moyenne.")
 
-    if (sansPositif) Text("Vous n'avez reconnu aucune situation positive. C'est en soi un signal.")
+    if (sansPositif) Encadre("Vous n'avez reconnu aucune situation positive. C'est en soi un signal.")
 
     if (formes.isNotEmpty()) {
         val liste = formes.map { (cle, n) -> "${(LIBELLES_FORMES[cle] ?: cle).lowercase()} ($n)" }
@@ -407,11 +392,10 @@ private fun Resultat(
 
     OutlinedButton(onClick = recommencer, Modifier.fillMaxWidth()) { Text("Effacer mes réponses") }
 
-    Text(
+    Encadre(
         "Rien de ce point n'a été envoyé : ni vos réponses, ni ce résultat. " +
             if (garder) "Ils restent sur ce téléphone jusqu'à ce que vous les effaciez."
-            else "Ils disparaissent quand vous quittez l'application.",
-        style = MaterialTheme.typography.bodySmall,
+            else "Ils disparaissent quand vous quittez l'application."
     )
 }
 

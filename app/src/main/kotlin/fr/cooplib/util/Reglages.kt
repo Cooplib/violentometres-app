@@ -1,6 +1,7 @@
 package fr.cooplib.util
 
 import android.content.Context
+import fr.cooplib.util.reseau.IdentifiantVisiteur
 
 /*
  * Ce que l'application retient de ses réglages, sur ce téléphone
@@ -31,6 +32,21 @@ class Reglages(contexte: Context) {
     var empreinteDuCode: String?
         get() = p.getString("code", null)
         set(v) { p.edit().putString("code", v).commit() }
+
+    // « auto » (comme le téléphone), « clair » ou « sombre ».
+    var theme: String
+        get() = p.getString("theme", "auto") ?: "auto"
+        set(v) { p.edit().putString("theme", v).commit() }
+
+    /*
+     * L'identifiant de contributeur, GARDÉ depuis que les likes partent au
+     * site (décision du 7 octobre 2026, notes de conception) : sans lui, on ne
+     * pourrait pas retirer un like. Il relie donc, côté serveur, ce qui
+     * vient de ce téléphone. Fabriqué au premier besoin, jamais avant.
+     */
+    val visiteur: IdentifiantVisiteur
+        get() = p.getString("visiteur", null)?.let(IdentifiantVisiteur::depuis)
+            ?: IdentifiantVisiteur.nouveau().also { p.edit().putString("visiteur", it.valeur).commit() }
 
     // Pouvoir reprendre ses réponses au point d'une fois à l'autre. Faux
     // par défaut, comme sur le site : c'est une trace sur le téléphone.

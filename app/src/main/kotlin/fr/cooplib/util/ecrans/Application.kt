@@ -4,28 +4,22 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.background
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.unit.sp
-import fr.cooplib.util.modeles.Niveau
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -33,8 +27,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import fr.cooplib.util.Lanceur
 import fr.cooplib.util.Reglages
+import fr.cooplib.util.donnees.Catalogue
 import fr.cooplib.util.stockage.Brouillon
 import fr.cooplib.util.stockage.Depot
 import fr.cooplib.util.stockage.Reponses
@@ -50,19 +46,6 @@ enum class Entree(val icone: String, val titre: String, val sousTitre: String) {
     RECITS("📖", "Des récits", "Ce que d'autres ont vécu, et déposer le sien."),
     COMPRENDRE("🗺️", "Comprendre", "Des parcours courts, une carte par étape."),
 }
-
-/*
- * L'échelle de l'accueil du site (src/data/echelle.js), MOT POUR MOT :
- * une seule relation, les ami·es, du plus ordinaire au plus grave.
- * Libre, puis reproché, puis dissuadé, puis interdit. On comprend ce
- * qu'est un violentomètre en la lisant, sans définition.
- */
-private val ECHELLE = listOf(
-    Niveau(0, "Positif", "green") to "Je peux voir mes ami·es seul·e sans avoir à m'expliquer ni subir de rancune ensuite.",
-    Niveau(1, "Vigilance", "yellow") to "Plusieurs fois par semaine, mon ou ma partenaire me reproche le temps que je passe au téléphone ou avec mes ami·es.",
-    Niveau(2, "Attention", "orange") to "Mon ou ma partenaire me dit que mes ami·es ont une mauvaise influence et que je devrais arrêter de les voir.",
-    Niveau(3, "Danger", "red") to "Mon ou ma partenaire m'interdit de parler à ma famille et à mes ami·es.",
-)
 
 private enum class Ecran { ACCUEIL, AIDE, POINT, RECITS, COMPRENDRE, REGLAGES, PROTECTION }
 
@@ -83,23 +66,32 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
     var deguise by remember { mutableStateOf(reglages.deguise) }
     var empreinte by remember { mutableStateOf(reglages.empreinteDuCode) }
     var garder by remember { mutableStateOf(reglages.garderLesReponses) }
+    var theme by remember { mutableStateOf(reglages.theme) }
 
     // Le premier lancement : le déguisement, puis ce qu'on garde.
     var etapeConfiguration by rememberSaveable { mutableStateOf(0) }
 
-    fun deguiser(e: String) {
+    fun poserLeCode(e: String) {
         reglages.empreinteDuCode = e; empreinte = e
+    }
+
+    fun deguiser() {
         reglages.deguise = true; deguise = true
         Lanceur.afficherLeVraiNom(contexte, false)
     }
 
+    /*
+     * Le vrai nom GARDE le code : c'est le code de secours, avec lequel
+     * « Quitter vite » remet la calculatrice même quand le vrai nom est
+     * affiché (si on a voulu quitter vite, c'est qu'il y a sans doute une
+     * galère ; décidé le 7 octobre 2026).
+     */
     fun montrerLeVraiNom() {
         reglages.deguise = false; deguise = false
-        reglages.empreinteDuCode = null; empreinte = null
         Lanceur.afficherLeVraiNom(contexte, true)
     }
 
-    ThemeUtil {
+    ThemeUtil(theme) {
 
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
 
@@ -111,8 +103,8 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
                     when {
                         protection -> CeQuiEstProtege(deguise = true)
                         etapeConfiguration == 0 -> Deguisement(
-                            garderLaCalculatrice = { deguiser(it); etapeConfiguration = 1 },
-                            afficherLeVraiNom = { montrerLeVraiNom(); etapeConfiguration = 1 },
+                            garderLaCalculatrice = { poserLeCode(it); deguiser(); etapeConfiguration = 1 },
+                            afficherLeVraiNom = { poserLeCode(it); montrerLeVraiNom(); etapeConfiguration = 1 },
                             voirCeQuiEstProtege = { protection = true },
                         )
                         else -> CeQuOnGarde { g ->
@@ -129,12 +121,20 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
                 else -> Contenu(
                     deguise = deguise,
                     garder = garder,
+                    theme = theme,
+                    changerTheme = { reglages.theme = it; theme = it },
+                    changerLeCode = ::poserLeCode,
                     deguiser = ::deguiser,
                     montrerLeVraiNom = ::montrerLeVraiNom,
                     changerGarder = {
                         reglages.garderLesReponses = it; garder = it
-                        // « Ne plus les garder » : ce qui était gardé part aussi.
-                        if (!it) { Reponses.effacer(contexte); Brouillon.effacer(contexte) }
+                        val depot = Depot.de(contexte)
+                        if (it) {
+                            depot.memoire.garderMaintenant()
+                        } else {
+                            // « Ne plus les garder » : ce qui était gardé part aussi.
+                            Reponses.effacer(contexte); Brouillon.effacer(contexte); depot.memoire.oublier()
+                        }
                     },
                     quitterVite = quitterVite,
                 )
@@ -147,7 +147,10 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
 private fun Contenu(
     deguise: Boolean,
     garder: Boolean,
-    deguiser: (String) -> Unit,
+    theme: String,
+    changerTheme: (String) -> Unit,
+    changerLeCode: (String) -> Unit,
+    deguiser: () -> Unit,
     montrerLeVraiNom: () -> Unit,
     changerGarder: (Boolean) -> Unit,
     quitterVite: () -> Unit,
@@ -157,7 +160,7 @@ private fun Contenu(
     val depot = remember { Depot.de(contexte) }
 
     // Le catalogue : celui gardé sur le téléphone, ou celui de l'APK. Lu
-    // hors du fil de l'interface (1,1 Mo de JSON) par le dépôt.
+    // hors du fil de l'interface (1,5 Mo de JSON) par le dépôt.
     val catalogue by depot.catalogue.collectAsState()
     val aDemander by depot.aDemander.collectAsState()
 
@@ -175,45 +178,63 @@ private fun Contenu(
     var ecran by rememberSaveable { mutableStateOf(Ecran.ACCUEIL) }
     var recitOuvert by rememberSaveable { mutableStateOf<String?>(null) }
     var pointCible by rememberSaveable { mutableStateOf<String?>(null) }
+    // La fiche d'un violentomètre à ouvrir en arrivant dans « Faire le
+    // point » (une suggestion de l'accueil).
+    var ficheAOuvrir by rememberSaveable { mutableStateOf<String?>(null) }
+
+    fun aller(e: Ecran) {
+        ecran = e; recitOuvert = null; pointCible = null; ficheAOuvrir = null
+    }
 
     BackHandler(enabled = ecran != Ecran.ACCUEIL) {
-        ecran = if (ecran == Ecran.PROTECTION) Ecran.REGLAGES else Ecran.ACCUEIL
-        recitOuvert = null
-        pointCible = null
+        aller(if (ecran == Ecran.PROTECTION) Ecran.REGLAGES else Ecran.ACCUEIL)
     }
 
     Column(Modifier.safeDrawingPadding()) {
 
         /*
-         * L'en-tête, sur chaque écran : la marque, et « Quitter vite »
-         * comme le ✕ du site, qui efface les réponses et le brouillon,
-         * ferme l'application et la retire des applications récentes.
-         * Déguisée, elle rouvrira sur la calculatrice.
+         * L'en-tête, sur chaque écran : le menu ☰ (ce qui n'est pas une des
+         * quatre entrées), la marque, et « Quitter vite » comme le ✕ du site.
          */
-        EnTete(quitterVite)
+        EnTete(
+            quitterVite,
+            menu = listOf(
+                "Accueil" to { aller(Ecran.ACCUEIL) },
+                "Réglages" to { aller(Ecran.REGLAGES) },
+                "Mettre à jour le contenu" to { depot.synchroniser(demandee = true); aller(Ecran.REGLAGES) },
+                "Ce qui est protégé, ce qui ne l'est pas" to { aller(Ecran.PROTECTION) },
+            ),
+        )
 
         val c = catalogue
         when {
             c == null -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
             ecran == Ecran.ACCUEIL -> Accueil(
+                catalogue = c,
+                depot = depot,
                 aDemander = aDemander,
-                mettreAJour = { depot.synchroniser(demandee = true) },
-                plusTard = depot::plusTard,
-                ouvrir = { e -> ecran = Ecran.valueOf(e.name) },
-                reglages = { ecran = Ecran.REGLAGES },
-                protection = { ecran = Ecran.PROTECTION },
+                ouvrir = { e -> aller(Ecran.valueOf(e.name)) },
+                ouvrirViolentometre = { aller(Ecran.POINT); ficheAOuvrir = it },
             )
             ecran == Ecran.AIDE -> Aides(c.aides)
             ecran == Ecran.RECITS -> Recits(c.recits, depot, garderLesBrouillons = garder, ouvert = recitOuvert)
-            ecran == Ecran.POINT -> FaireLePoint(c, garder, ouvrirRecit = { recitOuvert = it; ecran = Ecran.RECITS }, cibleInitiale = pointCible)
-            ecran == Ecran.COMPRENDRE -> Comprendre(c, faireLePoint = { pointCible = it; ecran = Ecran.POINT })
+            ecran == Ecran.POINT -> FaireLePoint(
+                c, depot, garder,
+                ouvrirRecit = { recitOuvert = it; ecran = Ecran.RECITS },
+                cibleInitiale = pointCible,
+                ficheInitiale = ficheAOuvrir,
+            )
+            ecran == Ecran.COMPRENDRE -> Comprendre(c, depot, faireLePoint = { pointCible = it; ecran = Ecran.POINT })
             ecran == Ecran.REGLAGES -> ReglagesEcran(
                 deguise = deguise,
                 garderLesReponses = garder,
+                theme = theme,
+                changerTheme = changerTheme,
+                changerLeCode = changerLeCode,
                 deguiser = deguiser,
                 afficherLeVraiNom = montrerLeVraiNom,
                 changerGarder = changerGarder,
-                voirCeQuiEstProtege = { ecran = Ecran.PROTECTION },
+                voirCeQuiEstProtege = { aller(Ecran.PROTECTION) },
                 miseAJour = { MiseAJour(depot) },
             )
             ecran == Ecran.PROTECTION -> CeQuiEstProtege(deguise)
@@ -223,26 +244,25 @@ private fun Contenu(
 
 @Composable
 private fun Accueil(
+    catalogue: Catalogue,
+    depot: Depot,
     aDemander: Boolean,
-    mettreAJour: () -> Unit,
-    plusTard: () -> Unit,
     ouvrir: (Entree) -> Unit,
-    reglages: () -> Unit,
-    protection: () -> Unit,
+    ouvrirViolentometre: (String) -> Unit,
 ) {
+
+    val souvenirs by depot.memoire.etat.collectAsState()
 
     Column(Modifier.verticalScroll(rememberScrollState()).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
         // Connexion facturée au volume : on demande, une fois, sans
         // insister. « Plus tard » ne redemande pas avant trois jours.
         if (aDemander) {
-            Card(Modifier.fillMaxWidth()) {
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text("Une mise à jour du contenu est possible. Vous êtes sur une connexion qui peut être facturée au volume.")
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Button(onClick = mettreAJour) { Text("Mettre à jour") }
-                        OutlinedButton(onClick = plusTard) { Text("Plus tard") }
-                    }
+            Encadre(titre = "Une mise à jour du contenu est possible") {
+                Text("Vous êtes sur une connexion qui peut être facturée au volume.")
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Button(onClick = { depot.synchroniser(demandee = true) }) { Text("Mettre à jour") }
+                    OutlinedButton(onClick = depot::plusTard) { Text("Plus tard") }
                 }
             }
         }
@@ -254,20 +274,6 @@ private fun Accueil(
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-
-        Card(Modifier.fillMaxWidth()) {
-            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                for ((niveau, phrase) in ECHELLE) {
-                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Box(Modifier.width(5.dp).heightIn(min = 40.dp).background(couleur(niveau), RoundedCornerShape(999.dp)))
-                        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                            Text(niveau.label, style = MaterialTheme.typography.labelMedium, color = couleurDeTexte(niveau))
-                            Text(phrase, style = MaterialTheme.typography.bodySmall)
-                        }
-                    }
-                }
-            }
-        }
 
         Espace(4)
 
@@ -286,10 +292,28 @@ private fun Accueil(
             }
         }
 
-        Espace(4)
+        /*
+         * « Dans le même genre » : ce qui ressemble aux violentomètres
+         * qu'on a aimés, d'après les rapprochements du serveur. Seulement
+         * s'il y a des « J'aime » en mémoire : rien n'est deviné d'autre.
+         */
+        val aimes = catalogue.violentometres.filter { it.id in souvenirs.aimes }
+        val suggestions = aimes
+            .flatMap { vm -> catalogue.proches[vm.id]?.violentometres.orEmpty().map { it to vm } }
+            .filter { (p, _) -> p.violentometre.id !in souvenirs.aimes }
+            .distinctBy { (p, _) -> p.violentometre.id }
+            .mapNotNull { (p, origine) -> catalogue.violentometres.find { it.id == p.violentometre.id }?.let { Triple(it, p, origine) } }
+            .take(3)
 
-        TextButton(onClick = protection) { Text("Ce qui est protégé, ce qui ne l'est pas") }
-        TextButton(onClick = reglages) { Text("Réglages") }
+        if (suggestions.isNotEmpty()) {
+            Espace(4)
+            Text("Dans le même genre", style = MaterialTheme.typography.titleMedium)
+            for ((vm, p, origine) in suggestions) {
+                CarteViolentometre(vm, aime = false, likes = souvenirs.comptes[vm.id] ?: vm.aime, raison = raison(p) ?: "Proche de « ${origine.titre} »") {
+                    ouvrirViolentometre(vm.id)
+                }
+            }
+        }
     }
 }
 
@@ -311,6 +335,6 @@ fun MiseAJour(depot: Depot) {
             Text(if (enCours) "Mise à jour en cours…" else "Mettre à jour le contenu")
         }
 
-        message?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+        message?.let { Note(it) }
     }
 }

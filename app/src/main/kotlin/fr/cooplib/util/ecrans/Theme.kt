@@ -107,10 +107,17 @@ private val Formes = Shapes(
     large = Charte.ArrondiGrand,
 )
 
+// `mode` : « auto » suit le téléphone, « clair » et « sombre » l'imposent
+// (Réglages).
 @Composable
-fun ThemeUtil(contenu: @Composable () -> Unit) {
+fun ThemeUtil(mode: String = "auto", contenu: @Composable () -> Unit) {
+    val sombre = when (mode) {
+        "clair" -> false
+        "sombre" -> true
+        else -> isSystemInDarkTheme()
+    }
     MaterialTheme(
-        colorScheme = if (isSystemInDarkTheme()) Sombre else Clair,
+        colorScheme = if (sombre) Sombre else Clair,
         typography = Textes,
         shapes = Formes,
         content = contenu,
