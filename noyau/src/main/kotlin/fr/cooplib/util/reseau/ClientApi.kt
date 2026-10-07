@@ -37,7 +37,7 @@ import java.util.UUID
  * la personne.
  */
 class ClientApi(
-    private val adresse: AdresseApi,
+    val adresse: AdresseApi,
     private val transport: Transport = TransportHttp(),
 ) {
 

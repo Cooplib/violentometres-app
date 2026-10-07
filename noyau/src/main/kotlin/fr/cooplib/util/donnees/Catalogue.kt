@@ -37,6 +37,11 @@ data class Catalogue(
     // la synchronisation.
     val fabriqueLe: String,
     val source: String,
+    // La version la plus récente de l'historique du site au moment où le
+    // catalogue a été tiré, à l'heure DU SERVEUR : c'est d'elle que part
+    // la synchronisation, sans dépendre de l'horloge du téléphone. Nulle
+    // tant que l'historique est vide (le contenu semé n'en crée pas).
+    val derniereVersion: Marque? = null,
     val aides: List<Aide>,
     val violentometres: List<Violentometre>,
     val parcours: List<Parcours>,
@@ -69,3 +74,9 @@ data class Catalogue(
             )
     }
 }
+
+// Une version de l'historique, reconnue à son identifiant ET à sa date :
+// une version se prolonge (même session d'écriture, moins de trente
+// minutes), elle garde alors son identifiant et sa date avance.
+@Serializable
+data class Marque(val id: String, val modifieLe: String)
