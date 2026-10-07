@@ -1,6 +1,9 @@
 [versions]
 kotlin = "2.4.20"
 kotlinx-serialization = "1.11.0"
+android = "9.4.1"
+compose-bom = "2026.09.00"
+activity-compose = "1.13.0"
 # Pour les tests seulement : le tri français de l'ICU, celui du navigateur.
 icu4j = "78.2"
 
@@ -8,7 +11,13 @@ icu4j = "78.2"
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 icu4j = { module = "com.ibm.icu:icu4j", version.ref = "icu4j" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+android-application = { id = "com.android.application", version.ref = "android" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

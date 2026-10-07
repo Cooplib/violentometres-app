@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Lire l'API, et savoir si la connexion est facturée au volume :
+         la synchronisation ne part jamais seule sur une telle connexion. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- AUCUNE NOTIFICATION, JAMAIS : une seule suffit à tout défaire, le
+         vrai nom de l'application s'y afficherait. Retirée même si une
+         bibliothèque venait à la demander. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove" />
+
+    <!--
+        allowBackup="false" : sinon Android envoie les données de
+        l'application dans le compte Google, SOUS LE VRAI NOM de
+        l'application. L'oubli le plus invisible de la liste.
+
+        Il ne suffit plus depuis Android 12 : le transfert d'un téléphone
+        à l'autre l'ignore. Les deux fichiers de règles excluent tout,
+        sauvegarde et transfert, sur toutes les versions.
+    -->
+    <application
+        android:allowBackup="false"
+        android:fullBackupContent="@xml/sauvegarde"
+        android:dataExtractionRules="@xml/extraction"
+        android:label="@string/nom_discret"
+        android:icon="@mipmap/icone"
+        android:theme="@style/Theme.Util"
+        android:supportsRtl="false"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".Principale"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

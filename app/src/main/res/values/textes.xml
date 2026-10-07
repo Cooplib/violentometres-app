@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Le nom sous lequel l'application s'INSTALLE : neutre. Discret par
+         défaut, et c'est le premier écran qui propose d'afficher le vrai
+         nom, jamais l'inverse (personne ne doit être exposé par son
+         indécision). PROVISOIRE : le nom définitif vient avec la liste
+         des leurres, qui reste à trancher. -->
+    <string name="nom_discret">Outils</string>
+</resources>
