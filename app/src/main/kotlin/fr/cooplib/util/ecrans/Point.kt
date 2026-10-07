@@ -87,30 +87,18 @@ private val ordreFrancais = Collator.getInstance(ULocale.FRENCH) as Comparator<S
 
 private const val GENERAL = "orientation"
 
-/*
- * LES SEULES COULEURS VERT, JAUNE, ORANGE, ROUGE DE L'APPLICATION : ce
- * sont les niveaux de l'échelle, et rien d'autre ne les prend.
- */
-private fun couleur(n: Niveau): Color = when (n.couleur) {
-    "green" -> Color(0xFF2E7D32)
-    "yellow" -> Color(0xFFF9A825)
-    "orange" -> Color(0xFFEF6C00)
-    "red" -> Color(0xFFC62828)
-    else -> runCatching { Color(android.graphics.Color.parseColor(n.couleur)) }.getOrDefault(Color.Gray)
-}
-
-private fun texteSur(n: Niveau) = if (n.couleur == "yellow") Color(0xFF212121) else Color.White
-
 private val sauvegardeEtat: Saver<EtatDuPoint, String> = Saver(
     save = { decodage.encodeToString(EtatDuPoint.serializer(), it) },
     restore = { decodage.decodeFromString(EtatDuPoint.serializer(), it) },
 )
 
 @Composable
-fun FaireLePoint(catalogue: Catalogue, garder: Boolean, ouvrirRecit: (String) -> Unit) {
+fun FaireLePoint(catalogue: Catalogue, garder: Boolean, ouvrirRecit: (String) -> Unit, cibleInitiale: String? = null) {
 
     // Sur quoi : le point général, ou un violentomètre. `null` : le choix.
-    var cible by rememberSaveable { mutableStateOf<String?>(null) }
+    // `cibleInitiale` : venu d'ailleurs (« faire le point dessus » depuis
+    // une étape de parcours).
+    var cible by rememberSaveable { mutableStateOf(cibleInitiale) }
 
     BackHandler(enabled = cible != null) { cible = null }
 
@@ -487,16 +475,6 @@ private fun EtMaintenant(
             TextButton(onClick = { ouvrirRecit(rc.element.id) }) { Text("${rc.element.titre} · ${enCommun(rc.recoupements)}") }
         }
     }
-}
-
-@Composable
-private fun EtiquetteNiveau(n: Niveau) {
-    Text(
-        n.label,
-        color = texteSur(n),
-        style = MaterialTheme.typography.labelLarge,
-        modifier = Modifier.background(couleur(n), RoundedCornerShape(6.dp)).padding(horizontal = 8.dp, vertical = 2.dp),
-    )
 }
 
 @Composable

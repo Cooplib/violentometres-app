@@ -159,10 +159,12 @@ private fun Contenu(
 
     var ecran by rememberSaveable { mutableStateOf(Ecran.ACCUEIL) }
     var recitOuvert by rememberSaveable { mutableStateOf<String?>(null) }
+    var pointCible by rememberSaveable { mutableStateOf<String?>(null) }
 
     BackHandler(enabled = ecran != Ecran.ACCUEIL) {
         ecran = if (ecran == Ecran.PROTECTION) Ecran.REGLAGES else Ecran.ACCUEIL
         recitOuvert = null
+        pointCible = null
     }
 
     Column(Modifier.safeDrawingPadding()) {
@@ -192,7 +194,8 @@ private fun Contenu(
             )
             ecran == Ecran.AIDE -> Aides(c.aides)
             ecran == Ecran.RECITS -> Recits(c.recits, depot, garderLesBrouillons = garder, ouvert = recitOuvert)
-            ecran == Ecran.POINT -> FaireLePoint(c, garder, ouvrirRecit = { recitOuvert = it; ecran = Ecran.RECITS })
+            ecran == Ecran.POINT -> FaireLePoint(c, garder, ouvrirRecit = { recitOuvert = it; ecran = Ecran.RECITS }, cibleInitiale = pointCible)
+            ecran == Ecran.COMPRENDRE -> Comprendre(c, faireLePoint = { pointCible = it; ecran = Ecran.POINT })
             ecran == Ecran.REGLAGES -> ReglagesEcran(
                 deguise = deguise,
                 garderLesReponses = garder,
@@ -203,7 +206,6 @@ private fun Contenu(
                 miseAJour = { MiseAJour(depot) },
             )
             ecran == Ecran.PROTECTION -> CeQuiEstProtege(deguise)
-            else -> AVenir(Entree.valueOf(ecran.name))
         }
     }
 }
@@ -245,35 +247,5 @@ private fun Accueil(
 
         TextButton(onClick = protection) { Text("Ce qui est protégé, ce qui ne l'est pas") }
         TextButton(onClick = reglages) { Text("Réglages") }
-    }
-}
-
-@Composable
-private fun AVenir(e: Entree) {
-    Column(Modifier.padding(16.dp)) {
-        Text(e.titre, style = MaterialTheme.typography.headlineSmall)
-        Text("Pas encore dans cette version.", Modifier.padding(top = 8.dp))
-    }
-}
-
-// Dans les réglages : la mise à jour à la demande, promise par la page
-// « ce qui est protégé ».
-@Composable
-fun MiseAJour(depot: Depot) {
-
-    val enCours by depot.enCours.collectAsState()
-    val message by depot.message.collectAsState()
-
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-
-        Text("Le contenu", style = MaterialTheme.typography.titleMedium)
-
-        Text("Le contenu du site est sur ce téléphone, et sert sans réseau. Il se met à jour tout seul tous les trois jours au plus, en wifi. Ou maintenant :")
-
-        Button(onClick = { depot.synchroniser(demandee = true) }, enabled = !enCours, modifier = Modifier.fillMaxWidth()) {
-            Text(if (enCours) "Mise à jour en cours…" else "Mettre à jour le contenu")
-        }
-
-        message?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
     }
 }
