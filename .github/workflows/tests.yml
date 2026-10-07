@@ -89,6 +89,16 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
+      # Le plafond de gradle.properties est fait pour WSL (8 Go partagés).
+      # Les machines de CI en ont 16 : R8 et le lint de diffusion en
+      # demandent plus, et tombaient en « OutOfMemoryError: Metaspace ».
+      # Le gradle.properties du dossier utilisateur l'emporte sur celui
+      # du projet.
+      - name: Plus de mémoire pour Gradle
+        run: |
+          mkdir -p ~/.gradle
+          echo "org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
+
       - name: L'APK
         run: ./gradlew -PavecAndroid=true :app:assembleDebug
 
@@ -114,6 +124,16 @@ jobs:
           java-version: 21
 
       - uses: gradle/actions/setup-gradle@v4
+
+      # Le plafond de gradle.properties est fait pour WSL (8 Go partagés).
+      # Les machines de CI en ont 16 : R8 et le lint de diffusion en
+      # demandent plus, et tombaient en « OutOfMemoryError: Metaspace ».
+      # Le gradle.properties du dossier utilisateur l'emporte sur celui
+      # du projet.
+      - name: Plus de mémoire pour Gradle
+        run: |
+          mkdir -p ~/.gradle
+          echo "org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
 
       - name: La clé de signature, si elle existe
         env:
