@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    // Le brouillon d'un récit se garde en JSON (stockage/Brouillon.kt).
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
