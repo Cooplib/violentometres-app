@@ -91,4 +91,14 @@ class CatalogueEmbarqueTest {
         }
         assertTrue(muettes.isEmpty(), "aides sans aucun moyen de les joindre : ${muettes.map { it.titre }}")
     }
+
+    @Test
+    fun `le plus recent des deux, et jamais un catalogue d'un autre format`() {
+        val ancien = catalogue.copy(fabriqueLe = "2026-01-01T00:00:00Z")
+        val recent = catalogue.copy(fabriqueLe = "2027-01-01T00:00:00Z")
+        assertEquals(recent, Catalogue.plusRecent(embarque = ancien, garde = recent))
+        assertEquals(recent, Catalogue.plusRecent(embarque = recent, garde = ancien))
+        assertEquals(ancien, Catalogue.plusRecent(embarque = ancien, garde = null))
+        assertEquals(ancien, Catalogue.plusRecent(embarque = ancien, garde = recent.copy(format = 99)))
+    }
 }

@@ -66,6 +66,23 @@ data class Catalogue(
 
         fun lire(texte: String): Catalogue = decodage.decodeFromString(serializer(), texte)
 
+        /*
+         * Lequel servir : celui gardé sur le téléphone (mis à jour par la
+         * synchronisation), ou celui de l'APK. Après une mise à jour de
+         * l'application, l'APK peut porter un catalogue tiré plus tard que
+         * le dernier rechargement complet du téléphone : il l'emporte, et
+         * la synchronisation repart de sa marque à lui.
+         *
+         * Un catalogue gardé d'un autre format (écrit par une version
+         * plus ancienne, ou plus récente puis désinstallée) est ignoré
+         * plutôt que mal lu.
+         */
+        fun plusRecent(embarque: Catalogue, garde: Catalogue?): Catalogue = when {
+            garde == null || garde.format != FORMAT -> embarque
+            java.time.Instant.parse(embarque.fabriqueLe).isAfter(java.time.Instant.parse(garde.fabriqueLe)) -> embarque
+            else -> garde
+        }
+
         fun embarque(): Catalogue =
             lire(
                 Catalogue::class.java.getResourceAsStream(RESSOURCE)

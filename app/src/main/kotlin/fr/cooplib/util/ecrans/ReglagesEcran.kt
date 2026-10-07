@@ -25,6 +25,7 @@ fun ReglagesEcran(
     afficherLeVraiNom: () -> Unit,
     changerGarder: (Boolean) -> Unit,
     voirCeQuiEstProtege: () -> Unit,
+    miseAJour: @Composable () -> Unit,
 ) {
 
     var choixCode by rememberSaveable { mutableStateOf(false) }
@@ -58,6 +59,8 @@ fun ReglagesEcran(
         OutlinedButton(onClick = { changerGarder(!garderLesReponses) }, Modifier.fillMaxWidth()) {
             Text(if (garderLesReponses) "Ne plus les garder" else "Les garder sur ce téléphone")
         }
+
+        miseAJour()
 
         TextButton(onClick = voirCeQuiEstProtege) { Text("Ce qui est protégé, ce qui ne l'est pas") }
     }

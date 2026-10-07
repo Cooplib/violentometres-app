@@ -10,7 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -19,7 +22,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.produceState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -29,9 +33,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import fr.cooplib.util.Lanceur
 import fr.cooplib.util.Reglages
-import fr.cooplib.util.donnees.Catalogue
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import fr.cooplib.util.stockage.Depot
 
 /*
  * Quatre entrées, et l'ordre est le propos : du plus proche de soi au
@@ -128,10 +130,23 @@ private fun Contenu(
     changerGarder: (Boolean) -> Unit,
 ) {
 
-    // Le catalogue embarqué : 1,1 Mo de JSON, lu hors du fil de
-    // l'interface pour que le premier écran ne gèle pas.
-    val catalogue by produceState<Catalogue?>(null) {
-        value = withContext(Dispatchers.Default) { Catalogue.embarque() }
+    val contexte = LocalContext.current
+    val depot = remember { Depot.de(contexte) }
+
+    // Le catalogue : celui gardé sur le téléphone, ou celui de l'APK. Lu
+    // hors du fil de l'interface (1,1 Mo de JSON) par le dépôt.
+    val catalogue by depot.catalogue.collectAsState()
+    val aDemander by depot.aDemander.collectAsState()
+
+    /*
+     * À chaque déverrouillage, une synchronisation SI elle est due : au
+     * plus tous les trois jours, jamais seule sur une connexion facturée
+     * (Synchronisation.decider). Jamais depuis la calculatrice : une
+     * calculatrice qui consomme des données attire l'œil, et le réseau
+     * reste lié à un vrai usage.
+     */
+    LaunchedEffect(catalogue != null) {
+        if (catalogue != null) depot.synchroniser(demandee = false)
     }
 
     var ecran by rememberSaveable { mutableStateOf(Ecran.ACCUEIL) }
@@ -145,6 +160,9 @@ private fun Contenu(
         when {
             c == null -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
             ecran == Ecran.ACCUEIL -> Accueil(
+                aDemander = aDemander,
+                mettreAJour = { depot.synchroniser(demandee = true) },
+                plusTard = depot::plusTard,
                 ouvrir = { e -> ecran = Ecran.valueOf(e.name) },
                 reglages = { ecran = Ecran.REGLAGES },
                 protection = { ecran = Ecran.PROTECTION },
@@ -157,6 +175,7 @@ private fun Contenu(
                 afficherLeVraiNom = montrerLeVraiNom,
                 changerGarder = changerGarder,
                 voirCeQuiEstProtege = { ecran = Ecran.PROTECTION },
+                miseAJour = { MiseAJour(depot) },
             )
             ecran == Ecran.PROTECTION -> CeQuiEstProtege(deguise)
             else -> AVenir(Entree.valueOf(ecran.name))
@@ -165,9 +184,30 @@ private fun Contenu(
 }
 
 @Composable
-private fun Accueil(ouvrir: (Entree) -> Unit, reglages: () -> Unit, protection: () -> Unit) {
+private fun Accueil(
+    aDemander: Boolean,
+    mettreAJour: () -> Unit,
+    plusTard: () -> Unit,
+    ouvrir: (Entree) -> Unit,
+    reglages: () -> Unit,
+    protection: () -> Unit,
+) {
 
     Column(Modifier.verticalScroll(rememberScrollState()).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+
+        // Connexion facturée au volume : on demande, une fois, sans
+        // insister. « Plus tard » ne redemande pas avant trois jours.
+        if (aDemander) {
+            Card(Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text("Une mise à jour du contenu est possible. Vous êtes sur une connexion qui peut être facturée au volume.")
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Button(onClick = mettreAJour) { Text("Mettre à jour") }
+                        OutlinedButton(onClick = plusTard) { Text("Plus tard") }
+                    }
+                }
+            }
+        }
 
         for (e in Entree.entries) {
             Card(onClick = { ouvrir(e) }, modifier = Modifier.fillMaxWidth()) {
@@ -188,5 +228,27 @@ private fun AVenir(e: Entree) {
     Column(Modifier.padding(16.dp)) {
         Text(e.titre, style = MaterialTheme.typography.headlineSmall)
         Text("Pas encore dans cette version.", Modifier.padding(top = 8.dp))
+    }
+}
+
+// Dans les réglages : la mise à jour à la demande, promise par la page
+// « ce qui est protégé ».
+@Composable
+fun MiseAJour(depot: Depot) {
+
+    val enCours by depot.enCours.collectAsState()
+    val message by depot.message.collectAsState()
+
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+
+        Text("Le contenu", style = MaterialTheme.typography.titleMedium)
+
+        Text("Le contenu du site est sur ce téléphone, et sert sans réseau. Il se met à jour tout seul tous les trois jours au plus, en wifi. Ou maintenant :")
+
+        Button(onClick = { depot.synchroniser(demandee = true) }, enabled = !enCours, modifier = Modifier.fillMaxWidth()) {
+            Text(if (enCours) "Mise à jour en cours…" else "Mettre à jour le contenu")
+        }
+
+        message?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
     }
 }
