@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 // Compilé par le JDK 21 de la machine, mais pour Java 17 : c'est ce
@@ -19,6 +20,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.kotlinx.serialization.json)
     testImplementation(kotlin("test"))
 }
 
