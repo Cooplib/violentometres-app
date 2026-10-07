@@ -66,7 +66,7 @@ private fun Liste(parcours: List<Parcours>, ouvrir: (String) -> Unit) {
 
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
-        item { Text("Comprendre", style = MaterialTheme.typography.headlineSmall) }
+        item { Text("🗺️ Comprendre", style = MaterialTheme.typography.headlineSmall) }
         item { Text("Des parcours courts, une carte par étape : d'une situation vécue à ce qui la produit.") }
 
         items(parcours.sortedBy { it.titre }, key = { it.id }) { p ->

@@ -88,7 +88,7 @@ private fun Liste(recits: List<Recit>, ouvrir: (String) -> Unit, deposer: () -> 
 
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
-        item { Text("Des récits", style = MaterialTheme.typography.headlineSmall) }
+        item { Text("📖 Des récits", style = MaterialTheme.typography.headlineSmall) }
 
         item {
             Button(onClick = deposer, Modifier.fillMaxWidth()) { Text("Déposer mon récit") }

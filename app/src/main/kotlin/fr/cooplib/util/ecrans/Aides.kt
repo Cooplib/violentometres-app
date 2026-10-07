@@ -36,7 +36,9 @@ fun Aides(aides: List<Aide>) {
 
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
-        item { Text("Trouver de l'aide", style = MaterialTheme.typography.headlineSmall) }
+        item { Text("🆘 Trouver de l'aide", style = MaterialTheme.typography.headlineSmall) }
+
+        item { Note("Les aides nationales d'abord : elles répondent partout, tout de suite. En cas de danger immédiat : 17, ou 114 par SMS si vous ne pouvez pas parler.") }
 
         items(rangees, key = { it.id }) { aide -> CarteAide(aide) }
     }
@@ -61,13 +63,13 @@ fun CarteAide(aide: Aide) {
 
             aide.telephone?.takeIf { it.isNotBlank() }?.let { numero ->
                 Button(onClick = { ouvrir(contexte, Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + numero.filter { it.isDigit() || it == '+' }))) }) {
-                    Text("Appeler le $numero")
+                    Text("📞 Appeler le $numero")
                 }
             }
 
             aide.url?.takeIf { it.isNotBlank() }?.let { url ->
                 OutlinedButton(onClick = { ouvrir(contexte, Intent(Intent.ACTION_VIEW, Uri.parse(url))) }) {
-                    Text("Ouvrir le site")
+                    Text("🔗 Ouvrir le site")
                 }
             }
         }

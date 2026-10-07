@@ -10,7 +10,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -129,7 +134,7 @@ private fun Choix(catalogue: Catalogue, choisir: (String) -> Unit) {
 
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
-        item { Text("Faire le point", style = MaterialTheme.typography.headlineSmall) }
+        item { Text("🧭 Faire le point", style = MaterialTheme.typography.headlineSmall) }
 
         item {
             Card(onClick = { choisir(GENERAL) }, modifier = Modifier.fillMaxWidth()) {
@@ -208,9 +213,16 @@ private fun Deroulement(
             return@Page
         }
 
-        // Ce sur quoi porte le point, rappelé à chaque étape.
+        // Ce sur quoi porte le point, rappelé à chaque étape, comme le
+        // cadre du site (`.test__frame`) : un filet à gauche, le titre.
         if (etat.phase != Phase.INTRO) {
-            Text(pool.titre, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+            Row(Modifier.height(IntrinsicSize.Min)) {
+                Box(Modifier.width(4.dp).fillMaxHeight().background(MaterialTheme.colorScheme.outline, RoundedCornerShape(2.dp)))
+                Column(Modifier.padding(start = 10.dp)) {
+                    Note("Je fais le point")
+                    Text(pool.titre, style = MaterialTheme.typography.titleSmall)
+                }
+            }
         }
 
         when (etat.phase) {
@@ -256,17 +268,24 @@ private fun Deroulement(
                     EtiquetteNiveau(niveau)
                     Text("${etat.index + 1} / ${d.situationsCourantes(etat).size} · ${etat.reponses.size} sur $total au total", style = MaterialTheme.typography.bodySmall)
                 }
-                Text(if (etat.public == "proche") "Vous observez ceci ?" else "Vous vivez ceci ?", style = MaterialTheme.typography.titleSmall)
-                Text(situation.texte, style = MaterialTheme.typography.titleLarge)
+                Text(if (etat.public == "proche") "Vous observez ceci ?" else "Vous vivez ceci ?", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                // La situation, en grand, dans sa carte (`.test__situation`).
+                Card(Modifier.fillMaxWidth()) {
+                    Text(situation.texte, Modifier.padding(20.dp), style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal, lineHeight = 28.sp))
+                }
                 if (situation.sources.size > 1) Text("Dans : ${situation.sources.joinToString(", ")}", style = MaterialTheme.typography.bodySmall)
                 etat.reponses[situation.id]?.let { r ->
                     Text("Vous aviez répondu : ${mapOf(Reponse.OUI to "oui", Reponse.NON to "non", Reponse.PASSER to "passé")[r]}. Vous pouvez changer.", style = MaterialTheme.typography.bodySmall)
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-                    Button(onClick = { avancer(d.repondre(etat, situation, Reponse.OUI, maintenant())) }, Modifier.weight(1f)) { Text("Oui") }
-                    Button(onClick = { avancer(d.repondre(etat, situation, Reponse.NON, maintenant())) }, Modifier.weight(1f)) { Text("Non") }
+                    // Comme sur le site : « Oui » plein, « Non » bordé, « Passer »
+                    // en simple lien.
+                    Button(onClick = { avancer(d.repondre(etat, situation, Reponse.OUI, maintenant())) }, Modifier.weight(1f)) { Text("Oui", fontSize = 17.sp) }
+                    OutlinedButton(onClick = { avancer(d.repondre(etat, situation, Reponse.NON, maintenant())) }, Modifier.weight(1f)) { Text("Non", fontSize = 17.sp) }
                 }
-                OutlinedButton(onClick = { avancer(d.repondre(etat, situation, Reponse.PASSER, maintenant())) }, Modifier.fillMaxWidth()) { Text("Passer") }
+                TextButton(onClick = { avancer(d.repondre(etat, situation, Reponse.PASSER, maintenant())) }, Modifier.fillMaxWidth()) {
+                    Text("Passer", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
                 TextButton(onClick = { d.precedent(etat)?.let(::avancer) }, enabled = etat.niveau > 0 || etat.index > 0) { Text("← Question précédente") }
                 Actions(pause = { avancer(d.pause(etat)) }, arreter = { avancer(d.terminer(etat, maintenant())) })
             }
@@ -283,7 +302,7 @@ private fun Deroulement(
                     else "« ${niveau.label} » : ${pluriel(nb, "situation")}. Continuer ?"
                 )
                 if (aides.isNotEmpty()) {
-                    Text("${pluriel(aides.size, "aide")} pour ce que vous avez reconnu", style = MaterialTheme.typography.titleSmall)
+                    Text("🆘 ${pluriel(aides.size, "aide")} pour ce que vous avez reconnu", style = MaterialTheme.typography.titleSmall)
                     aides.forEach { CarteAide(it) }
                 }
                 Button(onClick = { avancer(d.reprendreApresSas(etat)) }, Modifier.fillMaxWidth()) { Text("Continuer") }
@@ -379,7 +398,7 @@ private fun Resultat(
     }
 
     if (aides.isNotEmpty()) {
-        Text("Quoi faire, qui contacter", style = MaterialTheme.typography.titleMedium)
+        Text("🆘 Quoi faire, qui contacter", style = MaterialTheme.typography.titleMedium)
         if (d.aidesReconnues(reconnues).isNotEmpty()) Text("Les premières sont liées à ce que vous avez reconnu.", style = MaterialTheme.typography.bodySmall)
         aides.forEach { CarteAide(it) }
     }
@@ -422,7 +441,7 @@ private fun EtMaintenant(
     )
 
     if (r.mecanismes.isNotEmpty()) {
-        Text("Comprendre d'où ça vient", style = MaterialTheme.typography.titleMedium)
+        Text("🔗 Comprendre d'où ça vient", style = MaterialTheme.typography.titleMedium)
         Text("Des situations très différentes font parfois la même chose. Voici ce que font le plus souvent celles que vous avez reconnues.", style = MaterialTheme.typography.bodySmall)
         for (m in r.mecanismes) {
             Text(m.element.nom, style = MaterialTheme.typography.titleSmall)
@@ -432,7 +451,7 @@ private fun EtMaintenant(
     }
 
     if (r.parcours.isNotEmpty()) {
-        Text("Un tour d'horizon", style = MaterialTheme.typography.titleMedium)
+        Text("🧭 Un tour d'horizon", style = MaterialTheme.typography.titleMedium)
         for (p in r.parcours) {
             Text(p.element.titre, style = MaterialTheme.typography.titleSmall)
             if (p.element.description.isNotBlank()) Text(p.element.description, style = MaterialTheme.typography.bodyMedium)
@@ -441,20 +460,20 @@ private fun EtMaintenant(
     }
 
     if (r.violentometres.isNotEmpty()) {
-        Text("Les échelles qui vous ressemblent le plus", style = MaterialTheme.typography.titleMedium)
+        Text("📊 Les échelles qui vous ressemblent le plus", style = MaterialTheme.typography.titleMedium)
         for (v in r.violentometres) {
             Card(Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(12.dp)) {
                     Text(v.element.titre, style = MaterialTheme.typography.titleSmall)
                     Text(enCommun(v.recoupements) + v.element.contextes.joinToString("") { " · $it" }, style = MaterialTheme.typography.bodySmall)
-                    TextButton(onClick = { autrePoint(v.element.id) }) { Text("Faire le point dessus") }
+                    TextButton(onClick = { autrePoint(v.element.id) }) { Text("🧭 Faire le point dessus") }
                 }
             }
         }
     }
 
     if (r.recits.isNotEmpty()) {
-        Text("Quelqu'un l'a vécu, et l'a raconté", style = MaterialTheme.typography.titleMedium)
+        Text("📖 Quelqu'un l'a vécu, et l'a raconté", style = MaterialTheme.typography.titleMedium)
         for (rc in r.recits) {
             TextButton(onClick = { ouvrirRecit(rc.element.id) }) { Text("${rc.element.titre} · ${enCommun(rc.recoupements)}") }
         }
