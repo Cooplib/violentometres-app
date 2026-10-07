@@ -33,7 +33,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import fr.cooplib.util.Lanceur
 import fr.cooplib.util.Reglages
+import fr.cooplib.util.stockage.Brouillon
 import fr.cooplib.util.stockage.Depot
+import fr.cooplib.util.stockage.Reponses
 
 /*
  * Quatre entrées, et l'ordre est le propos : du plus proche de soi au
@@ -56,7 +58,7 @@ private enum class Ecran { ACCUEIL, AIDE, POINT, RECITS, COMPRENDRE, REGLAGES, P
  * composition, leur état aussi.
  */
 @Composable
-fun Application(verrouillee: Boolean, deverrouiller: () -> Unit) {
+fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: () -> Unit) {
 
     val contexte = LocalContext.current
     val reglages = remember { Reglages(contexte) }
@@ -114,7 +116,12 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit) {
                     garder = garder,
                     deguiser = ::deguiser,
                     montrerLeVraiNom = ::montrerLeVraiNom,
-                    changerGarder = { reglages.garderLesReponses = it; garder = it },
+                    changerGarder = {
+                        reglages.garderLesReponses = it; garder = it
+                        // « Ne plus les garder » : ce qui était gardé part aussi.
+                        if (!it) { Reponses.effacer(contexte); Brouillon.effacer(contexte) }
+                    },
+                    quitterVite = quitterVite,
                 )
             }
         }
@@ -128,6 +135,7 @@ private fun Contenu(
     deguiser: (String) -> Unit,
     montrerLeVraiNom: () -> Unit,
     changerGarder: (Boolean) -> Unit,
+    quitterVite: () -> Unit,
 ) {
 
     val contexte = LocalContext.current
@@ -150,12 +158,27 @@ private fun Contenu(
     }
 
     var ecran by rememberSaveable { mutableStateOf(Ecran.ACCUEIL) }
+    var recitOuvert by rememberSaveable { mutableStateOf<String?>(null) }
 
     BackHandler(enabled = ecran != Ecran.ACCUEIL) {
         ecran = if (ecran == Ecran.PROTECTION) Ecran.REGLAGES else Ecran.ACCUEIL
+        recitOuvert = null
     }
 
-    Box(Modifier.safeDrawingPadding()) {
+    Column(Modifier.safeDrawingPadding()) {
+
+        /*
+         * « Quitter vite », sur chaque écran, comme le ✕ du site : efface
+         * les réponses et le brouillon, ferme l'application et la retire
+         * des applications récentes. Déguisée, elle rouvrira sur la
+         * calculatrice. Rouge : il dit la sortie, c'est son seul droit.
+         */
+        Row(Modifier.fillMaxWidth().padding(horizontal = 8.dp), horizontalArrangement = Arrangement.End) {
+            TextButton(onClick = quitterVite) {
+                Text("✕ Quitter vite", color = MaterialTheme.colorScheme.error)
+            }
+        }
+
         val c = catalogue
         when {
             c == null -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
@@ -168,7 +191,8 @@ private fun Contenu(
                 protection = { ecran = Ecran.PROTECTION },
             )
             ecran == Ecran.AIDE -> Aides(c.aides)
-            ecran == Ecran.RECITS -> Recits(c.recits, depot, garderLesBrouillons = garder)
+            ecran == Ecran.RECITS -> Recits(c.recits, depot, garderLesBrouillons = garder, ouvert = recitOuvert)
+            ecran == Ecran.POINT -> FaireLePoint(c, garder, ouvrirRecit = { recitOuvert = it; ecran = Ecran.RECITS })
             ecran == Ecran.REGLAGES -> ReglagesEcran(
                 deguise = deguise,
                 garderLesReponses = garder,

@@ -57,11 +57,12 @@ import kotlinx.coroutines.launch
  * recours de qui se reconnaît dans un récit.
  */
 @Composable
-fun Recits(recits: List<Recit>, depot: Depot, garderLesBrouillons: Boolean) {
+fun Recits(recits: List<Recit>, depot: Depot, garderLesBrouillons: Boolean, ouvert: String? = null) {
 
     // Ce qui est ouvert : la liste (null), un récit, son signalement, ou
     // le dépôt.
-    var lu by rememberSaveable { mutableStateOf<String?>(null) }
+    // `ouvert` : venu d'ailleurs (un récit recommandé à la fin du point).
+    var lu by rememberSaveable { mutableStateOf(ouvert) }
     var signale by rememberSaveable { mutableStateOf(false) }
     var depose by rememberSaveable { mutableStateOf(false) }
 

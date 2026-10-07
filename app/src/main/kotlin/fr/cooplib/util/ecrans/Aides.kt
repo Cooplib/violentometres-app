@@ -35,37 +35,42 @@ import fr.cooplib.util.modeles.Aide
 @Composable
 fun Aides(aides: List<Aide>) {
 
-    val contexte = LocalContext.current
-
     val rangees = aides.sortedWith(compareByDescending<Aide> { it.national }.thenBy { it.titre })
 
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
         item { Text("Trouver de l'aide", style = MaterialTheme.typography.headlineSmall) }
 
-        items(rangees, key = { it.id }) { aide ->
+        items(rangees, key = { it.id }) { aide -> CarteAide(aide) }
+    }
+}
 
-            Card(Modifier.fillMaxWidth()) {
+// Une aide : ce qu'elle fait, comment la joindre. Reprise par le point,
+// à chaque étape où une aide se propose.
+@Composable
+fun CarteAide(aide: Aide) {
 
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+    val contexte = LocalContext.current
 
-                    Text(aide.titre, style = MaterialTheme.typography.titleMedium)
+    Card(Modifier.fillMaxWidth()) {
 
-                    aide.quoi?.takeIf { it.isNotBlank() }?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
 
-                    aide.contact?.takeIf { it.isNotBlank() }?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+            Text(aide.titre, style = MaterialTheme.typography.titleMedium)
 
-                    aide.telephone?.takeIf { it.isNotBlank() }?.let { numero ->
-                        Button(onClick = { ouvrir(contexte, Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + numero.filter { it.isDigit() || it == '+' }))) }) {
-                            Text("Appeler le $numero")
-                        }
-                    }
+            aide.quoi?.takeIf { it.isNotBlank() }?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
 
-                    aide.url?.takeIf { it.isNotBlank() }?.let { url ->
-                        OutlinedButton(onClick = { ouvrir(contexte, Intent(Intent.ACTION_VIEW, Uri.parse(url))) }) {
-                            Text("Ouvrir le site")
-                        }
-                    }
+            aide.contact?.takeIf { it.isNotBlank() }?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+
+            aide.telephone?.takeIf { it.isNotBlank() }?.let { numero ->
+                Button(onClick = { ouvrir(contexte, Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + numero.filter { it.isDigit() || it == '+' }))) }) {
+                    Text("Appeler le $numero")
+                }
+            }
+
+            aide.url?.takeIf { it.isNotBlank() }?.let { url ->
+                OutlinedButton(onClick = { ouvrir(contexte, Intent(Intent.ACTION_VIEW, Uri.parse(url))) }) {
+                    Text("Ouvrir le site")
                 }
             }
         }

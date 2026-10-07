@@ -6,6 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.mutableStateOf
 import fr.cooplib.util.ecrans.Application
+import fr.cooplib.util.stockage.Brouillon
+import fr.cooplib.util.stockage.Reponses
 
 /*
  * L'unique activité, ouverte par l'un ou l'autre alias du lanceur
@@ -35,12 +37,30 @@ class Principale : ComponentActivity() {
         // Une rotation recrée l'activité : elle ne doit pas reverrouiller.
         verrouillee.value = savedInstanceState?.getBoolean("verrouillee") ?: true
 
-        setContent { Application(verrouillee.value) { verrouillee.value = false } }
+        setContent {
+            Application(
+                verrouillee = verrouillee.value,
+                deverrouiller = { verrouillee.value = false },
+                quitterVite = ::quitterVite,
+            )
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean("verrouillee", verrouillee.value)
+    }
+
+    /*
+     * « Quitter vite » : effacer ce qui parle de la personne (les réponses
+     * au point, le brouillon d'un récit), puis fermer, en retirant
+     * l'application des applications récentes. Les réglages restent : le
+     * déguisement doit survivre à la sortie.
+     */
+    private fun quitterVite() {
+        Reponses.effacer(this)
+        Brouillon.effacer(this)
+        finishAndRemoveTask()
     }
 
     /*
