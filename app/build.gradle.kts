@@ -45,6 +45,20 @@ android {
     val cle = System.getenv("SIGNATURE_FICHIER")?.let(::file)?.takeIf { it.isFile }
 
     signingConfigs {
+        /*
+         * La clé de MISE AU POINT, commitée exprès : sans elle, chaque
+         * machine de CI en fabrique une neuve, et Android refuse d'installer
+         * une version par-dessus la précédente. Il fallait désinstaller,
+         * donc perdre le code et les réglages, à chaque essai. Elle n'a rien
+         * de secret (mots de passe « android », ceux de tout le monde) et
+         * ne signe jamais une version de diffusion.
+         */
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
         if (cle != null) {
             create("diffusion") {
                 storeFile = cle
