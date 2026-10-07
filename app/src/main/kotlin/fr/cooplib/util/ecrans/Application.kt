@@ -11,14 +11,16 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.OutlinedButton
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.unit.sp
+import fr.cooplib.util.modeles.Niveau
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,12 +44,25 @@ import fr.cooplib.util.stockage.Reponses
  * plus distant. J'ai besoin de quelque chose maintenant, où j'en suis,
  * d'autres l'ont vécu, d'où ça vient.
  */
-enum class Entree(val titre: String, val sousTitre: String) {
-    AIDE("Trouver de l'aide", "Un numéro, à appeler tout de suite."),
-    POINT("Faire le point", "Où j'en suis, en général ou sur un sujet précis."),
-    RECITS("Des récits", "Ce que d'autres ont vécu, et déposer le sien."),
-    COMPRENDRE("Comprendre", "Des parcours, une carte par étape."),
+enum class Entree(val icone: String, val titre: String, val sousTitre: String) {
+    AIDE("🆘", "Trouver de l'aide", "Un numéro, à appeler tout de suite."),
+    POINT("🧭", "Faire le point", "Où j'en suis, en général ou sur un sujet précis."),
+    RECITS("📖", "Des récits", "Ce que d'autres ont vécu, et déposer le sien."),
+    COMPRENDRE("🗺️", "Comprendre", "Des parcours courts, une carte par étape."),
 }
+
+/*
+ * L'échelle de l'accueil du site (src/data/echelle.js), MOT POUR MOT :
+ * une seule relation, les ami·es, du plus ordinaire au plus grave.
+ * Libre, puis reproché, puis dissuadé, puis interdit. On comprend ce
+ * qu'est un violentomètre en la lisant, sans définition.
+ */
+private val ECHELLE = listOf(
+    Niveau(0, "Positif", "green") to "Je peux voir mes ami·es seul·e sans avoir à m'expliquer ni subir de rancune ensuite.",
+    Niveau(1, "Vigilance", "yellow") to "Plusieurs fois par semaine, mon ou ma partenaire me reproche le temps que je passe au téléphone ou avec mes ami·es.",
+    Niveau(2, "Attention", "orange") to "Mon ou ma partenaire me dit que mes ami·es ont une mauvaise influence et que je devrais arrêter de les voir.",
+    Niveau(3, "Danger", "red") to "Mon ou ma partenaire m'interdit de parler à ma famille et à mes ami·es.",
+)
 
 private enum class Ecran { ACCUEIL, AIDE, POINT, RECITS, COMPRENDRE, REGLAGES, PROTECTION }
 
@@ -170,16 +185,12 @@ private fun Contenu(
     Column(Modifier.safeDrawingPadding()) {
 
         /*
-         * « Quitter vite », sur chaque écran, comme le ✕ du site : efface
-         * les réponses et le brouillon, ferme l'application et la retire
-         * des applications récentes. Déguisée, elle rouvrira sur la
-         * calculatrice. Rouge : il dit la sortie, c'est son seul droit.
+         * L'en-tête, sur chaque écran : la marque, et « Quitter vite »
+         * comme le ✕ du site, qui efface les réponses et le brouillon,
+         * ferme l'application et la retire des applications récentes.
+         * Déguisée, elle rouvrira sur la calculatrice.
          */
-        Row(Modifier.fillMaxWidth().padding(horizontal = 8.dp), horizontalArrangement = Arrangement.End) {
-            TextButton(onClick = quitterVite) {
-                Text("✕ Quitter vite", color = MaterialTheme.colorScheme.error)
-            }
-        }
+        EnTete(quitterVite)
 
         val c = catalogue
         when {
@@ -236,14 +247,46 @@ private fun Accueil(
             }
         }
 
-        for (e in Entree.entries) {
-            Card(onClick = { ouvrir(e) }, modifier = Modifier.fillMaxWidth()) {
-                Column(Modifier.padding(16.dp)) {
-                    Text(e.titre, style = MaterialTheme.typography.titleLarge)
-                    Text(e.sousTitre, style = MaterialTheme.typography.bodyMedium)
+        Text("Est-ce que ce que je vis est normal ?", style = MaterialTheme.typography.headlineMedium)
+
+        Text(
+            "Certaines situations semblent normales parce qu'on les voit tous les jours. Un violentomètre les met bout à bout, du geste qui va de soi à celui qui met en danger, pour qu'on puisse voir où l'on en est.",
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+
+        Card(Modifier.fillMaxWidth()) {
+            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                for ((niveau, phrase) in ECHELLE) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Box(Modifier.width(5.dp).heightIn(min = 40.dp).background(couleur(niveau), RoundedCornerShape(999.dp)))
+                        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                            Text(niveau.label, style = MaterialTheme.typography.labelMedium, color = couleurDeTexte(niveau))
+                            Text(phrase, style = MaterialTheme.typography.bodySmall)
+                        }
+                    }
                 }
             }
         }
+
+        Espace(4)
+
+        // Les quatre entrées, dans l'ordre : du plus proche de soi au plus
+        // distant.
+        for (e in Entree.entries) {
+            Card(onClick = { ouvrir(e) }, modifier = Modifier.fillMaxWidth()) {
+                Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                    Text(e.icone, fontSize = 28.sp)
+                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                        Text(e.titre, style = MaterialTheme.typography.titleMedium)
+                        Note(e.sousTitre)
+                    }
+                    Text("›", style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
+                }
+            }
+        }
+
+        Espace(4)
 
         TextButton(onClick = protection) { Text("Ce qui est protégé, ce qui ne l'est pas") }
         TextButton(onClick = reglages) { Text("Réglages") }

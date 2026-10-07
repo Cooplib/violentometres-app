@@ -16,13 +16,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -357,21 +353,9 @@ private fun Resultat(
     Text("Où vous en êtes", style = MaterialTheme.typography.headlineSmall)
     Text("${pluriel(etat.reponses.size, "réponse")} sur ${pool.situations.size}", style = MaterialTheme.typography.bodySmall)
 
-    // La jauge : chaque niveau à sa couleur, allumé jusqu'au niveau atteint.
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-        for (n in pool.niveaux) {
-            val allume = atteint != null && n.position <= atteint.position
-            Box(
-                Modifier.weight(1f)
-                    .background(if (allume) couleur(n) else couleur(n).copy(alpha = 0.18f), RoundedCornerShape(6.dp))
-                    .then(if (n == atteint) Modifier.border(3.dp, MaterialTheme.colorScheme.onSurface, RoundedCornerShape(6.dp)) else Modifier)
-                    .padding(vertical = 10.dp),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(n.label, color = if (allume) texteSur(n) else MaterialTheme.colorScheme.onSurface, style = MaterialTheme.typography.labelMedium)
-            }
-        }
-    }
+    // La jauge du site : une case par niveau, allumée jusqu'au niveau
+    // atteint, la case atteinte cerclée.
+    Jauge(pool.niveaux, atteint?.position)
 
     Text(
         if (atteint != null) "Le niveau le plus élevé que vous avez reconnu : ${atteint.label}. Une seule situation à ce niveau suffit : ce n'est pas une moyenne."

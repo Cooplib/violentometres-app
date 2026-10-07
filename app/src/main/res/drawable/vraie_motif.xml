@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- La marque du site (SiteHeader.module.css, .site-logo) : quatre barres
+     penchées de 18 degrés, aux couleurs de l'échelle. Dans la zone sûre
+     d'une icône adaptative (le disque central de 66 sur 108). -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp" android:height="108dp"
     android:viewportWidth="108" android:viewportHeight="108">
-    <path android:fillColor="#FFFFFF" android:pathData="M34,48h40v12h-40z" />
-    <path android:fillColor="#6A3FA0"
-        android:pathData="M40,48h2v6h-2z M48,48h2v8h-2z M56,48h2v6h-2z M64,48h2v8h-2z" />
+    <path android:fillColor="#4CAF50" android:pathData="M37.5,36 h7 l-11,34 h-7 z" />
+    <path android:fillColor="#FBC02D" android:pathData="M49,36 h7 l-11,34 h-7 z" />
+    <path android:fillColor="#F57C00" android:pathData="M60.5,36 h7 l-11,34 h-7 z" />
+    <path android:fillColor="#D32F2F" android:pathData="M72,36 h7 l-11,34 h-7 z" />
 </vector>
