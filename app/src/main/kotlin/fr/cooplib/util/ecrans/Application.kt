@@ -168,6 +168,7 @@ private fun Contenu(
                 protection = { ecran = Ecran.PROTECTION },
             )
             ecran == Ecran.AIDE -> Aides(c.aides)
+            ecran == Ecran.RECITS -> Recits(c.recits, depot, garderLesBrouillons = garder)
             ecran == Ecran.REGLAGES -> ReglagesEcran(
                 deguise = deguise,
                 garderLesReponses = garder,

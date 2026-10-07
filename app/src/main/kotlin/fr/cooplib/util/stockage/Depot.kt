@@ -16,6 +16,7 @@ import fr.cooplib.util.reseau.Resultat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -135,7 +136,46 @@ class Depot private constructor(contexte: Context) {
         }
     }
 
-    // « Plus tard », sur une connexion facturée : ne plus demander avant
+    /*
+     * Un récit que la personne vient de déposer : ajouté tout de suite au
+     * catalogue gardé, sans requête de plus. La prochaine synchronisation
+     * le relira de toute façon, avec le reste.
+     */
+    fun ajouterRecit(recit: fr.cooplib.util.modeles.Recit) {
+        val c = _catalogue.value ?: return
+        val suivant = c.copy(recits = (c.recits.filter { it.id != recit.id } + recit).sortedBy { it.id })
+        _catalogue.value = suivant
+        portee.launch { garder(suivant) }
+    }
+
+    /*
+     * L'identité d'un contributeur, pour l'API : un identifiant neuf à
+     * chaque lancement, jamais gardé. L'application n'a pas de « mes
+     * récits » à retrouver ; le garder ne servirait à rien d'autre qu'à
+     * relier entre eux, côté serveur, les récits et signalements venus
+     * de ce téléphone.
+     */
+    private val visiteur = fr.cooplib.util.reseau.IdentifiantVisiteur.nouveau()
+
+    /*
+     * Les deux seules écritures. Lancées dans la portée du dépôt, pas de
+     * l'écran : quitter l'application juste après « publier » (elle se
+     * reverrouille) ne doit pas laisser un récit déposé sans que le
+     * catalogue le sache.
+     */
+    suspend fun deposer(titre: String, texte: String, sansFlou: Boolean) =
+        portee.async {
+            api.deposerRecit(titre, texte, sansFlou, visiteur).also { r ->
+                if (r is Resultat.Ok) ajouterRecit(r.valeur)
+            }
+        }.await()
+
+    suspend fun motifs() = portee.async { api.motifsDeSignalement() }.await()
+
+    suspend fun signaler(recitId: String, motif: String, texte: String?) =
+        portee.async { api.signalerRecit(recitId, motif, texte, visiteur) }.await()
+
+        // « Plus tard », sur une connexion facturée : ne plus demander avant
     // la prochaine échéance.
     fun plusTard() {
         val c = _catalogue.value ?: return
