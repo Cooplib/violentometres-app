@@ -31,6 +31,43 @@ android {
         versionName = "0.1"
     }
 
+    /*
+     * La signature de diffusion, lue dans l'environnement : la clé ne
+     * passe JAMAIS par le dépôt, qui deviendra public avec F-Droid.
+     * Sans elle, la version de diffusion sort non signée ; c'est ce que
+     * fait la CI tant que les secrets ne sont pas posés, et c'est aussi
+     * ce que F-Droid veut (il signe avec sa propre clé).
+     *
+     * PERDRE CETTE CLÉ, c'est ne plus pouvoir publier de mise à jour de
+     * la même application : à garder en deux endroits, hors de cette
+     * machine.
+     */
+    val cle = System.getenv("SIGNATURE_FICHIER")?.let(::file)?.takeIf { it.isFile }
+
+    signingConfigs {
+        if (cle != null) {
+            create("diffusion") {
+                storeFile = cle
+                storePassword = System.getenv("SIGNATURE_MOT_DE_PASSE")
+                keyAlias = System.getenv("SIGNATURE_ALIAS")
+                keyPassword = System.getenv("SIGNATURE_MOT_DE_PASSE_CLE") ?: System.getenv("SIGNATURE_MOT_DE_PASSE")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            // R8 : le code et les ressources qui ne servent pas partent. De
+            // 12 Mo en mise au point à quelques Mo : sur un vieux téléphone
+            // presque plein, une application lourde se désinstalle la
+            // première, et sa taille se lit dans les réglages.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "regles-r8.pro")
+            signingConfig = signingConfigs.findByName("diffusion")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

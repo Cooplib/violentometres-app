@@ -97,3 +97,48 @@ jobs:
           name: apk-mise-au-point
           path: app/build/outputs/apk/debug/*.apk
           retention-days: 14
+
+  # La version de diffusion : réduite par R8, et passée au lint de
+  # diffusion, plus strict. Signée seulement si les secrets existent ;
+  # sinon non signée, ce qui suffit à vérifier qu'elle se construit (et
+  # c'est ce que veut F-Droid, qui signe lui-même).
+  diffusion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: La clé de signature, si elle existe
+        env:
+          CLE: ${{ secrets.SIGNATURE_CLE_BASE64 }}
+        run: |
+          if [ -n "$CLE" ]; then
+            echo "$CLE" | base64 -d > "$RUNNER_TEMP/cle.jks"
+            echo "SIGNATURE_FICHIER=$RUNNER_TEMP/cle.jks" >> "$GITHUB_ENV"
+          else
+            echo "Pas de clé : la version de diffusion sortira non signée."
+          fi
+
+      - name: La version de diffusion
+        env:
+          SIGNATURE_MOT_DE_PASSE: ${{ secrets.SIGNATURE_MOT_DE_PASSE }}
+          SIGNATURE_ALIAS: ${{ secrets.SIGNATURE_ALIAS }}
+        run: ./gradlew -PavecAndroid=true :app:assembleRelease
+
+      - name: Son poids
+        run: ls -la app/build/outputs/apk/release/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apk-diffusion
+          path: |
+            app/build/outputs/apk/release/*.apk
+            app/build/outputs/mapping/release/mapping.txt
+          retention-days: 30
