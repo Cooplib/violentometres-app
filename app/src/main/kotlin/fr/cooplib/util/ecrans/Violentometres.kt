@@ -168,6 +168,12 @@ internal fun FicheViolentometre(
     val portee = rememberCoroutineScope()
     val aime = vm.id in souvenirs.aimes
 
+    // L'échelle se lit en mode lecture, une situation par carte.
+    if (deroulee) {
+        LectureEchelle(vm, fermer = { deroulee = false }, faireLePoint = if (vm.id in catalogue.pointsParViolentometre) ({ faireLePoint(vm.id) }) else null)
+        return
+    }
+
     Page {
 
         Text(vm.titre, style = MaterialTheme.typography.headlineSmall)
@@ -190,14 +196,8 @@ internal fun FicheViolentometre(
         Button(onClick = { faireLePoint(vm.id) }, Modifier.fillMaxWidth(), enabled = vm.id in catalogue.pointsParViolentometre) {
             Text("🧭 Faire le point dessus")
         }
-        OutlinedButton(onClick = { deroulee = !deroulee }, Modifier.fillMaxWidth()) {
-            Text(if (deroulee) "Replier l'échelle" else "📊 Dérouler l'échelle")
-        }
-
-        if (deroulee) {
-            Card(Modifier.fillMaxWidth()) {
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) { Echelle(vm) }
-            }
+        OutlinedButton(onClick = { deroulee = true }, Modifier.fillMaxWidth()) {
+            Text("📊 Lire l'échelle, situation par situation")
         }
 
         val textes = listOf(vm.apropos, vm.analyse).filter { it.isNotBlank() }
@@ -223,16 +223,4 @@ internal fun raison(p: Proche): String? = when {
     p.parcours.isNotEmpty() -> "Dans le même parcours : ${p.parcours.first().titre}"
     p.enCommun > 0 -> "En commun : ${p.enCommun} situation${if (p.enCommun > 1) "s" else ""}"
     else -> null
-}
-
-// L'échelle d'un violentomètre : ses situations, du plus léger au plus
-// grave, chaque niveau sous son étiquette.
-@Composable
-internal fun Echelle(vm: Violentometre) {
-    for (niveau in vm.niveaux.sortedBy { it.position }) {
-        val situations = vm.situations.filter { it.gravite == niveau.position }.sortedBy { it.position }
-        if (situations.isEmpty()) continue
-        EtiquetteNiveau(niveau)
-        situations.forEach { Text("· ${it.texte}", style = MaterialTheme.typography.bodyMedium) }
-    }
 }

@@ -11,6 +11,19 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Animatable
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.unit.IntOffset
+import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
@@ -183,7 +196,24 @@ private fun Deroulement(
     val reconnues = d.situationsReconnues(etat.reponses)
     val total = pool.situations.size
 
-    Page {
+    /*
+     * La couleur du niveau en cours, plus présente (retour du 7 octobre
+     * 2026) : le fond de l'écran en prend une teinte, la carte sa
+     * bordure, la progression sa couleur. C'est l'usage même de ces
+     * couleurs : dire à quel niveau on est.
+     */
+    val niveauDeLEcran = when (etat.phase) {
+        Phase.QUESTIONS, Phase.SAS -> d.niveauCourant(etat)
+        Phase.AIDE -> pool.situations.find { it.id == etat.situationVue }?.let { s -> pool.niveaux.find { it.position == s.gravite } }
+        Phase.ALERTE -> pool.niveaux.find { it.position == d.plusGrave }
+        else -> null
+    }
+    val teinte by animateColorAsState(
+        niveauDeLEcran?.let { couleur(it).copy(alpha = 0.10f) } ?: MaterialTheme.colorScheme.background,
+        label = "teinte",
+    )
+
+    Box(Modifier.fillMaxSize().background(teinte)) { Page {
 
         if (reprise) {
             Text("Je fais le point", style = MaterialTheme.typography.headlineSmall)
@@ -251,11 +281,24 @@ private fun Deroulement(
                     EtiquetteNiveau(niveau)
                     Text("${etat.index + 1} / ${d.situationsCourantes(etat).size} · ${etat.reponses.size} sur $total au total", style = MaterialTheme.typography.bodySmall)
                 }
+                // La progression du point entier, à la couleur du niveau.
+                LinearProgressIndicator(
+                    progress = { etat.reponses.size.toFloat() / total.coerceAtLeast(1) },
+                    modifier = Modifier.fillMaxWidth(),
+                    color = couleur(niveau),
+                    trackColor = couleur(niveau).copy(alpha = 0.2f),
+                )
                 Text(if (etat.public == "proche") "Vous observez ceci ?" else "Vous vivez ceci ?", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                // La situation, en grand, dans sa carte (`.test__situation`).
-                Card(Modifier.fillMaxWidth()) {
-                    Text(situation.texte, Modifier.padding(20.dp), style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal, lineHeight = 28.sp))
-                }
+                // La situation, en grand, dans sa carte (`.test__situation`),
+                // qu'on peut aussi glisser : à gauche oui, à droite non.
+                CarteAGlisser(
+                    cle = "${etat.niveau}-${etat.index}",
+                    texte = situation.texte,
+                    bordure = couleur(niveau),
+                    oui = { avancer(d.repondre(etat, situation, Reponse.OUI, maintenant())) },
+                    non = { avancer(d.repondre(etat, situation, Reponse.NON, maintenant())) },
+                )
+                Note("Glissez la carte à gauche pour oui, à droite pour non, ou touchez les boutons.")
                 if (situation.sources.size > 1) Text("Dans : ${situation.sources.joinToString(", ")}", style = MaterialTheme.typography.bodySmall)
                 etat.reponses[situation.id]?.let { r ->
                     Text("Vous aviez répondu : ${mapOf(Reponse.OUI to "oui", Reponse.NON to "non", Reponse.PASSER to "passé")[r]}. Vous pouvez changer.", style = MaterialTheme.typography.bodySmall)
@@ -279,6 +322,7 @@ private fun Deroulement(
                 val nb = d.situationsCourantes(etat).size
                 val aides = d.aidesReconnues(reconnues)
                 Text("${pluriel(reconnues.size, "situation")} ${if (reconnues.size > 1) "reconnues" else "reconnue"} jusqu'ici", style = MaterialTheme.typography.bodySmall)
+                EtiquetteNiveau(niveau)
                 Text(if (dernier) "Le niveau le plus grave" else "Niveau suivant : ${niveau.label}", style = MaterialTheme.typography.headlineSmall)
                 Text(
                     if (dernier) "« ${niveau.label} » rassemble ${if (nb > 1) "les $nb situations les plus dures. Vous pouvez les lire" else "la situation la plus dure. Vous pouvez la lire"}, ou vous arrêter ici : ce que vous avez déjà reconnu suffit à voir où vous en êtes."
@@ -332,7 +376,7 @@ private fun Deroulement(
 
             Phase.RESULTAT -> Resultat(pool, d, etat, garder, recommencer = ::recommencer, ouvrirRecit = ouvrirRecit, autrePoint = autrePoint)
         }
-    }
+    } }
 }
 
 @Composable
@@ -473,3 +517,73 @@ private fun Actions(pause: () -> Unit, arreter: () -> Unit) {
 }
 
 private fun pluriel(n: Int, mot: String) = "$n $mot${if (n > 1) "s" else ""}"
+
+/*
+ * La carte d'une situation, qu'on peut glisser : À GAUCHE POUR OUI, À
+ * DROITE POUR NON (le sens demandé par Cooplib, le 7 octobre 2026). Elle
+ * suit le doigt en penchant un peu, et dit « Oui » ou « Non » de plus en
+ * plus nettement ; passé un tiers de la largeur, elle part et la réponse
+ * est donnée, sinon elle revient. Les boutons restent : un geste qu'on
+ * ne connaît pas ne doit jamais être le seul chemin.
+ */
+@Composable
+private fun CarteAGlisser(cle: String, texte: String, bordure: Color, oui: () -> Unit, non: () -> Unit) {
+
+    val decalage = remember(cle) { Animatable(0f) }
+    val portee = rememberCoroutineScope()
+
+    BoxWithConstraints(Modifier.fillMaxWidth()) {
+
+        val largeur = constraints.maxWidth.toFloat()
+        val seuil = largeur / 3
+        val part = (decalage.value / seuil).coerceIn(-1f, 1f)
+
+        Card(
+            Modifier
+                .fillMaxWidth()
+                .offset { IntOffset(decalage.value.roundToInt(), 0) }
+                .graphicsLayer { rotationZ = part * 6f }
+                .pointerInput(cle) {
+                    detectHorizontalDragGestures(
+                        onDragEnd = {
+                            portee.launch {
+                                val v = decalage.value
+                                when {
+                                    v <= -seuil -> { decalage.animateTo(-largeur * 1.4f); oui() }
+                                    v >= seuil -> { decalage.animateTo(largeur * 1.4f); non() }
+                                    else -> decalage.animateTo(0f)
+                                }
+                            }
+                        },
+                        onDragCancel = { portee.launch { decalage.animateTo(0f) } },
+                        onHorizontalDrag = { change, d ->
+                            change.consume()
+                            portee.launch { decalage.snapTo(decalage.value + d) }
+                        },
+                    )
+                },
+            couleurDeBordure = bordure,
+        ) {
+            Box {
+                Text(
+                    texte,
+                    Modifier.padding(horizontal = 20.dp, vertical = 28.dp),
+                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal, lineHeight = 29.sp),
+                )
+                // Ce que le geste va répondre, de plus en plus net.
+                if (part != 0f) {
+                    Text(
+                        if (part < 0) "Oui" else "Non",
+                        Modifier
+                            .align(if (part < 0) Alignment.TopEnd else Alignment.TopStart)
+                            .padding(10.dp)
+                            .graphicsLayer { alpha = kotlin.math.abs(part) },
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                    )
+                }
+            }
+        }
+    }
+}

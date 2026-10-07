@@ -28,6 +28,9 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenu
@@ -116,9 +119,10 @@ fun TextButton(
 fun Card(
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null,
+    couleurDeBordure: androidx.compose.ui.graphics.Color? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    val bordure = BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
+    val bordure = if (couleurDeBordure != null) BorderStroke(2.dp, couleurDeBordure) else BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
     if (onClick != null) {
         Surface(onClick = onClick, modifier = modifier, shape = Charte.ArrondiGrand, border = bordure, shadowElevation = 1.dp) {
             Column(content = content)
@@ -136,10 +140,10 @@ fun Card(
  * la calculatrice ne la montre jamais.
  */
 @Composable
-fun Marque(modifier: Modifier = Modifier) {
-    Canvas(modifier.size(width = 44.dp, height = 30.dp)) {
-        val largeur = 6.dp.toPx()
-        val ecart = 4.dp.toPx()
+fun Marque(modifier: Modifier = Modifier.size(width = 44.dp, height = 30.dp)) {
+    Canvas(modifier) {
+        val largeur = size.width * 0.13f
+        val ecart = size.width * 0.09f
         // skewX(-18deg) : le haut part vers la droite de tan(18°) fois la hauteur.
         val penche = size.height * 0.325f
         val couleurs = listOf(NiveauVif.VERT, NiveauVif.JAUNE, NiveauVif.ORANGE, NiveauVif.ROUGE)
@@ -168,43 +172,54 @@ fun Marque(modifier: Modifier = Modifier) {
 fun EnTete(quitterVite: () -> Unit, menu: List<Pair<String, () -> Unit>> = emptyList()) {
     var ouvert by remember { mutableStateOf(false) }
     Column {
-        Row(
-            Modifier.fillMaxWidth().padding(start = 12.dp, end = 12.dp, top = 6.dp, bottom = 6.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            // Le menu, comme le ☰ du site : ce qui n'est pas une des quatre
-            // entrées (réglages, protection, mise à jour).
-            if (menu.isNotEmpty()) {
-                Box {
-                    BoutonTexteMaterial(onClick = { ouvert = true }, contentPadding = PaddingValues(horizontal = 6.dp)) {
-                        Text("☰", fontSize = 22.sp, color = MaterialTheme.colorScheme.onSurface)
-                    }
-                    DropdownMenu(expanded = ouvert, onDismissRequest = { ouvert = false }) {
-                        for ((libelle, action) in menu) {
-                            DropdownMenuItem(text = { Text(libelle) }, onClick = { ouvert = false; action() })
+        /*
+         * Le nom EN ENTIER. Le site, sur mobile, le cache pour laisser la
+         * place à « Quitter vite » ; ici on resserre plutôt ce qui
+         * l'entoure (le menu, la marque, le bouton), et sur un très petit
+         * écran le nom passe un peu plus petit, sans jamais être coupé.
+         */
+        BoxWithConstraints(Modifier.fillMaxWidth()) {
+            val etroit = maxWidth < 380.dp
+            Row(
+                Modifier.fillMaxWidth().padding(start = 4.dp, end = 10.dp, top = 6.dp, bottom = 6.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                // Le menu, comme le ☰ du site : ce qui n'est pas une des
+                // quatre entrées (réglages, protection, mise à jour).
+                if (menu.isNotEmpty()) {
+                    Box {
+                        BoutonTexteMaterial(onClick = { ouvert = true }, contentPadding = PaddingValues(horizontal = 8.dp)) {
+                            Text("☰", fontSize = 22.sp, color = MaterialTheme.colorScheme.onSurface)
+                        }
+                        DropdownMenu(expanded = ouvert, onDismissRequest = { ouvert = false }) {
+                            for ((libelle, action) in menu) {
+                                DropdownMenuItem(text = { Text(libelle) }, onClick = { ouvert = false; action() })
+                            }
                         }
                     }
                 }
-            }
-            Marque()
-            Text(
-                "Violentomètres",
-                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold, letterSpacing = (-0.3).sp),
-                maxLines = 1,
-                modifier = Modifier.weight(1f),
-            )
-            BoutonContourMaterial(
-                onClick = quitterVite,
-                shape = Charte.ArrondiMoyen,
-                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp),
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
-                colors = ButtonDefaults.outlinedButtonColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                    contentColor = MaterialTheme.colorScheme.error,
-                ),
-            ) {
-                Text("✕ Quitter vite", fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                Marque(Modifier.size(width = 30.dp, height = 24.dp))
+                Text(
+                    "Violentomètres",
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold, letterSpacing = (-0.3).sp),
+                    fontSize = if (etroit) 15.sp else 17.sp,
+                    maxLines = 1,
+                    softWrap = false,
+                    modifier = Modifier.weight(1f),
+                )
+                BoutonContourMaterial(
+                    onClick = quitterVite,
+                    shape = Charte.ArrondiMoyen,
+                    contentPadding = PaddingValues(horizontal = 9.dp, vertical = 4.dp),
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                        contentColor = MaterialTheme.colorScheme.error,
+                    ),
+                ) {
+                    Text("✕ Quitter vite", fontSize = 13.sp, fontWeight = FontWeight.SemiBold, maxLines = 1, softWrap = false)
+                }
             }
         }
         HorizontalDivider(color = MaterialTheme.colorScheme.outline)
@@ -278,6 +293,9 @@ fun BoutonJAime(aime: Boolean, combien: Int, basculer: () -> Unit) {
  * par le champ où le clavier n'apprend pas : ce qu'on cherche en dit
  * autant que ce qu'on écrit.
  */
+private const val PREMIERS_FILTRES = 8
+
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun BarreDeRecherche(
     cherche: String,
@@ -294,9 +312,22 @@ fun BarreDeRecherche(
         Note(indication)
         ChampPrive(cherche, chercher, lignes = 1)
         if (filtres.isNotEmpty()) {
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                item { Pastille("Tous", filtre == null) { filtrer(null) } }
-                items(filtres) { f -> Pastille(f, filtre == f) { filtrer(if (filtre == f) null else f) } }
+            /*
+             * À la ligne, pas en défilement de côté : chercher un contexte
+             * parmi des dizaines en faisant glisser une rangée, c'était
+             * pénible (retour du 7 octobre). Les plus fréquents d'abord,
+             * le reste à déplier.
+             */
+            var tout by remember { mutableStateOf(false) }
+            val visibles = if (tout) filtres else (filtres.take(PREMIERS_FILTRES) + listOfNotNull(filtre)).distinct()
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(0.dp)) {
+                Pastille("Tous", filtre == null) { filtrer(null) }
+                for (f in visibles) Pastille(f, filtre == f) { filtrer(if (filtre == f) null else f) }
+            }
+            if (filtres.size > PREMIERS_FILTRES) {
+                BoutonTexteMaterial(onClick = { tout = !tout }, contentPadding = PaddingValues(horizontal = 4.dp)) {
+                    Text(if (tout) "Moins de choix ▴" else "Voir les ${filtres.size} ▾", fontSize = 14.sp)
+                }
             }
         }
         LazyRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {

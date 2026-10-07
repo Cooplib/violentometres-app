@@ -138,6 +138,13 @@ private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, faire
     // -1 : l'ouverture du parcours ; etapes.size : sa fin.
     var i by rememberSaveable { mutableIntStateOf(-1) }
 
+    // L'échelle d'une étape, en mode lecture, par-dessus le parcours.
+    var echelle by rememberSaveable { mutableStateOf<String?>(null) }
+    catalogue.violentometres.find { it.id == echelle }?.let { vm ->
+        LectureEchelle(vm, fermer = { echelle = null }, faireLePoint = if (vm.id in catalogue.pointsParViolentometre) ({ faireLePoint(vm.id) }) else null)
+        return
+    }
+
     Page {
 
         Text(parcours.titre, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
@@ -175,7 +182,7 @@ private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, faire
                 OutlinedButton(onClick = { i = 0 }, Modifier.fillMaxWidth()) { Text("Revoir depuis le début") }
             }
 
-            else -> Carte(etapes[i], i, etapes.size, catalogue, faireLePoint)
+            else -> Carte(etapes[i], i, etapes.size, catalogue, faireLePoint, lireEchelle = { echelle = it })
         }
 
         if (i >= 0) {
@@ -190,7 +197,7 @@ private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, faire
 }
 
 @Composable
-private fun Carte(etape: Etape, i: Int, n: Int, catalogue: Catalogue, faireLePoint: (String) -> Unit) {
+private fun Carte(etape: Etape, i: Int, n: Int, catalogue: Catalogue, faireLePoint: (String) -> Unit, lireEchelle: (String) -> Unit) {
 
     // Remis à zéro d'une carte à l'autre.
     var plus by rememberSaveable(etape.id) { mutableStateOf(false) }
@@ -213,8 +220,7 @@ private fun Carte(etape: Etape, i: Int, n: Int, catalogue: Catalogue, faireLePoi
         "violentometer" -> {
             val vm = catalogue.violentometres.find { it.id == etape.violentometreId }
             if (vm != null) {
-                OutlinedButton(onClick = { plus = !plus }, Modifier.fillMaxWidth()) { Text(if (plus) "Masquer l'échelle" else "Voir l'échelle") }
-                if (plus) Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) { Echelle(vm) } }
+                OutlinedButton(onClick = { lireEchelle(vm.id) }, Modifier.fillMaxWidth()) { Text("📊 Lire l'échelle, situation par situation") }
                 if (vm.id in catalogue.pointsParViolentometre) {
                     Button(onClick = { faireLePoint(vm.id) }, Modifier.fillMaxWidth()) { Text("Faire le point dessus") }
                 }
