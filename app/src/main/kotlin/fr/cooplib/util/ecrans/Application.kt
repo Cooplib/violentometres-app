@@ -249,3 +249,25 @@ private fun Accueil(
         TextButton(onClick = reglages) { Text("Réglages") }
     }
 }
+
+// Dans les réglages : la mise à jour à la demande, promise par la page
+// « ce qui est protégé ».
+@Composable
+fun MiseAJour(depot: Depot) {
+
+    val enCours by depot.enCours.collectAsState()
+    val message by depot.message.collectAsState()
+
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+
+        Text("Le contenu", style = MaterialTheme.typography.titleMedium)
+
+        Text("Le contenu du site est sur ce téléphone, et sert sans réseau. Il se met à jour tout seul tous les trois jours au plus, en wifi. Ou maintenant :")
+
+        Button(onClick = { depot.synchroniser(demandee = true) }, enabled = !enCours, modifier = Modifier.fillMaxWidth()) {
+            Text(if (enCours) "Mise à jour en cours…" else "Mettre à jour le contenu")
+        }
+
+        message?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+    }
+}
