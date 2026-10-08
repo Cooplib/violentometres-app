@@ -42,6 +42,7 @@ fun CeQuiEstProtege(deguise: Boolean) {
             Text("Le réseau. Quand elle se met à jour, ou quand vous aimez un violentomètre, une box ou un réseau surveillé peut voir à quel site elle parle. Elle se met à jour rarement : tous les trois jours au plus, ou quand vous le demandez.")
             Text("Vos « J'aime ». Ils partent au site, comme sur l'original : le site sait qu'un même téléphone a aimé ceci et cela, sans savoir à qui il est.")
             Text("Les appels. Un numéro appelé depuis l'application reste dans le journal d'appels du téléphone, comme tout appel. Effacez-le si besoin.")
+            Text("Les sites ouverts depuis l'application, celui d'une aide ou le site pour contribuer. Ils s'ouvrent dans votre navigateur, qui garde leur adresse dans son historique. L'application prévient avant, et dit comment l'effacer.")
             Text("Le code. Quatre chiffres se retrouvent en essayant. Il arrête un regard, pas quelqu'un qui s'acharne.")
             Text("La contrainte. Si quelqu'un vous oblige à ouvrir l'application, le code n'y peut rien.")
             Text("Un logiciel espion. S'il y en a un sur le téléphone, il voit ce qui s'affiche à l'écran. Si vous pensez être surveillé·e, utilisez un autre téléphone, celui de quelqu'un de confiance.")

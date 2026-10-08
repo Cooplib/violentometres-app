@@ -68,7 +68,9 @@ fun CarteAide(aide: Aide) {
             }
 
             aide.url?.takeIf { it.isNotBlank() }?.let { url ->
-                OutlinedButton(onClick = { ouvrir(contexte, Intent(Intent.ACTION_VIEW, Uri.parse(url))) }) {
+                // Par l'avertissement : le navigateur garde l'adresse.
+                val ouvrirUnSite = LocalOuvrirUnSite.current
+                OutlinedButton(onClick = { ouvrirUnSite(url) }) {
                     Text("🔗 Ouvrir le site")
                 }
             }

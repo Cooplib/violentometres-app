@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -203,6 +204,18 @@ private fun Contenu(
         aller(if (ecran == Ecran.PROTECTION) Ecran.REGLAGES else Ecran.ACCUEIL)
     }
 
+    // Un site à ouvrir, en attente de l'avertissement (VersUnSite.kt).
+    val reglages = remember { Reglages(contexte) }
+    var siteDemande by rememberSaveable { mutableStateOf<String?>(null) }
+    val ouvrirUnSite: (String) -> Unit = { adresse ->
+        if (reglages.nePlusPrevenirPourLesSites) ouvrirDansLeNavigateur(contexte, adresse) else siteDemande = adresse
+    }
+    siteDemande?.let { adresse ->
+        AvertissementSite(adresse, nePlusPrevenir = { if (it) reglages.nePlusPrevenirPourLesSites = true }, fermer = { siteDemande = null })
+    }
+
+    CompositionLocalProvider(LocalOuvrirUnSite provides ouvrirUnSite) {
+
     Column(Modifier.safeDrawingPadding()) {
 
         /*
@@ -217,6 +230,7 @@ private fun Contenu(
                 "Mettre à jour le contenu" to { depot.synchroniser(demandee = true); aller(Ecran.REGLAGES) },
                 "Ce qui est protégé, ce qui ne l'est pas" to { aller(Ecran.PROTECTION) },
                 "Le didacticiel" to { aller(Ecran.DIDACTICIEL) },
+                "Contribuer, sur le site" to { ouvrirUnSite("$SITE/contribuer") },
             ),
         )
 
@@ -263,6 +277,7 @@ private fun Contenu(
             ecran == Ecran.PROTECTION -> CeQuiEstProtege(deguise)
             ecran == Ecran.DIDACTICIEL -> Didacticiel { aller(Ecran.ACCUEIL) }
         }
+    }
     }
 }
 
@@ -311,6 +326,25 @@ private fun Accueil(
                     }
                     Text("›", style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
                 }
+            }
+        }
+
+        Espace(8)
+
+        /*
+         * Créer, corriger, discuter : cela se fait sur le site, pas ici
+         * (l'application ne modifie rien, sauf un récit déposé). Le lien
+         * passe par l'avertissement : le navigateur garde l'adresse.
+         */
+        val ouvrirUnSite = LocalOuvrirUnSite.current
+        Card(onClick = { ouvrirUnSite("$SITE/contribuer") }, modifier = Modifier.fillMaxWidth()) {
+            Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                Text("🖊️", fontSize = 24.sp)
+                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Text("Aller plus loin, sur le site", style = MaterialTheme.typography.titleSmall)
+                    Note("Créer un violentomètre, proposer une situation, corriger, discuter : cela se fait sur violentometres.fr.")
+                }
+                Text("↗", style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.primary)
             }
         }
     }

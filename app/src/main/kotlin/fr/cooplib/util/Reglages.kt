@@ -48,6 +48,12 @@ class Reglages(contexte: Context) {
         get() = p.getString("visiteur", null)?.let(IdentifiantVisiteur::depuis)
             ?: IdentifiantVisiteur.nouveau().also { p.edit().putString("visiteur", it.valeur).commit() }
 
+    // Ne plus prévenir avant d'ouvrir un site dans le navigateur (case
+    // cochée dans l'avertissement, VersUnSite.kt).
+    var nePlusPrevenirPourLesSites: Boolean
+        get() = p.getBoolean("site", false)
+        set(v) { p.edit().putBoolean("site", v).commit() }
+
     // Pouvoir reprendre ses réponses au point d'une fois à l'autre. Faux
     // par défaut, comme sur le site : c'est une trace sur le téléphone.
     var garderLesReponses: Boolean
