@@ -96,6 +96,7 @@ function jouer(pool, etat, action, maintenant) {
     case "revoirLesPositifs": return d.revoirLesPositifs();
     case "revenirAuSas": return d.revenirAuSas();
     case "apresAlerte": return d.apresAlerte(pool, etat, maintenant);
+    case "reprendreLePoint": return d.reprendreLePoint(pool, etat);
     default: throw new Error(`Action inconnue : ${action}`);
   }
 
@@ -119,6 +120,7 @@ function derive(pool, etat) {
 
   return {
     question: d.situationsCourantes(pool, etat)[etat.index]?.id ?? null,
+    peutReprendre: d.peutReprendre(pool, etat),
     niveauAtteint: d.niveauAtteint(reconnues),
     aidesDuResultat: ids(d.aidesDuResultat(pool, etat)),
     aidesDAlerte: etat.phase === "alerte" ? ids(d.aidesDAlerte(pool, etat)) : [],
@@ -156,9 +158,19 @@ function partie(nomPool, pool, graine) {
   const pas = [];
 
   // Un plafond, au cas où « précédent » ferait tourner en rond.
-  for (let n = 0; n < 400 && etat.phase !== "resultat"; n++) {
+  for (let n = 0; n < 400; n++) {
 
-    const action = tirer(alea, ACTIONS[etat.phase]);
+    // Au résultat, on s'arrête le plus souvent ; sinon, s'il reste de quoi,
+    // on reprend le point là où on l'avait laissé.
+    let action;
+    if (etat.phase === "resultat") {
+      if (!d.peutReprendre(pool, etat) || alea() < 0.7) {
+        break;
+      }
+      action = "reprendreLePoint";
+    } else {
+      action = tirer(alea, ACTIONS[etat.phase]);
+    }
 
     const maintenant = 1_800_000_000_000 + graine * 1000 + n;
 

@@ -275,8 +275,6 @@ private fun Accueil(
     ouvrirViolentometre: (String) -> Unit,
 ) {
 
-    val souvenirs by depot.memoire.etat.collectAsState()
-
     Column(Modifier.verticalScroll(rememberScrollState()).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
         // Connexion facturée au volume : on demande, une fois, sans
@@ -312,29 +310,6 @@ private fun Accueil(
                         Note(e.sousTitre)
                     }
                     Text("›", style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
-                }
-            }
-        }
-
-        /*
-         * « Dans le même genre » : ce qui ressemble aux violentomètres
-         * qu'on a aimés, d'après les rapprochements du serveur. Seulement
-         * s'il y a des « J'aime » en mémoire : rien n'est deviné d'autre.
-         */
-        val aimes = catalogue.violentometres.filter { it.id in souvenirs.aimes }
-        val suggestions = aimes
-            .flatMap { vm -> catalogue.proches[vm.id]?.violentometres.orEmpty().map { it to vm } }
-            .filter { (p, _) -> p.violentometre.id !in souvenirs.aimes }
-            .distinctBy { (p, _) -> p.violentometre.id }
-            .mapNotNull { (p, origine) -> catalogue.violentometres.find { it.id == p.violentometre.id }?.let { Triple(it, p, origine) } }
-            .take(3)
-
-        if (suggestions.isNotEmpty()) {
-            Espace(4)
-            Text("Dans le même genre", style = MaterialTheme.typography.titleMedium)
-            for ((vm, p, origine) in suggestions) {
-                CarteViolentometre(vm, aime = false, likes = souvenirs.comptes[vm.id] ?: vm.aime, raison = raison(p) ?: "Proche de « ${origine.titre} »") {
-                    ouvrirViolentometre(vm.id)
                 }
             }
         }

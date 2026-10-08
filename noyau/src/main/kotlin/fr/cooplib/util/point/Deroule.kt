@@ -195,6 +195,20 @@ class Deroule(private val pool: PoolDuPoint) {
     private fun memesAides(a: List<String>, b: List<String>?) =
         b != null && a.size == b.size && a.all { it in b }
 
+    /*
+     * Reprendre un point arrêté (« Arrêter et voir où j'en suis ») : la
+     * question où l'on était, ou, arrêté sur une alerte ou en fin de
+     * niveau, le sas du suivant. Porté de deroule.js (8 octobre 2026).
+     */
+    fun peutReprendre(etat: EtatDuPoint) =
+        etat.index < situationsCourantes(etat).size || etat.niveau + 1 < niveauxProposes.size
+
+    fun reprendreLePoint(etat: EtatDuPoint): EtatDuPoint {
+        val suite = if (etat.index < situationsCourantes(etat).size) etat.copy(phase = Phase.QUESTIONS)
+        else passerAuNiveauSuivant(etat, 0L)
+        return suite.copy(finiLe = null)
+    }
+
     // Après l'écran d'une aide ou d'une alerte : là où l'on en était.
     fun apresAlerte(etat: EtatDuPoint, maintenant: Long) = avancerApres(etat, etat.index, maintenant)
 

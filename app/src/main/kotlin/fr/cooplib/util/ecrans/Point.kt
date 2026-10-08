@@ -290,6 +290,8 @@ private fun Deroulement(
             pool, d, etat, garder, catalogue, depot,
             recommencer = ::recommencer, ouvrirRecit = ouvrirRecit, autrePoint = autrePoint,
             voirViolentometre = voirViolentometre.takeIf { cle != GENERAL }?.let { v -> { v(cle) } },
+            // Arrêté en route : reprendre là où l'on en était, s'il reste de quoi.
+            reprendre = if (d.peutReprendre(etat)) ({ avancer(d.reprendreLePoint(etat)) }) else null,
         )
 
         else -> Page {
@@ -512,10 +514,22 @@ private fun Bilan(
     ouvrirRecit: (String) -> Unit,
     autrePoint: (String) -> Unit,
     voirViolentometre: (() -> Unit)?,
+    reprendre: (() -> Unit)?,
 ) {
 
     val reconnues = d.situationsReconnues(etat.reponses)
     val aides = d.aidesDuResultat(etat)
+
+    // Sur le premier écran comme sur le dernier : le point n'est pas fini,
+    // on peut y retourner (retour du 8 octobre 2026).
+    val boutonReprendre: @Composable () -> Unit = {
+        if (reprendre != null) {
+            Encadre(titre = "Vous vous étiez arrêté·e en route") {
+                Text("Ce bilan porte sur ce que vous avez déjà répondu. Vous pouvez reprendre le point là où vous l'aviez laissé.")
+                Button(onClick = reprendre, Modifier.fillMaxWidth()) { Text("Reprendre où j'en étais") }
+            }
+        }
+    }
     val recos = remember(pool, reconnues) { recommander(pool, reconnues, ordreFrancais) }
     val aRecommander = recos.violentometres.isNotEmpty() || recos.parcours.isNotEmpty() || recos.recits.isNotEmpty() || recos.mecanismes.isNotEmpty()
     // Le point portait sur un violentomètre : y revenir, et ce qui lui ressemble.
@@ -526,7 +540,7 @@ private fun Bilan(
     }.orEmpty()
 
     val ecrans = buildList<Pair<String, @Composable () -> Unit>> {
-        add("Où vous en êtes" to { OuVousEnEtes(pool, d, etat, reconnues) })
+        add("Où vous en êtes" to { OuVousEnEtes(pool, d, etat, reconnues); boutonReprendre() })
         if (reconnues.isNotEmpty()) add("Ce que vous avez reconnu" to { CeQueVousAvezReconnu(d, reconnues) })
         if (aides.isNotEmpty()) add("Qui contacter" to {
             Text("🆘 Quoi faire, qui contacter", style = MaterialTheme.typography.headlineSmall)
@@ -555,6 +569,7 @@ private fun Bilan(
                     if (garder) "Ils restent sur ce téléphone jusqu'à ce que vous les effaciez."
                     else "Ils disparaissent quand vous quittez l'application.",
             )
+            boutonReprendre()
             OutlinedButton(onClick = recommencer, Modifier.fillMaxWidth()) { Text("Effacer mes réponses et recommencer") }
         })
     }

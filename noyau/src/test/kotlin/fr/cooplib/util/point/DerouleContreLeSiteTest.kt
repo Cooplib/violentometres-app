@@ -122,6 +122,7 @@ class DerouleContreLeSiteTest {
         "revoirLesPositifs" -> d.revoirLesPositifs(etat)
         "revenirAuSas" -> d.revenirAuSas(etat)
         "apresAlerte" -> d.apresAlerte(etat, maintenant)
+        "reprendreLePoint" -> d.reprendreLePoint(etat)
         else -> fail("action inconnue : $action")
     }
 
@@ -133,6 +134,7 @@ class DerouleContreLeSiteTest {
         return JsonObject(
             mapOf(
                 "question" to (d.questionCourante(etat)?.id?.let(::JsonPrimitive) ?: JsonNull),
+                "peutReprendre" to JsonPrimitive(d.peutReprendre(etat)),
                 "niveauAtteint" to (Deroule.niveauAtteint(reconnues)?.let(::JsonPrimitive) ?: JsonNull),
                 "aidesDuResultat" to ids(d.aidesDuResultat(etat).map { it.id }),
                 "aidesDAlerte" to ids(if (etat.phase == Phase.ALERTE) d.aidesDAlerte(etat).map { it.id } else emptyList()),
