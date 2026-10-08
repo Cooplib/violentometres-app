@@ -54,6 +54,12 @@ class Reglages(contexte: Context) {
         get() = p.getBoolean("site", false)
         set(v) { p.edit().putBoolean("site", v).commit() }
 
+    // Le rappel de la licence au premier récit publié : plus montré une
+    // fois la case « ne plus me le rappeler » cochée.
+    var nePlusRappelerLaLicence: Boolean
+        get() = p.getBoolean("licence", false)
+        set(v) { p.edit().putBoolean("licence", v).commit() }
+
     // Pouvoir reprendre ses réponses au point d'une fois à l'autre. Faux
     // par défaut, comme sur le site : c'est une trace sur le téléphone.
     var garderLesReponses: Boolean

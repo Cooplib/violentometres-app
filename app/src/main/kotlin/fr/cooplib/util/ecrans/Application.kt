@@ -49,7 +49,7 @@ enum class Entree(val icone: String, val titre: String, val sousTitre: String) {
     COMPRENDRE("🗺️", "Comprendre", "Des parcours courts, une carte par étape."),
 }
 
-private enum class Ecran { ACCUEIL, AIDE, POINT, RECITS, COMPRENDRE, REGLAGES, PROTECTION, DIDACTICIEL }
+private enum class Ecran { ACCUEIL, AIDE, POINT, RECITS, COMPRENDRE, REGLAGES, PROTECTION, DIDACTICIEL, CONDITIONS }
 
 /*
  * `verrouillee` : déguisée et quittée, l'application rouvre sur la
@@ -230,6 +230,7 @@ private fun Contenu(
                 "Mettre à jour le contenu" to { depot.synchroniser(demandee = true); aller(Ecran.REGLAGES) },
                 "Ce qui est protégé, ce qui ne l'est pas" to { aller(Ecran.PROTECTION) },
                 "Le didacticiel" to { aller(Ecran.DIDACTICIEL) },
+                "Conditions d'utilisation" to { aller(Ecran.CONDITIONS) },
                 "Contribuer, sur le site" to { ouvrirUnSite("$SITE/contribuer") },
             ),
         )
@@ -276,6 +277,7 @@ private fun Contenu(
             )
             ecran == Ecran.PROTECTION -> CeQuiEstProtege(deguise)
             ecran == Ecran.DIDACTICIEL -> Didacticiel { aller(Ecran.ACCUEIL) }
+            ecran == Ecran.CONDITIONS -> ConditionsDUtilisation()
         }
     }
     }

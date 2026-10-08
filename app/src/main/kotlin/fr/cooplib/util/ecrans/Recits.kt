@@ -341,6 +341,15 @@ private fun Deposer(depot: Depot, garder: Boolean, fini: () -> Unit) {
     var sansFlou by rememberSaveable { mutableStateOf(if (garder) Brouillon.lire(contexte).sansFlou else false) }
 
     var confirmer by remember { mutableStateOf(false) }
+
+    /*
+     * La licence, dite au moment de publier, la première fois : c'est ce
+     * qui la rend valable pour ce récit. Ensuite, seulement si la personne
+     * n'a pas coché « ne plus me le rappeler ».
+     */
+    val reglages = remember { fr.cooplib.util.Reglages(contexte) }
+    var rappelerLaLicence by remember { mutableStateOf(!reglages.nePlusRappelerLaLicence) }
+    var nePlusRappeler by remember { mutableStateOf(false) }
     var envoi by remember { mutableStateOf(false) }
     var issue by remember { mutableStateOf<String?>(null) }
     var publie by remember { mutableStateOf(false) }
@@ -397,9 +406,23 @@ private fun Deposer(depot: Depot, garder: Boolean, fini: () -> Unit) {
         AlertDialog(
             onDismissRequest = { confirmer = false },
             title = { Text("Publier ce récit ?") },
-            text = { Text("Il sera public, et ne se reprend pas. Vérifiez qu'il ne nomme personne.") },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Text("Il sera public, et ne se reprend pas. Vérifiez qu'il ne nomme personne.")
+                    if (rappelerLaLicence) {
+                        Encadre(titre = "La licence") {
+                            Text("Votre récit sera diffusé sous licence CC BY-NC-SA 4.0, et Cooplib pourra le reprendre dans ses propres supports, même vendus. Le détail est dans « Conditions d'utilisation », dans le menu.")
+                        }
+                        Row(Modifier.fillMaxWidth().clickable { nePlusRappeler = !nePlusRappeler }, verticalAlignment = Alignment.CenterVertically) {
+                            Checkbox(checked = nePlusRappeler, onCheckedChange = { nePlusRappeler = it })
+                            Text("Ne plus me le rappeler")
+                        }
+                    }
+                }
+            },
             confirmButton = {
                 Button(onClick = {
+                    if (nePlusRappeler) { reglages.nePlusRappelerLaLicence = true; rappelerLaLicence = false }
                     confirmer = false
                     envoi = true
                     issue = null
