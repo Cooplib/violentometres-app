@@ -58,7 +58,8 @@ import kotlinx.coroutines.launch
  * depuis chaque récit. Ce n'est pas une option, et c'est aussi le seul
  * recours de qui se reconnaît dans un récit.
  */
-private val TRIS_RECITS = listOf("Les plus récents", "Les plus lus", "De A à Z")
+// Les tris du site (StoryCarousel.jsx) dont l'application a les données.
+private val TRIS_RECITS = listOf("🆕 Plus récents", "👥 Populaires", "🔤 Alphabétique")
 
 @Composable
 fun Recits(recits: List<Recit>, depot: Depot, garderLesBrouillons: Boolean, ouvert: String? = null) {
@@ -90,8 +91,8 @@ fun Recits(recits: List<Recit>, depot: Depot, garderLesBrouillons: Boolean, ouve
             .filter { r -> cherche.isBlank() || correspond(cherche, r.titre, if (r.sansFlou) r.texte else "") }
             .let { l ->
                 when (tri) {
-                    "Les plus lus" -> l.sortedByDescending { it.vues }
-                    "De A à Z" -> l.sortedWith(compareBy(ordreFrancais) { it.titre })
+                    "👥 Populaires" -> l.sortedByDescending { it.popularite }
+                    "🔤 Alphabétique" -> l.sortedWith(compareBy(ordreFrancais) { it.titre })
                     else -> l.sortedByDescending { it.creeLe }
                 }
             }
@@ -137,7 +138,11 @@ private fun Liste(
 
         item { Button(onClick = deposer, Modifier.fillMaxWidth()) { Text("🖊️ Déposer mon récit") } }
 
-        item { BarreDeRecherche(cherche, chercher, emptyList(), null, {}, TRIS_RECITS, tri, trier, indication = "Chercher un récit") }
+        item {
+            BarreDeRecherche(cherche, chercher, indication = "Chercher un récit") {
+                Selecteur("Trier par", TRIS_RECITS.map { Choix(it, it) }, tri) { trier(it ?: TRIS_RECITS[0]) }
+            }
+        }
 
         if (recits.isEmpty()) {
             item { Note("Aucun récit ne correspond.") }

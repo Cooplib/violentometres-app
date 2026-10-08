@@ -64,6 +64,8 @@ class ClientApi(
 
     fun cadres() = lire("/cadres", ListSerializer(CadreResume.serializer()))
 
+    fun contextes() = lire("/contexts", ListSerializer(fr.cooplib.util.modeles.ContexteDuSite.serializer()))
+
     fun cadre(id: String) = lire("/cadres/${segment(id)}", Cadre.serializer())
 
     fun mecanismes() = lire("/mecanismes", ListSerializer(MecanismeResume.serializer()))

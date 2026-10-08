@@ -33,3 +33,4 @@ prendre "history/recent?limit=30" historique.json
 prendre "violentometers/$(premier_id violentometres.json)" violentometre.json
 prendre "tests/violentometer/$(premier_id violentometres.json)" point-violentometre.json
 prendre "parcours/$(premier_id parcours.json)" un-parcours.json
+prendre "tests/parcours/$(premier_id parcours.json)" point-parcours.json

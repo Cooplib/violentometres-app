@@ -74,6 +74,9 @@ class SynchronisationTest {
                 morceaux[0] == "violentometers" -> c.violentometres.find { it.id == morceaux[1] }
                     ?.let { ok(json.encodeToString(fr.cooplib.util.modeles.Violentometre.serializer(), it)) } ?: ReponseHttp(404, "")
                 chemin == "/tests/orientation/tout" -> ok(json.encodeToString(fr.cooplib.util.modeles.PoolDuPoint.serializer(), c.pointGeneral))
+                morceaux[0] == "tests" && morceaux[1] == "parcours" -> c.pointsParParcours[morceaux[2]]
+                    ?.let { ok(json.encodeToString(fr.cooplib.util.modeles.PoolDuPoint.serializer(), it)) } ?: ReponseHttp(404, "")
+                chemin == "/contexts" -> ok(json.encodeToString(ListSerializer(fr.cooplib.util.modeles.ContexteDuSite.serializer()), c.contextes))
                 morceaux[0] == "tests" -> c.pointsParViolentometre[morceaux[2]]
                     ?.let { ok(json.encodeToString(fr.cooplib.util.modeles.PoolDuPoint.serializer(), it)) } ?: ReponseHttp(404, "")
                 chemin == "/parcours" -> ok(json.encodeToString(ListSerializer(ParcoursResume.serializer()), c.parcours.map { ParcoursResume(it.id, it.titre) }))
@@ -164,9 +167,13 @@ class SynchronisationTest {
 
         assertEquals("Un titre neuf", maj.violentometres.first { it.id == vm.id }.titre)
         assertEquals(Marque("v-1", "2026-10-21T08:00:00+00:00"), maj.derniereVersion)
+        // Et le point de chaque parcours qui passe par lui : il réunit ses
+        // situations.
+        val parcoursQuiPassent = catalogue.parcours.filter { p -> p.etapes.any { it.violentometreId == vm.id } }.map { it.id }.sorted()
         assertEquals(
             listOf("/history/recent?limit=1", "/history/recent?limit=30", "/violentometers/${vm.id}",
-                "/tests/violentometer/${vm.id}", "/violentometers/${vm.id}/related", "/tests/orientation/tout"),
+                "/tests/violentometer/${vm.id}", "/violentometers/${vm.id}/related") +
+                parcoursQuiPassent.map { "/tests/parcours/$it" } + "/tests/orientation/tout",
             f.chemins,
         )
     }

@@ -275,6 +275,22 @@ object Synchronisation {
             c = c.copy(recits = api.recits().ou().sortedBy { it.id })
         }
 
+        /*
+         * Le point d'un parcours réunit les situations de ses
+         * violentomètres : relu quand le parcours change, ou l'un de ses
+         * violentomètres. Un parcours retiré perd le sien.
+         */
+        val parcoursARelire = (r.parcours + c.parcours
+            // Une étape de cadre ou de mécanisme n'a pas de violentomètre :
+            // chercher `null` dans un ensemble trié lève une exception (le
+            // test l'a vu), d'où le détour.
+            .filter { p -> p.etapes.any { e -> e.violentometreId?.let { it in r.violentometres } == true } }
+            .map { it.id }).toSortedSet()
+        for (id in parcoursARelire) {
+            val point = if (c.parcours.any { it.id == id }) relireOuRetire(api.point("parcours", id)) else null
+            c = c.copy(pointsParParcours = (c.pointsParParcours - id + listOfNotNull(point?.let { id to it })).toSortedMap())
+        }
+
         // Le point général reprend tout le site (situations, violentomètres,
         // parcours, récits, mécanismes) : relu dès que quoi que ce soit a
         // changé. 41 Ko, une requête.

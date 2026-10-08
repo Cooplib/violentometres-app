@@ -26,7 +26,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import fr.cooplib.util.donnees.Arborescence
 import fr.cooplib.util.donnees.Catalogue
+import fr.cooplib.util.donnees.Categorie
 import fr.cooplib.util.modeles.Etape
 import fr.cooplib.util.modeles.Parcours
 import fr.cooplib.util.reseau.Resultat
@@ -77,7 +79,7 @@ fun Comprendre(
     val parcours = catalogue.parcours.find { it.id == ouvert }
 
     if (parcours == null) {
-        Liste(catalogue.parcours, depot) { ouvrir(it) }
+        Liste(catalogue.parcours, catalogue.cadres, depot) { ouvrir(it) }
     } else {
         androidx.compose.runtime.key(parcours.id) {
             Cartes(parcours, catalogue, depot, etape, allerA, faireLePoint)
@@ -85,10 +87,11 @@ fun Comprendre(
     }
 }
 
-private val TRIS_PARCOURS = listOf("Les plus vus", "Les plus aimés", "Les plus courts", "De A à Z")
+// Les tris du site (ParcoursLibrary.jsx) dont l'application a les données.
+private val TRIS_PARCOURS = listOf("👥 Populaires", "👁 Les plus vus", "♥ Les plus aimés", "📏 Les plus courts", "🔤 Alphabétique")
 
 @Composable
-private fun Liste(parcours: List<Parcours>, depot: Depot, ouvrir: (String) -> Unit) {
+private fun Liste(parcours: List<Parcours>, tousLesCadres: List<fr.cooplib.util.modeles.Cadre>, depot: Depot, ouvrir: (String) -> Unit) {
 
     val souvenirs by depot.memoire.etat.collectAsState()
 
@@ -96,22 +99,25 @@ private fun Liste(parcours: List<Parcours>, depot: Depot, ouvrir: (String) -> Un
     var cadre by rememberSaveable { mutableStateOf<String?>(null) }
     var tri by rememberSaveable { mutableStateOf(TRIS_PARCOURS[0]) }
 
-    // Les cadres d'analyse qui portent des parcours : « sous plusieurs
-    // angles », c'est là que ça se choisit.
-    val cadres = remember(parcours) {
-        parcours.flatMap { p -> p.cadres.map { it.nom } }.groupingBy { it }.eachCount().entries.sortedByDescending { it.value }.map { it.key }
+    // Les cadres d'analyse en arborescence, comme le « Lu depuis » du site :
+    // choisir une famille garde ce qui se range sous elle.
+    val cadres = remember(tousLesCadres) { tousLesCadres.map { Categorie(it.id, it.nom, it.parents.map { p -> p.id }) } }
+    val choixCadres = remember(parcours, cadres) {
+        choixDeCategories("📚 Toutes les lectures", cadres, parcours.flatMap { p -> p.cadres.map { it.id } }.toSet(), ordreFrancais)
     }
 
     val liste = remember(parcours, cherche, cadre, tri, souvenirs) {
+        val dansLeCadre = cadre?.let { Arborescence.avecSous(cadres, it) }
         parcours
-            .filter { p -> cadre == null || p.cadres.any { it.nom == cadre } }
+            .filter { p -> dansLeCadre == null || p.cadres.any { it.id in dansLeCadre } }
             .filter { p -> cherche.isBlank() || correspond(cherche, p.titre, p.description, p.etapes.joinToString(" ") { it.cible?.titre ?: "" }) }
             .let { l ->
                 when (tri) {
-                    "Les plus aimés" -> l.sortedByDescending { souvenirs.comptes[it.id] ?: it.aime }
-                    "Les plus courts" -> l.sortedBy { it.etapes.size }
-                    "De A à Z" -> l.sortedWith(compareBy(ordreFrancais) { it.titre })
-                    else -> l.sortedByDescending { it.vues }
+                    "👁 Les plus vus" -> l.sortedByDescending { it.vues }
+                    "♥ Les plus aimés" -> l.sortedByDescending { souvenirs.comptes[it.id] ?: it.aime }
+                    "📏 Les plus courts" -> l.sortedBy { it.etapes.size }
+                    "🔤 Alphabétique" -> l.sortedWith(compareBy(ordreFrancais) { it.titre })
+                    else -> l.sortedByDescending { it.popularite }
                 }
             }
     }
@@ -122,7 +128,10 @@ private fun Liste(parcours: List<Parcours>, depot: Depot, ouvrir: (String) -> Un
         item { Encadre("Des parcours courts, une carte par étape : d'une situation vécue à ce qui la produit. Certains lisent la même chose sous plusieurs angles.") }
 
         item {
-            BarreDeRecherche(cherche, { cherche = it }, cadres, cadre, { cadre = it }, TRIS_PARCOURS, tri, { tri = it }, indication = "Chercher un parcours")
+            BarreDeRecherche(cherche, { cherche = it }, indication = "Chercher un parcours") {
+                if (choixCadres.size > 1) Selecteur("Lu depuis", choixCadres, cadre) { cadre = it }
+                Selecteur("Trier par", TRIS_PARCOURS.map { Choix(it, it) }, tri) { tri = it ?: TRIS_PARCOURS[0] }
+            }
         }
 
         items(liste, key = { it.id }) { p ->
@@ -211,12 +220,24 @@ private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, i: In
                         erreur?.let { Note(it) }
                         if (parcours.apropos.isNotBlank()) Encadre(parcours.apropos)
                         Note("${etapes.size} étape${if (etapes.size > 1) "s" else ""}, à faire glisser.")
-                        Button(onClick = { allerA(0) }, Modifier.fillMaxWidth(), enabled = etapes.isNotEmpty()) { Text("Commencer") }
+                        Button(onClick = { allerA(0) }, Modifier.fillMaxWidth(), enabled = etapes.isNotEmpty()) { Text("Commencer le parcours") }
+                        // Le point sur le parcours entier, comme sur le site : les
+                        // situations de tous ses violentomètres, réunies.
+                        if (parcours.id in catalogue.pointsParParcours) {
+                            OutlinedButton(onClick = { faireLePoint(PARCOURS + parcours.id) }, Modifier.fillMaxWidth()) {
+                                Text("🧭 Faire le point sur ce parcours")
+                            }
+                        }
                     }
 
                     j >= etapes.size -> {
                         Text("Fin du parcours", style = MaterialTheme.typography.headlineSmall)
                         if (parcours.conclusion.isNotBlank()) Encadre(parcours.conclusion)
+                        if (parcours.id in catalogue.pointsParParcours) {
+                            Button(onClick = { faireLePoint(PARCOURS + parcours.id) }, Modifier.fillMaxWidth()) {
+                                Text("🧭 Faire le point sur ce parcours")
+                            }
+                        }
                         OutlinedButton(onClick = { allerA(0) }, Modifier.fillMaxWidth()) { Text("Revoir depuis le début") }
                     }
 

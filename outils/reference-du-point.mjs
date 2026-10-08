@@ -187,7 +187,7 @@ function partie(nomPool, pool, graine) {
 
 const parties = [];
 
-for (const [nom, combien] of [["point-orientation.json", 150], ["point-violentometre.json", 80]]) {
+for (const [nom, combien] of [["point-orientation.json", 150], ["point-violentometre.json", 80], ["point-parcours.json", 60]]) {
 
   const pool = JSON.parse(readFileSync(`${POOLS}/${nom}`, "utf8"));
 

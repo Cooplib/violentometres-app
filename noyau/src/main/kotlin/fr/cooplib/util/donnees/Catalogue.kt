@@ -58,6 +58,11 @@ data class Catalogue(
     // Ce qui ressemble à chaque violentomètre, calculé par le serveur.
     // Vide dans un catalogue tiré avant qu'on l'embarque.
     val proches: Map<String, Proches> = emptyMap(),
+    // Les contextes et leurs familles, pour le filtre des listes.
+    val contextes: List<fr.cooplib.util.modeles.ContexteDuSite> = emptyList(),
+    // « Faire le point » sur un parcours entier, comme sur le site : ses
+    // violentomètres réunis, tels que l'API les assemble.
+    val pointsParParcours: Map<String, PoolDuPoint> = emptyMap(),
 ) {
 
     companion object {

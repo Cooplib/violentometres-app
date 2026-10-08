@@ -28,7 +28,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import fr.cooplib.util.donnees.Arborescence
 import fr.cooplib.util.donnees.Catalogue
+import fr.cooplib.util.donnees.Categorie
 import fr.cooplib.util.modeles.Proche
 import fr.cooplib.util.modeles.Violentometre
 import fr.cooplib.util.reseau.Resultat
@@ -45,7 +47,9 @@ import kotlinx.coroutines.launch
 @Suppress("UNCHECKED_CAST")
 internal val ordreFrancais = Collator.getInstance(ULocale.FRENCH) as Comparator<String>
 
-private val TRIS = listOf("Les plus vus", "Les plus aimés", "Les plus complets", "De A à Z")
+// Les tris du site (ViolentometerLibrary.jsx) dont l'application a les
+// données, et un de plus : les plus complets.
+private val TRIS = listOf("👥 Populaires", "🕒 Dernière mise à jour", "♥ Les plus aimés", "📏 Les plus complets", "🔤 Alphabétique")
 
 // Comparer sans les accents ni la casse : « violence » trouve « Violences ».
 internal fun normal(s: String) =
@@ -69,23 +73,42 @@ internal fun ListeDesViolentometres(
 
     var cherche by rememberSaveable { mutableStateOf("") }
     var contexte by rememberSaveable { mutableStateOf<String?>(null) }
+    var cadre by rememberSaveable { mutableStateOf<String?>(null) }
     var tri by rememberSaveable { mutableStateOf(TRIS[0]) }
 
+    /*
+     * Les contextes et les cadres en arborescence, comme sur le site :
+     * choisir une famille garde ce qui se range sous elle. Un catalogue
+     * tiré avant qu'on embarque les contextes n'a pas leurs familles : on
+     * se rabat alors sur ceux des violentomètres, à plat.
+     */
     val contextes = remember(catalogue) {
-        catalogue.violentometres.flatMap { vm -> vm.contextes.map { it.nom } }
-            .groupingBy { it }.eachCount().entries.sortedByDescending { it.value }.map { it.key }
+        catalogue.contextes.map { Categorie(it.id, it.nom, it.parents) }.ifEmpty {
+            catalogue.violentometres.flatMap { it.contextes }.distinctBy { it.id }.map { Categorie(it.id, it.nom, emptyList()) }
+        }
+    }
+    val cadres = remember(catalogue) { catalogue.cadres.map { Categorie(it.id, it.nom, it.parents.map { p -> p.id }) } }
+    val choixContextes = remember(catalogue) {
+        choixDeCategories("🏷️ Tous les contextes", contextes, catalogue.violentometres.flatMap { vm -> vm.contextes.map { it.id } }.toSet(), ordreFrancais)
+    }
+    val choixCadres = remember(catalogue) {
+        choixDeCategories("📚 Toutes les lectures", cadres, catalogue.violentometres.flatMap { vm -> vm.cadres.map { it.id } }.toSet(), ordreFrancais)
     }
 
-    val liste = remember(catalogue, cherche, contexte, tri, souvenirs) {
+    val liste = remember(catalogue, cherche, contexte, cadre, tri, souvenirs) {
+        val dansLeContexte = contexte?.let { Arborescence.avecSous(contextes, it) }
+        val dansLeCadre = cadre?.let { Arborescence.avecSous(cadres, it) }
         catalogue.violentometres
-            .filter { vm -> contexte == null || vm.contextes.any { it.nom == contexte } }
+            .filter { vm -> dansLeContexte == null || vm.contextes.any { it.id in dansLeContexte } }
+            .filter { vm -> dansLeCadre == null || vm.cadres.any { it.id in dansLeCadre } }
             .filter { vm -> cherche.isBlank() || correspond(cherche, vm.titre, vm.description, vm.contextes.joinToString(" ") { it.nom }) }
             .let { l ->
                 when (tri) {
-                    "Les plus aimés" -> l.sortedByDescending { souvenirs.comptes[it.id] ?: it.aime }
-                    "Les plus complets" -> l.sortedByDescending { it.situations.size }
-                    "De A à Z" -> l.sortedWith(compareBy(ordreFrancais) { it.titre })
-                    else -> l.sortedByDescending { it.vues }
+                    "🕒 Dernière mise à jour" -> l.sortedByDescending { it.modifieLe }
+                    "♥ Les plus aimés" -> l.sortedByDescending { souvenirs.comptes[it.id] ?: it.aime }
+                    "📏 Les plus complets" -> l.sortedByDescending { it.situations.size }
+                    "🔤 Alphabétique" -> l.sortedWith(compareBy(ordreFrancais) { it.titre })
+                    else -> l.sortedByDescending { it.popularite }
                 }
             }
     }
@@ -95,12 +118,11 @@ internal fun ListeDesViolentometres(
         item { avant() }
 
         item {
-            BarreDeRecherche(
-                cherche, { cherche = it },
-                filtres = contextes, filtre = contexte, filtrer = { contexte = it },
-                tris = TRIS, tri = tri, trier = { tri = it },
-                indication = "Chercher un violentomètre : un mot, un lieu de vie",
-            )
+            BarreDeRecherche(cherche, { cherche = it }, indication = "Chercher un violentomètre : un mot, un lieu de vie") {
+                Selecteur("Contexte", choixContextes, contexte) { contexte = it }
+                if (choixCadres.size > 1) Selecteur("Lu depuis", choixCadres, cadre) { cadre = it }
+                Selecteur("Trier par", TRIS.map { Choix(it, it) }, tri) { tri = it ?: TRIS[0] }
+            }
         }
 
         item { Note("${liste.size} violentomètre${if (liste.size > 1) "s" else ""}") }

@@ -57,7 +57,9 @@ class CatalogueEmbarqueTest {
 
         assertEquals(catalogue.violentometres.map { it.id }.toSet(), catalogue.pointsParViolentometre.keys)
 
-        for ((id, pool) in catalogue.pointsParViolentometre + ("orientation" to catalogue.pointGeneral)) {
+        assertEquals(catalogue.parcours.map { it.id }.toSet(), catalogue.pointsParParcours.keys)
+
+        for ((id, pool) in catalogue.pointsParViolentometre + catalogue.pointsParParcours + ("orientation" to catalogue.pointGeneral)) {
             assertTrue(Deroule(pool).niveauxProposes.isNotEmpty(), "le point sur $id n'a aucun niveau à proposer")
         }
     }

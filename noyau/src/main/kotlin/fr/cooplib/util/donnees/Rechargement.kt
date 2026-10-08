@@ -11,7 +11,7 @@ import java.time.temporal.ChronoUnit
  * code : la fabrique du catalogue embarqué, et le rechargement complet
  * de la synchronisation chez les gens.
  *
- * Des LECTURES seulement, une à une : environ 270 requêtes et 1,8 Mo,
+ * Des LECTURES seulement, une à une : environ 290 requêtes et 2,5 Mo,
  * d'où une fois par semaine au plus, et jamais sur une connexion
  * facturée au volume sans demander.
  *
@@ -27,6 +27,7 @@ fun rechargerTout(api: ClientApi, maintenant: Instant): Resultat<Catalogue> = av
     val marque = api.historique(1).ou().versions.firstOrNull()?.marque()
 
     val liste = api.violentometres().ou().sortedBy { it.id }
+    val listeDesParcours = api.parcours().ou().sortedBy { it.id }
 
     Catalogue(
         fabriqueLe = maintenant.truncatedTo(ChronoUnit.SECONDS).toString(),
@@ -34,13 +35,15 @@ fun rechargerTout(api: ClientApi, maintenant: Instant): Resultat<Catalogue> = av
         derniereVersion = marque,
         aides = api.aides().ou().sortedBy { it.id },
         violentometres = liste.map { api.violentometre(it.id).ou() },
-        parcours = api.parcours().ou().sortedBy { it.id }.map { api.unParcours(it.id).ou() },
+        parcours = listeDesParcours.map { api.unParcours(it.id).ou() },
         recits = api.recits().ou().sortedBy { it.id },
         cadres = api.cadres().ou().sortedBy { it.id }.map { api.cadre(it.id).ou() },
         mecanismes = api.mecanismes().ou().sortedBy { it.id }.map { api.mecanisme(it.id).ou() },
         pointGeneral = api.point("orientation", "tout").ou(),
         pointsParViolentometre = liste.associate { it.id to api.point("violentometer", it.id).ou() },
         proches = liste.associate { it.id to api.proches(it.id).ou() },
+        contextes = api.contextes().ou().sortedBy { it.id },
+        pointsParParcours = listeDesParcours.associate { it.id to api.point("parcours", it.id).ou() },
     )
 }
 

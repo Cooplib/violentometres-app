@@ -98,6 +98,9 @@ private val LIBELLES_FORMES = mapOf(
 
 private const val GENERAL = "orientation"
 
+// La cible d'un point sur un parcours entier : « parcours:<id> ».
+const val PARCOURS = "parcours:"
+
 private val sauvegardeEtat: Saver<EtatDuPoint, String> = Saver(
     save = { decodage.encodeToString(EtatDuPoint.serializer(), it) },
     restore = { decodage.decodeFromString(EtatDuPoint.serializer(), it) },
@@ -132,9 +135,12 @@ fun FaireLePoint(
     }
 
     val c = cible
-    val pool = when (c) {
-        null -> null
-        GENERAL -> catalogue.pointGeneral
+    // La cible : le point général, un parcours entier (« parcours:… »,
+    // comme sur le site), ou un violentomètre.
+    val pool = when {
+        c == null -> null
+        c == GENERAL -> catalogue.pointGeneral
+        c.startsWith(PARCOURS) -> catalogue.pointsParParcours[c.removePrefix(PARCOURS)]
         else -> catalogue.pointsParViolentometre[c]
     }
     val vm = fiche?.let { f -> catalogue.violentometres.find { it.id == f } }

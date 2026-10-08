@@ -38,6 +38,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilterChip
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.ui.window.Dialog
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -293,51 +295,97 @@ fun BoutonJAime(aime: Boolean, combien: Int, basculer: () -> Unit) {
 /*
  * Chercher, filtrer, trier, comme les listes du site. La recherche passe
  * par le champ où le clavier n'apprend pas : ce qu'on cherche en dit
- * autant que ce qu'on écrit.
+ * autant que ce qu'on écrit. Les filtres et le tri sont des Selecteur.
  */
-private const val PREMIERS_FILTRES = 8
-
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun BarreDeRecherche(
     cherche: String,
     chercher: (String) -> Unit,
-    filtres: List<String>,
-    filtre: String?,
-    filtrer: (String?) -> Unit,
-    tris: List<String>,
-    tri: String,
-    trier: (String) -> Unit,
     indication: String = "Chercher",
+    selecteurs: @Composable () -> Unit = {},
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Note(indication)
         ChampPrive(cherche, chercher, lignes = 1)
-        if (filtres.isNotEmpty()) {
-            /*
-             * À la ligne, pas en défilement de côté : chercher un contexte
-             * parmi des dizaines en faisant glisser une rangée, c'était
-             * pénible (retour du 7 octobre). Les plus fréquents d'abord,
-             * le reste à déplier.
-             */
-            var tout by remember { mutableStateOf(false) }
-            val visibles = if (tout) filtres else (filtres.take(PREMIERS_FILTRES) + listOfNotNull(filtre)).distinct()
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(0.dp)) {
-                Pastille("Tous", filtre == null) { filtrer(null) }
-                for (f in visibles) Pastille(f, filtre == f) { filtrer(if (filtre == f) null else f) }
-            }
-            if (filtres.size > PREMIERS_FILTRES) {
-                BoutonTexteMaterial(onClick = { tout = !tout }, contentPadding = PaddingValues(horizontal = 4.dp)) {
-                    Text(if (tout) "Moins de choix ▴" else "Voir les ${filtres.size} ▾", fontSize = 14.sp)
+        selecteurs()
+    }
+}
+
+// Une option d'un Selecteur : `cle` nulle pour « tous », `profondeur`
+// pour l'indentation de l'arborescence.
+data class Choix(val cle: String?, val libelle: String, val profondeur: Int = 0)
+
+/*
+ * Un choix dans une liste, comme le <select> du site sur un téléphone :
+ * un champ qui dit le choix courant, et qui ouvre une fenêtre avec toutes
+ * les options. Elle remplace une rangée de pastilles qu'il fallait faire
+ * défiler sur le côté pour trouver un contexte parmi des dizaines (retour
+ * du 8 octobre 2026), et elle montre, comme le site, l'arborescence des
+ * catégories : chaque niveau indenté sous sa famille.
+ */
+@Composable
+fun Selecteur(etiquette: String, choix: List<Choix>, choisi: String?, choisir: (String?) -> Unit) {
+
+    var ouvert by remember { mutableStateOf(false) }
+    val courant = choix.firstOrNull { it.cle == choisi } ?: choix.first()
+
+    BoutonContourMaterial(
+        onClick = { ouvert = true },
+        modifier = Modifier.fillMaxWidth(),
+        shape = Charte.ArrondiMoyen,
+        contentPadding = PaddingValues(horizontal = 14.dp, vertical = 8.dp),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+        colors = ButtonDefaults.outlinedButtonColors(containerColor = MaterialTheme.colorScheme.surface, contentColor = MaterialTheme.colorScheme.onSurface),
+    ) {
+        Column(Modifier.weight(1f)) {
+            Text(etiquette, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(courant.libelle.trim(), style = MaterialTheme.typography.bodyLarge, maxLines = 1)
+        }
+        Text("▾", color = MaterialTheme.colorScheme.primary, fontSize = 18.sp)
+    }
+
+    if (ouvert) {
+        Dialog(onDismissRequest = { ouvert = false }) {
+            Surface(shape = Charte.ArrondiGrand, color = MaterialTheme.colorScheme.surface) {
+                Column(Modifier.padding(vertical = 12.dp)) {
+                    Text(etiquette, style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp))
+                    LazyColumn(Modifier.heightIn(max = 480.dp)) {
+                        items(choix) { c ->
+                            val actif = c.cle == choisi
+                            Row(
+                                Modifier
+                                    .fillMaxWidth()
+                                    .clickable { choisir(c.cle); ouvert = false }
+                                    .padding(start = (20 + c.profondeur * 18).dp, end = 20.dp, top = 12.dp, bottom = 12.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                if (c.profondeur > 0) Text("└ ", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(
+                                    c.libelle,
+                                    Modifier.weight(1f),
+                                    fontWeight = if (actif || c.profondeur == 0) FontWeight.SemiBold else FontWeight.Normal,
+                                    color = if (actif) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+                                )
+                                if (actif) Text("✓", color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
                 }
             }
         }
-        LazyRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-            item { Note("Trier :") }
-            items(tris) { tr -> Pastille(tr, tri == tr) { trier(tr) } }
-        }
     }
 }
+
+// Les options d'un filtre par catégorie : « tous », puis l'arborescence
+// (fr.cooplib.util.donnees.Arborescence, portée du site).
+fun choixDeCategories(
+    tous: String,
+    categories: List<fr.cooplib.util.donnees.Categorie>,
+    utiles: Set<String>,
+    ordre: Comparator<String>,
+): List<Choix> =
+    listOf(Choix(null, tous)) +
+        fr.cooplib.util.donnees.Arborescence.lignes(categories, utiles, ordre).map { Choix(it.categorie.id, it.categorie.nom, it.profondeur) }
 
 @Composable
 fun Pastille(texte: String, choisie: Boolean, choisir: () -> Unit) {
