@@ -150,7 +150,7 @@ jobs:
         env:
           SIGNATURE_MOT_DE_PASSE: ${{ secrets.SIGNATURE_MOT_DE_PASSE }}
           SIGNATURE_ALIAS: ${{ secrets.SIGNATURE_ALIAS }}
-        run: ./gradlew -PavecAndroid=true :app:assembleRelease
+        run: ./gradlew -PavecAndroid=true :app:assembleRelease :app:assembleEssai
 
       - name: Son poids
         run: ls -la app/build/outputs/apk/release/
@@ -162,3 +162,11 @@ jobs:
             app/build/outputs/apk/release/*.apk
             app/build/outputs/mapping/release/mapping.txt
           retention-days: 30
+
+      # La même, signée de la clé de mise au point, pour l'essayer sur un
+      # téléphone d'essai avant de la diffuser (voir app/build.gradle.kts).
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apk-diffusion-essai
+          path: app/build/outputs/apk/essai/*.apk
+          retention-days: 14

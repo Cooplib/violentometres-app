@@ -28,7 +28,7 @@ android {
         minSdk = 26
         targetSdk = 36
         versionCode = 1
-        versionName = "0.1"
+        versionName = "1.0"
     }
 
     /*
@@ -79,6 +79,24 @@ android {
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "regles-r8.pro")
             signingConfig = signingConfigs.findByName("diffusion")
+        }
+
+        /*
+         * La version de diffusion, À L'ESSAI : la même (R8, réduction des
+         * ressources), mais signée avec la clé de mise au point. Elle
+         * s'installe par-dessus la version de mise au point d'un
+         * téléphone d'essai, et ne peut jamais être prise pour une vraie
+         * version : une autre clé, et Play comme F-Droid la refuseraient.
+         *
+         * Elle existe parce que R8 renomme et retire du code, et que ce
+         * qu'il casse (une lecture par réflexion, un sérialiseur) ne se
+         * voit qu'à l'exécution : la version de mise au point ne passe pas
+         * par lui.
+         */
+        create("essai") {
+            initWith(getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += "release"
         }
     }
 
