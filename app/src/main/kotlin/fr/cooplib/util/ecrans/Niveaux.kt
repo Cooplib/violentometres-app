@@ -66,6 +66,10 @@ internal fun couleur(n: Niveau): Color = when (n.couleur) {
  */
 internal fun teinteSur(c: Color, fond: Color, part: Float = 0.12f): Color = c.copy(alpha = part).compositeOver(fond)
 
+// Le texte posé SUR un aplat de niveau : sombre sur le jaune, blanc
+// ailleurs (le blanc ne se lit pas sur le jaune vif).
+internal fun texteSurNiveau(n: Niveau): Color = if (n.couleur == "yellow") Color(0xFF212121) else Color.White
+
 internal fun couleurDeTexte(n: Niveau): Color = when (n.couleur) {
     "green" -> NiveauTexte.VERT
     "yellow" -> NiveauTexte.JAUNE

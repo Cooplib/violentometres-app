@@ -128,7 +128,7 @@ class Deroule(private val pool: PoolDuPoint) {
 
     fun commencer(etat: EtatDuPoint) = etat.copy(
         phase = Phase.QUESTIONS, niveau = 0, index = 0,
-        reponses = emptyMap(), aidesVues = emptyList(), finiLe = null,
+        reponses = emptyMap(), aidesVues = emptyList(), alerteVue = null, finiLe = null,
     )
 
     fun terminer(etat: EtatDuPoint, maintenant: Long) =
@@ -164,10 +164,22 @@ class Deroule(private val pool: PoolDuPoint) {
             val nouvelles = aidesNouvelles(etat, situation)
             val aidesVues = etat.aidesVues + nouvelles.map { it.id }
 
-            // Une situation du niveau le plus grave reconnue : les aides
-            // d'urgence, tout de suite, et le choix de s'arrêter là.
+            /*
+             * Une situation du niveau le plus grave reconnue : les aides
+             * d'urgence, tout de suite, et le choix de s'arrêter là. SAUF
+             * si l'alerte montrerait exactement les mêmes aides que la
+             * dernière, à laquelle on a déjà répondu « continuer » : rien
+             * de neuf à apprendre (retour du 8 octobre 2026, porté du site).
+             */
             if (situation.gravite == plusGrave) {
-                return repondu.copy(aidesVues = aidesVues, index = suivant, phase = Phase.ALERTE, situationVue = situation.id)
+
+                val urgentes = aidesDAlerte(repondu.copy(situationVue = situation.id)).map { it.id }
+
+                if (!memesAides(urgentes, etat.alerteVue)) {
+                    return repondu.copy(aidesVues = aidesVues, index = suivant, phase = Phase.ALERTE, situationVue = situation.id, alerteVue = urgentes)
+                }
+
+                return avancerApres(repondu, suivant, maintenant).copy(aidesVues = aidesVues)
             }
 
             if (nouvelles.isNotEmpty()) {
@@ -177,6 +189,11 @@ class Deroule(private val pool: PoolDuPoint) {
 
         return avancerApres(repondu, suivant, maintenant)
     }
+
+    // Les mêmes aides, dans n'importe quel ordre ; aucune alerte vue
+    // encore (`null`) : jamais les mêmes.
+    private fun memesAides(a: List<String>, b: List<String>?) =
+        b != null && a.size == b.size && a.all { it in b }
 
     // Après l'écran d'une aide ou d'une alerte : là où l'on en était.
     fun apresAlerte(etat: EtatDuPoint, maintenant: Long) = avancerApres(etat, etat.index, maintenant)

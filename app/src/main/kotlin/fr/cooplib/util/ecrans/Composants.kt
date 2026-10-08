@@ -23,6 +23,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Path
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -355,6 +357,36 @@ fun Etiquettes(textes: List<String>) {
         items(textes) { t ->
             Surface(shape = RoundedCornerShape(999.dp), color = MaterialTheme.colorScheme.background, border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline)) {
                 Text(t, Modifier.padding(horizontal = 8.dp, vertical = 2.dp), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
+    }
+}
+
+/*
+ * Les petits points d'une suite d'écrans (le bilan du point, le
+ * didacticiel) : combien il y en a, où l'on est, et un appui sur l'un
+ * d'eux y mène directement.
+ */
+@Composable
+fun Points(combien: Int, courant: Int, aller: (Int) -> Unit, modifier: Modifier = Modifier) {
+    Row(modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+        for (i in 0 until combien) {
+            Box(
+                Modifier
+                    .padding(horizontal = 2.dp)
+                    .size(28.dp)
+                    .clip(RoundedCornerShape(999.dp))
+                    .clickable { aller(i) },
+                contentAlignment = Alignment.Center,
+            ) {
+                Box(
+                    Modifier
+                        .size(if (i == courant) 12.dp else 8.dp)
+                        .background(
+                            if (i == courant) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+                            RoundedCornerShape(999.dp),
+                        )
+                )
             }
         }
     }

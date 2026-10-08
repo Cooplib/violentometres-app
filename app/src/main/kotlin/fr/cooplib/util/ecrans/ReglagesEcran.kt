@@ -29,6 +29,7 @@ fun ReglagesEcran(
     afficherLeVraiNom: () -> Unit,
     changerGarder: (Boolean) -> Unit,
     voirCeQuiEstProtege: () -> Unit,
+    revoirLeDidacticiel: () -> Unit,
     miseAJour: @Composable () -> Unit,
 ) {
 
@@ -79,6 +80,7 @@ fun ReglagesEcran(
 
         miseAJour()
 
+        TextButton(onClick = revoirLeDidacticiel) { Text("Revoir le didacticiel") }
         TextButton(onClick = voirCeQuiEstProtege) { Text("Ce qui est protégé, ce qui ne l'est pas") }
     }
 }

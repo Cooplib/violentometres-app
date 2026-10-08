@@ -192,7 +192,11 @@ class Depot private constructor(contexte: Context) {
         return r
     }
 
-    fun marquerLu(id: String) = memoire.changer { s -> s.copy(lus = s.lus + id) }
+    fun marquerLu(id: String) = memoire.changer { s -> s.copy(lus = s.lus + id, caches = s.caches - id) }
+
+    // Recacher un récit pour soi : il ne s'affiche plus qu'après « Lire le
+    // récit », même s'il était « sans flou ».
+    fun recacher(id: String) = memoire.changer { s -> s.copy(lus = s.lus - id, caches = s.caches + id) }
 
     suspend fun signaler(recitId: String, motif: String, texte: String?) =
         portee.async { api.signalerRecit(recitId, motif, texte, visiteur) }.await()

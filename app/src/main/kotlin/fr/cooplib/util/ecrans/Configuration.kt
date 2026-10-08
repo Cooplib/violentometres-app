@@ -168,6 +168,21 @@ fun CeQuOnGarde(choisir: (garderLesReponses: Boolean) -> Unit) {
     }
 }
 
+/*
+ * Le troisième écran du premier lancement : proposer le didacticiel,
+ * sans l'imposer. On peut le refaire depuis le menu ou les réglages.
+ */
+@Composable
+fun ProposerLeDidacticiel(choisir: (suivre: Boolean) -> Unit) {
+    Page {
+        Text("Un petit tour ?", style = MaterialTheme.typography.headlineSmall)
+        Text("Quelques écrans pour montrer ce que fait l'application, et les gestes qui servent partout. Deux minutes.", style = MaterialTheme.typography.bodyLarge)
+        Button(onClick = { choisir(true) }, Modifier.fillMaxWidth()) { Text("Suivre le didacticiel") }
+        OutlinedButton(onClick = { choisir(false) }, Modifier.fillMaxWidth()) { Text("Plus tard") }
+        Note("Vous le retrouverez dans le menu ☰ et dans les réglages.")
+    }
+}
+
 // Une colonne qui défile, aux marges de téléphone.
 @Composable
 fun Page(contenu: @Composable () -> Unit) {

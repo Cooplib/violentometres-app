@@ -2,7 +2,12 @@ package fr.cooplib.util.ecrans
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -149,55 +154,84 @@ private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, i: In
     val etapes = parcours.etapes.sortedBy { it.position }
 
     // `i` : -1 pour l'ouverture du parcours, etapes.size pour sa fin.
-    // L'échelle d'une étape, en mode lecture, par-dessus le parcours.
+    // L'échelle d'une étape, par-dessus le parcours : « carte » (une
+    // situation à la fois) ou « entiere » (de haut en bas).
     var echelle by rememberSaveable { mutableStateOf<String?>(null) }
+    var lecture by rememberSaveable { mutableStateOf("carte") }
     catalogue.violentometres.find { it.id == echelle }?.let { vm ->
-        LectureEchelle(vm, fermer = { echelle = null }, faireLePoint = if (vm.id in catalogue.pointsParViolentometre) ({ faireLePoint(vm.id) }) else null)
+        val versLePoint: (() -> Unit)? = if (vm.id in catalogue.pointsParViolentometre) ({ faireLePoint(vm.id) }) else null
+        if (lecture == "entiere") EchelleEntiere(vm, fermer = { echelle = null }, faireLePoint = versLePoint)
+        else LectureEchelle(vm, fermer = { echelle = null }, faireLePoint = versLePoint)
         return
     }
 
-    Page {
+    /*
+     * Une page par étape, qu'on fait glisser (retour du 8 octobre 2026) :
+     * l'ouverture du parcours, ses étapes, sa fin. La page et l'étape `i`
+     * se suivent dans les deux sens : glisser change l'étape, les boutons
+     * font glisser.
+     */
+    val pages = etapes.size + 2
+    val etat = rememberPagerState(initialPage = (i + 1).coerceIn(0, pages - 1)) { pages }
+    LaunchedEffect(etat.currentPage) { if (etat.currentPage - 1 != i) allerA(etat.currentPage - 1) }
+    LaunchedEffect(i) { if (etat.currentPage != i + 1) etat.animateScrollToPage((i + 1).coerceIn(0, pages - 1)) }
 
-        Text(parcours.titre, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+    Column(Modifier.fillMaxSize()) {
 
-        if (etapes.isNotEmpty()) {
-            LinearProgressIndicator(
-                progress = { ((i + 1).coerceIn(0, etapes.size)).toFloat() / etapes.size },
-                modifier = Modifier.fillMaxWidth(),
-            )
+        Column(Modifier.padding(start = 16.dp, end = 16.dp, top = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(parcours.titre, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+            if (etapes.isNotEmpty()) {
+                LinearProgressIndicator(
+                    progress = { (etat.currentPage.coerceIn(0, etapes.size)).toFloat() / etapes.size },
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
         }
 
-        when {
-            i < 0 -> {
-                Text(parcours.titre, style = MaterialTheme.typography.headlineSmall)
-                if (parcours.description.isNotBlank()) Text(parcours.description, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Etiquettes(parcours.cadres.map { it.nom })
-                val aime = parcours.id in souvenirs.aimes
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    BoutonJAime(aime, souvenirs.comptes[parcours.id] ?: parcours.aime) {
-                        portee.launch {
-                            erreur = if (depot.aimer("parcours", parcours.id, !aime) is Resultat.Ok) null else "Pas de réseau : le « J'aime » n'est pas parti."
+        HorizontalPager(state = etat, modifier = Modifier.weight(1f)) { page ->
+
+            val j = page - 1
+
+            Box(Modifier.fillMaxSize()) { Page {
+
+                when {
+                    j < 0 -> {
+                        Text(parcours.titre, style = MaterialTheme.typography.headlineSmall)
+                        if (parcours.description.isNotBlank()) Text(parcours.description, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Etiquettes(parcours.cadres.map { it.nom })
+                        val aime = parcours.id in souvenirs.aimes
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            BoutonJAime(aime, souvenirs.comptes[parcours.id] ?: parcours.aime) {
+                                portee.launch {
+                                    erreur = if (depot.aimer("parcours", parcours.id, !aime) is Resultat.Ok) null else "Pas de réseau : le « J'aime » n'est pas parti."
+                                }
+                            }
+                            Compteurs("👁 ${parcours.vues}")
                         }
+                        erreur?.let { Note(it) }
+                        if (parcours.apropos.isNotBlank()) Encadre(parcours.apropos)
+                        Note("${etapes.size} étape${if (etapes.size > 1) "s" else ""}, à faire glisser.")
+                        Button(onClick = { allerA(0) }, Modifier.fillMaxWidth(), enabled = etapes.isNotEmpty()) { Text("Commencer") }
                     }
-                    Compteurs("👁 ${parcours.vues}")
+
+                    j >= etapes.size -> {
+                        Text("Fin du parcours", style = MaterialTheme.typography.headlineSmall)
+                        if (parcours.conclusion.isNotBlank()) Encadre(parcours.conclusion)
+                        OutlinedButton(onClick = { allerA(0) }, Modifier.fillMaxWidth()) { Text("Revoir depuis le début") }
+                    }
+
+                    else -> Carte(etapes[j], j, etapes.size, catalogue, faireLePoint, lireEchelle = { id, comment -> lecture = comment; echelle = id })
                 }
-                erreur?.let { Note(it) }
-                if (parcours.apropos.isNotBlank()) Text(parcours.apropos, style = MaterialTheme.typography.bodyMedium)
-                Text("${etapes.size} étape${if (etapes.size > 1) "s" else ""}.", style = MaterialTheme.typography.bodySmall)
-                Button(onClick = { allerA(0) }, Modifier.fillMaxWidth(), enabled = etapes.isNotEmpty()) { Text("Commencer") }
-            }
-
-            i >= etapes.size -> {
-                Text("Fin du parcours", style = MaterialTheme.typography.headlineSmall)
-                if (parcours.conclusion.isNotBlank()) Text(parcours.conclusion)
-                OutlinedButton(onClick = { allerA(0) }, Modifier.fillMaxWidth()) { Text("Revoir depuis le début") }
-            }
-
-            else -> Carte(etapes[i], i, etapes.size, catalogue, faireLePoint, lireEchelle = { echelle = it })
+            } }
         }
 
-        if (i >= 0) {
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+        // En bas, toujours au même endroit.
+        if (etat.currentPage > 0) {
+            Row(
+                Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
                 TextButton(onClick = { allerA(i - 1) }) { Text("← Précédente") }
                 if (i < etapes.size) {
                     Button(onClick = { allerA(i + 1) }) { Text(if (i == etapes.size - 1) "Terminer" else "Suivante →") }
@@ -208,7 +242,7 @@ private fun Cartes(parcours: Parcours, catalogue: Catalogue, depot: Depot, i: In
 }
 
 @Composable
-private fun Carte(etape: Etape, i: Int, n: Int, catalogue: Catalogue, faireLePoint: (String) -> Unit, lireEchelle: (String) -> Unit) {
+private fun Carte(etape: Etape, i: Int, n: Int, catalogue: Catalogue, faireLePoint: (String) -> Unit, lireEchelle: (String, String) -> Unit) {
 
     // Remis à zéro d'une carte à l'autre.
     var plus by rememberSaveable(etape.id) { mutableStateOf(false) }
@@ -231,7 +265,10 @@ private fun Carte(etape: Etape, i: Int, n: Int, catalogue: Catalogue, faireLePoi
         "violentometer" -> {
             val vm = catalogue.violentometres.find { it.id == etape.violentometreId }
             if (vm != null) {
-                OutlinedButton(onClick = { lireEchelle(vm.id) }, Modifier.fillMaxWidth()) { Text("📊 Lire l'échelle, situation par situation") }
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(onClick = { lireEchelle(vm.id, "carte") }, Modifier.weight(1f)) { Text("📊 Situation par situation") }
+                    OutlinedButton(onClick = { lireEchelle(vm.id, "entiere") }, Modifier.weight(1f)) { Text("📜 L'échelle en entier") }
+                }
                 if (vm.id in catalogue.pointsParViolentometre) {
                     Button(onClick = { faireLePoint(vm.id) }, Modifier.fillMaxWidth()) { Text("Faire le point dessus") }
                 }

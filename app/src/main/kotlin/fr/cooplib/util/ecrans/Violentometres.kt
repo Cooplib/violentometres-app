@@ -162,16 +162,18 @@ internal fun FicheViolentometre(
 ) {
 
     val souvenirs by depot.memoire.etat.collectAsState()
-    var deroulee by rememberSaveable(vm.id) { mutableStateOf(false) }
+    // Comment on lit l'échelle : « carte » (une situation à la fois),
+    // « entiere » (de haut en bas), ou pas encore (null).
+    var lecture by rememberSaveable(vm.id) { mutableStateOf<String?>(null) }
     var plus by rememberSaveable(vm.id) { mutableStateOf(false) }
     var erreur by remember(vm.id) { mutableStateOf<String?>(null) }
     val portee = rememberCoroutineScope()
     val aime = vm.id in souvenirs.aimes
 
-    // L'échelle se lit en mode lecture, une situation par carte.
-    if (deroulee) {
-        LectureEchelle(vm, fermer = { deroulee = false }, faireLePoint = if (vm.id in catalogue.pointsParViolentometre) ({ faireLePoint(vm.id) }) else null)
-        return
+    val versLePoint: (() -> Unit)? = if (vm.id in catalogue.pointsParViolentometre) ({ faireLePoint(vm.id) }) else null
+    when (lecture) {
+        "carte" -> { LectureEchelle(vm, fermer = { lecture = null }, faireLePoint = versLePoint); return }
+        "entiere" -> { EchelleEntiere(vm, fermer = { lecture = null }, faireLePoint = versLePoint); return }
     }
 
     Page {
@@ -196,8 +198,9 @@ internal fun FicheViolentometre(
         Button(onClick = { faireLePoint(vm.id) }, Modifier.fillMaxWidth(), enabled = vm.id in catalogue.pointsParViolentometre) {
             Text("🧭 Faire le point dessus")
         }
-        OutlinedButton(onClick = { deroulee = true }, Modifier.fillMaxWidth()) {
-            Text("📊 Lire l'échelle, situation par situation")
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            OutlinedButton(onClick = { lecture = "carte" }, Modifier.weight(1f)) { Text("📊 Situation par situation") }
+            OutlinedButton(onClick = { lecture = "entiere" }, Modifier.weight(1f)) { Text("📜 L'échelle en entier") }
         }
 
         val textes = listOf(vm.apropos, vm.analyse).filter { it.isNotBlank() }

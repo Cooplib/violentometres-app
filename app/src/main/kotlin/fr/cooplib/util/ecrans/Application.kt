@@ -48,7 +48,7 @@ enum class Entree(val icone: String, val titre: String, val sousTitre: String) {
     COMPRENDRE("🗺️", "Comprendre", "Des parcours courts, une carte par étape."),
 }
 
-private enum class Ecran { ACCUEIL, AIDE, POINT, RECITS, COMPRENDRE, REGLAGES, PROTECTION }
+private enum class Ecran { ACCUEIL, AIDE, POINT, RECITS, COMPRENDRE, REGLAGES, PROTECTION, DIDACTICIEL }
 
 /*
  * `verrouillee` : déguisée et quittée, l'application rouvre sur la
@@ -108,10 +108,16 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
                             afficherLeVraiNom = { poserLeCode(it); montrerLeVraiNom(); etapeConfiguration = 1 },
                             voirCeQuiEstProtege = { protection = true },
                         )
-                        else -> CeQuOnGarde { g ->
+                        etapeConfiguration == 1 -> CeQuOnGarde { g ->
                             reglages.garderLesReponses = g; garder = g
-                            reglages.configure = true; configure = true
-                            deverrouiller()
+                            etapeConfiguration = 2
+                        }
+                        etapeConfiguration == 2 -> ProposerLeDidacticiel { suivre ->
+                            if (suivre) etapeConfiguration = 3
+                            else { reglages.configure = true; configure = true; deverrouiller() }
+                        }
+                        else -> Didacticiel {
+                            reglages.configure = true; configure = true; deverrouiller()
                         }
                     }
                 }
@@ -210,6 +216,7 @@ private fun Contenu(
                 "Réglages" to { aller(Ecran.REGLAGES) },
                 "Mettre à jour le contenu" to { depot.synchroniser(demandee = true); aller(Ecran.REGLAGES) },
                 "Ce qui est protégé, ce qui ne l'est pas" to { aller(Ecran.PROTECTION) },
+                "Le didacticiel" to { aller(Ecran.DIDACTICIEL) },
             ),
         )
 
@@ -250,9 +257,11 @@ private fun Contenu(
                 afficherLeVraiNom = montrerLeVraiNom,
                 changerGarder = changerGarder,
                 voirCeQuiEstProtege = { aller(Ecran.PROTECTION) },
+                revoirLeDidacticiel = { aller(Ecran.DIDACTICIEL) },
                 miseAJour = { MiseAJour(depot) },
             )
             ecran == Ecran.PROTECTION -> CeQuiEstProtege(deguise)
+            ecran == Ecran.DIDACTICIEL -> Didacticiel { aller(Ecran.ACCUEIL) }
         }
     }
 }

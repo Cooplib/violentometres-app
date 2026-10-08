@@ -22,6 +22,9 @@ import java.io.File
 data class Souvenirs(
     val aimes: Set<String> = emptySet(),
     val lus: Set<String> = emptySet(),
+    // Les récits que la personne a choisi de recacher, pour elle-même,
+    // même ceux déclarés « sans flou » (retour du 8 octobre 2026).
+    val caches: Set<String> = emptySet(),
     // Le nombre de likes que le serveur a rendu après un like : plus juste
     // que celui du catalogue, tiré avant.
     val comptes: Map<String, Int> = emptyMap(),

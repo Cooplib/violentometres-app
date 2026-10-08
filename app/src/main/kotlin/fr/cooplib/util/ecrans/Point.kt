@@ -11,6 +11,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.collectAsState
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
@@ -140,7 +146,7 @@ fun FaireLePoint(
     when {
         c != null && pool != null -> androidx.compose.runtime.key(c) {
             // Une clé par cible : changer de point repart de son propre état.
-            Deroulement(pool, c, garder, ouvrirRecit, autrePoint = { cible = it })
+            Deroulement(pool, c, garder, catalogue, depot, ouvrirRecit, autrePoint = { cible = it }, voirViolentometre = { cible = null; fiche = it })
         }
         vm != null -> androidx.compose.runtime.key(vm.id) {
             FicheViolentometre(vm, catalogue, depot, faireLePoint = { cible = it }, ouvrir = { fiche = it })
@@ -170,8 +176,11 @@ private fun Deroulement(
     pool: PoolDuPoint,
     cle: String,
     garder: Boolean,
+    catalogue: Catalogue,
+    depot: fr.cooplib.util.stockage.Depot,
     ouvrirRecit: (String) -> Unit,
     autrePoint: (String) -> Unit,
+    voirViolentometre: (String) -> Unit,
 ) {
 
     val contexte = LocalContext.current
@@ -257,7 +266,26 @@ private fun Deroulement(
                 )
             }
         )
-    ) { Page {
+    ) {
+
+    val niveauQuestion = d.niveauCourant(etat)
+
+    when {
+
+        question != null && niveauQuestion != null -> EcranQuestion(
+            pool = pool, d = d, etat = etat, total = total,
+            niveau = niveauQuestion, situation = question,
+            decalage = decalage.value, seuil = seuil,
+            avancer = ::avancer, maintenant = maintenant,
+        )
+
+        etat.phase == Phase.RESULTAT && !reprise -> Bilan(
+            pool, d, etat, garder, catalogue, depot,
+            recommencer = ::recommencer, ouvrirRecit = ouvrirRecit, autrePoint = autrePoint,
+            voirViolentometre = voirViolentometre.takeIf { cle != GENERAL }?.let { v -> { v(cle) } },
+        )
+
+        else -> Page {
 
         if (reprise) {
             Text("Je fais le point", style = MaterialTheme.typography.headlineSmall)
@@ -312,46 +340,11 @@ private fun Deroulement(
                 }
             }
 
+            // Les questions et le bilan ont leur propre écran, plus bas ;
+            // ici, seulement le cas où le contenu a changé depuis la pause.
             Phase.QUESTIONS -> {
-                val niveau = d.niveauCourant(etat)
-                val situation = d.questionCourante(etat)
-                if (niveau == null || situation == null) {
-                    // Le contenu a changé depuis la pause.
-                    Text("Ce point a changé depuis votre dernière visite.")
-                    Button(onClick = ::recommencer) { Text("Recommencer") }
-                    return@Page
-                }
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    EtiquetteNiveau(niveau)
-                    Text("${etat.index + 1} / ${d.situationsCourantes(etat).size} · ${etat.reponses.size} sur $total au total", style = MaterialTheme.typography.bodySmall)
-                }
-                // La progression du point entier, à la couleur du niveau.
-                LinearProgressIndicator(
-                    progress = { etat.reponses.size.toFloat() / total.coerceAtLeast(1) },
-                    modifier = Modifier.fillMaxWidth(),
-                    color = couleur(niveau),
-                    trackColor = couleur(niveau).copy(alpha = 0.2f),
-                )
-                Text(if (etat.public == "proche") "Vous observez ceci ?" else "Vous vivez ceci ?", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                // La situation, en grand, dans sa carte (`.test__situation`),
-                // qu'on peut aussi glisser : à gauche oui, à droite non.
-                CarteQuiSuit(texte = situation.texte, bordure = couleur(niveau), decalage = decalage.value, seuil = seuil)
-                Note("Glissez n'importe où : à gauche pour oui, à droite pour non. Ou touchez les boutons.")
-                if (situation.sources.size > 1) Text("Dans : ${situation.sources.joinToString(", ")}", style = MaterialTheme.typography.bodySmall)
-                etat.reponses[situation.id]?.let { r ->
-                    Text("Vous aviez répondu : ${mapOf(Reponse.OUI to "oui", Reponse.NON to "non", Reponse.PASSER to "passé")[r]}. Vous pouvez changer.", style = MaterialTheme.typography.bodySmall)
-                }
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-                    // Comme sur le site : « Oui » plein, « Non » bordé, « Passer »
-                    // en simple lien.
-                    Button(onClick = { avancer(d.repondre(etat, situation, Reponse.OUI, maintenant())) }, Modifier.weight(1f)) { Text("Oui", fontSize = 17.sp) }
-                    OutlinedButton(onClick = { avancer(d.repondre(etat, situation, Reponse.NON, maintenant())) }, Modifier.weight(1f)) { Text("Non", fontSize = 17.sp) }
-                }
-                TextButton(onClick = { avancer(d.repondre(etat, situation, Reponse.PASSER, maintenant())) }, Modifier.fillMaxWidth()) {
-                    Text("Passer", color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-                TextButton(onClick = { d.precedent(etat)?.let(::avancer) }, enabled = etat.niveau > 0 || etat.index > 0) { Text("← Question précédente") }
-                Actions(pause = { avancer(d.pause(etat)) }, arreter = { avancer(d.terminer(etat, maintenant())) })
+                Text("Ce point a changé depuis votre dernière visite.")
+                Button(onClick = ::recommencer) { Text("Recommencer") }
             }
 
             Phase.SAS -> {
@@ -395,7 +388,13 @@ private fun Deroulement(
             }
 
             Phase.ALERTE -> {
-                Text("Ce que vous venez de reconnaître est grave.", style = MaterialTheme.typography.headlineSmall)
+                // Pas « c'est grave » : ce que la situation peut faire, et
+                // maintenant (retour du 8 octobre 2026).
+                Text(
+                    if (etat.public == "proche") "Cette situation peut mettre cette personne en danger."
+                    else "Cette situation peut vous mettre en danger.",
+                    style = MaterialTheme.typography.headlineSmall,
+                )
                 Encadre("Vous n'êtes pas obligé·e d'aller plus loin. Voici qui peut vous aider, maintenant.", alerte = true)
                 d.aidesDAlerte(etat).forEach { CarteAide(it) }
                 Button(onClick = { avancer(d.terminer(etat, maintenant())) }, Modifier.fillMaxWidth()) { Text("Arrêter ici et voir où j'en suis") }
@@ -412,31 +411,175 @@ private fun Deroulement(
                 TextButton(onClick = { avancer(d.terminer(etat, maintenant())) }) { Text("Arrêter et voir où j'en suis") }
             }
 
-            Phase.RESULTAT -> Resultat(pool, d, etat, garder, recommencer = ::recommencer, ouvrirRecit = ouvrirRecit, autrePoint = autrePoint)
+            Phase.RESULTAT -> Unit
         }
-    } }
+    }
+    }
+    }
     }
 }
 
+/*
+ * Une question, sur son propre écran. Les boutons sont CALÉS EN BAS, au
+ * même endroit quelle que soit la longueur de la situation : avant, ils
+ * montaient ou descendaient avec le texte (retour du 8 octobre 2026). Ce
+ * qui précède défile si la situation est longue.
+ */
 @Composable
-private fun Resultat(
+private fun EcranQuestion(
+    pool: PoolDuPoint,
+    d: Deroule,
+    etat: EtatDuPoint,
+    total: Int,
+    niveau: Niveau,
+    situation: fr.cooplib.util.modeles.SituationDuPoint,
+    decalage: Float,
+    seuil: Float,
+    avancer: (EtatDuPoint) -> Unit,
+    maintenant: () -> Long,
+) {
+    Column(Modifier.fillMaxSize()) {
+
+        Column(
+            Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Row(Modifier.height(IntrinsicSize.Min)) {
+                Box(Modifier.width(4.dp).fillMaxHeight().background(MaterialTheme.colorScheme.outline, RoundedCornerShape(2.dp)))
+                Column(Modifier.padding(start = 10.dp)) {
+                    Note("Je fais le point")
+                    Text(pool.titre, style = MaterialTheme.typography.titleSmall)
+                }
+            }
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                EtiquetteNiveau(niveau)
+                Text("${etat.index + 1} / ${d.situationsCourantes(etat).size} · ${etat.reponses.size} sur $total au total", style = MaterialTheme.typography.bodySmall)
+            }
+            // La progression du point entier, à la couleur du niveau.
+            LinearProgressIndicator(
+                progress = { etat.reponses.size.toFloat() / total.coerceAtLeast(1) },
+                modifier = Modifier.fillMaxWidth(),
+                color = couleur(niveau),
+                trackColor = couleur(niveau).copy(alpha = 0.2f),
+            )
+            Text(if (etat.public == "proche") "Vous observez ceci ?" else "Vous vivez ceci ?", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            // La situation, en grand, dans sa carte (`.test__situation`) ; elle
+            // suit le geste fait n'importe où sur l'écran.
+            CarteQuiSuit(texte = situation.texte, bordure = couleur(niveau), decalage = decalage, seuil = seuil)
+            if (situation.sources.size > 1) Note("Dans : ${situation.sources.joinToString(", ")}")
+            etat.reponses[situation.id]?.let { r ->
+                Note("Vous aviez répondu : ${mapOf(Reponse.OUI to "oui", Reponse.NON to "non", Reponse.PASSER to "passé")[r]}. Vous pouvez changer.")
+            }
+        }
+
+        // Le bas de l'écran : toujours au même endroit.
+        Column(Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Note("Glissez n'importe où : à gauche pour oui, à droite pour non.", Modifier.fillMaxWidth())
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                // Comme sur le site : « Oui » plein, « Non » bordé.
+                Button(onClick = { avancer(d.repondre(etat, situation, Reponse.OUI, maintenant())) }, Modifier.weight(1f)) { Text("Oui", fontSize = 18.sp) }
+                OutlinedButton(onClick = { avancer(d.repondre(etat, situation, Reponse.NON, maintenant())) }, Modifier.weight(1f)) { Text("Non", fontSize = 18.sp) }
+            }
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                TextButton(onClick = { d.precedent(etat)?.let(avancer) }, enabled = etat.niveau > 0 || etat.index > 0) { Text("← Précédente") }
+                TextButton(onClick = { avancer(d.repondre(etat, situation, Reponse.PASSER, maintenant())) }) {
+                    Text("Passer", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                TextButton(onClick = { avancer(d.pause(etat)) }) { Text("Faire une pause") }
+                TextButton(onClick = { avancer(d.terminer(etat, maintenant())) }) { Text("Arrêter et voir où j'en suis") }
+            }
+        }
+    }
+}
+
+/*
+ * Le bilan, EN PLUSIEURS ÉCRANS qu'on fait glisser (retour du 8 octobre
+ * 2026) : tout sur une seule page faisait un long défilement où rien ne
+ * ressortait. Les petits points en bas disent combien il y en a, et y
+ * mènent directement. Un écran sans rien à dire n'apparaît pas.
+ */
+@Composable
+private fun Bilan(
     pool: PoolDuPoint,
     d: Deroule,
     etat: EtatDuPoint,
     garder: Boolean,
+    catalogue: Catalogue,
+    depot: fr.cooplib.util.stockage.Depot,
     recommencer: () -> Unit,
     ouvrirRecit: (String) -> Unit,
     autrePoint: (String) -> Unit,
+    voirViolentometre: (() -> Unit)?,
 ) {
 
     val reconnues = d.situationsReconnues(etat.reponses)
+    val aides = d.aidesDuResultat(etat)
+    val recos = remember(pool, reconnues) { recommander(pool, reconnues, ordreFrancais) }
+    val aRecommander = recos.violentometres.isNotEmpty() || recos.parcours.isNotEmpty() || recos.recits.isNotEmpty() || recos.mecanismes.isNotEmpty()
+    // Le point portait sur un violentomètre : y revenir, et ce qui lui ressemble.
+    val vm = catalogue.violentometres.find { it.id == pool.id && pool.type == "violentometer" }
+    val proches = vm?.let { v ->
+        catalogue.proches[v.id]?.violentometres.orEmpty()
+            .mapNotNull { p -> catalogue.violentometres.find { it.id == p.violentometre.id }?.let { it to p } }
+    }.orEmpty()
+
+    val ecrans = buildList<Pair<String, @Composable () -> Unit>> {
+        add("Où vous en êtes" to { OuVousEnEtes(pool, d, etat, reconnues) })
+        if (reconnues.isNotEmpty()) add("Ce que vous avez reconnu" to { CeQueVousAvezReconnu(d, reconnues) })
+        if (aides.isNotEmpty()) add("Qui contacter" to {
+            Text("🆘 Quoi faire, qui contacter", style = MaterialTheme.typography.headlineSmall)
+            if (d.aidesReconnues(reconnues).isNotEmpty()) Note("Les premières sont liées à ce que vous avez reconnu.")
+            aides.forEach { CarteAide(it) }
+        })
+        if (aRecommander || vm != null) add("Et maintenant" to {
+            if (vm != null && voirViolentometre != null) {
+                Text("Et maintenant ?", style = MaterialTheme.typography.headlineSmall)
+                OutlinedButton(onClick = voirViolentometre, Modifier.fillMaxWidth()) { Text("↩ Revoir « ${vm.titre} »") }
+            }
+            EtMaintenant(pool, reconnues, ouvrirRecit, autrePoint)
+            if (proches.isNotEmpty()) {
+                Text("📊 Dans le même genre", style = MaterialTheme.typography.titleMedium)
+                val souvenirs by depot.memoire.etat.collectAsState()
+                for ((autre, p) in proches.take(5)) {
+                    CarteViolentometre(autre, autre.id in souvenirs.aimes, souvenirs.comptes[autre.id] ?: autre.aime, raison(p)) { autrePoint(autre.id) }
+                }
+            }
+        })
+        add("Vos réponses" to {
+            Text("Vos réponses", style = MaterialTheme.typography.headlineSmall)
+            Encadre(
+                titre = "Rien n'a été envoyé",
+                texte = "Ni vos réponses, ni ce résultat. " +
+                    if (garder) "Ils restent sur ce téléphone jusqu'à ce que vous les effaciez."
+                    else "Ils disparaissent quand vous quittez l'application.",
+            )
+            OutlinedButton(onClick = recommencer, Modifier.fillMaxWidth()) { Text("Effacer mes réponses et recommencer") }
+        })
+    }
+
+    val etatPages = rememberPagerState { ecrans.size }
+    val portee = rememberCoroutineScope()
+
+    Column(Modifier.fillMaxSize()) {
+        HorizontalPager(state = etatPages, modifier = Modifier.weight(1f)) { page ->
+            Box(Modifier.fillMaxSize()) { Page { ecrans[page].second() } }
+        }
+        Note("${ecrans[etatPages.currentPage].first} · glissez pour la suite", Modifier.fillMaxWidth().padding(horizontal = 16.dp))
+        Points(ecrans.size, etatPages.currentPage, { portee.launch { etatPages.animateScrollToPage(it) } }, Modifier.padding(bottom = 6.dp))
+    }
+}
+
+@Composable
+private fun OuVousEnEtes(pool: PoolDuPoint, d: Deroule, etat: EtatDuPoint, reconnues: List<fr.cooplib.util.modeles.SituationDuPoint>) {
+
     val atteint = Deroule.niveauAtteint(reconnues)?.let { a -> pool.niveaux.find { it.position == a } }
     val sansPositif = reconnues.none { it.gravite == 0 } && d.situationsParNiveau[0].orEmpty().isNotEmpty()
     val formes = Deroule.formesReconnues(reconnues)
-    val aides = d.aidesDuResultat(etat)
 
     Text("Où vous en êtes", style = MaterialTheme.typography.headlineSmall)
-    Text("${pluriel(etat.reponses.size, "réponse")} sur ${pool.situations.size}", style = MaterialTheme.typography.bodySmall)
+    Note("${pluriel(etat.reponses.size, "réponse")} sur ${pool.situations.size} · ${pool.titre}")
 
     // La jauge du site : une case par niveau, allumée jusqu'au niveau
     // atteint, la case atteinte cerclée.
@@ -445,7 +588,7 @@ private fun Resultat(
     Text(
         if (atteint != null) "Le niveau le plus élevé que vous avez reconnu : ${atteint.label}."
         else "Vous n'avez reconnu aucune situation.",
-        style = MaterialTheme.typography.titleMedium,
+        style = MaterialTheme.typography.titleLarge,
     )
     if (atteint != null) Note("Une seule situation à ce niveau suffit : ce n'est pas une moyenne.")
 
@@ -454,32 +597,34 @@ private fun Resultat(
     if (formes.isNotEmpty()) {
         val liste = formes.map { (cle, n) -> "${(LIBELLES_FORMES[cle] ?: cle).lowercase()} ($n)" }
         val phrase = if (liste.size == 1) liste[0] else liste.dropLast(1).joinToString(", ") + " et " + liste.last()
-        Text("Ce que vous avez reconnu porte surtout sur $phrase.")
+        Encadre("Ce que vous avez reconnu porte surtout sur $phrase.")
     }
+}
 
-    for ((niveau, situations) in d.reconnuesParNiveau(reconnues)) {
+/*
+ * Ce qui a été reconnu, plus lisible qu'une liste à puces : une case par
+ * situation, teintée de la couleur de son niveau, groupées sous
+ * l'étiquette du niveau.
+ */
+@Composable
+private fun CeQueVousAvezReconnu(d: Deroule, reconnues: List<fr.cooplib.util.modeles.SituationDuPoint>) {
+    val fond = MaterialTheme.colorScheme.surface
+    Text("Ce que vous avez reconnu", style = MaterialTheme.typography.headlineSmall)
+    for ((niveau, situations) in d.reconnuesParNiveau(reconnues).reversed()) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             EtiquetteNiveau(niveau)
-            Text("${situations.size}")
+            Note(pluriel(situations.size, "situation"))
         }
-        situations.forEach { Text("· ${it.texte}") }
+        for (s in situations) {
+            Surface(Modifier.fillMaxWidth(), shape = Charte.ArrondiMoyen, color = teinteSur(couleur(niveau), fond, 0.14f)) {
+                Row(Modifier.height(IntrinsicSize.Min)) {
+                    Box(Modifier.width(5.dp).fillMaxHeight().background(couleur(niveau)))
+                    Text(s.texte, Modifier.padding(12.dp), style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+        }
+        Espace(4)
     }
-
-    if (aides.isNotEmpty()) {
-        Text("🆘 Quoi faire, qui contacter", style = MaterialTheme.typography.titleMedium)
-        if (d.aidesReconnues(reconnues).isNotEmpty()) Text("Les premières sont liées à ce que vous avez reconnu.", style = MaterialTheme.typography.bodySmall)
-        aides.forEach { CarteAide(it) }
-    }
-
-    EtMaintenant(pool, reconnues, ouvrirRecit, autrePoint)
-
-    OutlinedButton(onClick = recommencer, Modifier.fillMaxWidth()) { Text("Effacer mes réponses") }
-
-    Encadre(
-        "Rien de ce point n'a été envoyé : ni vos réponses, ni ce résultat. " +
-            if (garder) "Ils restent sur ce téléphone jusqu'à ce que vous les effaciez."
-            else "Ils disparaissent quand vous quittez l'application."
-    )
 }
 
 /*

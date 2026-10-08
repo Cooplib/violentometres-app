@@ -106,11 +106,13 @@ fun Recits(recits: List<Recit>, depot: Depot, garderLesBrouillons: Boolean, ouve
             liste = if (liste.any { it.id == recit.id }) liste else listOf(recit),
             depart = recit.id,
             lus = souvenirs.lus,
+            caches = souvenirs.caches,
             marquerLu = depot::marquerLu,
+            recacher = depot::recacher,
             changer = { lu = it },
             signaler = { signale = true },
         )
-        else -> Liste(liste, souvenirs.lus, cherche, { cherche = it }, tri, { tri = it }, ouvrir = { lu = it }, deposer = { depose = true })
+        else -> Liste(liste, souvenirs.lus, souvenirs.caches, cherche, { cherche = it }, tri, { tri = it }, ouvrir = { lu = it }, deposer = { depose = true })
     }
 }
 
@@ -118,6 +120,7 @@ fun Recits(recits: List<Recit>, depot: Depot, garderLesBrouillons: Boolean, ouve
 private fun Liste(
     recits: List<Recit>,
     lus: Set<String>,
+    caches: Set<String>,
     cherche: String,
     chercher: (String) -> Unit,
     tri: String,
@@ -145,11 +148,14 @@ private fun Liste(
                 Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Text(r.titre, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
-                        if (r.id in lus) Note("Lu")
+                        when {
+                            r.id in caches -> Note("Caché par vous")
+                            r.id in lus -> Note("Lu")
+                        }
                     }
                     // Un récit dur à lire ne montre rien de son texte dans la
                     // liste : seulement qu'il est là.
-                    if (r.sansFlou || r.id in lus) {
+                    if (visible(r, lus, caches)) {
                         Text(r.texte, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 3, overflow = TextOverflow.Ellipsis)
                     } else {
                         Text("Ce récit peut être difficile à lire.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -176,7 +182,9 @@ private fun Lecteur(
     liste: List<Recit>,
     depart: String,
     lus: Set<String>,
+    caches: Set<String>,
     marquerLu: (String) -> Unit,
+    recacher: (String) -> Unit,
     changer: (String) -> Unit,
     signaler: () -> Unit,
 ) {
@@ -199,15 +207,17 @@ private fun Lecteur(
                 Text(recit.titre, style = MaterialTheme.typography.headlineSmall)
                 Compteurs(ilYA(recit.creeLe), "👁 ${recit.vues}")
 
-                if (recit.sansFlou || recit.id in lus) {
+                if (visible(recit, lus, caches)) {
                     Text(recit.texte, style = MaterialTheme.typography.bodyLarge)
+                    if (recit.apropos.isNotBlank()) Note(recit.apropos)
+                    // Le recacher pour soi, même gardé, même « sans flou ».
+                    TextButton(onClick = { recacher(recit.id) }) { Text("🙈 Cacher ce récit pour moi") }
                 } else {
-                    Encadre("Ce récit peut être difficile à lire. Vous pouvez le lire maintenant, ou revenir plus tard.")
+                    Encadre(
+                        if (recit.id in caches) "Caché par vous. Vous pouvez le lire à nouveau quand vous voulez."
+                        else "Ce récit peut être difficile à lire. Vous pouvez le lire maintenant, ou revenir plus tard."
+                    )
                     Button(onClick = { marquerLu(recit.id) }) { Text("Lire le récit") }
-                }
-
-                if (recit.apropos.isNotBlank() && (recit.sansFlou || recit.id in lus)) {
-                    Note(recit.apropos)
                 }
 
                 // Atteignable depuis chaque récit, lu ou non : on peut avoir à
@@ -217,6 +227,11 @@ private fun Lecteur(
         }
     }
 }
+
+// Un récit se montre s'il est « sans flou » et pas recaché, ou s'il a été
+// dévoilé.
+private fun visible(r: Recit, lus: Set<String>, caches: Set<String>) =
+    r.id in lus || (r.sansFlou && r.id !in caches)
 
 /*
  * « aujourd'hui », « hier », « il y a 3 jours », « il y a un mois » :

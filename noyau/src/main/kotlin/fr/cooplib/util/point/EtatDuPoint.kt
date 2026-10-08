@@ -27,6 +27,9 @@ data class EtatDuPoint(
     val aidesVues: List<String> = emptyList(),
     @SerialName("finishedAt") val finiLe: Long? = null,
     val situationVue: String? = null,
+    // Les aides de la dernière alerte montrée : la même ne revient pas.
+    // `null` tant qu'aucune n'a été vue (une alerte sans aide l'a été).
+    val alerteVue: List<String>? = null,
     val reprise: Phase? = null,
 )
 
