@@ -17,8 +17,10 @@ import kotlinx.serialization.Serializable
 data class EtatDuPoint(
     val phase: Phase = Phase.INTRO,
     // « personne » : je réponds sur ce que je vis ; « proche » : sur ce
-    // que j'observe. Change l'ordre des aides, rien d'autre.
-    @SerialName("audience") val public: String? = null,
+    // que j'observe. Change l'ordre des aides, rien d'autre. « personne »
+    // d'emblée : la question est partie le 8 octobre 2026, ici comme sur
+    // le site (DEPART dans deroule.js).
+    @SerialName("audience") val public: String? = "personne",
     // L'indice dans les niveaux PROPOSÉS, pas la position du niveau :
     // un niveau sans situation est sauté.
     @SerialName("level") val niveau: Int = 0,

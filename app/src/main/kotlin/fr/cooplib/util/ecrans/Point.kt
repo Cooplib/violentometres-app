@@ -27,6 +27,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.unit.IntOffset
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
@@ -93,11 +94,6 @@ private val LIBELLES_FORMES = mapOf(
     "numerique" to "Les violences numériques",
     "physique" to "Les violences physiques",
     "sexuelle" to "Les violences sexuelles",
-)
-
-private val PUBLICS = listOf(
-    "personne" to "Pour moi : je réponds sur ce que je vis.",
-    "proche" to "Pour quelqu'un que je connais : je réponds sur ce que j'observe.",
 )
 
 private const val GENERAL = "orientation"
@@ -241,19 +237,29 @@ private fun Deroulement(
     BoxWithConstraints(Modifier.fillMaxSize().background(teinte)) {
 
     val largeur = constraints.maxWidth.toFloat()
-    val seuil = largeur / 3
+    /*
+     * Un geste court suffit (retour du 8 octobre 2026) : il fallait
+     * pousser la carte d'un tiers de l'écran. C'est maintenant un
+     * sixième, ou un coup de doigt rapide, même bref : ce qu'on fait
+     * naturellement.
+     */
+    val seuil = largeur / 6
+    val vitesse = remember(cleQuestion) { VelocityTracker() }
+    val coupDeDoigt = 900f
 
     Box(
         Modifier.fillMaxSize().then(
             if (question == null) Modifier
             else Modifier.pointerInput(cleQuestion) {
                 detectHorizontalDragGestures(
+                    onDragStart = { vitesse.resetTracking() },
                     onDragEnd = {
+                        val vx = vitesse.calculateVelocity().x
                         portee.launch {
                             val v = decalage.value
                             when {
-                                v <= -seuil -> { decalage.animateTo(-largeur * 1.4f); avancer(d.repondre(etat, question, Reponse.OUI, maintenant())) }
-                                v >= seuil -> { decalage.animateTo(largeur * 1.4f); avancer(d.repondre(etat, question, Reponse.NON, maintenant())) }
+                                v <= -seuil || (vx <= -coupDeDoigt && v < 0) -> { decalage.animateTo(-largeur * 1.4f); avancer(d.repondre(etat, question, Reponse.OUI, maintenant())) }
+                                v >= seuil || (vx >= coupDeDoigt && v > 0) -> { decalage.animateTo(largeur * 1.4f); avancer(d.repondre(etat, question, Reponse.NON, maintenant())) }
                                 else -> decalage.animateTo(0f)
                             }
                         }
@@ -261,6 +267,7 @@ private fun Deroulement(
                     onDragCancel = { portee.launch { decalage.animateTo(0f) } },
                     onHorizontalDrag = { change, delta ->
                         change.consume()
+                        vitesse.addPosition(change.uptimeMillis, change.position)
                         portee.launch { decalage.snapTo(decalage.value + delta) }
                     },
                 )
@@ -325,14 +332,7 @@ private fun Deroulement(
                 Encadre("Ce n'est pas un diagnostic. C'est un repère, pour mettre des mots.")
                 Note("Vous pouvez faire une pause ou vous arrêter quand vous voulez ; les aides sont là à chaque étape. « Quitter vite », en haut, efface vos réponses et ferme l'application.")
 
-                Text("Vous répondez…", style = MaterialTheme.typography.titleSmall)
-                for ((cleP, titre) in PUBLICS) {
-                    Row(Modifier.fillMaxWidth().clickable { avancer(d.choisirPublic(etat, cleP)) }, verticalAlignment = Alignment.CenterVertically) {
-                        RadioButton(selected = etat.public == cleP, onClick = { avancer(d.choisirPublic(etat, cleP)) })
-                        Text(titre)
-                    }
-                }
-                Button(onClick = { avancer(d.commencer(etat)) }, enabled = etat.public != null, modifier = Modifier.fillMaxWidth()) { Text("Commencer") }
+                Button(onClick = { avancer(d.commencer(etat)) }, modifier = Modifier.fillMaxWidth()) { Text("Commencer") }
 
                 if (etat.finiLe != null) {
                     Text("Vous aviez déjà fait ce point sur ce téléphone.")
