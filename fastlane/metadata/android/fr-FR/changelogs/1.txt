@@ -1,0 +1,7 @@
+Première version.
+
+• Trouver de l'aide : les numéros d'écoute et d'urgence, d'un seul appui.
+• Faire le point : en général, sur un violentomètre ou sur un parcours, et sur son propre violentomètre.
+• Des récits : lire, déposer le sien, signaler.
+• Comprendre : les parcours, une carte par étape.
+• Discrète : calculatrice sur l'écran d'accueil, code, « Quitter vite », rien de gardé par défaut.

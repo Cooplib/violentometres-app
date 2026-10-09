@@ -115,6 +115,10 @@ jobs:
   diffusion:
     runs-on: ubuntu-latest
 
+    # Pour publier la version sur une étiquette (dernière étape).
+    permissions:
+      contents: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -170,6 +174,25 @@ jobs:
           name: apk-diffusion-essai
           path: app/build/outputs/apk/essai/*.apk
           retention-days: 14
+
+      # UNE ÉTIQUETTE vX.Y PUBLIE LA VERSION : l'APK signé, attaché à une
+      # « release » GitHub. C'est là que F-Droid le prend pour le comparer
+      # au sien (Binaries, dans la recette : outils/fdroid/), et que la page
+      # d'installation du site peut renvoyer. Jamais une version non signée :
+      # elle ne s'installerait par-dessus aucune autre.
+      - name: Publier la version
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "${SIGNATURE_FICHIER:-}" ]; then
+            echo "::error::Pas de clé de signature : on ne publie pas une version non signée."
+            exit 1
+          fi
+          code=$(sed -n 's/.*versionCode = \([0-9]*\).*/\1/p' app/build.gradle.kts)
+          notes=fastlane/metadata/android/fr-FR/changelogs/$code.txt
+          gh release create "$GITHUB_REF_NAME" app/build/outputs/apk/release/app-release.apk \
+            --title "$GITHUB_REF_NAME" --notes-file "$notes"
 
   # DEUX CONSTRUCTIONS, LE MÊME APK. F-Droid recompile chaque version et
   # ne publie l'APK signé par Cooplib que si le sien est identique, octet

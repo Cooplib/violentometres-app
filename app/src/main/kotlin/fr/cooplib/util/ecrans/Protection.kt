@@ -42,8 +42,8 @@ fun CeQuiEstProtege(deguise: Boolean, captures: Boolean) {
 
         Encadre(alerte = true, titre = "Ce qu'elle ne peut pas protéger") {
             Text("Quelqu'un qui cherche. Dans les réglages du téléphone, la liste des applications montre une Calculatrice de plus, avec la place qu'elle prend et les données qu'elle consomme. Une deuxième calculatrice peut étonner.")
-            Text("Votre compte Google. Installée depuis le Play Store, l'application apparaît sous son vrai nom dans la bibliothèque du compte. Installée depuis le site ou depuis F-Droid, elle n'y apparaît pas.")
-            Text("Le réseau. Quand elle se met à jour, ou quand vous aimez un violentomètre, une box ou un réseau surveillé peut voir à quel site elle parle. Elle se met à jour rarement : tous les trois jours au plus, ou quand vous le demandez.")
+            Text("Le magasin d'où elle vient. Installée depuis le Play Store, elle apparaît sous son vrai nom dans la bibliothèque de votre compte Google. Installée depuis F-Droid, elle apparaît sous son vrai nom dans l'application F-Droid. Installée depuis le site, ni l'un ni l'autre.")
+            Text("Le réseau. Quand elle se met à jour, ou quand vous aimez un violentomètre, une box ou un réseau surveillé voit qu'elle se connecte à api.cooplib.fr, un nom qui ne dit rien. Mais quelqu'un qui cherche retrouve à quoi il sert : le serveur est celui du site, et le code de l'application, public, le dit. Elle se met à jour rarement : tous les trois jours au plus, ou quand vous le demandez.")
             Text("Vos « J'aime ». Ils partent au site, comme sur l'original : le site sait qu'un même téléphone a aimé ceci et cela, sans savoir à qui il est.")
             Text("Les appels. Un numéro appelé depuis l'application reste dans le journal d'appels du téléphone, comme tout appel. Effacez-le si besoin.")
             Text("Les sites ouverts depuis l'application, celui d'une aide ou le site pour contribuer. Ils s'ouvrent dans votre navigateur, qui garde leur adresse dans son historique. L'application prévient avant, et dit comment l'effacer.")

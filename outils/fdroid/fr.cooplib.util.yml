@@ -1,0 +1,62 @@
+# La recette F-Droid de l'application, à proposer à fdroiddata
+# (gitlab.com/fdroid/fdroiddata, fichier metadata/fr.cooplib.util.yml).
+# Gardée ici pour qu'elle suive le code ; F-Droid ne lit pas ce fichier.
+#
+# Le titre, les descriptions et les images ne sont pas ici : F-Droid les
+# lit dans fastlane/metadata/android/ du dépôt.
+#
+# REPRODUCTIBLE : F-Droid recompile chaque étiquette, compare son APK à
+# celui de la release GitHub (Binaries), et publie le nôtre, signé par
+# Cooplib, s'ils sont identiques. Une seule signature partout (décidé le
+# 9 octobre 2026). Le job « reproductible » de la CI le vérifie de notre
+# côté.
+
+AntiFeatures:
+  NonFreeAssets:
+    fr: Le contenu (situations, violentomètres, récits) est sous licence CC BY-NC-SA 4.0, qui interdit l'usage commercial.
+    en: The content (situations, scales, stories) is licensed CC BY-NC-SA 4.0, which forbids commercial use.
+  # À retirer si le code de l'API est publié sous licence libre.
+  NonFreeNet:
+    fr: Les mises à jour du contenu, les récits et les « J'aime » passent par le serveur de violentometres.fr, dont le code n'est pas publié.
+    en: Content updates, stories and likes go through the violentometres.fr server, whose code is not published.
+# À vérifier contre la liste en vigueur de F-Droid au moment du dépôt.
+Categories:
+  - Science & Education
+  - Reading
+License: GPL-3.0-or-later
+AuthorName: Cooplib
+AuthorEmail: contact@cooplib.fr
+WebSite: https://violentometres.fr
+SourceCode: https://github.com/Cooplib/violentometres-app
+IssueTracker: https://github.com/Cooplib/violentometres-app/issues
+
+AutoName: Violentomètres
+
+RepoType: git
+Repo: https://github.com/Cooplib/violentometres-app.git
+Binaries: https://github.com/Cooplib/violentometres-app/releases/download/v%v/app-release.apk
+
+Builds:
+  - versionName: '1.0'
+    versionCode: 1
+    commit: v1.0
+    subdir: app
+    gradle:
+      - yes
+    # Sans lui, :app n'est inclus que si le SDK est trouvé, et en
+    # silence ; avec, son absence fait échouer (settings.gradle.kts).
+    gradleprops:
+      - avecAndroid=true
+    # La clé de MISE AU POINT, commitée exprès (app/build.gradle.kts) :
+    # elle ne signe jamais la version de diffusion.
+    scandelete:
+      - app/debug.keystore
+
+# L'empreinte SHA-256 du certificat de Cooplib : F-Droid ne publiera
+# que des APK signés de cette clé.
+AllowedAPKSigningKeys: f742e8c9dcebc192916d0c820b2cca7dbbd8cd886200a49ee25c863b5f6f094b
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags ^v[0-9.]+$
+CurrentVersion: '1.0'
+CurrentVersionCode: 1
