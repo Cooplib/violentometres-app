@@ -1,0 +1,29 @@
+Est-ce que c'est normal ? Est-ce que c'est grave ? Un violentomètre range des situations de la vie de tous les jours, du vert (tout va bien) au rouge (danger), pour aider à repérer les violences, les nommer, et savoir quoi faire.
+
+Cette application reprend le contenu de violentometres.fr, et marche sans réseau.
+
+QUATRE ENTRÉES
+
+• Trouver de l'aide : les numéros d'écoute et d'urgence, appelés d'un seul appui. 3919, 17, 114 par SMS, 119, 3018, et d'autres.
+• Faire le point : quelques questions, une à une, sur ce que vous vivez, puis un résultat et des pistes. Sur votre situation en général, sur un violentomètre précis, ou sur tout un parcours.
+• Des récits : lire ce que d'autres ont vécu, et déposer le sien, sans compte ni nom.
+• Comprendre : des parcours à suivre, une carte par étape.
+
+Des dizaines de violentomètres, dans le couple, la famille, au travail, à l'école, en ligne, dans le soin, face aux institutions, dans la rue, et ailleurs. Et vous pouvez construire le vôtre : prendre des situations dans une bibliothèque de plus de mille, les réécrire avec vos mots, les ranger vous-même.
+
+DISCRÈTE
+
+• Sur l'écran d'accueil, elle peut s'appeler Calculatrice, et calculer pour de vrai. Votre code, puis =, l'ouvre.
+• Vos réponses ne quittent jamais le téléphone. Par défaut, rien n'en est gardé : tout disparaît quand vous quittez l'application.
+• « Quitter vite », en haut de chaque écran, efface tout, ferme, et retire l'application des applications récentes.
+• Pas de compte, pas de publicité, pas de traceur, aucune notification.
+
+Ce que ça ne protège pas, l'application le dit aussi : quelqu'un qui cherche dans les réglages du téléphone ou dans votre compte Google, quelqu'un qui vous oblige à l'ouvrir, un logiciel espion. Et le nom de cette fiche reste visible dans l'historique du magasin.
+
+UN OUTIL, PAS UN DIAGNOSTIC
+
+Le résultat d'un point n'est pas un avis professionnel. Il aide à mettre des mots, et à savoir vers qui se tourner. En cas de danger, appelez le 17, ou envoyez un SMS au 114.
+
+LIBRE
+
+Le code est libre (GPL 3). Le contenu est sous licence Creative Commons BY-NC-SA. Une application de Cooplib.
