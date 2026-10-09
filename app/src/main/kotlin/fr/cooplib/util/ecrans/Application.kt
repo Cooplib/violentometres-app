@@ -70,8 +70,8 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
     var garder by remember { mutableStateOf(reglages.garderLesReponses) }
     var theme by remember { mutableStateOf(reglages.theme) }
 
-    // Le premier lancement : le déguisement, puis ce qu'on garde.
-    var etapeConfiguration by rememberSaveable { mutableStateOf(0) }
+    // Le premier lancement fini, le didacticiel s'il est demandé.
+    var didacticiel by rememberSaveable { mutableStateOf(false) }
 
     fun poserLeCode(e: String) {
         reglages.empreinteDuCode = e; empreinte = e
@@ -101,26 +101,26 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
 
                 !configure -> Box(Modifier.safeDrawingPadding()) {
                     var protection by rememberSaveable { mutableStateOf(false) }
-                    BackHandler(enabled = protection) { protection = false }
-                    when {
-                        protection -> CeQuiEstProtege(deguise = true)
-                        etapeConfiguration == 0 -> Deguisement(
-                            garderLaCalculatrice = { poserLeCode(it); deguiser(); etapeConfiguration = 1 },
-                            afficherLeVraiNom = { poserLeCode(it); montrerLeVraiNom(); etapeConfiguration = 1 },
-                            voirCeQuiEstProtege = { protection = true },
-                        )
-                        etapeConfiguration == 1 -> CeQuOnGarde { g ->
+                    // Par-dessus la configuration, pas à sa place : sortie de
+                    // la composition, elle oublierait les choix déjà faits.
+                    if (didacticiel) Didacticiel {
+                        reglages.configure = true; configure = true; deverrouiller()
+                    } else Configuration(
+                        theme = theme,
+                        changerTheme = { reglages.theme = it; theme = it },
+                        voirCeQuiEstProtege = { protection = true },
+                        terminer = { vraiNom, e, g, suivre ->
+                            poserLeCode(e)
+                            if (vraiNom) montrerLeVraiNom() else deguiser()
                             reglages.garderLesReponses = g; garder = g
-                            etapeConfiguration = 2
-                        }
-                        etapeConfiguration == 2 -> ProposerLeDidacticiel { suivre ->
-                            if (suivre) etapeConfiguration = 3
+                            if (suivre) didacticiel = true
                             else { reglages.configure = true; configure = true; deverrouiller() }
-                        }
-                        else -> Didacticiel {
-                            reglages.configure = true; configure = true; deverrouiller()
-                        }
+                        },
+                    )
+                    if (protection) Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                        CeQuiEstProtege(deguise = true)
                     }
+                    BackHandler(enabled = protection) { protection = false }
                 }
 
                 // Déguisée et verrouillée : la calculatrice, et rien d'autre.

@@ -1,6 +1,11 @@
 package fr.cooplib.util.ecrans
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -9,12 +14,14 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -22,80 +29,163 @@ import androidx.compose.ui.unit.dp
 import fr.cooplib.util.leurre.CodeSecret
 
 /*
- * Les deux écrans du premier lancement (APPLICATION-ANDROID.md,
- * chapitre 3).
+ * Le premier lancement (APPLICATION-ANDROID.md, chapitre 3) : un réglage
+ * par écran, les points en bas pour voir où l'on en est.
  *
- * Le premier : le déguisement, et SES LIMITES DITES AU MÊME ENDROIT.
- * Promettre une protection qu'on ne tient pas mettrait quelqu'un en
- * danger en lui donnant une confiance qu'il n'a pas lieu d'avoir.
+ * C'était d'abord trois pages, dont une très longue (le nom, le code, ce
+ * qui est protégé, tout ensemble) : au premier essai, Cooplib l'a trouvée
+ * lourde (9 octobre 2026). Un écran, une question.
  *
- * Le second : une seule question, mais sur la bonne chose. Le contenu
- * du site est gardé, il ne dit rien de la personne ; ses réponses,
- * elles, parlent d'elle.
+ * Les limites du déguisement ont LEUR écran, juste après le choix du nom
+ * et avant le code. Promettre une protection qu'on ne tient pas mettrait
+ * quelqu'un en danger en lui donnant une confiance qu'il n'a pas lieu
+ * d'avoir.
+ *
+ * Rien n'est appliqué avant le dernier écran : revenir en arrière ne
+ * bascule pas l'icône du lanceur d'un nom à l'autre, et une configuration
+ * abandonnée en route laisse l'application telle qu'à l'installation
+ * (la calculatrice).
  *
  * Le ton est celui de la page « Ne pas laisser de traces » du site :
  * des phrases courtes, des consignes, pas d'alarme. Quelqu'un qui lit
  * ceci a déjà peur.
  */
 
+private enum class Etape { BIENVENUE, NOM, PROTECTION, CODE, GARDER, APPARENCE, PRET }
+
 @Composable
-fun Deguisement(
-    garderLaCalculatrice: (empreinteDuCode: String) -> Unit,
-    afficherLeVraiNom: (empreinteDuCode: String) -> Unit,
+fun Configuration(
+    theme: String,
+    changerTheme: (String) -> Unit,
     voirCeQuiEstProtege: () -> Unit,
+    terminer: (vraiNom: Boolean, empreinteDuCode: String, garderLesReponses: Boolean, didacticiel: Boolean) -> Unit,
 ) {
 
-    // Le choix fait, avant le code : « calculatrice » ou « vrai ».
-    var choix by rememberSaveable { mutableStateOf<String?>(null) }
+    var etape by rememberSaveable { mutableStateOf(Etape.BIENVENUE) }
+    var vraiNom by rememberSaveable { mutableStateOf(false) }
+    var empreinte by rememberSaveable { mutableStateOf<String?>(null) }
+    var garder by rememberSaveable { mutableStateOf(false) }
 
-    Page {
+    val etapes = Etape.entries
+    fun suivante() { etape = etapes[etape.ordinal + 1] }
+    fun precedente() { etape = etapes[etape.ordinal - 1] }
 
-        Text("Avant de commencer", style = MaterialTheme.typography.headlineSmall)
+    BackHandler(enabled = etape != Etape.BIENVENUE) { precedente() }
 
-        Text("Sur votre écran d'accueil, cette application s'appelle Calculatrice. Elle en a l'icône, et elle calcule pour de vrai.", style = MaterialTheme.typography.bodyLarge)
+    Column(Modifier.fillMaxSize()) {
 
-        Encadre("Pour ouvrir l'application : tapez votre code dans la calculatrice, puis =. L'écran se vide aussitôt.")
+        Box(Modifier.fillMaxWidth().height(48.dp).padding(horizontal = 8.dp)) {
+            if (etape != Etape.BIENVENUE) TextButton(onClick = ::precedente) { Text("‹ Retour") }
+        }
 
-        when (choix) {
+        Column(
+            Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()).padding(horizontal = 24.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+        ) {
+            when (etape) {
 
-            null -> {
-                Button(onClick = { choix = "calculatrice" }, Modifier.fillMaxWidth()) { Text("Garder la calculatrice") }
-                OutlinedButton(onClick = { choix = "vrai" }, Modifier.fillMaxWidth()) { Text("Afficher le vrai nom : Violentomètres") }
-            }
+                Etape.BIENVENUE -> {
+                    Text("Bonjour", style = MaterialTheme.typography.headlineMedium)
+                    Text("Comprendre les violences, faire le point sur ce qu'on vit, trouver de l'aide.", style = MaterialTheme.typography.bodyLarge)
+                    Text("D'abord, quelques réglages pour protéger votre usage. Une minute.", style = MaterialTheme.typography.bodyLarge)
+                }
 
-            else -> {
+                Etape.NOM -> {
+                    Text("Sur l'écran d'accueil", style = MaterialTheme.typography.headlineSmall)
+                    Text("Comment l'application apparaît sur votre téléphone ?", style = MaterialTheme.typography.bodyLarge)
+                    Option("🧮 Calculatrice", "Elle en a l'icône, et elle calcule pour de vrai. Pour l'ouvrir : votre code, puis =.", choisie = !vraiNom) { vraiNom = false }
+                    Option("Violentomètres", "Son vrai nom, visible de qui regarde votre téléphone.", choisie = vraiNom) { vraiNom = true }
+                }
+
+                Etape.PROTECTION -> {
+                    Text("Ce que ça protège, et ce que ça ne protège pas", style = MaterialTheme.typography.headlineSmall)
+                    Encadre(titre = "Protégé") {
+                        Text("Quelqu'un qui prend votre téléphone et regarde l'écran d'accueil.")
+                    }
+                    Encadre(alerte = true, titre = "Pas protégé") {
+                        Text("Quelqu'un qui cherche : dans les réglages du téléphone, dans votre compte Google. Quelqu'un qui vous oblige à ouvrir l'application. Un logiciel espion.")
+                    }
+                    TextButton(onClick = voirCeQuiEstProtege) { Text("En savoir plus") }
+                }
+
                 /*
                  * Un code pour tout le monde, décidé le 7 octobre 2026 : avec
                  * le vrai nom, c'est le code DE SECOURS. « Quitter vite » remet
                  * alors la calculatrice, parce que si l'on a voulu quitter
                  * vite, c'est qu'il y a sans doute une galère.
                  */
-                if (choix == "vrai") {
-                    Encadre(titre = "Un code de secours") {
-                        Text("Même avec le vrai nom, choisissez un code. Si vous touchez « Quitter vite », l'application redevient une calculatrice, et il faudra ce code pour la rouvrir.")
-                    }
+                Etape.CODE -> {
+                    Text(if (vraiNom) "Un code de secours" else "Votre code", style = MaterialTheme.typography.headlineSmall)
+                    Text(
+                        if (vraiNom) "Si vous touchez « Quitter vite », l'application redevient une calculatrice. Il faudra ce code pour la rouvrir."
+                        else "Tapé dans la calculatrice, puis =, il ouvre l'application. L'écran se vide aussitôt.",
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                    ChoixDuCode(valider = { empreinte = it; suivante() })
                 }
-                ChoixDuCode(
-                    valider = { e -> if (choix == "vrai") afficherLeVraiNom(e) else garderLaCalculatrice(e) },
-                    annuler = { choix = null },
-                )
+
+                Etape.GARDER -> {
+                    Text("Ce que l'application garde", style = MaterialTheme.typography.headlineSmall)
+                    Text("Vos réponses quand vous faites le point parlent de vous, comme vos brouillons et vos « J'aime ». Les garder, c'est pouvoir les reprendre, mais c'est une trace sur ce téléphone.", style = MaterialTheme.typography.bodyLarge)
+                    Option("Ne rien garder", "Tout disparaît quand vous quittez l'application.", choisie = !garder) { garder = false }
+                    Option("Garder sur ce téléphone", "« Quitter vite » les efface quand même.", choisie = garder) { garder = true }
+                    Note("Le contenu du site, lui, est toujours gardé : c'est ce qui permet de s'en servir sans réseau. Il ne dit rien de vous. Tout se change dans les réglages.")
+                }
+
+                Etape.APPARENCE -> {
+                    Text("L'apparence", style = MaterialTheme.typography.headlineSmall)
+                    for ((cle, libelle, detail) in listOf(
+                        Triple("auto", "Comme le téléphone", "Clair ou sombre, selon votre réglage."),
+                        Triple("clair", "Clair", "Fond blanc."),
+                        Triple("sombre", "Sombre", "Fond noir, plus discret le soir."),
+                    )) Option(libelle, detail, choisie = theme == cle) { changerTheme(cle) }
+                }
+
+                Etape.PRET -> {
+                    Text("C'est prêt", style = MaterialTheme.typography.headlineMedium)
+                    if (!vraiNom) {
+                        Encadre("Désormais, l'application s'appelle Calculatrice. Pour l'ouvrir : votre code, puis =.")
+                    }
+                    Text("Un petit tour montre ce que fait l'application, et les gestes qui servent partout. Deux minutes.", style = MaterialTheme.typography.bodyLarge)
+                    Note("Vous le retrouverez dans le menu ☰ et dans les réglages.")
+                }
             }
         }
 
-        Encadre(titre = "Ce que ça protège") {
-            Text("Quelqu'un qui prend votre téléphone et regarde l'écran d'accueil.")
+        Column(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            when (etape) {
+                // Le code a son propre bouton : il faut d'abord qu'il soit bon.
+                Etape.CODE -> {}
+                Etape.PRET -> {
+                    val e = empreinte!!
+                    Button(onClick = { terminer(vraiNom, e, garder, true) }, Modifier.fillMaxWidth()) { Text("Faire le petit tour") }
+                    OutlinedButton(onClick = { terminer(vraiNom, e, garder, false) }, Modifier.fillMaxWidth()) { Text("Commencer") }
+                }
+                else -> Button(onClick = ::suivante, Modifier.fillMaxWidth()) { Text(if (etape == Etape.BIENVENUE) "Commencer" else "Suivant") }
+            }
+            // Les points mènent en arrière seulement : en avant, il y a
+            // peut-être un code à poser.
+            Points(etapes.size, etape.ordinal, aller = { i -> if (i < etape.ordinal) etape = etapes[i] })
         }
+    }
+}
 
-        Encadre(alerte = true, titre = "Ce que ça ne protège pas") {
-            Text("Quelqu'un qui cherche : dans les réglages du téléphone, dans votre compte Google. Quelqu'un qui vous oblige à ouvrir l'application. Un logiciel espion.")
+// Un choix parmi plusieurs : bordé de violet quand il est pris.
+@Composable
+private fun Option(titre: String, detail: String, choisie: Boolean, choisir: () -> Unit) {
+    Card(Modifier.fillMaxWidth(), onClick = choisir, couleurDeBordure = if (choisie) MaterialTheme.colorScheme.primary else null) {
+        Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            RadioButton(selected = choisie, onClick = choisir)
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                Text(titre, style = MaterialTheme.typography.titleMedium)
+                Text(detail, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
         }
-
-        TextButton(onClick = voirCeQuiEstProtege) { Text("Ce qui est protégé, ce qui ne l'est pas") }
     }
 }
 
 @Composable
-fun ChoixDuCode(valider: (empreinteDuCode: String) -> Unit, annuler: () -> Unit) {
+fun ChoixDuCode(valider: (empreinteDuCode: String) -> Unit, annuler: (() -> Unit)? = null) {
 
     var code by rememberSaveable { mutableStateOf("") }
     var encore by rememberSaveable { mutableStateOf("") }
@@ -143,43 +233,7 @@ fun ChoixDuCode(valider: (empreinteDuCode: String) -> Unit, annuler: () -> Unit)
             modifier = Modifier.fillMaxWidth(),
         ) { Text("Valider ce code") }
 
-        TextButton(onClick = annuler) { Text("Revenir") }
-    }
-}
-
-@Composable
-fun CeQuOnGarde(choisir: (garderLesReponses: Boolean) -> Unit) {
-
-    Page {
-
-        Text("Ce que l'application garde", style = MaterialTheme.typography.headlineSmall)
-
-        Encadre("Le contenu du site est gardé sur ce téléphone : les violentomètres, les aides, les parcours. C'est ce qui permet de s'en servir sans réseau. Il ne dit rien de vous.")
-
-        Text("Vos réponses quand vous faites le point, elles, parlent de vous, comme vos brouillons, vos « J'aime » et les récits que vous avez lus. Par défaut, rien n'en est gardé : en quittant l'application, ils disparaissent.", style = MaterialTheme.typography.bodyLarge)
-
-        Text("Voulez-vous pouvoir reprendre vos réponses d'une fois à l'autre ?", style = MaterialTheme.typography.titleMedium)
-
-        Button(onClick = { choisir(false) }, Modifier.fillMaxWidth()) { Text("Non, ne rien garder") }
-
-        OutlinedButton(onClick = { choisir(true) }, Modifier.fillMaxWidth()) { Text("Oui, garder mes réponses sur ce téléphone") }
-
-        Text("Gardées, elles sont une trace sur ce téléphone. Vous pourrez changer d'avis dans les réglages.", style = MaterialTheme.typography.bodySmall)
-    }
-}
-
-/*
- * Le troisième écran du premier lancement : proposer le didacticiel,
- * sans l'imposer. On peut le refaire depuis le menu ou les réglages.
- */
-@Composable
-fun ProposerLeDidacticiel(choisir: (suivre: Boolean) -> Unit) {
-    Page {
-        Text("Un petit tour ?", style = MaterialTheme.typography.headlineSmall)
-        Text("Quelques écrans pour montrer ce que fait l'application, et les gestes qui servent partout. Deux minutes.", style = MaterialTheme.typography.bodyLarge)
-        Button(onClick = { choisir(true) }, Modifier.fillMaxWidth()) { Text("Suivre le didacticiel") }
-        OutlinedButton(onClick = { choisir(false) }, Modifier.fillMaxWidth()) { Text("Plus tard") }
-        Note("Vous le retrouverez dans le menu ☰ et dans les réglages.")
+        annuler?.let { TextButton(onClick = it) { Text("Revenir") } }
     }
 }
 
