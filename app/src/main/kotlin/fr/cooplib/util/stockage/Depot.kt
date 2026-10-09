@@ -44,9 +44,9 @@ class Depot private constructor(contexte: Context) {
     private val etats = app.getSharedPreferences("s", Context.MODE_PRIVATE)
     private val portee = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
-    // L'adresse de l'API. Un second nom d'hôte, neutre, est prévu
-    // (APPLICATION-ANDROID.md, chapitre 5) : il se changera ici.
-    private val api = ClientApi(AdresseApi.PRODUCTION)
+    // L'API sous son nom neutre (AdresseApi.NEUTRE, et pourquoi pas de
+    // repli vers le nom du site).
+    private val api = ClientApi(AdresseApi.NEUTRE)
 
     private val _catalogue = MutableStateFlow<Catalogue?>(null)
     val catalogue: StateFlow<Catalogue?> = _catalogue
