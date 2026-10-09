@@ -170,3 +170,56 @@ jobs:
           name: apk-diffusion-essai
           path: app/build/outputs/apk/essai/*.apk
           retention-days: 14
+
+  # DEUX CONSTRUCTIONS, LE MÊME APK. F-Droid recompile chaque version et
+  # ne publie l'APK signé par Cooplib que si le sien est identique, octet
+  # pour octet, signature mise à part (décidé le 9 octobre 2026 : une
+  # seule signature partout, F-Droid, la page du site, Play). Ce job le
+  # vérifie à chaque poussée : deux dossiers différents, aucun cache de
+  # construction, pas de clé. Un écart ici, c'est F-Droid qui refusera
+  # la prochaine version.
+  reproductible:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: premiere
+
+      - uses: actions/checkout@v4
+        with:
+          path: seconde-ailleurs
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-disabled: true
+
+      - name: Plus de mémoire pour Gradle
+        run: |
+          mkdir -p ~/.gradle
+          echo "org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
+
+      - name: Deux fois la version de diffusion, sans clé
+        run: |
+          for d in premiere seconde-ailleurs; do
+            (cd "$d" && ./gradlew -PavecAndroid=true --no-build-cache --no-daemon :app:assembleRelease)
+          done
+
+      - name: Les comparer
+        run: |
+          a=premiere/app/build/outputs/apk/release/app-release-unsigned.apk
+          b=seconde-ailleurs/app/build/outputs/apk/release/app-release-unsigned.apk
+          sha256sum "$a" "$b"
+          if cmp -s "$a" "$b"; then
+            echo "Identiques."
+          else
+            echo "DIFFÉRENTS. Les fichiers qui changent :"
+            mkdir ua ub && unzip -q "$a" -d ua && unzip -q "$b" -d ub
+            diff -rq ua ub || true
+            exit 1
+          fi
