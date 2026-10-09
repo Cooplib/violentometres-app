@@ -416,7 +416,7 @@ private fun Deposer(depot: Depot, garder: Boolean, fini: () -> Unit) {
                     Text("Il sera public, et ne se reprend pas. Vérifiez qu'il ne nomme personne.")
                     if (rappelerLaLicence) {
                         Encadre(titre = "La licence") {
-                            Text("Votre récit sera diffusé sous licence CC BY-NC-SA 4.0, et Cooplib pourra le reprendre dans ses propres supports, même vendus. Le détail est dans « Conditions d'utilisation », dans le menu.")
+                            Text("Votre récit sera diffusé sous licence CC BY-NC-SA 4.0, et Cooplib pourra le reprendre dans ses propres supports. Le détail est dans « Conditions d'utilisation », dans le menu.")
                         }
                         Row(Modifier.fillMaxWidth().clickable { nePlusRappeler = !nePlusRappeler }, verticalAlignment = Alignment.CenterVertically) {
                             Checkbox(checked = nePlusRappeler, onCheckedChange = { nePlusRappeler = it })
