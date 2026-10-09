@@ -20,6 +20,10 @@ DISCRÈTE
 
 Ce que ça ne protège pas, l'application le dit aussi : quelqu'un qui cherche dans les réglages du téléphone ou dans votre compte Google, quelqu'un qui vous oblige à l'ouvrir, un logiciel espion. Et le nom de cette fiche reste visible dans l'historique du magasin.
 
+PLUS DISCRÈTE ENCORE
+
+Installée depuis un magasin, l'application reste dans l'historique de votre compte, sous son vrai nom. Pour éviter cette trace, vous pouvez l'installer sans passer par un magasin, depuis {{PAGE_D_INSTALLATION}}. La page explique comment faire, et ce qui reste quand même : le fichier téléchargé, l'historique du navigateur, l'autorisation d'installer des applications. Dans ce cas, les mises à jour se font à la main.
+
 UN OUTIL, PAS UN DIAGNOSTIC
 
 Le résultat d'un point n'est pas un avis professionnel. Il aide à mettre des mots, et à savoir vers qui se tourner. En cas de danger, appelez le 17, ou envoyez un SMS au 114.
