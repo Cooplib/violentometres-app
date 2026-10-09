@@ -1,5 +1,5 @@
 {
- "fabriqueLe": "2026-10-09T08:55:41Z",
+ "fabriqueLe": "2026-10-09T13:39:42Z",
  "source": "https://violentometres.fr/api",
  "derniereVersion": {
   "id": "4134d593-9ee0-441a-bdb8-64524db4224c",
@@ -4152,9 +4152,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-08T21:13:14.382434+00:00",
-   "views_count": 2,
-   "popular_score": 62
+   "updated_at": "2026-10-09T09:43:45.974567+00:00",
+   "views_count": 3,
+   "popular_score": 63
   },
   {
    "id": "4979a090-b09e-4697-a49e-e35348a39163",
@@ -4638,9 +4638,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T07:49:02.777192+00:00",
-   "views_count": 1,
-   "popular_score": 65
+   "updated_at": "2026-10-09T11:43:03.652057+00:00",
+   "views_count": 2,
+   "popular_score": 66
   },
   {
    "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
@@ -6602,9 +6602,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T10:46:42.211826+00:00",
-   "views_count": 1,
-   "popular_score": 63
+   "updated_at": "2026-10-09T09:05:33.904326+00:00",
+   "views_count": 2,
+   "popular_score": 64
   },
   {
    "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
@@ -6864,9 +6864,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T20:28:58.734652+00:00",
-   "views_count": 1,
-   "popular_score": 65
+   "updated_at": "2026-10-09T09:26:39.116248+00:00",
+   "views_count": 2,
+   "popular_score": 66
   },
   {
    "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
@@ -11518,7 +11518,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-09T09:49:48.410060+00:00",
+   "views_count": 1,
+   "popular_score": 57
   },
   {
    "id": "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab",
@@ -12099,7 +12101,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-09T09:07:10.223169+00:00",
+   "views_count": 1,
+   "popular_score": 49
   },
   {
    "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
@@ -43175,6 +43179,18 @@
    "same_parcours": [
     {
      "violentometer": {
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
+     },
+     "parcours": [
+      {
+       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+       "title": "Les institutions, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
       "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
       "title": "Les soins, lus par le modèle social du handicap"
      },
@@ -43199,13 +43215,13 @@
     },
     {
      "violentometer": {
-      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
-      "title": "Les institutions, lues par les pensées libertaires"
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
-       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
-       "title": "Les institutions, sous plusieurs angles"
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
       }
      ]
     },
@@ -43232,18 +43248,6 @@
        "title": "Les institutions : du général au particulier"
       }
      ]
-    },
-    {
-     "violentometer": {
-      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
-      "title": "Administration, droits et papiers"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
     }
    ],
    "shared_behaviors": [
@@ -43256,17 +43260,17 @@
     },
     {
      "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "shared_count": 6
+    },
+    {
+     "violentometer": {
       "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
       "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
      },
      "shared_count": 4
-    },
-    {
-     "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
-     },
-     "shared_count": 3
     },
     {
      "violentometer": {
@@ -44669,8 +44673,8 @@
     },
     {
      "violentometer": {
-      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
-      "title": "Violentomètre de la rue et des transports"
+      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
+      "title": "Violentomètre des soirées et de la vie nocturne"
      },
      "parcours": [
       {
@@ -44681,8 +44685,8 @@
     },
     {
      "violentometer": {
-      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
-      "title": "Violentomètre des soirées et de la vie nocturne"
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
      },
      "parcours": [
       {
@@ -44822,18 +44826,6 @@
     },
     {
      "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
       "title": "Administration, droits et papiers"
      },
@@ -44848,6 +44840,18 @@
      "violentometer": {
       "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
       "title": "Violences gynécologiques et obstétricales"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -44910,8 +44914,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
-      "title": "Violentomètre de la rue et des transports"
+      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
+      "title": "Violentomètre des soirées et de la vie nocturne"
      },
      "parcours": [
       {
@@ -44922,8 +44926,8 @@
     },
     {
      "violentometer": {
-      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
-      "title": "Violentomètre des soirées et de la vie nocturne"
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
      },
      "parcours": [
       {
@@ -45530,18 +45534,6 @@
     },
     {
      "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
       "title": "Administration, droits et papiers"
      },
@@ -45568,6 +45560,18 @@
      "violentometer": {
       "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
       "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -45609,8 +45613,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
-      "title": "Les institutions, lues par les pensées libertaires"
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
      },
      "parcours": [
       {
@@ -45621,8 +45625,8 @@
     },
     {
      "violentometer": {
-      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
-      "title": "Les soins, lus par le modèle social du handicap"
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
      },
      "parcours": [
       {
@@ -46482,18 +46486,6 @@
     },
     {
      "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
       "title": "Administration, droits et papiers"
      },
@@ -46508,6 +46500,18 @@
      "violentometer": {
       "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
       "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -46639,8 +46643,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
-      "title": "Les institutions, lues par les pensées libertaires"
+      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
+      "title": "La santé, lue par les féminismes"
      },
      "parcours": [
       {
@@ -46651,8 +46655,8 @@
     },
     {
      "violentometer": {
-      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
-      "title": "La santé, lue par les féminismes"
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
      },
      "parcours": [
       {
@@ -47153,18 +47157,6 @@
     },
     {
      "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
       "title": "Administration, droits et papiers"
      },
@@ -47191,6 +47183,18 @@
      "violentometer": {
       "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
       "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -48111,18 +48115,6 @@
     },
     {
      "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
       "title": "Violences gynécologiques et obstétricales"
      },
@@ -48137,6 +48129,18 @@
      "violentometer": {
       "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
       "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
