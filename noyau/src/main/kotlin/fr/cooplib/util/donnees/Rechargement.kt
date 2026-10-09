@@ -44,6 +44,7 @@ fun rechargerTout(api: ClientApi, maintenant: Instant): Resultat<Catalogue> = av
         proches = liste.associate { it.id to api.proches(it.id).ou() },
         contextes = api.contextes().ou().sortedBy { it.id },
         pointsParParcours = listeDesParcours.associate { it.id to api.point("parcours", it.id).ou() },
+        bibliotheque = api.bibliotheque().ou(),
     )
 }
 

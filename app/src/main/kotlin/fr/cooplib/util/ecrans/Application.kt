@@ -139,9 +139,10 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
                         val depot = Depot.de(contexte)
                         if (it) {
                             depot.memoire.garderMaintenant()
+                            depot.carnet.garderMaintenant()
                         } else {
                             // « Ne plus les garder » : ce qui était gardé part aussi.
-                            Reponses.effacer(contexte); Brouillon.effacer(contexte); depot.memoire.oublier()
+                            Reponses.effacer(contexte); Brouillon.effacer(contexte); depot.memoire.oublier(); depot.carnet.oublier()
                         }
                     },
                     quitterVite = quitterVite,

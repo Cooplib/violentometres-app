@@ -63,6 +63,10 @@ data class Catalogue(
     // « Faire le point » sur un parcours entier, comme sur le site : ses
     // violentomètres réunis, tels que l'API les assemble.
     val pointsParParcours: Map<String, PoolDuPoint> = emptyMap(),
+    // La bibliothèque des situations, pour construire « Mon
+    // violentomètre » hors ligne ; dans l'ordre de l'API, les plus
+    // employées d'abord.
+    val bibliotheque: List<fr.cooplib.util.modeles.SituationDeBibliotheque> = emptyList(),
 ) {
 
     companion object {

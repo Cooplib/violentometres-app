@@ -123,13 +123,17 @@ fun FaireLePoint(
     // point dessus » depuis une étape de parcours).
     var fiche by rememberSaveable { mutableStateOf(ficheInitiale) }
     var cible by rememberSaveable { mutableStateOf(cibleInitiale) }
+    // « Mon violentomètre » ouvert : on y revient en quittant son point.
+    var perso by rememberSaveable { mutableStateOf(false) }
+    val carnet by depot.carnet.liste.collectAsState()
 
-    BackHandler(enabled = cible != null || fiche != null || retour != null) {
+    BackHandler(enabled = cible != null || fiche != null || perso || retour != null) {
         when {
             // Le point ouvert depuis une étape de parcours : on y retourne.
             retour != null && cible == cibleInitiale -> retour()
             cible != null -> cible = null
             fiche != null -> fiche = null
+            perso -> perso = false
             else -> retour?.invoke()
         }
     }
@@ -141,6 +145,10 @@ fun FaireLePoint(
         c == null -> null
         c == GENERAL -> catalogue.pointGeneral
         c.startsWith(PARCOURS) -> catalogue.pointsParParcours[c.removePrefix(PARCOURS)]
+        // Construit sur le téléphone, jamais servi par l'API : le noyau en
+        // fait un point comme les autres.
+        c.startsWith(PERSO) -> carnet.find { it.id == c.removePrefix(PERSO) }
+            ?.enPoint(catalogue.pointGeneral.niveaux, catalogue.aides)
         else -> catalogue.pointsParViolentometre[c]
     }
     val vm = fiche?.let { f -> catalogue.violentometres.find { it.id == f } }
@@ -153,6 +161,7 @@ fun FaireLePoint(
         vm != null -> androidx.compose.runtime.key(vm.id) {
             FicheViolentometre(vm, catalogue, depot, faireLePoint = { cible = it }, ouvrir = { fiche = it })
         }
+        perso -> MesViolentometres(catalogue, depot, garder, faireLePoint = { cible = it })
         else -> ListeDesViolentometres(
             catalogue, depot,
             avant = {
@@ -163,6 +172,13 @@ fun FaireLePoint(
                             Text("Où j'en suis, en général", style = MaterialTheme.typography.titleMedium)
                             Text(catalogue.pointGeneral.description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             Text("Commencer ›", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                        }
+                    }
+                    Card(Modifier.fillMaxWidth(), onClick = { perso = true }) {
+                        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                            Text("✍️ Mon violentomètre", style = MaterialTheme.typography.titleMedium)
+                            Text("Rangez vous-même des situations, puis faites le point dessus. Il reste sur ce téléphone.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text("Construire ›", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
                         }
                     }
                     Text("Ou sur un sujet précis", style = MaterialTheme.typography.titleMedium)

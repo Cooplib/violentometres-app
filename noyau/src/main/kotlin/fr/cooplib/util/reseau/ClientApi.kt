@@ -64,6 +64,9 @@ class ClientApi(
 
     fun cadres() = lire("/cadres", ListSerializer(CadreResume.serializer()))
 
+    // Toutes les situations, pour « Mon violentomètre » hors ligne.
+    fun bibliotheque() = lire("/situations/bibliotheque", ListSerializer(fr.cooplib.util.modeles.SituationDeBibliotheque.serializer()))
+
     fun contextes() = lire("/contexts", ListSerializer(fr.cooplib.util.modeles.ContexteDuSite.serializer()))
 
     fun cadre(id: String) = lire("/cadres/${segment(id)}", Cadre.serializer())

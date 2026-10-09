@@ -197,6 +197,7 @@ object Synchronisation {
                 // par une autre, elle a disparu d'eux au profit de l'autre :
                 // on relit ceux de l'une et de l'autre.
                 "behavior" -> {
+                    r.situations = true
                     val cherchees = setOfNotNull(id, v.absorbeeDans)
                     r.violentometres += catalogue.violentometres
                         .filter { vm -> vm.situations.any { it.situationId in cherchees } }
@@ -234,8 +235,9 @@ object Synchronisation {
         val cadres: MutableSet<String> = sortedSetOf(),
         val mecanismes: MutableSet<String> = sortedSetOf(),
         var recits: Boolean = false,
+        var situations: Boolean = false,
     ) {
-        val taille get() = violentometres.size + parcours.size + cadres.size + mecanismes.size + (if (recits) 1 else 0)
+        val taille get() = violentometres.size + parcours.size + cadres.size + mecanismes.size + (if (recits) 1 else 0) + (if (situations) 1 else 0)
     }
 
     private fun appliquer(api: ClientApi, catalogue: Catalogue, r: ARelire): Catalogue {
@@ -273,6 +275,13 @@ object Synchronisation {
 
         if (r.recits) {
             c = c.copy(recits = api.recits().ou().sortedBy { it.id })
+        }
+
+        // Une situation a changé, ou un violentomètre (qui change les
+        // emplois, donc l'ordre et les niveaux suggérés) : la
+        // bibliothèque est relue d'un bloc.
+        if (r.situations || r.violentometres.isNotEmpty()) {
+            c = c.copy(bibliotheque = api.bibliotheque().ou())
         }
 
         /*

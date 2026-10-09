@@ -60,6 +60,12 @@ class Reglages(contexte: Context) {
         get() = p.getBoolean("licence", false)
         set(v) { p.edit().putBoolean("licence", v).commit() }
 
+    // L'explication de « Mon violentomètre », montrée jusqu'à ce qu'on
+    // coche « ne plus afficher ».
+    var nePlusExpliquerMonViolentometre: Boolean
+        get() = p.getBoolean("perso", false)
+        set(v) { p.edit().putBoolean("perso", v).commit() }
+
     // Pouvoir reprendre ses réponses au point d'une fois à l'autre. Faux
     // par défaut, comme sur le site : c'est une trace sur le téléphone.
     var garderLesReponses: Boolean

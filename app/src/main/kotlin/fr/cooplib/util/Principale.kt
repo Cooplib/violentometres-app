@@ -68,6 +68,7 @@ class Principale : ComponentActivity() {
         Reponses.effacer(this)
         Brouillon.effacer(this)
         Depot.de(this).memoire.oublier()
+        Depot.de(this).carnet.oublier()
         val reglages = Reglages(this)
         if (!reglages.deguise && reglages.empreinteDuCode != null) {
             reglages.deguise = true

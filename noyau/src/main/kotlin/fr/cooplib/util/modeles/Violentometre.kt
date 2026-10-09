@@ -79,3 +79,17 @@ data class CadreResume(
     val id: String,
     val nom: String,
 )
+
+/*
+ * Une situation de la bibliothèque (`GET /situations/bibliotheque`) :
+ * de quoi construire « Mon violentomètre » hors ligne. `niveauSuggere`
+ * est le niveau où les violentomètres la rangent, calculé comme pour le
+ * point d'orientation ; nul si aucun ne l'emploie.
+ */
+@Serializable
+data class SituationDeBibliotheque(
+    val id: String,
+    @SerialName("text") val texte: String,
+    val usages: Int = 0,
+    @SerialName("severity") val niveauSuggere: Int? = null,
+)

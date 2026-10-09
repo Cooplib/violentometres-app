@@ -159,6 +159,9 @@ class Depot private constructor(contexte: Context) {
     // Ce qu'on a aimé et lu : même régime que les réponses (Souvenirs.kt).
     val memoire = Memoire(app) { reglages.garderLesReponses }
 
+    // Mes violentomètres : même régime, rien n'est envoyé (Carnet.kt).
+    val carnet = Carnet(app) { reglages.garderLesReponses }
+
     /*
      * Les deux seules écritures. Lancées dans la portée du dépôt, pas de
      * l'écran : quitter l'application juste après « publier » (elle se

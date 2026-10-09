@@ -76,6 +76,7 @@ class SynchronisationTest {
                 chemin == "/tests/orientation/tout" -> ok(json.encodeToString(fr.cooplib.util.modeles.PoolDuPoint.serializer(), c.pointGeneral))
                 morceaux[0] == "tests" && morceaux[1] == "parcours" -> c.pointsParParcours[morceaux[2]]
                     ?.let { ok(json.encodeToString(fr.cooplib.util.modeles.PoolDuPoint.serializer(), it)) } ?: ReponseHttp(404, "")
+                chemin == "/situations/bibliotheque" -> ok(json.encodeToString(ListSerializer(fr.cooplib.util.modeles.SituationDeBibliotheque.serializer()), c.bibliotheque))
                 chemin == "/contexts" -> ok(json.encodeToString(ListSerializer(fr.cooplib.util.modeles.ContexteDuSite.serializer()), c.contextes))
                 morceaux[0] == "tests" -> c.pointsParViolentometre[morceaux[2]]
                     ?.let { ok(json.encodeToString(fr.cooplib.util.modeles.PoolDuPoint.serializer(), it)) } ?: ReponseHttp(404, "")
@@ -172,7 +173,9 @@ class SynchronisationTest {
         val parcoursQuiPassent = catalogue.parcours.filter { p -> p.etapes.any { it.violentometreId == vm.id } }.map { it.id }.sorted()
         assertEquals(
             listOf("/history/recent?limit=1", "/history/recent?limit=30", "/violentometers/${vm.id}",
-                "/tests/violentometer/${vm.id}", "/violentometers/${vm.id}/related") +
+                "/tests/violentometer/${vm.id}", "/violentometers/${vm.id}/related",
+                // Il change les emplois, donc l'ordre et les niveaux suggérés.
+                "/situations/bibliotheque") +
                 parcoursQuiPassent.map { "/tests/parcours/$it" } + "/tests/orientation/tout",
             f.chemins,
         )
