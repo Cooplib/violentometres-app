@@ -1,6 +1,12 @@
 package fr.cooplib.util.ecrans
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Surface
+import androidx.compose.ui.window.Dialog
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -22,6 +28,8 @@ import androidx.compose.ui.unit.dp
 fun ReglagesEcran(
     deguise: Boolean,
     garderLesReponses: Boolean,
+    capturesPermises: Boolean,
+    changerCaptures: (Boolean) -> Unit,
     theme: String,
     changerTheme: (String) -> Unit,
     changerLeCode: (empreinteDuCode: String) -> Unit,
@@ -34,6 +42,7 @@ fun ReglagesEcran(
 ) {
 
     var choixCode by rememberSaveable { mutableStateOf(false) }
+    var confirmerCaptures by rememberSaveable { mutableStateOf(false) }
 
     Page {
 
@@ -68,6 +77,30 @@ fun ReglagesEcran(
 
         OutlinedButton(onClick = { changerGarder(!garderLesReponses) }, Modifier.fillMaxWidth()) {
             Text(if (garderLesReponses) "Ne plus les garder" else "Les garder sur ce téléphone")
+        }
+
+        Text("Captures d'écran", style = MaterialTheme.typography.titleMedium)
+
+        if (capturesPermises) {
+            Text("Elles sont permises.")
+            RisquesDesCaptures()
+            Button(onClick = { changerCaptures(false) }, Modifier.fillMaxWidth()) { Text("Les refuser de nouveau") }
+        } else {
+            Text("Elles sont refusées : l'application ne peut être ni capturée, ni enregistrée, ni partagée en vidéo.")
+            OutlinedButton(onClick = { confirmerCaptures = true }, Modifier.fillMaxWidth()) { Text("Permettre les captures") }
+        }
+
+        if (confirmerCaptures) {
+            Dialog(onDismissRequest = { confirmerCaptures = false }) {
+                Surface(shape = Charte.ArrondiGrand, color = MaterialTheme.colorScheme.surface) {
+                    Column(Modifier.verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Text("Permettre les captures ?", style = MaterialTheme.typography.titleMedium)
+                        RisquesDesCaptures()
+                        Button(onClick = { changerCaptures(true); confirmerCaptures = false }, Modifier.fillMaxWidth()) { Text("Les permettre") }
+                        TextButton(onClick = { confirmerCaptures = false }) { Text("Annuler") }
+                    }
+                }
+            }
         }
 
         Text("Affichage", style = MaterialTheme.typography.titleMedium)

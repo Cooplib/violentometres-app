@@ -18,7 +18,7 @@ import androidx.compose.material3.Text
  * faire soi-même quand il y a quelque chose à faire.
  */
 @Composable
-fun CeQuiEstProtege(deguise: Boolean) {
+fun CeQuiEstProtege(deguise: Boolean, captures: Boolean) {
 
     Page {
 
@@ -30,7 +30,11 @@ fun CeQuiEstProtege(deguise: Boolean) {
             } else {
                 Text("Vous avez choisi d'afficher son vrai nom. « Quitter vite » la remet en calculatrice, avec votre code de secours.")
             }
-            Text("La vignette des applications récentes reste vide, et les captures d'écran sont refusées.")
+            if (captures) {
+                Text("Vous avez permis les captures d'écran. " + if (android.os.Build.VERSION.SDK_INT >= 33) "La vignette des applications récentes reste vide." else "Sur ce téléphone, la vignette des applications récentes montre donc aussi le dernier écran ouvert.")
+            } else {
+                Text("La vignette des applications récentes reste vide, et les captures d'écran sont refusées, comme l'enregistrement ou le partage de l'écran.")
+            }
             Text("Elle n'envoie aucune notification.")
             Text("Rien n'est copié dans la sauvegarde de votre compte Google, ni vers un nouveau téléphone.")
             Text("Par défaut, vos réponses au point ne sont pas gardées.")

@@ -58,7 +58,7 @@ private enum class Ecran { ACCUEIL, AIDE, POINT, RECITS, COMPRENDRE, REGLAGES, P
  * composition, leur état aussi.
  */
 @Composable
-fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: () -> Unit) {
+fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: () -> Unit, permettreLesCaptures: (Boolean) -> Unit) {
 
     val contexte = LocalContext.current
     val reglages = remember { Reglages(contexte) }
@@ -69,6 +69,7 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
     var empreinte by remember { mutableStateOf(reglages.empreinteDuCode) }
     var garder by remember { mutableStateOf(reglages.garderLesReponses) }
     var theme by remember { mutableStateOf(reglages.theme) }
+    var captures by remember { mutableStateOf(reglages.capturesPermises) }
 
     // Le premier lancement fini, le didacticiel s'il est demandé.
     var didacticiel by rememberSaveable { mutableStateOf(false) }
@@ -109,8 +110,9 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
                         theme = theme,
                         changerTheme = { reglages.theme = it; theme = it },
                         voirCeQuiEstProtege = { protection = true },
-                        terminer = { vraiNom, e, g, suivre ->
+                        terminer = { vraiNom, e, g, c, suivre ->
                             poserLeCode(e)
+                            permettreLesCaptures(c); captures = c
                             if (vraiNom) montrerLeVraiNom() else deguiser()
                             reglages.garderLesReponses = g; garder = g
                             if (suivre) didacticiel = true
@@ -118,7 +120,7 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
                         },
                     )
                     if (protection) Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                        CeQuiEstProtege(deguise = true)
+                        CeQuiEstProtege(deguise = true, captures = false)
                     }
                     BackHandler(enabled = protection) { protection = false }
                 }
@@ -129,6 +131,8 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
                 else -> Contenu(
                     deguise = deguise,
                     garder = garder,
+                    captures = captures,
+                    changerCaptures = { permettreLesCaptures(it); captures = it },
                     theme = theme,
                     changerTheme = { reglages.theme = it; theme = it },
                     changerLeCode = ::poserLeCode,
@@ -156,6 +160,8 @@ fun Application(verrouillee: Boolean, deverrouiller: () -> Unit, quitterVite: ()
 private fun Contenu(
     deguise: Boolean,
     garder: Boolean,
+    captures: Boolean,
+    changerCaptures: (Boolean) -> Unit,
     theme: String,
     changerTheme: (String) -> Unit,
     changerLeCode: (String) -> Unit,
@@ -266,6 +272,8 @@ private fun Contenu(
             ecran == Ecran.REGLAGES -> ReglagesEcran(
                 deguise = deguise,
                 garderLesReponses = garder,
+                capturesPermises = captures,
+                changerCaptures = changerCaptures,
                 theme = theme,
                 changerTheme = changerTheme,
                 changerLeCode = changerLeCode,
@@ -276,7 +284,7 @@ private fun Contenu(
                 revoirLeDidacticiel = { aller(Ecran.DIDACTICIEL) },
                 miseAJour = { MiseAJour(depot) },
             )
-            ecran == Ecran.PROTECTION -> CeQuiEstProtege(deguise)
+            ecran == Ecran.PROTECTION -> CeQuiEstProtege(deguise, captures)
             ecran == Ecran.DIDACTICIEL -> Didacticiel { aller(Ecran.ACCUEIL) }
             ecran == Ecran.CONDITIONS -> ConditionsDUtilisation()
         }

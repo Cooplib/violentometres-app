@@ -66,6 +66,17 @@ class Reglages(contexte: Context) {
         get() = p.getBoolean("perso", false)
         set(v) { p.edit().putBoolean("perso", v).commit() }
 
+    /*
+     * Les captures d'écran, refusées par défaut (FLAG_SECURE). Les
+     * permettre est un choix de la personne, au premier lancement ou dans
+     * les réglages, avec les risques dits (9 octobre 2026) : une capture
+     * part dans la galerie, souvent copiée dans un compte en ligne. « Quitter
+     * vite » les refuse de nouveau.
+     */
+    var capturesPermises: Boolean
+        get() = p.getBoolean("captures", false)
+        set(v) { p.edit().putBoolean("captures", v).commit() }
+
     // Pouvoir reprendre ses réponses au point d'une fois à l'autre. Faux
     // par défaut, comme sur le site : c'est une trace sur le téléphone.
     var garderLesReponses: Boolean

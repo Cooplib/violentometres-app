@@ -1,5 +1,6 @@
 package fr.cooplib.util
 
+import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
@@ -25,15 +26,8 @@ class Principale : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
 
-        /*
-         * FLAG_SECURE : la vignette des applications récentes ne montre
-         * pas le dernier écran, et les captures d'écran sont refusées.
-         * Sans lui, renommer l'icône ne sert à rien : il suffirait
-         * d'ouvrir les applications récentes pour voir un résultat du
-         * point. Posé avant tout affichage, pour qu'aucune image ne
-         * passe entre les deux.
-         */
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+        // Avant tout affichage, pour qu'aucune image ne passe entre les deux.
+        appliquerLesCaptures(Reglages(this).capturesPermises)
 
         // Une rotation recrée l'activité : elle ne doit pas reverrouiller.
         verrouillee.value = savedInstanceState?.getBoolean("verrouillee") ?: true
@@ -43,7 +37,32 @@ class Principale : ComponentActivity() {
                 verrouillee = verrouillee.value,
                 deverrouiller = { verrouillee.value = false },
                 quitterVite = ::quitterVite,
+                permettreLesCaptures = { Reglages(this).capturesPermises = it; appliquerLesCaptures(it) },
             )
+        }
+    }
+
+    /*
+     * FLAG_SECURE : la vignette des applications récentes ne montre pas
+     * le dernier écran, les captures d'écran sont refusées, et aucune
+     * application ne peut enregistrer ni partager l'écran. Sans lui,
+     * renommer l'icône ne sert à rien : il suffirait d'ouvrir les
+     * applications récentes pour voir un résultat du point.
+     *
+     * Quand la personne permet les captures, il faut le retirer : c'est
+     * lui qui les refuse. Depuis Android 13, la vignette se cache à part
+     * (setRecentsScreenshotEnabled) : elle reste vide quoi qu'on choisisse.
+     * Avant, rien ne la cache sans refuser aussi les captures ; l'écran du
+     * choix le dit.
+     */
+    private fun appliquerLesCaptures(permises: Boolean) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            setRecentsScreenshotEnabled(false)
+        }
+        if (permises) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        } else {
+            window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         }
     }
 
@@ -70,6 +89,9 @@ class Principale : ComponentActivity() {
         Depot.de(this).memoire.oublier()
         Depot.de(this).carnet.oublier()
         val reglages = Reglages(this)
+        // Comme la calculatrice : si l'on a voulu quitter vite, on
+        // referme ce qui avait été ouvert.
+        reglages.capturesPermises = false
         if (!reglages.deguise && reglages.empreinteDuCode != null) {
             reglages.deguise = true
             Lanceur.afficherLeVraiNom(this, false)

@@ -51,20 +51,21 @@ import fr.cooplib.util.leurre.CodeSecret
  * ceci a déjà peur.
  */
 
-private enum class Etape { BIENVENUE, NOM, PROTECTION, CODE, GARDER, APPARENCE, PRET }
+private enum class Etape { BIENVENUE, NOM, PROTECTION, CODE, GARDER, CAPTURES, APPARENCE, PRET }
 
 @Composable
 fun Configuration(
     theme: String,
     changerTheme: (String) -> Unit,
     voirCeQuiEstProtege: () -> Unit,
-    terminer: (vraiNom: Boolean, empreinteDuCode: String, garderLesReponses: Boolean, didacticiel: Boolean) -> Unit,
+    terminer: (vraiNom: Boolean, empreinteDuCode: String, garderLesReponses: Boolean, capturesPermises: Boolean, didacticiel: Boolean) -> Unit,
 ) {
 
     var etape by rememberSaveable { mutableStateOf(Etape.BIENVENUE) }
     var vraiNom by rememberSaveable { mutableStateOf(false) }
     var empreinte by rememberSaveable { mutableStateOf<String?>(null) }
     var garder by rememberSaveable { mutableStateOf(false) }
+    var captures by rememberSaveable { mutableStateOf(false) }
 
     val etapes = Etape.entries
     fun suivante() { etape = etapes[etape.ordinal + 1] }
@@ -132,6 +133,13 @@ fun Configuration(
                     Note("Le contenu du site, lui, est toujours gardé : c'est ce qui permet de s'en servir sans réseau. Il ne dit rien de vous. Tout se change dans les réglages.")
                 }
 
+                Etape.CAPTURES -> {
+                    Text("Les captures d'écran", style = MaterialTheme.typography.headlineSmall)
+                    Option("Les refuser", "Conseillé. Ce qu'affiche l'application ne peut être ni capturé, ni enregistré, ni partagé en vidéo. Ça gêne aussi certains logiciels espions, sans les arrêter tous.", choisie = !captures) { captures = false }
+                    Option("Les permettre", "Pour garder une image d'un résultat, ou la montrer à quelqu'un.", choisie = captures) { captures = true }
+                    if (captures) RisquesDesCaptures()
+                }
+
                 Etape.APPARENCE -> {
                     Text("L'apparence", style = MaterialTheme.typography.headlineSmall)
                     for ((cle, libelle, detail) in listOf(
@@ -158,8 +166,8 @@ fun Configuration(
                 Etape.CODE -> {}
                 Etape.PRET -> {
                     val e = empreinte!!
-                    Button(onClick = { terminer(vraiNom, e, garder, true) }, Modifier.fillMaxWidth()) { Text("Faire le petit tour") }
-                    OutlinedButton(onClick = { terminer(vraiNom, e, garder, false) }, Modifier.fillMaxWidth()) { Text("Commencer") }
+                    Button(onClick = { terminer(vraiNom, e, garder, captures, true) }, Modifier.fillMaxWidth()) { Text("Faire le petit tour") }
+                    OutlinedButton(onClick = { terminer(vraiNom, e, garder, captures, false) }, Modifier.fillMaxWidth()) { Text("Commencer") }
                 }
                 else -> Button(onClick = ::suivante, Modifier.fillMaxWidth()) { Text(if (etape == Etape.BIENVENUE) "Commencer" else "Suivant") }
             }
@@ -167,6 +175,23 @@ fun Configuration(
             // peut-être un code à poser.
             Points(etapes.size, etape.ordinal, aller = { i -> if (i < etape.ordinal) etape = etapes[i] })
         }
+    }
+}
+
+/*
+ * Ce que coûte une capture permise, dit au même endroit que le choix :
+ * au premier lancement et dans les réglages. Le plus sérieux d'abord.
+ */
+@Composable
+fun RisquesDesCaptures() {
+    Encadre(alerte = true, titre = "Ce que ça risque") {
+        Text("Une capture va dans la galerie du téléphone. Souvent, la galerie est copiée dans un compte en ligne (Google Photos, par exemple) : la capture y reste, même effacée du téléphone.")
+        Text("Quelqu'un qui regarde vos photos la verra, avec ce qu'elle montre.")
+        Text("Un logiciel espion qui filme l'écran n'en sera plus empêché.")
+        if (android.os.Build.VERSION.SDK_INT < 33) {
+            Text("Sur ce téléphone, la vignette des applications récentes montrera aussi le dernier écran ouvert.")
+        }
+        Text("« Quitter vite » les refuse de nouveau.")
     }
 }
 
