@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- La marque du site (SiteHeader.module.css, .site-logo) : quatre barres
-     penchées de 18 degrés, aux couleurs de l'échelle. Dans la zone sûre
-     d'une icône adaptative (le disque central de 66 sur 108). -->
+<!-- La marque, un V aux bandes de l'échelle, du vert en haut au rouge en
+     bas. Choisi le 9 octobre 2026 plutôt que les quatre barres penchées
+     du site : en petit, elles se brouillent. La même géométrie que
+     l'icône des fiches de magasin (outils/icone.py) : les deux se
+     changent ensemble. Dans la zone sûre d'une icône adaptative (le
+     disque central de 66 sur 108). -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp" android:height="108dp"
     android:viewportWidth="108" android:viewportHeight="108">
-    <path android:fillColor="#4CAF50" android:pathData="M37.5,36 h7 l-11,34 h-7 z" />
-    <path android:fillColor="#FBC02D" android:pathData="M49,36 h7 l-11,34 h-7 z" />
-    <path android:fillColor="#F57C00" android:pathData="M60.5,36 h7 l-11,34 h-7 z" />
-    <path android:fillColor="#D32F2F" android:pathData="M72,36 h7 l-11,34 h-7 z" />
+    <group>
+        <clip-path android:pathData="M31.00,33.49 L43.75,33.49 L54.00,57.33 L64.25,33.49 L77.00,33.49 L59.82,74.51 L48.18,74.51 Z" />
+        <path android:fillColor="#4CAF50" android:pathData="M26.57,33.49 L81.99,33.49 L81.99,43.75 L26.57,43.75 Z" />
+        <path android:fillColor="#FBC02D" android:pathData="M26.57,43.75 L81.99,43.75 L81.99,54.00 L26.57,54.00 Z" />
+        <path android:fillColor="#F57C00" android:pathData="M26.57,54.00 L81.99,54.00 L81.99,64.25 L26.57,64.25 Z" />
+        <path android:fillColor="#D32F2F" android:pathData="M26.57,64.25 L81.99,64.25 L81.99,74.51 L26.57,74.51 Z" />
+    </group>
 </vector>
