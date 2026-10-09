@@ -104,9 +104,45 @@ def maquette(capture, texte, sortie):
     img.save(sortie, quality=90, optimize=True)
 
 
+def banniere(sortie):
+    """
+    L'image de présentation (1024 × 500), exigée par Play, montrée en tête
+    de fiche par F-Droid : le V, le titre, la description courte. Le V
+    est redessiné depuis outils/icone.py, pour qu'il reste le même.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import icone
+
+    l, h = 1024, 500
+    img = Image.new("RGB", (l, h))
+    d = ImageDraw.Draw(img)
+    for x in range(l):
+        t = x / l
+        d.line([(x, 0), (x, h)], fill=tuple(round(a + (b - a) * t) for a, b in zip(VIOLET, VIOLET_FONCE)))
+
+    # Le V sur un carré blanc arrondi, comme une icône posée.
+    tmp = RACINE / "build/v.png"
+    tmp.parent.mkdir(parents=True, exist_ok=True)
+    icone.dessiner(tmp)
+    v = Image.open(tmp).resize((260, 260), Image.LANCZOS)
+    masque = Image.new("L", v.size, 0)
+    ImageDraw.Draw(masque).rounded_rectangle([0, 0, 260, 260], 58, fill=255)
+    img.paste(v, (80, (h - 260) // 2), masque)
+
+    titre = ImageFont.truetype("/usr/share/fonts/truetype/noto/NotoSans-Bold.ttf", 64)
+    sous = ImageFont.truetype("/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf", 32)
+    x = 400
+    d.text((x, 150), "Violentomètre", font=titre, fill="white")
+    for i, ligne in enumerate(["Repérer les violences,", "faire le point,", "trouver de l'aide."]):
+        d.text((x, 250 + i * 44), ligne, font=sous, fill=(0xEF, 0xEA, 0xF8))
+    img.save(sortie, optimize=True)
+
+
 if __name__ == "__main__":
     sortie = Path(sys.argv[1]) if len(sys.argv) > 1 else RACINE / "build/maquettes"
     sortie.mkdir(parents=True, exist_ok=True)
     for i, texte in enumerate(PHRASES, 1):
         maquette(CAPTURES / f"{i}.jpg", texte, sortie / f"{i}.jpg")
         print(sortie / f"{i}.jpg")
+    banniere(CAPTURES.parent / "featureGraphic.png")
+    print(CAPTURES.parent / "featureGraphic.png")
