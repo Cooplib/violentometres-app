@@ -136,8 +136,11 @@ class Deroule(private val pool: PoolDuPoint) {
 
     private fun passerAuNiveauSuivant(etat: EtatDuPoint, maintenant: Long): EtatDuPoint {
 
+        // Fini en entier : l'index passe au-delà de la dernière question,
+        // sinon peutReprendre croyait qu'elle restait à faire (porté de
+        // deroule.js, 9 octobre 2026).
         if (etat.niveau + 1 >= niveauxProposes.size) {
-            return terminer(etat, maintenant)
+            return terminer(etat, maintenant).copy(index = situationsCourantes(etat).size)
         }
 
         return etat.copy(niveau = etat.niveau + 1, index = 0, phase = Phase.SAS)
