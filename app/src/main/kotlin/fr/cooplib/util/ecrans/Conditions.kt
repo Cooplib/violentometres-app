@@ -47,5 +47,9 @@ fun ConditionsDUtilisation() {
 
         Note("Pour un accord particulier, ou une question : equipe@cooplib.fr.")
         TextButton(onClick = { ouvrirUnSite("$SITE/conditions") }) { Text("La page complète, sur le site ↗") }
+        // Google Play exige que la politique de confidentialité soit
+        // aussi accessible depuis l'application (11 octobre 2026) : c'est la
+        // section « application » des mentions légales du site.
+        TextButton(onClick = { ouvrirUnSite("$SITE/mentions#application") }) { Text("Confidentialité : ce que l'application garde et envoie ↗") }
     }
 }

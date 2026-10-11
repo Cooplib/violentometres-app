@@ -154,7 +154,11 @@ jobs:
         env:
           SIGNATURE_MOT_DE_PASSE: ${{ secrets.SIGNATURE_MOT_DE_PASSE }}
           SIGNATURE_ALIAS: ${{ secrets.SIGNATURE_ALIAS }}
-        run: ./gradlew -PavecAndroid=true :app:assembleRelease :app:assembleEssai
+        # bundleRelease : l'App Bundle (.aab), seul format que Google Play
+        # accepte pour une nouvelle application. Signé de la même clé que
+        # l'APK : Play la reçoit comme clé de signature de l'application
+        # (« utiliser ma propre clé »), et sert à l'envoi.
+        run: ./gradlew -PavecAndroid=true :app:assembleRelease :app:assembleEssai :app:bundleRelease
 
       - name: Son poids
         run: ls -la app/build/outputs/apk/release/
@@ -164,6 +168,7 @@ jobs:
           name: apk-diffusion
           path: |
             app/build/outputs/apk/release/*.apk
+            app/build/outputs/bundle/release/*.aab
             app/build/outputs/mapping/release/mapping.txt
           retention-days: 30
 
@@ -192,6 +197,7 @@ jobs:
           code=$(sed -n 's/.*versionCode = \([0-9]*\).*/\1/p' app/build.gradle.kts)
           notes=fastlane/metadata/android/fr-FR/changelogs/$code.txt
           gh release create "$GITHUB_REF_NAME" app/build/outputs/apk/release/app-release.apk \
+            app/build/outputs/bundle/release/app-release.aab \
             --title "$GITHUB_REF_NAME" --notes-file "$notes"
 
   # DEUX CONSTRUCTIONS, LE MÊME APK. F-Droid recompile chaque version et
