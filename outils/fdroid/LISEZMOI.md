@@ -37,6 +37,13 @@ Ce qui n'est pas évident :
   Windows est arrivé avec des fins de ligne `\r\n`, et toute la recette
   a été refusée : le déposer par « Replace » (envoi du fichier), pas en
   le collant.
+- **`prebuild` relève le plafond de mémoire de Gradle** (4 Go, 1 Go de
+  Metaspace), le temps de la compilation chez F-Droid. Le
+  `gradle.properties` du projet est réglé pour WSL (768 Mo) : assez pour
+  le noyau, pas pour R8 et le lint de diffusion, qui y tombent en
+  « OutOfMemoryError: Metaspace » (deuxième essai du 11 octobre 2026).
+  Notre CI fait de même par `~/.gradle/gradle.properties`. Aucun effet
+  sur l'APK produit. `prebuild` s'exécute dans `app/`, d'où le `../`.
 - **Les étiquettes.** `NonFreeAssets` : le contenu est sous CC BY-NC-SA,
   que F-Droid ne tient pas pour libre. `NonFreeNet` : à retirer si le
   code de l'API est publié sous licence libre.

@@ -33,6 +33,7 @@ Builds:
     subdir: app
     gradle:
       - yes
+    prebuild: sed -i 's/Xmx768m/Xmx4g/;s/=384m/=1g/' ../gradle.properties
     gradleprops:
       - avecAndroid=true
 
