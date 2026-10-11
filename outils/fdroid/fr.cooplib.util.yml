@@ -19,11 +19,12 @@ WebSite: https://violentometres.fr
 SourceCode: https://github.com/Cooplib/violentometres-app
 IssueTracker: https://github.com/Cooplib/violentometres-app/issues
 
-AutoName: Violentomètres
+AutoName: Calculatrice
 
 RepoType: git
 Repo: https://github.com/Cooplib/violentometres-app.git
-Binaries: https://github.com/Cooplib/violentometres-app/releases/download/v%v/app-release.apk
+Binaries: 
+  https://github.com/Cooplib/violentometres-app/releases/download/v%v/app-release.apk
 
 Builds:
   - versionName: 1.0.1
@@ -32,8 +33,6 @@ Builds:
     subdir: app
     gradle:
       - yes
-    scandelete:
-      - app/debug.keystore
     gradleprops:
       - avecAndroid=true
 

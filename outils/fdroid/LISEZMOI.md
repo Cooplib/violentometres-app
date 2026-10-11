@@ -24,9 +24,19 @@ Ce qui n'est pas évident :
 - **`gradleprops: avecAndroid=true`.** Sans lui, `:app` n'est inclus que
   si le SDK est trouvé, et en silence ; avec, son absence fait échouer
   (`settings.gradle.kts`).
-- **`scandelete: app/debug.keystore`.** La clé de mise au point est
-  commitée exprès (`app/build.gradle.kts`) ; elle ne signe jamais la
-  version de diffusion, et le scanner de F-Droid n'aime pas les clés.
+- **Pas de `scandelete` pour `app/debug.keystore`** : le scanner de
+  F-Droid ne signale pas cette clé de mise au point, et il refuse une
+  ligne qui ne sert à rien (« Unused scandelete path », premier essai du
+  11 octobre 2026).
+- **`AutoName: Calculatrice`** : F-Droid le déduit du manifeste, dont
+  l'étiquette est celle du leurre, et sa vérification refuse un autre
+  nom. La fiche, elle, affiche le titre de `fastlane/`.
+- **Fins de ligne Unix, et l'espace après `Binaries:`** : leur
+  `rewritemeta` coupe la longue adresse sur la ligne suivante et laisse
+  cet espace. Un fichier collé dans l'éditeur web de GitLab depuis
+  Windows est arrivé avec des fins de ligne `\r\n`, et toute la recette
+  a été refusée : le déposer par « Replace » (envoi du fichier), pas en
+  le collant.
 - **Les étiquettes.** `NonFreeAssets` : le contenu est sous CC BY-NC-SA,
   que F-Droid ne tient pas pour libre. `NonFreeNet` : à retirer si le
   code de l'API est publié sous licence libre.
