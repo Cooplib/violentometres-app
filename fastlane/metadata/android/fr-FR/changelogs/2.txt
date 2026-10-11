@@ -1,0 +1,1 @@
+Corrige la présentation de l'application dans les magasins. Rien ne change dans l'application elle-même.
