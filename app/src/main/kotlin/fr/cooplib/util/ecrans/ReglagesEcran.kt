@@ -71,8 +71,8 @@ fun ReglagesEcran(
         Text("Vos réponses au point", style = MaterialTheme.typography.titleMedium)
 
         Text(
-            if (garderLesReponses) "Elles sont gardées sur ce téléphone, pour reprendre plus tard, avec vos brouillons, vos « J'aime » et les récits déjà lus."
-            else "Elles ne sont pas gardées : en quittant, elles disparaissent, comme vos brouillons, vos « J'aime » et les récits déjà lus."
+            if (garderLesReponses) "Elles sont gardées sur ce téléphone, pour reprendre plus tard, avec vos brouillons, vos « J'aime » et les témoignages déjà lus."
+            else "Elles ne sont pas gardées : en quittant, elles disparaissent, comme vos brouillons, vos « J'aime » et les témoignages déjà lus."
         )
 
         OutlinedButton(onClick = { changerGarder(!garderLesReponses) }, Modifier.fillMaxWidth()) {

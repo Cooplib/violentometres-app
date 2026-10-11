@@ -177,7 +177,7 @@ private fun GlisserPartout() {
         Text("Non →", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
     }
     Explication("Quand vous faites le point, glissez n'importe où sur l'écran : à gauche pour oui, à droite pour non. Les boutons restent en bas, toujours au même endroit.")
-    Note("On glisse aussi d'un récit à l'autre, d'une étape de parcours à l'autre, d'une situation à l'autre dans une échelle, et entre les écrans du bilan.")
+    Note("On glisse aussi d'un témoignage à l'autre, d'une étape de parcours à l'autre, d'une situation à l'autre dans une échelle, et entre les écrans du bilan.")
 }
 
 @Composable
@@ -196,16 +196,16 @@ private fun LireUneEchelle() {
 
 @Composable
 private fun LesRecits() {
-    Titre("Des récits")
+    Titre("Des témoignages")
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("Un titre de récit", style = MaterialTheme.typography.titleMedium)
-            Encadre("Ce récit peut être difficile à lire.")
-            Button(onClick = {}) { Text("Lire le récit") }
+            Text("Un titre de témoignage", style = MaterialTheme.typography.titleMedium)
+            Encadre("Ce témoignage peut être difficile à lire.")
+            Button(onClick = {}) { Text("Lire le témoignage") }
         }
     }
-    Explication("Certains récits sont cachés jusqu'à ce que vous choisissiez de les lire. Une fois lus, ils restent visibles ; vous pouvez les recacher pour vous.")
-    Note("Vous pouvez déposer le vôtre. Il sera public : ne nommez jamais une personne réelle. Et chaque récit peut être signalé.")
+    Explication("Certains témoignages sont cachés jusqu'à ce que vous choisissiez de les lire. Une fois lus, ils restent visibles ; vous pouvez les recacher pour vous.")
+    Note("Vous pouvez déposer le vôtre. Il sera public : ne nommez jamais une personne réelle. Et chaque témoignage peut être signalé.")
 }
 
 @Composable

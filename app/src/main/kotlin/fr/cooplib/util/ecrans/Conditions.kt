@@ -41,7 +41,7 @@ fun ConditionsDUtilisation() {
         }
 
         Encadre(alerte = true, titre = "Ce que vous publiez") {
-            Text("En publiant un récit, vous acceptez qu'il soit diffusé sous cette même licence, avec l'autorisation pour les formatrices et formateurs.")
+            Text("En publiant un témoignage, vous acceptez qu'il soit diffusé sous cette même licence, avec l'autorisation pour les formatrices et formateurs.")
             Text("Vous accordez aussi à l'association L'Arrosoir, éditrice du site, qui porte le projet Cooplib, gratuitement et sans exclusivité, partout et pour toute la durée des droits d'auteur, le droit de le reproduire, de le représenter et de l'adapter, y compris dans des supports qu'elle édite et vend : carnets, livrets, supports de formation. Ce droit n'est qu'à l'association L'Arrosoir.")
             Text("Ce que vous publiez est signé d'un pseudonyme, jamais de votre nom. Ne publiez que vos propres mots, et ne nommez jamais une personne réelle.")
         }

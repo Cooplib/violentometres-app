@@ -45,7 +45,7 @@ import fr.cooplib.util.stockage.Reponses
 enum class Entree(val icone: String, val titre: String, val sousTitre: String) {
     AIDE("🆘", "Trouver de l'aide", "Un numéro, à appeler tout de suite."),
     POINT("🧭", "Faire le point", "Où j'en suis, en général ou sur un sujet précis."),
-    RECITS("📖", "Des récits", "Ce que d'autres ont vécu, et déposer le sien."),
+    RECITS("📖", "Des témoignages", "Ce que d'autres ont vécu, et déposer le sien."),
     COMPRENDRE("🗺️", "Comprendre", "Des parcours courts, une carte par étape."),
 }
 

@@ -79,15 +79,15 @@ relecteur reste sur la calculatrice et refuse. À coller tel quel :
 - **Collecte ou partage de données : oui**, et seulement à l'initiative
   de la personne :
   - *Activité dans l'application → Autre contenu généré par
-    l'utilisateur* : les récits publiés, les signalements. Collectés,
+    l'utilisateur* : les témoignages publiés, les signalements. Collectés,
     **non partagés**, pour une **fonctionnalité de l'application**.
-    Facultatif. Publics par nature (un récit publié s'affiche sur le
+    Facultatif. Publics par nature (un témoignage publié s'affiche sur le
     site) : c'est une action de la personne, pas un partage avec un
     tiers ;
   - *Activité dans l'application → Interactions avec l'application* :
     les « J'aime ». Collectés, non partagés, fonctionnalité. Facultatif ;
   - *Identifiants de l'appareil ou autres* : l'identifiant tiré au
-    hasard par l'application, envoyé avec un récit, un signalement ou un
+    hasard par l'application, envoyé avec un témoignage, un signalement ou un
     « J'aime ». Le serveur n'en garde que des empreintes. Collecté, non
     partagé, fonctionnalité.
 - **Rien d'autre** : ni localisation, ni contacts, ni nom, ni courriel,
@@ -95,17 +95,17 @@ relecteur reste sur la calculatrice et refuse. À coller tel quel :
   adresse IP enregistrée, ni identifiant publicitaire.
 - **Chiffrement en transit : oui** (HTTPS seulement).
 - **Suppression des données** : il n'y a pas de compte. On peut demander
-  le retrait d'un récit à contact@cooplib.fr (comme sur le site).
+  le retrait d'un témoignage à contact@cooplib.fr (comme sur le site).
 
 ## Classification du contenu
 
 Questionnaire IARC, catégorie « Référence, actualités ou éducation » :
 
-- violence : **décrite par écrit** (situations, récits), jamais montrée
+- violence : **décrite par écrit** (situations, témoignages), jamais montrée
   en image ; pas de violence réaliste représentée ;
 - sexualité : **évoquée par écrit** dans des situations de violences
   sexuelles, sans contenu explicite ;
-- contenu généré par les utilisateurs : **oui** (les récits), modéré,
+- contenu généré par les utilisateurs : **oui** (les témoignages), modéré,
   avec signalement ;
 - échanges entre utilisateurs, localisation, achats : **non**.
 
@@ -116,7 +116,7 @@ basse expose à un retrait.
 
 **18 ans et plus**, éventuellement **16-17** : pas les enfants. Une
 cible enfant ferait entrer l'application dans le programme « Familles »,
-aux règles incompatibles avec des récits de violences.
+aux règles incompatibles avec des témoignages de violences.
 
 ## Autres déclarations
 
@@ -125,6 +125,6 @@ aux règles incompatibles avec des récits de violences.
 - Applications de santé : **non** (pas de suivi médical ni de données de
   santé).
 - Contenu généré par les utilisateurs : **oui** ; on peut signaler
-  chaque récit depuis l'application, les conditions d'utilisation
-  interdisent de nommer une personne réelle, et les récits sont modérés
+  chaque témoignage depuis l'application, les conditions d'utilisation
+  interdisent de nommer une personne réelle, et les témoignages sont modérés
   sur le site.

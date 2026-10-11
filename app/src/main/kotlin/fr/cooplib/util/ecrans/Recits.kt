@@ -132,20 +132,20 @@ private fun Liste(
 
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
-        item { Text("📖 Des récits", style = MaterialTheme.typography.headlineSmall) }
+        item { Text("📖 Des témoignages", style = MaterialTheme.typography.headlineSmall) }
 
-        item { Encadre("Des récits entiers, écrits par celles et ceux à qui c'est arrivé. Certains sont difficiles à lire : ils restent cachés jusqu'à ce que vous choisissiez de les lire.") }
+        item { Encadre("Des témoignages entiers, écrits par celles et ceux à qui c'est arrivé. Certains sont difficiles à lire : ils restent cachés jusqu'à ce que vous choisissiez de les lire.") }
 
-        item { Button(onClick = deposer, Modifier.fillMaxWidth()) { Text("🖊️ Déposer mon récit") } }
+        item { Button(onClick = deposer, Modifier.fillMaxWidth()) { Text("🖊️ Déposer mon témoignage") } }
 
         item {
-            BarreDeRecherche(cherche, chercher, indication = "Chercher un récit") {
+            BarreDeRecherche(cherche, chercher, indication = "Chercher un témoignage") {
                 Selecteur("Trier par", TRIS_RECITS.map { Choix(it, it) }, tri) { trier(it ?: TRIS_RECITS[0]) }
             }
         }
 
         if (recits.isEmpty()) {
-            item { Note("Aucun récit ne correspond.") }
+            item { Note("Aucun témoignage ne correspond.") }
         }
 
         items(recits, key = { it.id }) { r ->
@@ -163,7 +163,7 @@ private fun Liste(
                     if (visible(r, lus, caches)) {
                         Text(r.texte, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 3, overflow = TextOverflow.Ellipsis)
                     } else {
-                        Text("Ce récit peut être difficile à lire.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text("Ce témoignage peut être difficile à lire.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     Compteurs(ilYA(r.creeLe), "👁 ${r.vues}")
                 }
@@ -216,18 +216,18 @@ private fun Lecteur(
                     Text(recit.texte, style = MaterialTheme.typography.bodyLarge)
                     if (recit.apropos.isNotBlank()) Note(recit.apropos)
                     // Le recacher pour soi, même gardé, même « sans flou ».
-                    TextButton(onClick = { recacher(recit.id) }) { Text("🙈 Cacher ce récit pour moi") }
+                    TextButton(onClick = { recacher(recit.id) }) { Text("🙈 Cacher ce témoignage pour moi") }
                 } else {
                     Encadre(
                         if (recit.id in caches) "Caché par vous. Vous pouvez le lire à nouveau quand vous voulez."
-                        else "Ce récit peut être difficile à lire. Vous pouvez le lire maintenant, ou revenir plus tard."
+                        else "Ce témoignage peut être difficile à lire. Vous pouvez le lire maintenant, ou revenir plus tard."
                     )
-                    Button(onClick = { marquerLu(recit.id) }) { Text("Lire le récit") }
+                    Button(onClick = { marquerLu(recit.id) }) { Text("Lire le témoignage") }
                 }
 
                 // Atteignable depuis chaque récit, lu ou non : on peut avoir à
                 // signaler un récit qu'on ne veut pas lire en entier.
-                TextButton(onClick = signaler) { Text("Signaler un problème dans ce récit") }
+                TextButton(onClick = signaler) { Text("Signaler un problème dans ce témoignage") }
             } }
         }
     }
@@ -280,8 +280,8 @@ private fun Signaler(recit: Recit, depot: Depot, fini: () -> Unit) {
         Text("« ${recit.titre} »", style = MaterialTheme.typography.titleMedium)
 
         if (envoye) {
-            Text("Merci. Le signalement est arrivé : quelqu'un va regarder ce récit. Il n'est ni caché, ni marqué en attendant, et personne ne saura qu'il a été signalé.")
-            Button(onClick = fini) { Text("Revenir au récit") }
+            Text("Merci. Le signalement est arrivé : quelqu'un va regarder ce témoignage. Il n'est ni caché, ni marqué en attendant, et personne ne saura qu'il a été signalé.")
+            Button(onClick = fini) { Text("Revenir au témoignage") }
             return@Page
         }
 
@@ -366,18 +366,18 @@ private fun Deposer(depot: Depot, garder: Boolean, fini: () -> Unit) {
 
     Page {
 
-        Text("Déposer mon récit", style = MaterialTheme.typography.headlineSmall)
+        Text("Déposer mon témoignage", style = MaterialTheme.typography.headlineSmall)
 
         if (publie) {
-            Text("Votre récit est publié. Il est maintenant lisible par tout le monde, sur le site et dans l'application.")
-            Button(onClick = fini) { Text("Revenir aux récits") }
+            Text("Votre témoignage est publié. Il est maintenant lisible par tout le monde, sur le site et dans l'application.")
+            Button(onClick = fini) { Text("Revenir aux témoignages") }
             return@Page
         }
 
         Text("Racontez ce qui s'est passé, avec vos mots.")
 
         Encadre(alerte = true, titre = "Avant d'écrire") {
-            Text("Ce récit sera public : tout le monde pourra le lire, sur le site et dans l'application. Le site garde toutes ses versions : ce qui est envoyé ne se reprend pas.")
+            Text("Ce témoignage sera public : tout le monde pourra le lire, sur le site et dans l'application. Le site garde toutes ses versions : ce qui est envoyé ne se reprend pas.")
             Text("Ne mettez jamais le nom d'une personne réelle. Changez ce qui permettrait de vous reconnaître, ou de reconnaître quelqu'un : les noms, les lieux, les dates.", fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold)
         }
         Note(
@@ -388,12 +388,12 @@ private fun Deposer(depot: Depot, garder: Boolean, fini: () -> Unit) {
         Text("Titre")
         ChampPrive(titre, { titre = it; retenir() }, lignes = 1)
 
-        Text("Le récit")
+        Text("Le témoignage")
         ChampPrive(texte, { texte = it; retenir() }, lignes = 10)
 
         Row(Modifier.fillMaxWidth().clickable { sansFlou = !sansFlou; retenir() }, verticalAlignment = Alignment.CenterVertically) {
             Checkbox(checked = sansFlou, onCheckedChange = { sansFlou = it; retenir() })
-            Text("Ce récit peut s'afficher sans flou : il ne contient rien de difficile à lire.")
+            Text("Ce témoignage peut s'afficher sans flou : il ne contient rien de difficile à lire.")
         }
 
         issue?.let { Text(it, color = MaterialTheme.colorScheme.error) }
@@ -402,7 +402,7 @@ private fun Deposer(depot: Depot, garder: Boolean, fini: () -> Unit) {
             onClick = { confirmer = true },
             enabled = titre.isNotBlank() && texte.isNotBlank() && !envoi,
             modifier = Modifier.fillMaxWidth(),
-        ) { Text(if (envoi) "Envoi…" else "Publier le récit") }
+        ) { Text(if (envoi) "Envoi…" else "Publier le témoignage") }
 
         OutlinedButton(onClick = fini, Modifier.fillMaxWidth()) { Text("Revenir") }
     }
@@ -410,13 +410,13 @@ private fun Deposer(depot: Depot, garder: Boolean, fini: () -> Unit) {
     if (confirmer) {
         AlertDialog(
             onDismissRequest = { confirmer = false },
-            title = { Text("Publier ce récit ?") },
+            title = { Text("Publier ce témoignage ?") },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text("Il sera public, et ne se reprend pas. Vérifiez qu'il ne nomme personne.")
                     if (rappelerLaLicence) {
                         Encadre(titre = "La licence") {
-                            Text("Votre récit sera diffusé sous licence CC BY-NC-SA 4.0, et l'association L'Arrosoir, qui porte Cooplib, pourra le reprendre dans ses propres supports. Le détail est dans « Conditions d'utilisation », dans le menu.")
+                            Text("Votre témoignage sera diffusé sous licence CC BY-NC-SA 4.0, et l'association L'Arrosoir, qui porte Cooplib, pourra le reprendre dans ses propres supports. Le détail est dans « Conditions d'utilisation », dans le menu.")
                         }
                         Row(Modifier.fillMaxWidth().clickable { nePlusRappeler = !nePlusRappeler }, verticalAlignment = Alignment.CenterVertically) {
                             Checkbox(checked = nePlusRappeler, onCheckedChange = { nePlusRappeler = it })
@@ -438,9 +438,9 @@ private fun Deposer(depot: Depot, garder: Boolean, fini: () -> Unit) {
                                 publie = true
                             }
                             is Resultat.Limite -> issue = "Le serveur demande d'attendre. Réessayez dans ${r.attenteSecondes} secondes."
-                            is Resultat.Refuse -> issue = r.detail ?: "Le récit n'a pas été accepté."
+                            is Resultat.Refuse -> issue = r.detail ?: "Le témoignage n'a pas été accepté."
                             is Resultat.Injoignable -> issue =
-                                "La connexion a coupé. Le récit est peut-être parti quand même : mettez à jour le contenu (Réglages) et regardez la liste des récits avant de le renvoyer, pour ne pas le publier deux fois."
+                                "La connexion a coupé. Le témoignage est peut-être parti quand même : mettez à jour le contenu (Réglages) et regardez la liste des témoignages avant de le renvoyer, pour ne pas le publier deux fois."
                         }
                         envoi = false
                     }
