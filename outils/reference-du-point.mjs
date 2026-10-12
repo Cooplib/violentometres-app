@@ -140,7 +140,9 @@ function recommandations(pool, etat) {
   return {
     violentometres: paire(r.violentometres),
     parcours: paire(r.parcours),
-    recits: paire(r.recits),
+    // Le site dit « temoignages » depuis le 11 octobre 2026 (les récits
+    // renommés) ; le portage garde « recits », comme l'API garde /stories.
+    recits: paire(r.temoignages),
     mecanismes: paire(r.mecanismes)
   };
 
