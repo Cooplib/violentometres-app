@@ -5,9 +5,9 @@ AntiFeatures:
     en: The content (situations, scales, stories) is licensed CC BY-NC-SA 4.0, which
       forbids commercial use.
   NonFreeNet:
-    fr: Les mises à jour du contenu, les récits et les « J'aime » passent par le serveur
-      de violentometres.fr, dont le code n'est pas publié.
-    en: Content updates, stories and likes go through the violentometres.fr server,
+    fr: Les mises à jour du contenu, les témoignages et les « J'aime » passent par
+      le serveur de violentometres.fr, dont le code n'est pas publié.
+    en: Content updates, testimonies and likes go through the violentometres.fr server,
       whose code is not published.
 Categories:
   - Mental Health
@@ -27,9 +27,9 @@ Binaries:
   https://github.com/Cooplib/violentometres-app/releases/download/v%v/app-release.apk
 
 Builds:
-  - versionName: 1.0.1
-    versionCode: 2
-    commit: v1.0.1
+  - versionName: 1.1.1
+    versionCode: 4
+    commit: 4377f34279f05fbac7187196d7e76aad7986b63c
     subdir: app
     gradle:
       - yes
@@ -41,5 +41,5 @@ AllowedAPKSigningKeys: f742e8c9dcebc192916d0c820b2cca7dbbd8cd886200a49ee25c863b5
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags ^v[0-9.]+$
-CurrentVersion: 1.0.1
-CurrentVersionCode: 2
+CurrentVersion: 1.1.1
+CurrentVersionCode: 4
