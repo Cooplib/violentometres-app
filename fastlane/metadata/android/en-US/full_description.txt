@@ -1,0 +1,31 @@
+The app is in French: it is made for French-speaking people, and its content comes from violentometres.fr.
+
+Is this normal? Is this serious? A "violentomètre" (violence meter) lays out everyday situations from green (all is well) to red (danger), to help recognise violence, name it, and know what to do.
+
+The app takes its content from violentometres.fr, and works offline.
+
+FOUR ENTRY POINTS
+
+• Find help: helplines and emergency numbers, one tap away. 3919, 17, 114 by text, 119, 3018, and more.
+• Take stock: a few questions, one at a time, about what you are going through, then a result and next steps. About your situation in general, a specific scale, or a whole learning path.
+• Testimonies: read what others have been through, and share your own, with no account and no name.
+• Understand: learning paths, one card per step.
+
+Dozens of scales, in relationships, the family, at work, at school, online, in healthcare, with institutions, in the street, and elsewhere. And you can build your own: pick situations from a library of more than a thousand, rewrite them in your own words, and rank them yourself.
+
+DISCREET
+
+• On the home screen, it can appear as Calculator, and work as a real one. Your code, then =, opens it.
+• Your answers never leave the phone. By default nothing is kept: everything is gone when you leave the app.
+• "Quitter vite" (leave quickly), at the top of every screen, erases everything, closes the app and removes it from recent apps.
+• No account, no ads, no trackers, no notifications.
+
+The app also says what it does not protect against: someone searching the phone settings or your Google account, someone forcing you to open it, spyware. And the name of this listing stays visible in the store history.
+
+A TOOL, NOT A DIAGNOSIS
+
+The result of taking stock is not professional advice. It helps put words on things, and know who to turn to. In danger, call 17, or text 114.
+
+FREE SOFTWARE
+
+The code is free software (GPL 3). The content is licensed Creative Commons BY-NC-SA. An app by Cooplib.
