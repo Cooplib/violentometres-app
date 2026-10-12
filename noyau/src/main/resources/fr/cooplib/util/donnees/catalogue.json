@@ -1,9 +1,9 @@
 {
- "fabriqueLe": "2026-10-09T13:39:42Z",
+ "fabriqueLe": "2026-10-12T06:57:07Z",
  "source": "https://violentometres.fr/api",
  "derniereVersion": {
-  "id": "4134d593-9ee0-441a-bdb8-64524db4224c",
-  "modifieLe": "2026-10-07T17:26:08.740566+00:00"
+  "id": "a18708da-1f4d-41e8-8815-9cb57912bb05",
+  "modifieLe": "2026-10-12T06:10:30.220904+00:00"
  },
  "aides": [
   {
@@ -420,9 +420,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-09T03:59:29.200580+00:00",
-   "views_count": 3,
-   "popular_score": 67
+   "updated_at": "2026-10-12T06:09:41.641564+00:00",
+   "views_count": 4,
+   "popular_score": 68
   },
   {
    "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
@@ -674,9 +674,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T19:39:34.599846+00:00",
-   "views_count": 1,
-   "popular_score": 61
+   "updated_at": "2026-10-12T06:10:16.449324+00:00",
+   "views_count": 2,
+   "popular_score": 62
   },
   {
    "id": "0bb14a80-1b0a-410a-8ff6-82b66acd44bf",
@@ -1074,9 +1074,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T01:36:57.677345+00:00",
-   "views_count": 1,
-   "popular_score": 51
+   "updated_at": "2026-10-10T10:07:29.649432+00:00",
+   "views_count": 2,
+   "popular_score": 52
   },
   {
    "id": "12cea310-e425-455b-a342-5abebb7a1d91",
@@ -1339,9 +1339,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-06T19:53:15.757452+00:00",
-   "views_count": 1,
-   "popular_score": 63
+   "updated_at": "2026-10-12T06:10:12.262323+00:00",
+   "views_count": 2,
+   "popular_score": 64
   },
   {
    "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
@@ -1516,9 +1516,9 @@
      "severity": 0
     }
    ],
-   "updated_at": "2026-10-08T08:50:44.386871+00:00",
-   "views_count": 1,
-   "popular_score": 39
+   "updated_at": "2026-10-11T04:58:51.104302+00:00",
+   "views_count": 3,
+   "popular_score": 41
   },
   {
    "id": "1e59fb49-5448-4d29-ac67-f00daf33e245",
@@ -1971,9 +1971,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-06T19:44:26.217522+00:00",
-   "views_count": 1,
-   "popular_score": 73
+   "updated_at": "2026-10-12T06:09:28.108902+00:00",
+   "views_count": 2,
+   "popular_score": 74
   },
   {
    "id": "247a382a-a837-4196-bd53-ba188abd3d52",
@@ -2232,9 +2232,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T04:44:25.782050+00:00",
-   "views_count": 1,
-   "popular_score": 63
+   "updated_at": "2026-10-12T06:10:15.805553+00:00",
+   "views_count": 2,
+   "popular_score": 64
   },
   {
    "id": "29419972-a36b-47ef-83a5-dcf88b57a421",
@@ -2714,9 +2714,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T03:10:28.601664+00:00",
-   "views_count": 3,
-   "popular_score": 67
+   "updated_at": "2026-10-12T06:10:01.340354+00:00",
+   "views_count": 4,
+   "popular_score": 68
   },
   {
    "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
@@ -2988,9 +2988,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T20:42:53.476653+00:00",
-   "views_count": 1,
-   "popular_score": 65
+   "updated_at": "2026-10-12T06:10:07.169963+00:00",
+   "views_count": 2,
+   "popular_score": 66
   },
   {
    "id": "2e6a5b49-0300-4d18-9fe3-6c3ab9eae3bf",
@@ -3256,9 +3256,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T18:09:50.745918+00:00",
-   "views_count": 1,
-   "popular_score": 65
+   "updated_at": "2026-10-12T06:10:05.802589+00:00",
+   "views_count": 2,
+   "popular_score": 66
   },
   {
    "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
@@ -3405,9 +3405,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-07T16:07:39.249605+00:00",
-   "views_count": 2,
-   "popular_score": 32
+   "updated_at": "2026-10-10T13:50:37.952352+00:00",
+   "views_count": 3,
+   "popular_score": 33
   },
   {
    "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
@@ -3667,9 +3667,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T10:23:29.837839+00:00",
-   "views_count": 1,
-   "popular_score": 65
+   "updated_at": "2026-10-12T06:10:03.955043+00:00",
+   "views_count": 3,
+   "popular_score": 67
   },
   {
    "id": "3aef56bd-87ad-44f2-9e86-e0e698477a28",
@@ -3900,9 +3900,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T20:45:16.582353+00:00",
-   "views_count": 1,
-   "popular_score": 55
+   "updated_at": "2026-10-12T06:10:19.878178+00:00",
+   "views_count": 3,
+   "popular_score": 57
   },
   {
    "id": "45bdf080-6c74-45fd-bbee-7c3185bb0c13",
@@ -4152,9 +4152,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-09T09:43:45.974567+00:00",
-   "views_count": 3,
-   "popular_score": 63
+   "updated_at": "2026-10-12T06:10:11.452156+00:00",
+   "views_count": 5,
+   "popular_score": 65
   },
   {
    "id": "4979a090-b09e-4697-a49e-e35348a39163",
@@ -4638,9 +4638,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-09T11:43:03.652057+00:00",
-   "views_count": 2,
-   "popular_score": 66
+   "updated_at": "2026-10-12T06:10:04.517029+00:00",
+   "views_count": 3,
+   "popular_score": 67
   },
   {
    "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
@@ -4900,9 +4900,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T15:39:30.018146+00:00",
-   "views_count": 1,
-   "popular_score": 65
+   "updated_at": "2026-10-12T06:09:39.997781+00:00",
+   "views_count": 4,
+   "popular_score": 68
   },
   {
    "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
@@ -5162,7 +5162,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-12T06:10:06.390148+00:00",
+   "views_count": 2,
+   "popular_score": 66
   },
   {
    "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
@@ -5409,9 +5411,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T21:35:10.082703+00:00",
-   "views_count": 2,
-   "popular_score": 60
+   "updated_at": "2026-10-12T06:10:17.010084+00:00",
+   "views_count": 4,
+   "popular_score": 62
   },
   {
    "id": "5ce83a6f-5d0a-40ee-af55-ec3b5e44e566",
@@ -5855,9 +5857,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T22:08:17.719235+00:00",
-   "views_count": 2,
-   "popular_score": 66
+   "updated_at": "2026-10-12T06:10:03.232424+00:00",
+   "views_count": 3,
+   "popular_score": 67
   },
   {
    "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
@@ -5891,12 +5893,16 @@
    ],
    "contexts": [
     {
-     "id": "0d257f3c-7fc3-4fa6-9faf-c3287a2c38e2",
-     "name": "Stage, alternance, apprentissage"
+     "id": "7c23126e-878b-4909-ae0f-1ecf5d6abcbd",
+     "name": "Amitiés"
     },
     {
      "id": "f67081cb-46db-4d2e-b2ba-9b4994faee76",
      "name": "Université"
+    },
+    {
+     "id": "0d257f3c-7fc3-4fa6-9faf-c3287a2c38e2",
+     "name": "Stage, alternance, apprentissage"
     }
    ],
    "behaviors": [
@@ -6086,9 +6092,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-08T00:24:32.246728+00:00",
-   "views_count": 2,
-   "popular_score": 56
+   "updated_at": "2026-10-12T06:10:22.255484+00:00",
+   "views_count": 3,
+   "popular_score": 57
   },
   {
    "id": "60dc7ec3-9735-44d7-a5d9-5cd047ce3d09",
@@ -6347,9 +6353,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T02:02:43.269417+00:00",
-   "views_count": 1,
-   "popular_score": 63
+   "updated_at": "2026-10-12T06:10:12.758494+00:00",
+   "views_count": 2,
+   "popular_score": 64
   },
   {
    "id": "64bdd8ed-89cb-4522-8b12-fb71f61048c1",
@@ -6602,9 +6608,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-09T09:05:33.904326+00:00",
-   "views_count": 2,
-   "popular_score": 64
+   "updated_at": "2026-10-12T06:10:10.794901+00:00",
+   "views_count": 3,
+   "popular_score": 65
   },
   {
    "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
@@ -6864,9 +6870,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-09T09:26:39.116248+00:00",
-   "views_count": 2,
-   "popular_score": 66
+   "updated_at": "2026-10-12T06:10:05.094965+00:00",
+   "views_count": 3,
+   "popular_score": 67
   },
   {
    "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
@@ -7028,9 +7034,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T00:23:57.430446+00:00",
-   "views_count": 1,
-   "popular_score": 37
+   "updated_at": "2026-10-11T09:43:03.072069+00:00",
+   "views_count": 2,
+   "popular_score": 38
   },
   {
    "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
@@ -7915,9 +7921,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-09T08:14:21.778087+00:00",
-   "views_count": 4,
-   "popular_score": 76
+   "updated_at": "2026-10-11T12:56:15.981168+00:00",
+   "views_count": 6,
+   "popular_score": 78
   },
   {
    "id": "771ffcca-9fae-4678-8050-42cec0366296",
@@ -8155,9 +8161,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T05:33:30.349344+00:00",
-   "views_count": 1,
-   "popular_score": 57
+   "updated_at": "2026-10-12T06:12:51.789144+00:00",
+   "views_count": 3,
+   "popular_score": 59
   },
   {
    "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
@@ -8423,9 +8429,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T21:13:42.621810+00:00",
-   "views_count": 2,
-   "popular_score": 66
+   "updated_at": "2026-10-12T06:09:37.239471+00:00",
+   "views_count": 4,
+   "popular_score": 68
   },
   {
    "id": "7cd3f13f-2f54-4c25-ba57-afb989ddbf33",
@@ -8874,9 +8880,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T20:08:55.921558+00:00",
-   "views_count": 2,
-   "popular_score": 66
+   "updated_at": "2026-10-12T06:09:20.354475+00:00",
+   "views_count": 4,
+   "popular_score": 68
   },
   {
    "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
@@ -9251,9 +9257,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T11:03:53.787714+00:00",
-   "views_count": 1,
-   "popular_score": 41
+   "updated_at": "2026-10-10T05:21:52.941752+00:00",
+   "views_count": 2,
+   "popular_score": 42
   },
   {
    "id": "997fd90c-860a-4409-8879-584b78b9838d",
@@ -9437,9 +9443,9 @@
      "severity": 1
     }
    ],
-   "updated_at": "2026-10-07T22:27:05.791415+00:00",
-   "views_count": 1,
-   "popular_score": 41
+   "updated_at": "2026-10-11T12:53:30.127193+00:00",
+   "views_count": 2,
+   "popular_score": 42
   },
   {
    "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
@@ -9698,9 +9704,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-08T07:26:49.721077+00:00",
-   "views_count": 1,
-   "popular_score": 63
+   "updated_at": "2026-10-12T06:10:13.372007+00:00",
+   "views_count": 2,
+   "popular_score": 64
   },
   {
    "id": "9f04d8ac-afe6-46f2-ab1f-81f61dbf32ba",
@@ -9960,9 +9966,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T07:32:41.945371+00:00",
-   "views_count": 4,
-   "popular_score": 68
+   "updated_at": "2026-10-11T07:28:11.696142+00:00",
+   "views_count": 7,
+   "popular_score": 71
   },
   {
    "id": "a6ab7e47-f5e9-4253-8642-ee8ce2dd802b",
@@ -10230,9 +10236,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T05:42:50.887573+00:00",
-   "views_count": 1,
-   "popular_score": 65
+   "updated_at": "2026-10-12T06:10:09.505085+00:00",
+   "views_count": 2,
+   "popular_score": 66
   },
   {
    "id": "a6b7d851-5377-4a04-b7a8-c636b895cad0",
@@ -10468,9 +10474,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T23:55:17.340022+00:00",
-   "views_count": 1,
-   "popular_score": 57
+   "updated_at": "2026-10-12T06:10:18.462011+00:00",
+   "views_count": 3,
+   "popular_score": 59
   },
   {
    "id": "a963c6f3-dfaa-48fe-bfb7-c0fb0188082a",
@@ -10631,9 +10637,9 @@
      "severity": 1
     }
    ],
-   "updated_at": "2026-10-09T05:21:32.348474+00:00",
-   "views_count": 2,
-   "popular_score": 36
+   "updated_at": "2026-10-10T03:13:48.356463+00:00",
+   "views_count": 3,
+   "popular_score": 37
   },
   {
    "id": "ad97516e-9956-48a7-82fd-e7ded4d368ba",
@@ -10893,9 +10899,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T03:52:03.116449+00:00",
-   "views_count": 1,
-   "popular_score": 65
+   "updated_at": "2026-10-12T06:10:10.142037+00:00",
+   "views_count": 2,
+   "popular_score": 66
   },
   {
    "id": "c075a436-f6f0-4571-8506-d22acf917854",
@@ -11290,9 +11296,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-07T17:31:31.778908+00:00",
-   "views_count": 1,
-   "popular_score": 49
+   "updated_at": "2026-10-10T15:09:02.768053+00:00",
+   "views_count": 2,
+   "popular_score": 50
   },
   {
    "id": "c86d25d1-0495-47cf-a3a6-c9fef8956c9a",
@@ -11518,9 +11524,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-09T09:49:48.410060+00:00",
-   "views_count": 1,
-   "popular_score": 57
+   "updated_at": "2026-10-12T06:10:18.983166+00:00",
+   "views_count": 2,
+   "popular_score": 58
   },
   {
    "id": "c8d15c70-a4c5-4ca1-b402-7cdbb08244ab",
@@ -11889,9 +11895,9 @@
      "severity": 2
     }
    ],
-   "updated_at": "2026-10-08T04:00:03.206566+00:00",
-   "views_count": 1,
-   "popular_score": 43
+   "updated_at": "2026-10-10T18:31:49.418106+00:00",
+   "views_count": 2,
+   "popular_score": 44
   },
   {
    "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
@@ -12363,9 +12369,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-09T02:20:45.245897+00:00",
-   "views_count": 3,
-   "popular_score": 67
+   "updated_at": "2026-10-12T06:09:39.166240+00:00",
+   "views_count": 4,
+   "popular_score": 68
   },
   {
    "id": "e1ea98eb-25cf-4be6-b469-21d2370db6db",
@@ -12967,9 +12973,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-07T15:14:34.727127+00:00",
-   "views_count": 1,
-   "popular_score": 65
+   "updated_at": "2026-10-12T06:10:02.074089+00:00",
+   "views_count": 4,
+   "popular_score": 68
   },
   {
    "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
@@ -13229,9 +13235,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T08:05:14.094938+00:00",
-   "views_count": 2,
-   "popular_score": 66
+   "updated_at": "2026-10-12T06:09:38.316870+00:00",
+   "views_count": 4,
+   "popular_score": 68
   },
   {
    "id": "f0b9b25f-238a-42c1-a803-96fe29d0ba10",
@@ -13698,9 +13704,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T05:25:31.127711+00:00",
-   "views_count": 1,
-   "popular_score": 65
+   "updated_at": "2026-10-12T06:10:08.381911+00:00",
+   "views_count": 2,
+   "popular_score": 66
   },
   {
    "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
@@ -13960,9 +13966,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-08T22:09:09.735970+00:00",
-   "views_count": 2,
-   "popular_score": 66
+   "updated_at": "2026-10-12T06:10:02.613440+00:00",
+   "views_count": 3,
+   "popular_score": 67
   },
   {
    "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
@@ -14448,9 +14454,9 @@
      "severity": 3
     }
    ],
-   "updated_at": "2026-10-09T04:58:06.008402+00:00",
-   "views_count": 3,
-   "popular_score": 67
+   "updated_at": "2026-10-12T06:09:18.960633+00:00",
+   "views_count": 4,
+   "popular_score": 68
   },
   {
    "id": "ffb83a20-4219-47de-b132-5cc17dabfed6",
@@ -14768,7 +14774,9 @@
      "nom": "Pensées libertaires"
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-10T20:14:29.911190+00:00",
+   "views_count": 2,
+   "popular_score": 8
   },
   {
    "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
@@ -14827,9 +14835,9 @@
      "note": "Quand on dépend encore d'un diplôme."
     }
    ],
-   "updated_at": "2026-10-05T02:31:52.323800+00:00",
-   "views_count": 1,
-   "popular_score": 9
+   "updated_at": "2026-10-11T07:24:35.986428+00:00",
+   "views_count": 2,
+   "popular_score": 10
   },
   {
    "id": "1c970a86-b817-443b-ae76-50d1707e1eed",
@@ -15151,7 +15159,9 @@
      "nom": "Modèle social du handicap"
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-11T07:19:09.628422+00:00",
+   "views_count": 1,
+   "popular_score": 9
   },
   {
    "id": "73967d4c-54ec-4816-8b8d-493cb08041f1",
@@ -15536,7 +15546,9 @@
      "nom": "Pensées libertaires"
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-10T15:59:28.551874+00:00",
+   "views_count": 1,
+   "popular_score": 9
   },
   {
    "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
@@ -15953,7 +15965,9 @@
      "note": "Une autre, qui part de l'exploitation."
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-10T21:30:51.408431+00:00",
+   "views_count": 1,
+   "popular_score": 9
   },
   {
    "id": "f103cbd5-df96-42e9-b2c9-0ecf1612d8db",
@@ -16005,7 +16019,9 @@
      "nom": "Contrôle coercitif"
     }
    ],
-   "updated_at": "2026-09-30T07:30:19.253551+00:00"
+   "updated_at": "2026-10-11T03:45:15.127980+00:00",
+   "views_count": 1,
+   "popular_score": 7
   }
  ],
  "recits": [
@@ -16020,14 +16036,16 @@
    "title": "Une colocation ordinaire",
    "text": "Il ne criait pas, il ne cassait rien. Il soupirait. Il laissait traîner les choses jusqu'à ce que je les fasse. Quand j'ai voulu en parler, il m'a expliqué calmement que j'étais quelqu'un de tendu, et que ce n'était pas de sa faute.",
    "created_at": "2026-09-30T07:30:19.253551+00:00",
-   "views_count": 1,
-   "popular_score": 5
+   "views_count": 2,
+   "popular_score": 6
   },
   {
    "id": "d228781a-5b16-4e82-a8ec-44b3b7177cdf",
    "title": "Les repas de famille",
    "text": "On riait de moi à table, et si je ne riais pas, c'est que je n'avais pas d'humour. Ça a duré des années. Le pire n'était pas les remarques, c'était de voir les autres baisser les yeux dans leur assiette. Le silence des gens qui savent, c'est une chose dont on ne parle jamais assez.",
-   "created_at": "2026-09-30T07:30:19.253551+00:00"
+   "created_at": "2026-09-30T07:30:19.253551+00:00",
+   "views_count": 2,
+   "popular_score": 6
   },
   {
    "id": "d4e85934-76d0-44ec-866d-96afd1e0edbd",
@@ -17479,15 +17497,6 @@
     ]
    },
    {
-    "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
-    "title": "Université et études supérieures",
-    "description": "Intégration, amphis, direction de thèse, soirées étudiantes : ce qui se passe quand on n'est plus un·e enfant, mais qu'on dépend encore d'un diplôme.",
-    "contexts": [
-     "Stage, alternance, apprentissage",
-     "Université"
-    ]
-   },
-   {
     "id": "247a382a-a837-4196-bd53-ba188abd3d52",
     "title": "La rue, lue par le modèle social du handicap",
     "description": "Cet angle dit que ce qui handicape, c'est la marche sans rampe, la place prise, l'aide imposée : une ville pensée pour d'autres corps.",
@@ -17628,6 +17637,16 @@
     "description": "Cet angle regarde qui peut vraiment participer : qui parle, qui garde les enfants, qui a l'argent et le corps pour être là.",
     "contexts": [
      "Associations et collectifs"
+    ]
+   },
+   {
+    "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
+    "title": "Université et études supérieures",
+    "description": "Intégration, amphis, direction de thèse, soirées étudiantes : ce qui se passe quand on n'est plus un·e enfant, mais qu'on dépend encore d'un diplôme.",
+    "contexts": [
+     "Amitiés",
+     "Stage, alternance, apprentissage",
+     "Université"
     ]
    },
    {
@@ -27943,6 +27962,7 @@
    "title": "Université et études supérieures",
    "description": "Intégration, amphis, direction de thèse, soirées étudiantes : ce qui se passe quand on n'est plus un·e enfant, mais qu'on dépend encore d'un diplôme.",
    "contexts": [
+    "Amitiés",
     "Stage, alternance, apprentissage",
     "Université"
    ],
@@ -28250,6 +28270,18 @@
     }
    ],
    "aides": [
+    {
+     "id": "4c7894ab-d456-4e60-a06e-663b363e4ba8",
+     "title": "0 800 05 95 95 – Viols Femmes Informations",
+     "what": "Écoute et accompagnement des femmes victimes de viol ou d'agression sexuelle.",
+     "contact": "Du lundi au vendredi, gratuit et anonyme.",
+     "phone": "0 800 05 95 95",
+     "url": "https://cfcv.asso.fr",
+     "kind": "ecoute",
+     "audience": "personne",
+     "min_level": 2,
+     "country": "FR"
+    },
     {
      "id": "94a4e083-9ada-453a-9fe4-de8b5e9da460",
      "title": "114 – Urgences par SMS",
@@ -43168,48 +43200,60 @@
   "07779d4f-90bd-4ea0-8761-47517b56f4e4": {
    "parcours": [
     {
-     "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
-     "title": "Les institutions, sous plusieurs angles"
-    },
-    {
      "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
      "title": "Les institutions : du général au particulier"
+    },
+    {
+     "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
+     "title": "Les institutions, sous plusieurs angles"
     }
    ],
    "same_parcours": [
     {
      "violentometer": {
-      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
-      "title": "Les institutions, lues par les pensées libertaires"
+      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
+      "title": "Violences gynécologiques et obstétricales"
      },
      "parcours": [
       {
-       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
-       "title": "Les institutions, sous plusieurs angles"
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
       }
      ]
     },
     {
      "violentometer": {
-      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
-      "title": "Les soins, lus par le modèle social du handicap"
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
      },
      "parcours": [
       {
-       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
-       "title": "Les institutions, sous plusieurs angles"
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
       }
      ]
     },
     {
      "violentometer": {
-      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
-      "title": "La santé, lue par les féminismes"
+      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
+      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
      },
      "parcours": [
       {
-       "id": "a1e13f32-f99f-448c-adbb-68f71a2fc4fa",
-       "title": "Les institutions, sous plusieurs angles"
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
       }
      ]
     },
@@ -43236,41 +43280,29 @@
        "title": "Les institutions : du général au particulier"
       }
      ]
-    },
-    {
-     "violentometer": {
-      "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
-      "title": "Violences gynécologiques et obstétricales"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
     }
    ],
    "shared_behaviors": [
     {
      "violentometer": {
-      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
-      "title": "Violentomètre de la police et de la justice"
+      "id": "d370fb51-5c4d-4d75-9cc5-6699e955eb17",
+      "title": "Les institutions, lues par les pensées libertaires"
      },
-     "shared_count": 8
+     "shared_count": 5
     },
     {
      "violentometer": {
-      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
-      "title": "Administration, droits et papiers"
-     },
-     "shared_count": 6
-    },
-    {
-     "violentometer": {
-      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
-      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
+      "id": "69bc1235-02e5-4b5d-9b46-d97a049fbfb8",
+      "title": "La santé, lue par les féminismes"
      },
      "shared_count": 4
+    },
+    {
+     "violentometer": {
+      "id": "99dd70f9-8ba8-4ccf-a8dc-3a0fdd5f879e",
+      "title": "Les soins, lus par le modèle social du handicap"
+     },
+     "shared_count": 3
     },
     {
      "violentometer": {
@@ -43415,8 +43447,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
-      "title": "La famille, lue par le féminisme matérialiste"
+      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
+      "title": "Violentomètre de la famille"
      },
      "parcours": [
       {
@@ -43427,8 +43459,8 @@
     },
     {
      "violentometer": {
-      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
-      "title": "Violentomètre de la famille"
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
      },
      "parcours": [
       {
@@ -43505,8 +43537,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
-      "title": "Le couple, lu par le contrôle coercitif"
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
      },
      "parcours": [
       {
@@ -43529,8 +43561,8 @@
     },
     {
      "violentometer": {
-      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
-      "title": "Violentomètre du couple"
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
      },
      "parcours": [
       {
@@ -43628,8 +43660,8 @@
     },
     {
      "violentometer": {
-      "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
-      "title": "Les relations, lues par les critiques des normes de genre"
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
      },
      "parcours": [
       {
@@ -43640,8 +43672,8 @@
     },
     {
      "violentometer": {
-      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
-      "title": "Violentomètre du couple"
+      "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
+      "title": "Les relations, lues par les critiques des normes de genre"
      },
      "parcours": [
       {
@@ -43732,8 +43764,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "ea4c1576-f9d3-4099-86ec-90cd6b4369de",
-      "title": "Violentomètre des collectifs"
+      "id": "5ce83a6f-5d0a-40ee-af55-ec3b5e44e566",
+      "title": "Les collectifs, lus par les pensées libertaires"
      },
      "parcours": [
       {
@@ -43744,8 +43776,8 @@
     },
     {
      "violentometer": {
-      "id": "5ce83a6f-5d0a-40ee-af55-ec3b5e44e566",
-      "title": "Les collectifs, lus par les pensées libertaires"
+      "id": "ea4c1576-f9d3-4099-86ec-90cd6b4369de",
+      "title": "Violentomètre des collectifs"
      },
      "parcours": [
       {
@@ -43833,8 +43865,8 @@
     },
     {
      "violentometer": {
-      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
-      "title": "Rencontres, rendez-vous et applications"
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
      },
      "parcours": [
       {
@@ -43845,8 +43877,8 @@
     },
     {
      "violentometer": {
-      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
-      "title": "Violentomètre du couple"
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
      },
      "parcours": [
       {
@@ -44096,18 +44128,6 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
-      "title": "Violentomètre de l'école"
-     },
-     "parcours": [
-      {
-       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
-       "title": "L'école et les études : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
       "title": "Université et études supérieures"
      },
@@ -44122,6 +44142,18 @@
      "violentometer": {
       "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
       "title": "Violentomètre de l'école et des études"
+     },
+     "parcours": [
+      {
+       "id": "13e31046-977f-4b0b-99be-8a410d52b19c",
+       "title": "L'école et les études : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
+      "title": "Violentomètre de l'école"
      },
      "parcours": [
       {
@@ -44264,8 +44296,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
-      "title": "La famille, lue par le féminisme matérialiste"
+      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
+      "title": "Violentomètre de la famille"
      },
      "parcours": [
       {
@@ -44276,8 +44308,8 @@
     },
     {
      "violentometer": {
-      "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
-      "title": "Violentomètre de la famille"
+      "id": "09042f4a-5410-413d-8b98-4ff3d5a794c0",
+      "title": "La famille, lue par le féminisme matérialiste"
      },
      "parcours": [
       {
@@ -44348,18 +44380,6 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
-      "title": "Le couple, lu par le contrôle coercitif"
-     },
-     "parcours": [
-      {
-       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
-       "title": "Le couple, sous plusieurs angles"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "10007932-9f30-484a-9289-3738571a3196",
       "title": "Le couple, lu par le féminisme matérialiste"
      },
@@ -44374,6 +44394,18 @@
      "violentometer": {
       "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
       "title": "Violentomètre du couple"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
      },
      "parcours": [
       {
@@ -44538,8 +44570,8 @@
     },
     {
      "violentometer": {
-      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
-      "title": "Le travail, lu par le féminisme matérialiste"
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
      },
      "parcours": [
       {
@@ -44550,8 +44582,8 @@
     },
     {
      "violentometer": {
-      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
-      "title": "Violentomètre du travail"
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
      },
      "parcours": [
       {
@@ -44661,8 +44693,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
-      "title": "Violentomètre de l'espace public"
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
      },
      "parcours": [
       {
@@ -44685,8 +44717,8 @@
     },
     {
      "violentometer": {
-      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
-      "title": "Violentomètre de la rue et des transports"
+      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
+      "title": "Violentomètre de l'espace public"
      },
      "parcours": [
       {
@@ -44709,15 +44741,51 @@
   "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59": {
    "parcours": [
     {
-     "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
-     "title": "La rue, sous plusieurs angles"
-    },
-    {
      "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
      "title": "Dehors : du général au particulier"
+    },
+    {
+     "id": "437f6c50-1246-4f5c-a5d5-dff7862e3abe",
+     "title": "La rue, sous plusieurs angles"
     }
    ],
    "same_parcours": [
+    {
+     "violentometer": {
+      "id": "4979a090-b09e-4697-a49e-e35348a39163",
+      "title": "Violentomètre du sport"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
+      "title": "Violentomètre de l'espace public"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
+      "title": "Violentomètre des soirées et de la vie nocturne"
+     },
+     "parcours": [
+      {
+       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
+       "title": "Dehors : du général au particulier"
+      }
+     ]
+    },
     {
      "violentometer": {
       "id": "247a382a-a837-4196-bd53-ba188abd3d52",
@@ -44753,42 +44821,6 @@
        "title": "La rue, sous plusieurs angles"
       }
      ]
-    },
-    {
-     "violentometer": {
-      "id": "4979a090-b09e-4697-a49e-e35348a39163",
-      "title": "Violentomètre du sport"
-     },
-     "parcours": [
-      {
-       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
-       "title": "Dehors : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
-      "title": "Violentomètre des soirées et de la vie nocturne"
-     },
-     "parcours": [
-      {
-       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
-       "title": "Dehors : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
-      "title": "Violentomètre de l'espace public"
-     },
-     "parcours": [
-      {
-       "id": "941d7ece-9d7b-4d6a-9912-b169a2581184",
-       "title": "Dehors : du général au particulier"
-      }
-     ]
     }
    ]
   },
@@ -44800,6 +44832,30 @@
     }
    ],
    "same_parcours": [
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
     {
      "violentometer": {
       "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
@@ -44826,32 +44882,8 @@
     },
     {
      "violentometer": {
-      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
-      "title": "Administration, droits et papiers"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
       "title": "Violences gynécologiques et obstétricales"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -44914,8 +44946,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
-      "title": "Violentomètre des soirées et de la vie nocturne"
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
      },
      "parcours": [
       {
@@ -44926,8 +44958,8 @@
     },
     {
      "violentometer": {
-      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
-      "title": "Violentomètre de la rue et des transports"
+      "id": "8b56859b-4c1a-4a4b-8d01-8de429596eac",
+      "title": "Violentomètre des soirées et de la vie nocturne"
      },
      "parcours": [
       {
@@ -44976,18 +45008,6 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "997fd90c-860a-4409-8879-584b78b9838d",
-      "title": "Frères, sœurs, cousins, grands-parents"
-     },
-     "parcours": [
-      {
-       "id": "23d7154c-619a-4828-af93-f493c9305138",
-       "title": "La famille : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
       "title": "Violentomètre de la famille"
      },
@@ -45002,6 +45022,18 @@
      "violentometer": {
       "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
       "title": "Violentomètre des parents et des enfants"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "997fd90c-860a-4409-8879-584b78b9838d",
+      "title": "Frères, sœurs, cousins, grands-parents"
      },
      "parcours": [
       {
@@ -45066,8 +45098,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "ea4c1576-f9d3-4099-86ec-90cd6b4369de",
-      "title": "Violentomètre des collectifs"
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
      },
      "parcours": [
       {
@@ -45078,8 +45110,8 @@
     },
     {
      "violentometer": {
-      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
-      "title": "Les collectifs, lus par l'intersectionnalité"
+      "id": "ea4c1576-f9d3-4099-86ec-90cd6b4369de",
+      "title": "Violentomètre des collectifs"
      },
      "parcours": [
       {
@@ -45219,8 +45251,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
-      "title": "Violentomètre de l'école"
+      "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
+      "title": "Violentomètre de l'école et des études"
      },
      "parcours": [
       {
@@ -45231,8 +45263,8 @@
     },
     {
      "violentometer": {
-      "id": "efe4aeda-1515-4f45-910d-519f1ce2790a",
-      "title": "Violentomètre de l'école et des études"
+      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
+      "title": "Violentomètre de l'école"
      },
      "parcours": [
       {
@@ -45367,8 +45399,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "a6b7d851-5377-4a04-b7a8-c636b895cad0",
-      "title": "Violentomètre du voisinage"
+      "id": "d17fe96d-8953-428d-aa15-9f101dcffe11",
+      "title": "Propriétaires, bailleurs et logement"
      },
      "parcours": [
       {
@@ -45379,8 +45411,8 @@
     },
     {
      "violentometer": {
-      "id": "d17fe96d-8953-428d-aa15-9f101dcffe11",
-      "title": "Propriétaires, bailleurs et logement"
+      "id": "a6b7d851-5377-4a04-b7a8-c636b895cad0",
+      "title": "Violentomètre du voisinage"
      },
      "parcours": [
       {
@@ -45417,6 +45449,30 @@
    "same_parcours": [
     {
      "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
+      "title": "Administration, droits et papiers"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
       "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
       "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
      },
@@ -45441,32 +45497,8 @@
     },
     {
      "violentometer": {
-      "id": "f5873b16-0a7f-4261-bbec-c7aebc5e1473",
-      "title": "Administration, droits et papiers"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
       "title": "Violences gynécologiques et obstétricales"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
-      "title": "Vivre en établissement"
      },
      "parcours": [
       {
@@ -45522,8 +45554,20 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
-      "title": "Violentomètre de la police et de la justice"
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -45546,32 +45590,20 @@
     },
     {
      "violentometer": {
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
       "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
       "title": "Violences gynécologiques et obstétricales"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
-      "title": "Vivre en établissement"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -45728,8 +45760,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
-      "title": "Violentomètre de la vie numérique"
+      "id": "a6ab7e47-f5e9-4253-8642-ee8ce2dd802b",
+      "title": "Cyberharcèlement et chantage en ligne"
      },
      "parcours": [
       {
@@ -45740,8 +45772,8 @@
     },
     {
      "violentometer": {
-      "id": "a6ab7e47-f5e9-4253-8642-ee8ce2dd802b",
-      "title": "Cyberharcèlement et chantage en ligne"
+      "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
+      "title": "Violentomètre de la vie numérique"
      },
      "parcours": [
       {
@@ -45802,8 +45834,8 @@
     },
     {
      "violentometer": {
-      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
-      "title": "Violentomètre de l'emploi salarié"
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
      },
      "parcours": [
       {
@@ -45814,8 +45846,8 @@
     },
     {
      "violentometer": {
-      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
-      "title": "Violentomètre du travail"
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
      },
      "parcours": [
       {
@@ -46215,18 +46247,6 @@
     },
     {
      "violentometer": {
-      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
-      "title": "Violentomètre de l'emploi salarié"
-     },
-     "parcours": [
-      {
-       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
-       "title": "Le travail : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
       "title": "Le harcèlement sexuel au travail"
      },
@@ -46241,6 +46261,18 @@
      "violentometer": {
       "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
       "title": "Violentomètre du travail"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
      },
      "parcours": [
       {
@@ -46295,6 +46327,18 @@
    "same_parcours": [
     {
      "violentometer": {
+      "id": "10007932-9f30-484a-9289-3738571a3196",
+      "title": "Le couple, lu par le féminisme matérialiste"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
       "id": "f0b9b25f-238a-42c1-a803-96fe29d0ba10",
       "title": "Violences sexuelles dans le couple"
      },
@@ -46319,32 +46363,20 @@
     },
     {
      "violentometer": {
-      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
-      "title": "Le couple, lu par le contrôle coercitif"
-     },
-     "parcours": [
-      {
-       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
-       "title": "Le couple, sous plusieurs angles"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "10007932-9f30-484a-9289-3738571a3196",
-      "title": "Le couple, lu par le féminisme matérialiste"
-     },
-     "parcours": [
-      {
-       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
-       "title": "Le couple, sous plusieurs angles"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "33b92aac-6134-4f86-a70d-828f46f0f018",
       "title": "Les relations, lues par les critiques des normes de genre"
+     },
+     "parcours": [
+      {
+       "id": "ad6db6ff-5d32-4508-b703-a76cfe082fba",
+       "title": "Le couple, sous plusieurs angles"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "12cea310-e425-455b-a342-5abebb7a1d91",
+      "title": "Le couple, lu par le contrôle coercitif"
      },
      "parcours": [
       {
@@ -46393,8 +46425,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
-      "title": "Violentomètre de l'espace public"
+      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
+      "title": "Violentomètre de la rue et des transports"
      },
      "parcours": [
       {
@@ -46405,8 +46437,8 @@
     },
     {
      "violentometer": {
-      "id": "4a361b5a-d8d8-44ba-bfd7-11e8c6319f59",
-      "title": "Violentomètre de la rue et des transports"
+      "id": "50a40d13-c387-4b97-b9a4-27dbfed8f677",
+      "title": "Violentomètre de l'espace public"
      },
      "parcours": [
       {
@@ -46462,8 +46494,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
-      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
      },
      "parcours": [
       {
@@ -46474,8 +46506,8 @@
     },
     {
      "violentometer": {
-      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
-      "title": "Violentomètre de la police et de la justice"
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -46498,8 +46530,8 @@
     },
     {
      "violentometer": {
-      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
-      "title": "Vivre en établissement"
+      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
+      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
      },
      "parcours": [
       {
@@ -46510,8 +46542,8 @@
     },
     {
      "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
+      "id": "c6d5f2f4-2f06-4ef6-a27c-ee79e6e11f71",
+      "title": "Violentomètre de la police et de la justice"
      },
      "parcours": [
       {
@@ -46586,8 +46618,8 @@
     },
     {
      "violentometer": {
-      "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
-      "title": "Violentomètre des parents et des enfants"
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
      },
      "parcours": [
       {
@@ -46598,8 +46630,8 @@
     },
     {
      "violentometer": {
-      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
-      "title": "Vieillir, aider, dépendre"
+      "id": "f59c46fc-9426-485f-bb94-7e9583aabaca",
+      "title": "Violentomètre des parents et des enfants"
      },
      "parcours": [
       {
@@ -46757,8 +46789,8 @@
     },
     {
      "violentometer": {
-      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
-      "title": "Rencontres, rendez-vous et applications"
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
      },
      "parcours": [
       {
@@ -46769,8 +46801,8 @@
     },
     {
      "violentometer": {
-      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
-      "title": "Violentomètre du couple"
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
      },
      "parcours": [
       {
@@ -46840,8 +46872,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
-      "title": "Violentomètre de la vie numérique"
+      "id": "6e1fa543-1baa-4e71-9560-322c5b513e1c",
+      "title": "Messageries et groupes"
      },
      "parcours": [
       {
@@ -46852,8 +46884,8 @@
     },
     {
      "violentometer": {
-      "id": "6e1fa543-1baa-4e71-9560-322c5b513e1c",
-      "title": "Messageries et groupes"
+      "id": "2c93a667-fd1c-43c5-a6c0-785aa57a6431",
+      "title": "Violentomètre de la vie numérique"
      },
      "parcours": [
       {
@@ -46964,8 +46996,8 @@
     },
     {
      "violentometer": {
-      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
-      "title": "Le travail, lu par le féminisme matérialiste"
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
      },
      "parcours": [
       {
@@ -46976,8 +47008,8 @@
     },
     {
      "violentometer": {
-      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
-      "title": "Violentomètre du travail"
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
      },
      "parcours": [
       {
@@ -47145,8 +47177,20 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
-      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -47169,32 +47213,20 @@
     },
     {
      "violentometer": {
+      "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
+      "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
       "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
       "title": "Violences gynécologiques et obstétricales"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
-      "title": "Vivre en établissement"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -47307,8 +47339,8 @@
     },
     {
      "violentometer": {
-      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
-      "title": "Rencontres, rendez-vous et applications"
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
      },
      "parcours": [
       {
@@ -47319,8 +47351,8 @@
     },
     {
      "violentometer": {
-      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
-      "title": "Violentomètre du couple"
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
      },
      "parcours": [
       {
@@ -47588,8 +47620,8 @@
     },
     {
      "violentometer": {
-      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
-      "title": "Le harcèlement sexuel au travail"
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
      },
      "parcours": [
       {
@@ -47600,8 +47632,8 @@
     },
     {
      "violentometer": {
-      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
-      "title": "Violentomètre de l'emploi salarié"
+      "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
+      "title": "Le harcèlement sexuel au travail"
      },
      "parcours": [
       {
@@ -47690,8 +47722,8 @@
     },
     {
      "violentometer": {
-      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
-      "title": "Le travail, lu par le féminisme matérialiste"
+      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
+      "title": "Violentomètre du travail"
      },
      "parcours": [
       {
@@ -47702,8 +47734,8 @@
     },
     {
      "violentometer": {
-      "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
-      "title": "Violentomètre du travail"
+      "id": "7812e757-a060-4bf1-8de0-d0c94a649185",
+      "title": "Le travail, lu par le féminisme matérialiste"
      },
      "parcours": [
       {
@@ -47766,18 +47798,6 @@
     },
     {
      "violentometer": {
-      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
-      "title": "Violentomètre de l'emploi salarié"
-     },
-     "parcours": [
-      {
-       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
-       "title": "Le travail : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "75065580-91aa-429a-bb2e-fd7dc52b5c63",
       "title": "Le harcèlement sexuel au travail"
      },
@@ -47792,6 +47812,18 @@
      "violentometer": {
       "id": "d4fd6553-8ba7-4e9b-acb1-f6a3469db6a5",
       "title": "Violentomètre du travail"
+     },
+     "parcours": [
+      {
+       "id": "8059b172-f312-49e8-b340-ca66dd1dcf20",
+       "title": "Le travail : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "5fa36a6b-d00c-4cde-8b6d-047312900f75",
+      "title": "Violentomètre de l'emploi salarié"
      },
      "parcours": [
       {
@@ -47835,24 +47867,24 @@
   "ea4c1576-f9d3-4099-86ec-90cd6b4369de": {
    "parcours": [
     {
-     "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
-     "title": "Les collectifs, sous plusieurs angles"
-    },
-    {
      "id": "1c970a86-b817-443b-ae76-50d1707e1eed",
      "title": "Les collectifs : du général au particulier"
+    },
+    {
+     "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+     "title": "Les collectifs, sous plusieurs angles"
     }
    ],
    "same_parcours": [
     {
      "violentometer": {
-      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
-      "title": "Les collectifs, lus par l'intersectionnalité"
+      "id": "45bdf080-6c74-45fd-bbee-7c3185bb0c13",
+      "title": "Violentomètre des collectifs militants"
      },
      "parcours": [
       {
-       "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
-       "title": "Les collectifs, sous plusieurs angles"
+       "id": "1c970a86-b817-443b-ae76-50d1707e1eed",
+       "title": "Les collectifs : du général au particulier"
       }
      ]
     },
@@ -47870,13 +47902,13 @@
     },
     {
      "violentometer": {
-      "id": "45bdf080-6c74-45fd-bbee-7c3185bb0c13",
-      "title": "Violentomètre des collectifs militants"
+      "id": "19587746-84f3-4c2f-9da0-b2f36f2dd5d8",
+      "title": "Les collectifs, lus par l'intersectionnalité"
      },
      "parcours": [
       {
-       "id": "1c970a86-b817-443b-ae76-50d1707e1eed",
-       "title": "Les collectifs : du général au particulier"
+       "id": "050cf2ee-7c17-46c0-89a1-7a0b8ddc27e5",
+       "title": "Les collectifs, sous plusieurs angles"
       }
      ]
     }
@@ -47915,8 +47947,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
-      "title": "Violentomètre de l'école"
+      "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
+      "title": "Université et études supérieures"
      },
      "parcours": [
       {
@@ -47927,8 +47959,8 @@
     },
     {
      "violentometer": {
-      "id": "60c8926f-3b03-46ee-a9a0-6b21cc05b7d9",
-      "title": "Université et études supérieures"
+      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
+      "title": "Violentomètre de l'école"
      },
      "parcours": [
       {
@@ -48017,8 +48049,8 @@
     },
     {
      "violentometer": {
-      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
-      "title": "Rencontres, rendez-vous et applications"
+      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
+      "title": "Violentomètre du couple"
      },
      "parcours": [
       {
@@ -48029,8 +48061,8 @@
     },
     {
      "violentometer": {
-      "id": "81eb646d-7c68-4eb1-b223-33cece64e7d5",
-      "title": "Violentomètre du couple"
+      "id": "fc5197ea-52fd-43f4-b727-6f0468fdf269",
+      "title": "Rencontres, rendez-vous et applications"
      },
      "parcours": [
       {
@@ -48091,6 +48123,30 @@
    "same_parcours": [
     {
      "violentometer": {
+      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
+      "title": "Vivre en établissement"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
+      "title": "Violentomètre de la santé et des soins"
+     },
+     "parcours": [
+      {
+       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
+       "title": "Les institutions : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
       "id": "6635adcd-e59e-4f0e-bf64-60413aaeded4",
       "title": "Foyers, hébergement d'urgence et aide sociale à l'enfance"
      },
@@ -48117,30 +48173,6 @@
      "violentometer": {
       "id": "94a40957-e6ff-4a71-b0d1-14f2493db5bd",
       "title": "Violences gynécologiques et obstétricales"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "4b1fc809-46f9-4117-8985-f25af8be3126",
-      "title": "Vivre en établissement"
-     },
-     "parcours": [
-      {
-       "id": "b525096a-bd66-47a5-a4c6-1639e0eb223e",
-       "title": "Les institutions : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
-      "id": "651bf8bc-f5cf-4460-833f-71692cc6d0a9",
-      "title": "Violentomètre de la santé et des soins"
      },
      "parcours": [
       {
@@ -48196,18 +48228,6 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "997fd90c-860a-4409-8879-584b78b9838d",
-      "title": "Frères, sœurs, cousins, grands-parents"
-     },
-     "parcours": [
-      {
-       "id": "23d7154c-619a-4828-af93-f493c9305138",
-       "title": "La famille : du général au particulier"
-      }
-     ]
-    },
-    {
-     "violentometer": {
       "id": "fefb37c7-06e1-4754-875e-da4401d4f626",
       "title": "Violentomètre de la famille"
      },
@@ -48222,6 +48242,18 @@
      "violentometer": {
       "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
       "title": "Vieillir, aider, dépendre"
+     },
+     "parcours": [
+      {
+       "id": "23d7154c-619a-4828-af93-f493c9305138",
+       "title": "La famille : du général au particulier"
+      }
+     ]
+    },
+    {
+     "violentometer": {
+      "id": "997fd90c-860a-4409-8879-584b78b9838d",
+      "title": "Frères, sœurs, cousins, grands-parents"
      },
      "parcours": [
       {
@@ -48376,8 +48408,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
-      "title": "Vieillir, aider, dépendre"
+      "id": "997fd90c-860a-4409-8879-584b78b9838d",
+      "title": "Frères, sœurs, cousins, grands-parents"
      },
      "parcours": [
       {
@@ -48400,8 +48432,8 @@
     },
     {
      "violentometer": {
-      "id": "997fd90c-860a-4409-8879-584b78b9838d",
-      "title": "Frères, sœurs, cousins, grands-parents"
+      "id": "5a3e93f5-722b-419c-9a4d-b9cd2f0ff5e4",
+      "title": "Vieillir, aider, dépendre"
      },
      "parcours": [
       {
@@ -48474,8 +48506,8 @@
    "same_parcours": [
     {
      "violentometer": {
-      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
-      "title": "Violentomètre de l'école"
+      "id": "60dc7ec3-9735-44d7-a5d9-5cd047ce3d09",
+      "title": "L'école, lue par la critique de la domination adulte"
      },
      "parcours": [
       {
@@ -48486,8 +48518,8 @@
     },
     {
      "violentometer": {
-      "id": "60dc7ec3-9735-44d7-a5d9-5cd047ce3d09",
-      "title": "L'école, lue par la critique de la domination adulte"
+      "id": "39ef0cab-445a-4c7d-84ce-c47b5bd67626",
+      "title": "Violentomètre de l'école"
      },
      "parcours": [
       {
@@ -48632,6 +48664,11 @@
    "description": "Ce qui se passe en ligne."
   },
   {
+   "id": "7c23126e-878b-4909-ae0f-1ecf5d6abcbd",
+   "name": "Amitiés",
+   "description": "Les amitiés, les bandes, les proches."
+  },
+  {
    "id": "7d67ae40-4e96-4748-87ac-56a6c9b9e5da",
    "name": "Rue et transports",
    "parent_ids": [
@@ -48643,13 +48680,6 @@
    "name": "Fratrie",
    "parent_ids": [
     "26a77b81-0da6-4917-a4e9-f11d34b6bbfc"
-   ]
-  },
-  {
-   "id": "90867318-27a9-4b27-99de-065cbf2422a3",
-   "name": "Jeux en ligne",
-   "parent_ids": [
-    "7702930d-181a-4245-815f-ac8ad7c7670f"
    ]
   },
   {
@@ -50089,6 +50119,7 @@
    "title": "L'école et les études : du général au particulier",
    "description": "De l'école à l'université, puis le harcèlement scolaire en particulier.",
    "contexts": [
+    "Amitiés",
     "Internet et réseaux sociaux",
     "Messageries et groupes",
     "Stage, alternance, apprentissage",
@@ -51180,6 +51211,18 @@
      "url": "https://e-enfance.org/numero-3018/",
      "kind": "ecoute",
      "audience": "tous",
+     "min_level": 2,
+     "country": "FR"
+    },
+    {
+     "id": "4c7894ab-d456-4e60-a06e-663b363e4ba8",
+     "title": "0 800 05 95 95 – Viols Femmes Informations",
+     "what": "Écoute et accompagnement des femmes victimes de viol ou d'agression sexuelle.",
+     "contact": "Du lundi au vendredi, gratuit et anonyme.",
+     "phone": "0 800 05 95 95",
+     "url": "https://cfcv.asso.fr",
+     "kind": "ecoute",
+     "audience": "personne",
      "min_level": 2,
      "country": "FR"
     }
